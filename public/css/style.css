@@ -1,0 +1,532 @@
+/*
+COLOR PALETTE
+
+50#e8eaf6
+100#c5cae9
+200#9fa8da
+300#7986cb RGB 121 134 203
+400#5c6bc0
+500#3f51b5
+600#3949ab
+700#303f9f
+800#283593
+900#1a237e
+A100#8c9eff
+A200#536dfe
+A400#3d5afe
+A700#304ffe
+*/
+
+/*
+RESET
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+END RESET
+*/
+
+
+body {
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    font-size: 14px;
+    padding-top:65px;
+    padding-bottom: 40px;
+}
+
+/*
+HEADER
+*/
+
+header
+{
+    /*box-shadow: 0 2px 5px rgba(200, 200, 200, 0.26);*/
+    background-color:   #e8eaf6;
+
+    padding-top: 5px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+
+
+}
+
+header a
+{
+    margin-right: 5px;
+    background-color:   #7986cb;
+    /*border: 1px solid #5c6bc0;*/
+    font-size:16px;
+    text-decoration:none;
+}
+
+header .menu/*,
+header a.menuButton*/
+{
+    display:block;
+    color:#ffffff;
+    padding: 12px 10px 10px 10px;
+    height:18px;
+    float:right;
+}
+
+header .menu:hover
+{
+    background-color:#9fa8da;
+
+}
+
+
+header .icon 
+{
+    background-repeat: no-repeat;
+    background-position: 50% 40%;
+    width: 30px;
+}
+
+header .apps {
+    background-image: url("../img/icon/24/apps-24.png");
+}
+
+header .home
+{
+    background-image: url("../img/icon/24/home-24.png");
+    margin-right:10px;
+}
+
+/*
+END HEADER
+*/
+
+/*
+NAV
+*/
+
+body.dropdownMenuOpen nav{
+    top:7px;
+    position:fixed;
+}
+
+nav
+{
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    border:1px solid #ccc;
+    background-color: #ddd;*/
+
+
+    color: #000;
+
+    height: auto;
+    right: 0;
+    /*left:0;*/
+    margin-top: 40px;
+
+    /*padding:0px 30px 0px 30px;*/
+
+    position: absolute;
+
+    top: -500px;
+    width: auto;
+    z-index: 1000;
+    margin-right: 5px;
+    transition: all 0.3s ease 0s;
+    /*  border-top: 5px solid #90a4ae;*/
+}
+
+nav div:nth-child(1)
+{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #7986cb transparent;
+    float:right;
+    margin-right: 20px;
+}
+
+nav div:nth-child(2)
+{
+    clear:both;
+    border-top: 2px solid #7986cb;
+    
+    border-bottom:none;
+    background-color: #e8eaf6;
+    overflow:auto;
+    
+}
+
+nav div:nth-child(3)
+{
+    
+    background-color: #e8eaf6;
+   /* border: 1px solid #7986cb;
+    border-top:none;*/
+    clear:both;
+    overflow:auto;
+    padding:5px;
+}
+
+nav div ul:nth-child(1)
+{
+    /*border-top: 5px solid #ffcc00;*/
+    /*background-color: #ccc;
+    margin-right: 30px;*/
+}
+
+nav div ul:nth-child(2)
+{
+    /*border-top: 5px solid #00cc00;*/
+    /*background-color: #ccc;*/
+}
+
+nav div ul:nth-child(3)
+{
+    /*border-top: 5px solid #fff;*/
+    /*background-color: #ccc;
+    margin-left: 30px;*/
+}
+
+nav div ul
+{
+    position:relative;
+    /* top:-5px;*/
+    float:right;
+    padding:15px 15px 15px 15px;
+    /* border-top: 5px solid #90a4ae;*/
+}
+
+nav ul h3{
+    display: box;
+    font-size:16px;
+    font-weight: bold;
+    /*margin-bottom:10px;
+    padding:10px;
+    padding-left:none;*/
+    color:#3f51b5;
+    /*background-color:#fff;*/
+}
+
+nav ul li{
+    display:block;
+    padding:5px;
+    /*padding-left:10px;*/
+   /* padding-left:0px;
+    padding-right:0px;*/
+}
+
+nav ul a,
+nav ul a:visited
+{
+    color: #000;
+}
+
+nav ul a{
+    /*display:block;*/
+    text-decoration: none;
+}
+
+nav ul a:hover{
+    text-decoration: underline;
+    
+}
+
+nav div:nth-child(3) a
+{
+    color:#ffffff;
+    padding: 8px 10px 5px 10px;
+    height:18px;
+    text-decoration:none;
+    background-color: #7986cb;
+    float:right;
+}
+
+nav div:nth-child(3) a:hover
+{
+    background-color:#9fa8da;
+    
+}
+
+/*
+END NAV
+*/
+
+/*
+MAIN
+*/
+
+main {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+main h1 {
+    
+    background-color:#9fa8da;
+    font-size:26px;
+    
+    padding:30px 10px 10px 10px;
+        
+    margin-bottom: 20px;
+    
+    color:#fff;
+}
+
+p,
+main p{
+    margin-bottom:15px;
+}
+
+main b{
+    font-weight: bold;
+}
+
+/*
+END MAIN
+*/
+
+/*
+FOOTER
+*/
+
+footer
+{
+    margin-top:25px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*
+END FOOTER
+*/
+
+/*
+FORMS
+*/
+
+button {
+    font-size:14px;
+    border:none;
+    padding: 5px 10px 5px 10px;
+   /* border:1px solid #78909c;*/
+    background-color: #7986cb;
+    margin-right:5px;
+    color:#fff;
+}
+
+button:hover{
+    background-color:#9fa8da;
+    /*text-shadow: 1px 1px 0px #000;*/
+    color:#fff;
+
+}
+
+button.icon{
+    padding:0px;
+    
+    display:block;
+    float:left;
+    width: 24px;
+    height: 24px;
+    /*background-color:#9fa8da;*/
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+form{
+
+
+}
+
+form fieldset
+{
+   
+    background-color:#e8eaf6;
+    padding:15px;
+    padding-top:5px;
+    margin-bottom:5px;
+}
+
+form label {
+    display:block;
+    margin-bottom:5px;
+}
+
+form div
+{
+    margin-top:20px;
+}
+
+form input
+{
+    border:1px solid #9fa8da;
+}
+
+form input:hover
+{
+    box-shadow: 0 0px 5px rgba(121, 134, 203, 0.30);
+}
+
+form input:focus
+{
+    box-shadow: 0 0px 5px rgba(121, 134, 203, 0.70);
+}
+/*
+END FORMS
+*/
+
+
+.trash-16 {background-image: url("../img/icon/16/trash-can-16.png");}
+.pencil-16 {background-image: url("../img/icon/16/pencil-16.png");}
+.key-16 {background-image: url("../img/icon/16/key-16.png");}
+
+
+
+div.message{
+    padding:10px;
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.alert{background-color:#ffecb3; color: #ff6f00;}
+
+.error{background-color:#ffcdd2; color: #b71c1c;}
+
+.info{background-color:#dcedc8; color: #33691e;}
+
+
+
+
+/*
+TABLES
+*/
+
+table
+{
+    width:100%;
+    border:0px;
+    /*border: 1px solid #9fa8da;*/
+    /*border-collapse:separate;*/
+}
+
+table thead th
+{
+    background-color:#7986cb;
+    font-size:18px;
+    color:#ffffff;
+    padding:20px 10px 10px 10px;
+    text-align:left;
+    /*border-collapse:separate;*/
+    border-right: 1px solid #9fa8da;
+    /*border:1px solid #fff;*/
+}
+
+table tbody td
+{
+   padding:10px 10px 10px 10px; 
+}
+
+table tbody tr
+{
+    border-bottom: 1px solid #9fa8da;
+}
+
+table tbody tr:hover
+{
+    background-color:#e8eaf6;
+   
+}
+
+/*
+END TABLES
+*/
+
+
+
+.overlay {
+     visibility: hidden;
+     position: fixed;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1010;
+     background: rgba(232, 234, 246, .7);
+}
+
+
+.overlay div {
+     width:600px;
+     margin: 100px auto;
+     background-color: #fff;
+     /*border:1px solid #000;*/
+     padding:10px;
+     text-align:center;
+}
+
+.overlay h1 {
+    
+    text-align:left;
+    background-color: #9fa8da;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 30px 10px 10px;
+}
+
+.overlay div div{
+    text-align:left;
+    margin:0px;
+    background-color: #fff;
+    padding:5px;
+    overflow:auto;
+}
+
+.overlay button{
+    float:right;
+    margin: 0px 5px 0px 0px;
+}
