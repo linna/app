@@ -22,7 +22,7 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 /**
  * Set a constant that holds the project's "application" folder, like "/var/www/application".
  */
-define('APP', ROOT . 'app' . DIRECTORY_SEPARATOR);
+define('APP', ROOT . 'App' . DIRECTORY_SEPARATOR);
 
 
 //load configuration from config file
@@ -42,9 +42,9 @@ $loader = new \Leviu\Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
-    ['App\Lib', __DIR__.'/../app/library'],
-    ['App\Controllers', __DIR__.'/../app/controllers'],
-    ['App\Models', __DIR__.'/../app/models']
+    ['App\Lib', __DIR__.'/../App/Library'],
+    ['App\Controllers', __DIR__.'/../App/Controllers'],
+    ['App\Models', __DIR__.'/../App/Models']
 ]);
 
 
