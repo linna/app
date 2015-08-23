@@ -1,6 +1,19 @@
 <main>
     <h1>Users</h1>
-    <div id="changePasswordDialog"></div>
+    <div id="changePasswordDialog">  
+        <form method="post" action="#">
+            <fieldset>
+                <div>
+                    <label for="newpassword">new password</label>
+                    <input name="newpassword" id="newpassword" type="password" size="48"/>
+                </div>
+                <div>
+                    <label for="confirmpassword">confirm password</label>
+                    <input name="confirmpassword" id="confirmpassword" type="password"  size="48"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
     <div id="deleteDialog"><p>would you like delete this user (_username_)?</p><p>...please confirm action</p></div>
     <table>
         <thead>

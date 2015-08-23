@@ -343,80 +343,7 @@ footer
 END FOOTER
 */
 
-/*
-FORMS
-*/
 
-button {
-    font-size:14px;
-    border:none;
-    padding: 5px 10px 5px 10px;
-   /* border:1px solid #78909c;*/
-    background-color: #7986cb;
-    margin-right:5px;
-    color:#fff;
-}
-
-button:hover{
-    background-color:#9fa8da;
-    /*text-shadow: 1px 1px 0px #000;*/
-    color:#fff;
-
-}
-
-button.icon{
-    padding:0px;
-    
-    display:block;
-    float:left;
-    width: 24px;
-    height: 24px;
-    /*background-color:#9fa8da;*/
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
-
-form{
-
-
-}
-
-form fieldset
-{
-   
-    background-color:#e8eaf6;
-    padding:15px;
-    padding-top:5px;
-    margin-bottom:5px;
-}
-
-form label {
-    display:block;
-    margin-bottom:5px;
-}
-
-form div
-{
-    margin-top:20px;
-}
-
-form input
-{
-    border:1px solid #9fa8da;
-}
-
-form input:hover
-{
-    box-shadow: 0 0px 5px rgba(121, 134, 203, 0.30);
-}
-
-form input:focus
-{
-    box-shadow: 0 0px 5px rgba(121, 134, 203, 0.70);
-}
-/*
-END FORMS
-*/
 
 
 .trash-16 {background-image: url("../img/icon/16/trash-can-16.png");}
@@ -499,7 +426,7 @@ END TABLES
 }
 
 
-.overlay div {
+.overlay div.dialog {
      width:600px;
      margin: 100px auto;
      background-color: #fff;
@@ -508,7 +435,7 @@ END TABLES
      text-align:center;
 }
 
-.overlay h1 {
+.overlay div.dialog h1 {
     
     text-align:left;
     background-color: #9fa8da;
@@ -518,15 +445,101 @@ END TABLES
     padding: 30px 10px 10px;
 }
 
-.overlay div div{
+.overlay div.buttons,
+.overlay div.content{
     text-align:left;
     margin:0px;
     background-color: #fff;
-    padding:5px;
+    /*padding-top:5px;
+    padding-bottom:5px;*/
     overflow:auto;
+}
+
+.overlay div.buttons{
+    border-top: 4px solid #9fa8da;
+    margin-top:15px;
+    padding-right: 0px;
+    padding-top:10px;
 }
 
 .overlay button{
     float:right;
-    margin: 0px 5px 0px 0px;
+    margin: 0px 0px 0px 5px;
 }
+
+/*
+FORMS
+*/
+
+button {
+    font-size:14px;
+    border:none;
+    padding: 5px 10px 5px 10px;
+   /* border:1px solid #78909c;*/
+    background-color: #7986cb;
+    margin-right:5px;
+    color:#fff;
+}
+
+button:hover{
+    background-color:#9fa8da;
+    /*text-shadow: 1px 1px 0px #000;*/
+    color:#fff;
+
+}
+
+button.icon{
+    padding:0px;
+    
+    display:block;
+    float:left;
+    width: 24px;
+    height: 24px;
+    /*background-color:#9fa8da;*/
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+form{
+
+
+}
+
+form fieldset
+{
+   
+    background-color:#e8eaf6;
+    padding:15px;
+    padding-top:5px;
+    margin-bottom:5px;
+}
+
+form label {
+    display:block;
+    margin-bottom:5px;
+}
+
+form div
+{
+    margin-top:20px;
+    width:auto !important;
+    background-color: transparent !important;
+}
+
+form input
+{
+    border:1px solid #9fa8da;
+}
+
+form input:hover
+{
+    box-shadow: 0 0px 5px rgba(121, 134, 203, 0.30);
+}
+
+form input:focus
+{
+    box-shadow: 0 0px 5px rgba(121, 134, 203, 0.70);
+}
+/*
+END FORMS
+*/

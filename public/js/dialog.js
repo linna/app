@@ -9,6 +9,7 @@ Element.prototype.dialog = function (options)
     var dialogButtons = null;
     
     dialogContent = document.createElement('div');
+    dialogContent.classList.add('content');
     dialogContent.innerHTML = this.innerHTML;
     
     var generateUnOverlay = function () {
@@ -45,6 +46,7 @@ Element.prototype.dialog = function (options)
             var button = options[opt];
             
             dialogButtons = document.createElement('div');
+            dialogButtons.classList.add('buttons');
             
             for (var btn in button)
             {
@@ -63,6 +65,8 @@ Element.prototype.dialog = function (options)
     }
 
     var overlayContent = document.createElement('div');
+    
+    overlayContent.classList.add('dialog');
     
     overlayContent.appendChild(dialogHeader);
     overlayContent.appendChild(dialogContent);

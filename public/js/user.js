@@ -46,12 +46,14 @@ var User = {
     },
     setPassword: function (button, user_id, user_name)
     {
-        var overlay = document.createElement('div');
-        overlay.setAttribute('id', 'overlay');
+        var passDialog = document.getElementById('changePasswordDialog');
+        
+        //var overlay = document.createElement('div');
+        //overlay.setAttribute('id', 'overlay');
         //overlay.innerHTML = "<h1></h1><div></div><div><a href=\"#\">chiudi</a></div>";
 
-        overlay.dialog({
-            name: 'password change',
+        passDialog.dialog({
+            name: 'password change for '+ user_name + '...',
             buttons: {
                 exit: function (element)
                 {
@@ -84,7 +86,6 @@ var User = {
             buttons: {
                 exit: function (element)
                 {
-                    //alert(element);
                     document.body.removeChild(element);
                     deleteDialog.innerHTML = message;
                 },
@@ -99,15 +100,10 @@ var User = {
                                 var tr = button.parentNode.parentNode;
                                 var tbody = tr.parentNode;
                                 
-                                tbody.removeChild(tr);
-                               
-                                
-                                //console.log(tr);
+                                tbody.removeChild(tr);                             
                                 
                             });
                             
-                    //console.log(user_id);
-
                     document.body.removeChild(element);
                     deleteDialog.innerHTML = message;
                 }
