@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Leviu\Routing\Model;
-use Leviu\Auth\Login;
 use Leviu\Auth\UserMapper;
 
 class User extends Model
@@ -41,5 +40,18 @@ class User extends Model
         }
         
         $userMapper->save($user);
+    }
+    
+    public function delete($id)
+    {
+        $userMapper = new UserMapper();
+        
+        $user = $userMapper->findById($id);
+        
+                
+        if ($user->name !== 'root') {
+            //$userMapper->delete($user);
+        }
+        
     }
 }

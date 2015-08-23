@@ -42,11 +42,11 @@ $routes[] = [
 ];
 //end x-debug
 
-$testRoute = array();
+/*$testRoute = array();
 
 $testRoute[] = ['/user/[int:id]/enable', ['controller' => 'user', 'action' => 'enable']];
 $testRoute[] = ['/user/[int:id]/disable', ['controller' => 'user', 'action' => 'disable']];
-$testRoute[] = ['/user/[int:id]/:action', ['controller' => 'user']];
+$testRoute[] = ['/user/[int:id]/:action', ['controller' => 'user']];*/
 
 $routes[] = [
     'name' => null,
@@ -132,21 +132,23 @@ $routes[] = [
     'action' => 'disable',
 ];
 
+
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/treeTest',
-    'controller' => 'TreeTest',
-    'action' => null,
+    'url' => '/user/[int:id]/delete',
+    'controller' => 'User',
+    'action' => 'delete',
 ];
 
-$routes[] = [
+
+/*$routes[] = [
     'name' => null,
     'method' => 'GET',
     'url' => '/prova/[int:id]/filter/[int:year]/[string:month]/[int:day]',
     'controller' => 'prova',
     'action' => 'filter',
-];
+];*/
 
 $routes[] = [
     'name' => null,

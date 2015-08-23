@@ -25,6 +25,8 @@ class Login extends Controller
 
     public function index()
     {
+        $this->view->setTitle('App/Login');
+        
         $this->view->render('Login/index');
     }
 
@@ -45,6 +47,8 @@ class Login extends Controller
     {
         $this->view->data->loginError = true;
 
+        $this->view->setTitle('App/LoginError');
+        
         $this->view->render('Login/index');
     }
 

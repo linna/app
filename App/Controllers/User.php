@@ -42,4 +42,9 @@ class User extends Controller
     {
         $this->model->disable($user_id);
     }
+    
+    public function delete($user_id)
+    {
+        $this->model->delete($user_id);
+    }
 }

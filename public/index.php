@@ -44,7 +44,8 @@ $loader->register();
 $loader->addNamespaces([
     ['App\Lib', __DIR__.'/../App/Library'],
     ['App\Controllers', __DIR__.'/../App/Controllers'],
-    ['App\Models', __DIR__.'/../App/Models']
+    ['App\Models', __DIR__.'/../App/Models'],
+    ['App\Mappers', __DIR__.'/../App/Mappers']
 ]);
 
 

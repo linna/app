@@ -460,7 +460,7 @@ table thead th
     padding:20px 10px 10px 10px;
     text-align:left;
     /*border-collapse:separate;*/
-    border-right: 1px solid #9fa8da;
+   /*border-right: 1px solid #9fa8da;*/
     /*border:1px solid #fff;*/
 }
 
@@ -471,7 +471,7 @@ table tbody td
 
 table tbody tr
 {
-    border-bottom: 1px solid #9fa8da;
+   border-bottom: 1px solid #9fa8da;
 }
 
 table tbody tr:hover

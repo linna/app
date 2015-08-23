@@ -21,6 +21,8 @@ class ProtectedPage extends Controller
 
     public function index()
     {
+        $this->view->setTitle('App/ProtectedPage');
+        
         $this->view->render('ProtectedPage/index');
     }
 }
