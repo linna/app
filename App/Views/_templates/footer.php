@@ -1,6 +1,10 @@
 <footer>
   
 </footer>
+
+<script src="http://192.168.0.10/app/js/app.js"></script>
+
+<!-- app module specific js script -->
 <?php
 foreach ($js as $file) {
     ?>
@@ -10,5 +14,7 @@ foreach ($js as $file) {
 
 }
 ?>
+<!-- end specific js script -->
+    
 </body>
 </html>

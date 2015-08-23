@@ -10,6 +10,9 @@
             var url = "<?php echo URL; ?>";
         </script>
 
+        <link href="http://192.168.0.10/app/css/app.css" rel="stylesheet" />
+        
+        <!-- app module specific css file -->
         <?php
         foreach ($css as $file) {
             ?>
@@ -19,6 +22,8 @@
 
         }
         ?>
+        <!-- end specific css file -->
+        
     </head>
     <body>
         <header>

@@ -27,9 +27,16 @@ class User extends Controller
         
         $this->view->setTitle('App/Users');
         
+        //load specifc css file
         $this->view->addCss('css/user.css');
-        $this->view->addJs('js/user.js');
+        
+        //load javascript tools
+        $this->view->addJs('js/ajax.js');
         $this->view->addJs('js/dialog.js');
+        
+        //load specific js script for this controller
+        $this->view->addJs('js/user.js');
+        
         $this->view->render('User/index');
     }
     
