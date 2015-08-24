@@ -11,10 +11,9 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0"
+        "php": ">=5.5.0",
+        "s3b4stian/leviu": "0.1.*"
     },
-    "require-dev": {
-        "s3b4stian/leviu": "dev-master"
-    },
+   
     "license": "MIT"
 }
