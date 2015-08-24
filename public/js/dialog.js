@@ -1,83 +1,116 @@
 'use strict';
 
-Element.prototype.dialog = function (options)
-{
-    //this in this case refer to node when we apply dialog :);
+var dialog = function (element) {
+    this.element = element;
+};
 
-    var dialogContent = null;
-    var dialogHeader = null;
-    var dialogButtons = null;
-    
-    dialogContent = document.createElement('div');
-    dialogContent.classList.add('content');
-    dialogContent.innerHTML = this.innerHTML;
-    
-    var generateUnOverlay = function () {
-        
+dialog.prototype = {
+    currentOverlay: null,
+    currentElementId: null,
+    _generateUnOverlay: function () {
+
         var d = new Date();
         var n = d.getTime();
 
         var o = document.createElement('div');
-        o.setAttribute('id', 'overlay_'+n);
+        o.setAttribute('id', 'overlay_' + n);
         o.classList.add('overlay');
 
+        //console.log(this);
+        this.currentOverlay = o;
+
         return o;
-    };
+    },
+    close: function () {
 
-    var buttonAddEvent = function (buttonEl, i) {
-        buttonEl.addEventListener('click', function (e) {
-            i(overlay);//currentCallback(overlay);
-        }, false);
-    };
+        this.element.id = this.currentElementId;
+        this.element.classList.remove('content');
+        this.element.removeAttribute('class');
+
+        document.querySelector('main').appendChild(this.element);
+
+        document.body.removeChild(this.currentOverlay);
+    },
+    open: function (options) {
+        
+       
+        var dialogHeader = null;
+        var dialogButtons = null;
+
+        this.element.classList.add('content');
+
+        this.currentElementId = this.element.id;
+
+        this.element.removeAttribute('id');
 
 
-    for (var opt in options)
-    {
-        if (opt === 'name')
+        var buttonAddEvent = function (buttonEl, i) {
+            buttonEl.addEventListener('click', function (e) {
+                i(overlay);
+            }, false);
+        };
+
+
+        for (var opt in options)
         {
-            var h = document.createElement('h1');
-            h.innerHTML = options[opt];
-            
-            dialogHeader = h;
-        }
-
-        if (opt === 'buttons')
-        {
-            var button = options[opt];
-            
-            dialogButtons = document.createElement('div');
-            dialogButtons.classList.add('buttons');
-            
-            for (var btn in button)
+            if (opt === 'name')
             {
-                var currentCallback = button[btn];
-                var b = document.createElement('button');
-                
-                b.innerHTML = btn;
-                b.setAttribute('id', 'dButton_' + btn);
-                
-                buttonAddEvent(b, currentCallback);
-                
-                dialogButtons.appendChild(b);
+                var h = document.createElement('h1');
+                h.innerHTML = options[opt];
+
+                dialogHeader = h;
             }
 
-        }
-    }
+            if (opt === 'buttons')
+            {
+                var button = options[opt];
 
-    var overlayContent = document.createElement('div');
-    
-    overlayContent.classList.add('dialog');
-    
-    overlayContent.appendChild(dialogHeader);
-    overlayContent.appendChild(dialogContent);
-    overlayContent.appendChild(dialogButtons);
-    
-    var overlay = generateUnOverlay();
-    
-    overlay.appendChild(overlayContent);
-    
-    document.body.appendChild(overlay);
-    
-    overlay.style.visibility = "visible";
-    
+                dialogButtons = document.createElement('div');
+                dialogButtons.classList.add('buttons');
+
+                for (var btn in button)
+                {
+                    var currentCallback = button[btn];
+                    var b = document.createElement('button');
+
+                    b.innerHTML = btn;
+                    b.setAttribute('id', 'dButton_' + btn);
+
+                    buttonAddEvent(b, currentCallback);
+
+                    dialogButtons.appendChild(b);
+                }
+
+            }
+        }
+
+        var overlayContent = document.createElement('div');
+
+        overlayContent.classList.add('dialog');
+
+        overlayContent.appendChild(dialogHeader);
+        overlayContent.appendChild(this.element);
+        overlayContent.appendChild(dialogButtons);
+
+
+        var overlay = this._generateUnOverlay();
+
+        overlay.appendChild(overlayContent);
+        overlay.style.visibility = "visible";
+
+        document.body.appendChild(overlay);
+    }
 };
+
+
+Object.defineProperty(Element.prototype, "dialog", {
+    get: function () {
+        Object.defineProperty(this, "dialog", {
+            value: new dialog(this)
+        });
+
+        return this.dialog;
+    },
+    configurable: true,
+    writeable: false
+});

@@ -10,7 +10,6 @@ var User = {
                     button.setAttribute('onclick', 'User.disable(this, ' + user_id + ')');
                 });
     },
-    
     disable: function (button, user_id) {
 
         var ajax = new Ajax();
@@ -27,19 +26,18 @@ var User = {
     {
         var passDialog = document.getElementById('changePasswordDialog');
         
-        passDialog.dialog({
-            name: 'password change for '+ user_name + '...',
+        passDialog.dialog.open({
+            name: 'password change for ' + user_name + '...',
             buttons: {
                 exit: function (element)
                 {
-                    //alert(element);
-                    document.body.removeChild(element);
+                   passDialog.dialog.close();
                 },
                 change: function (element)
                 {
+                    User._doChangePassword(element, button, user_id);
                     
-                    
-                    console.log(user_id);
+                    passDialog.dialog.close();
                 }
             }
         });
@@ -53,35 +51,49 @@ var User = {
 
         deleteDialog.innerHTML = message.replace('_username_', user_name);
 
-
-        deleteDialog.dialog({
+        deleteDialog.dialog.open({
             name: 'delete?',
             buttons: {
                 exit: function (element)
                 {
-                    document.body.removeChild(element);
+                    deleteDialog.dialog.close();
                     deleteDialog.innerHTML = message;
                 },
                 confirm: function (element) {
 
-                    var ajax = new Ajax();
-                    var url_req = url + 'user/' + user_id + '/delete';
+                    User._doDelete(element, button, user_id);
+
+                    deleteDialog.dialog.close();
                     
-                    ajax.get(url_req)
-                            .done(function (response, xhr) {
-                                
-                                var tr = button.parentNode.parentNode;
-                                var tbody = tr.parentNode;
-                                
-                                tbody.removeChild(tr);                             
-                                
-                            });
-                            
-                    document.body.removeChild(element);
                     deleteDialog.innerHTML = message;
                 }
             }
         });
+    },
+    
+    _doDelete: function (element, button, user_id) {
+
+        var ajax = new Ajax();
+        var url_req = url + 'user/' + user_id + '/delete';
+
+        ajax.get(url_req)
+                .done(function (response, xhr) {
+
+                    var tr = button.parentNode.parentNode;
+                    var tbody = tr.parentNode;
+
+                    tbody.removeChild(tr);
+
+                });
+    },
+    
+    _doChangePassword: function (element, button, user_id) {
+
+        var newPassword = document.getElementById('newpassword').value;
+        var confirmPassword = document.getElementById('confirmpassword').value;
+        
+        
+        console.log(newPassword +' '+ confirmPassword);
     }
 };
 
