@@ -1,5 +1,7 @@
 'use strict';
 
+//http://lea.verou.me/2015/04/idea-extending-native-dom-prototypes-without-collisions/
+
 var dialog = function (element) {
     this.element = element;
 };

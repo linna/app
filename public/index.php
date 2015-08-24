@@ -14,6 +14,13 @@
  */
 
 
+use \Leviu\Session\DatabaseSessionHandler;
+use \Leviu\Session\Session;
+use \Leviu\Routing\Router;
+use \Leviu\Routing\Dispatcher;
+use \Leviu\Autoloader;
+
+
 /**
  * Set a constant that holds the project's folder path, like "/var/www/".
  * DIRECTORY_SEPARATOR adds a slash to the end of the path
@@ -38,7 +45,7 @@ require APP . '/config/routes.php';
 require '../vendor/autoload.php';
 
 
-$loader = new \Leviu\Autoloader();
+$loader = new Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
@@ -50,29 +57,34 @@ $loader->addNamespaces([
 
 
 //session handler, archive session in mysql :)
-$dbSessionHandler = new \Leviu\Session\DatabaseSessionHandler('MY_SESSION');
+$dbSessionHandler = new DatabaseSessionHandler('MY_SESSION');
 
 //set session handler and start session
 session_set_save_handler($dbSessionHandler, true);
 
 
 //initialize session
-\Leviu\Session\Session::$expire = 1800;
-\Leviu\Session\Session::$name = 'MY_SESSION';
+Session::$expire = 1800;
+Session::$name = 'MY_SESSION';
 
-$session = \Leviu\Session\Session::start();
+$session = Session::start();
 
 
 //router
-$router = new \Leviu\Routing\Router($routes, URL_SUB_FOLDER);
+$router = new Router($routes, URL_SUB_FOLDER);
 
 //get route
 $route = $router->getRoute();
 
 //var_dump($route);
 
+//config dispatcher
+Dispatcher::$controller404 = 'Error404';
+Dispatcher::$appNamespace = '\App\Controllers\\';
+
 //dispatch route
-$dispatcher = new \Leviu\Routing\Dispatcher($route);
+$dispatcher = new Dispatcher($route);
+
 $dispatcher->dispatch();
 
 //only for debug, return time execution and memory usage

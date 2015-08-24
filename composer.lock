@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/s3b4stian/framework.git",
-                "reference": "3a30856713c918f315e17bc8c10e7e0382379efb"
+                "reference": "c10b9d9075258c4b46fad1dece926e7bf790a9bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s3b4stian/framework/zipball/3a30856713c918f315e17bc8c10e7e0382379efb",
-                "reference": "3a30856713c918f315e17bc8c10e7e0382379efb",
+                "url": "https://api.github.com/repos/s3b4stian/framework/zipball/c10b9d9075258c4b46fad1dece926e7bf790a9bc",
+                "reference": "c10b9d9075258c4b46fad1dece926e7bf790a9bc",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-08-23 09:42:50"
+            "time": "2015-08-23 11:11:06"
         }
     ],
     "aliases": [],
