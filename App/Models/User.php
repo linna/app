@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Leviu\Routing\Model;
 use Leviu\Auth\UserMapper;
+use Leviu\Auth\Password;
 
 class User extends Model
 {
@@ -53,5 +54,35 @@ class User extends Model
             //$userMapper->delete($user);
         }
         
+    }
+    
+    public function changePassword($id)
+    {
+        $userMapper = new UserMapper();
+        
+        $user = $userMapper->findById($id);
+        
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
+        
+        $password = new Password();
+        
+        if ($newPassword === null || $newPassword === '')
+        {
+            return 2;
+        }
+        
+        if ($newPassword !== $confirmPassword)
+        {
+            return 1;
+        }
+        
+        $hash = $password->hash($newPassword);
+            
+        $user->password = $hash;
+            
+        // $userMapper->save($user);
+        
+        return 0;
     }
 }

@@ -43,7 +43,7 @@
                     </td>
                     <!-- <td></td> -->
                     <td>
-                        <button class="icon key-16" onclick="User.setPassword(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
+                        <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
                         <?php if ($user->name !== 'root') { ?>
                         <button class="icon pencil-16"></button>
                         <button class="icon trash-16" onclick="User.delete(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>

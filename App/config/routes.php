@@ -141,6 +141,13 @@ $routes[] = [
     'action' => 'delete',
 ];
 
+$routes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/user/[int:id]/changePassword',
+    'controller' => 'User',
+    'action' => 'changePassword',
+];
 
 /*$routes[] = [
     'name' => null,

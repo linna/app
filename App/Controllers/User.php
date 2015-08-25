@@ -54,4 +54,11 @@ class User extends Controller
     {
         $this->model->delete($user_id);
     }
+    
+    public function changePassword($user_id)
+    {
+         $result = $this->model->changePassword($user_id);
+ 
+         echo json_encode($result);
+    }
 }

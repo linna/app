@@ -7,6 +7,7 @@ var dialog = function (element) {
 };
 
 dialog.prototype = {
+    buttonBar: null,
     currentOverlay: null,
     currentElementId: null,
     _generateUnOverlay: function () {
@@ -23,6 +24,13 @@ dialog.prototype = {
 
         return o;
     },
+    
+    removeButton: function (buttonId)
+    {
+        //console.log(this.buttonBar);
+        this.buttonBar.removeChild(document.getElementById(buttonId));
+    },
+    
     close: function () {
 
         this.element.id = this.currentElementId;
@@ -69,7 +77,9 @@ dialog.prototype = {
 
                 dialogButtons = document.createElement('div');
                 dialogButtons.classList.add('buttons');
-
+                
+                this.buttonBar = dialogButtons;
+                
                 for (var btn in button)
                 {
                     var currentCallback = button[btn];
