@@ -1,4 +1,11 @@
 var User = {
+    
+    modOldUserName: {},
+    modOldUserDescription:{},
+    
+    modButtonCancel: {},
+    modButtonSave: {},
+    
     enable: function (button, user_id) {
 
         var ajax = new Ajax();
@@ -40,6 +47,95 @@ var User = {
         });
         
         User._cleanPasswordForm();
+    },
+    modify: function (button, user_id)
+    {
+        var tr = button.parentNode.parentNode;
+        
+        User._createModifyForm(tr, user_id);
+        User._createButtonModifyForm(tr, user_id)
+        
+    },
+    modifySave: function (){
+        var tr = button.parentNode.parentNode;
+    },
+    
+    _modifyClear: function(user_id){
+        
+        delete this.modButtonCancel['user'+user_id];
+        delete this.modButtonSave['user'+user_id];
+        
+        delete this.modOldUserName['user'+user_id];
+        delete this.modOldUserDescription['user'+user_id];
+    },
+    modifyExit: function (button, user_id){
+        
+        var tr = button.parentNode.parentNode;
+        var td = button.parentNode;
+        
+        var buttonCancel = this.modButtonCancel['user'+user_id];
+        var buttonSave = this.modButtonSave['user'+user_id];
+        
+
+        td.removeChild(buttonCancel);
+        td.removeChild(buttonSave);
+        
+        tr.cells[0].innerHTML = this.modOldUserName['user'+user_id];
+        tr.cells[1].innerHTML = this.modOldUserDescription['user'+user_id];
+        
+        
+        this._modifyClear(user_id);
+        
+    },
+    _createModifyForm: function(tr, user_id){
+        
+        this.modOldUserName['user'+user_id] = tr.cells[0].innerHTML;
+        this.modOldUserDescription['user'+user_id] = tr.cells[1].innerHTML;
+        
+        var inputUserName = document.createElement('input');
+        var inputUserDescription = document.createElement('input');
+         
+        inputUserName.id = 'newusername_'+user_id;
+        inputUserDescription.id = 'newuserdescription_'+user_id;
+        
+        inputUserName.value = tr.cells[0].innerHTML;
+        inputUserDescription.value = tr.cells[1].innerHTML;
+            
+        inputUserName.setAttribute('size', 14);
+        inputUserDescription.setAttribute('size', 34);
+        
+        tr.cells[0].innerHTML = '';
+        tr.cells[1].innerHTML = '';
+        
+        tr.cells[0].appendChild(inputUserName);
+        tr.cells[1].appendChild(inputUserDescription);
+        
+        
+    },
+    _createButtonModifyForm: function(tr, user_id){
+        
+        var buttonCancel = document.createElement('button');
+        var buttonSave = document.createElement('button');
+        
+        buttonCancel.id = 'userbuttonmodify_'+user_id;
+        buttonCancel.classList.add('icon');
+        buttonCancel.classList.add('cross-16');
+        buttonCancel.style.marginLeft = '10px';
+        
+        buttonSave.id = 'userbuttonsave_'+user_id;
+        buttonSave.classList.add('icon');
+        buttonSave.classList.add('save-16');
+        
+        buttonCancel.setAttribute('onclick','User.modifyExit(this,' + user_id + ')');
+        buttonSave.setAttribute('onclick','User.modifySave(this,' + user_id + ')');
+        
+        this.modButtonCancel['user'+user_id] = buttonCancel;
+        this.modButtonSave['user'+user_id] = buttonSave;
+        
+        
+        tr.cells[4].appendChild(buttonCancel);
+        tr.cells[4].appendChild(buttonSave);
+        
     },
     delete: function (button, user_id, user_name)
     {

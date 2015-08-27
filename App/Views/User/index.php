@@ -14,6 +14,20 @@
             </fieldset>
         </form>
     </div>
+    <!--<div id="modifyDialog">  
+        <form method="post" action="#">
+            <fieldset>
+                <div>
+                    <label for="modifyusername">name</label>
+                    <input name="modifyusername" id="modifyusername" type="text" size="48"/>
+                </div>
+                <div>
+                    <label for="modifyuserdescription">description</label>
+                    <input name="modifyuserdescription" id="modifyuserdescription" type="text"  size="64"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>-->
     <div id="deleteDialog"><p>would you like delete this user (_username_)?</p><p>...please confirm action</p></div>
     <table>
         <thead>
@@ -45,7 +59,7 @@
                     <td>
                         <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
                         <?php if ($user->name !== 'root') { ?>
-                        <button class="icon pencil-16"></button>
+                        <button class="icon pencil-16" onclick="User.modify(this, <?php echo $user->getId(); ?>)"></button>
                         <button class="icon trash-16" onclick="User.delete(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
                         <?php } ?>
                     </td>

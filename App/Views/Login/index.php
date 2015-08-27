@@ -1,12 +1,6 @@
 <main>
     <h1>Login</h1>
     
-    <?php if ($data->loginError === true) {
-    ?>
-    <div class="message alert">username or password are incorrect</div>
-    <?php 
-} ?>
-    
     <form method="post" action="<?php echo URL; ?>dologin">
         <fieldset>
             <div>
@@ -22,4 +16,8 @@
             </div>
         </fieldset>
     </form>
+    
+    <?php if ($data->loginError === true) { ?>
+    <div class="message alert">username or password are incorrect</div>
+    <?php } ?>
 </main>

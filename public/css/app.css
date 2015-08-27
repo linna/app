@@ -349,8 +349,8 @@ END FOOTER
 .trash-16 {background-image: url("../img/icon/16/trash-can-16.png");}
 .pencil-16 {background-image: url("../img/icon/16/pencil-16.png");}
 .key-16 {background-image: url("../img/icon/16/key-16.png");}
-
-
+.save-16 {background-image: url("../img/icon/16/save-16.png");}
+.cross-16 {background-image: url("../img/icon/16/x-mark-16.png");}
 
 div.message{
     padding:10px;
@@ -526,16 +526,21 @@ form div
     background-color: transparent !important;
 }
 
+input,
 form input
 {
+    font-size:14px;
+    padding:3px;
     border:1px solid #9fa8da;
 }
 
+input:hover,
 form input:hover
 {
     box-shadow: 0 0px 5px rgba(121, 134, 203, 0.30);
 }
 
+input:focus,
 form input:focus
 {
     box-shadow: 0 0px 5px rgba(121, 134, 203, 0.70);
