@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "s3b4stian/leviu",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s3b4stian/framework.git",
-                "reference": "129aea6c73c2701f89ba9bf25a1d10c865b0d9cc"
+                "reference": "c5b1496a0bd4db49cbbdb46d87138d41e9f8b915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s3b4stian/framework/zipball/129aea6c73c2701f89ba9bf25a1d10c865b0d9cc",
-                "reference": "129aea6c73c2701f89ba9bf25a1d10c865b0d9cc",
+                "url": "https://api.github.com/repos/s3b4stian/framework/zipball/c5b1496a0bd4db49cbbdb46d87138d41e9f8b915",
+                "reference": "c5b1496a0bd4db49cbbdb46d87138d41e9f8b915",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-08-24 20:57:16"
+            "time": "2015-08-27 21:43:57"
         }
     ],
     "packages-dev": [],

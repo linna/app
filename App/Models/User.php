@@ -67,11 +67,13 @@ class User extends Model
         
         $password = new Password();
         
+        //password must be not nulla
         if ($newPassword === null || $newPassword === '')
         {
             return 2;
         }
         
+        //password must be equal to confirm password
         if ($newPassword !== $confirmPassword)
         {
             return 1;
@@ -81,7 +83,41 @@ class User extends Model
             
         $user->password = $hash;
             
-        // $userMapper->save($user);
+        $userMapper->save($user);
+        
+        return 0;
+    }
+    
+    public function modify($id)
+    {
+        $userMapper = new UserMapper();
+        
+        $user = $userMapper->findById($id);
+        
+        
+        
+        $newName = $_POST['new_user_name'];
+        $newDescription = $_POST['new_user_description'];
+        
+        $checkUser = $userMapper->findByName($newName);
+        
+        //user name must be not null
+        if ($newName === null || $newName === '')
+        {
+            return 2;
+        }
+        
+        //user name must be unique
+        if (isset($checkUser->name) && $checkUser->name !== $user->name)
+        {
+            return 1;
+        }
+        
+        
+        $user->name = $newName;
+        $user->description = $newDescription;       
+                    
+        $userMapper->save($user);
         
         return 0;
     }

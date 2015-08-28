@@ -52,12 +52,62 @@ var User = {
     {
         var tr = button.parentNode.parentNode;
         
-        User._createModifyForm(tr, user_id);
-        User._createButtonModifyForm(tr, user_id)
+        this._createModifyForm(tr, user_id);
+        this._createButtonModifyForm(tr, user_id);
         
     },
-    modifySave: function (){
-        var tr = button.parentNode.parentNode;
+    modifySave: function (button, user_id){
+        
+        var td = button.parentNode;
+        var tr = td.parentNode;
+        //var table = tr.parentNode;
+        
+        
+        var newUserName = document.getElementById('newusername_'+user_id);
+        var newUserDescription = document.getElementById('newuserdescription_'+user_id);
+        
+        var ajax = new Ajax();
+        var url_req = url + 'user/' + user_id + '/modify';
+        var data = {
+            new_user_name: newUserName.value,
+            new_user_description: newUserDescription.value
+        };
+        
+        ajax.post(url_req, data)
+                .done(function (response, xhr) {
+                    
+                    User._cleanModifyTd(td);
+                    
+                    //var dialogContent = document.querySelector('.content');
+
+                    var div = document.createElement('div');
+                    div.classList.add('message');
+                    div.style.textAlign = 'right';
+
+                    switch (response) {
+                        case 2:
+                            div.innerHTML = 'please choose a new user name :|';
+                            div.classList.add('alert');
+                            //tr.classList.add('alert');
+                            td.appendChild(div);
+                            break;
+                        case 1:
+                            div.innerHTML = 'this user name already present :(';
+                            div.classList.add('error');
+                            //tr.classList.add('error');
+                            td.appendChild(div);
+                            //table.insertBefore(div, tr);
+                            break;
+                        case 0:
+                            //div.classList.add('success');
+                            //div.innerHTML = 'password succesfully changed :)';
+                            //dialogContent.appendChild(div);
+                            //passDialog.dialog.removeButton('dButton_change');
+                            //newPassword.value = '';
+                            //confirmPassword.value = '';
+                            break;
+                    }
+                });
     },
     
     _modifyClear: function(user_id){
@@ -83,7 +133,7 @@ var User = {
         tr.cells[0].innerHTML = this.modOldUserName['user'+user_id];
         tr.cells[1].innerHTML = this.modOldUserDescription['user'+user_id];
         
-        
+        this._cleanModifyTd(td);
         this._modifyClear(user_id);
         
     },
@@ -168,6 +218,19 @@ var User = {
                 dialogContent.removeChild(el);
         });
     },
+    _cleanModifyTd: function (td)
+    {
+        var messages = document.querySelectorAll('.message');
+        //var dialogContent = document.querySelector('.content');
+        [].slice.call(messages).forEach(function (el, i) {
+            if (td.contains(el))
+            {
+                td.removeChild(el);
+                
+            }
+        });
+    },
+    
     _doDelete: function (button, user_id) {
 
         var ajax = new Ajax();

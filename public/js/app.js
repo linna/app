@@ -20,31 +20,4 @@
         });
     });
 
-    Array.prototype.cleanUndefined = function ()
-    {
-
-
-        var l = this.length;
-        var c = 0;
-        var tmp = []
-        var i = 0;
-
-        while (c < l)
-        {
-            //console.log(this[c]);
-
-            if (this[c] !== undefined)
-            {
-                tmp[i] = this[c];
-                i++;
-            }
-
-            c++;
-        }
-
-        return tmp;
-
-    }
-
-
 })(window);

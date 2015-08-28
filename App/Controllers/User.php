@@ -61,4 +61,11 @@ class User extends Controller
  
          echo json_encode($result);
     }
+    
+    public function modify($user_id)
+    {
+        $result = $this->model->modify($user_id);
+ 
+         echo json_encode($result);
+    }
 }
