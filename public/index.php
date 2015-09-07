@@ -62,7 +62,7 @@ $loader->addNamespaces([
 Session::$expire = 1800;
 Session::$name = 'MY_SESSION';
 //session handler, archive session in mysql :)
-Session::$handler = new DatabaseSessionHandler('MY_SESSION');
+Session::$handler = new DatabaseSessionHandler();
 
 
 $session = Session::getInstance();
