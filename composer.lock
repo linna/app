@@ -4,20 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c805de890f8b16ae1afcd76a43bfd912",
-    "packages": [
+    "hash": "6d622fc74d7c1c3639c1be7e664027d6",
+    "packages": [],
+    "packages-dev": [
         {
             "name": "s3b4stian/leviu",
-            "version": "v0.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s3b4stian/framework.git",
-                "reference": "c5b1496a0bd4db49cbbdb46d87138d41e9f8b915"
+                "reference": "dec93f53e8ff89e01ee9bcc10ac2cf0839ea1c8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s3b4stian/framework/zipball/c5b1496a0bd4db49cbbdb46d87138d41e9f8b915",
-                "reference": "c5b1496a0bd4db49cbbdb46d87138d41e9f8b915",
+                "url": "https://api.github.com/repos/s3b4stian/framework/zipball/dec93f53e8ff89e01ee9bcc10ac2cf0839ea1c8e",
+                "reference": "dec93f53e8ff89e01ee9bcc10ac2cf0839ea1c8e",
                 "shasum": ""
             },
             "require": {
@@ -43,13 +44,14 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-08-27 21:43:57"
+            "time": "2015-09-07 19:19:25"
         }
     ],
-    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "s3b4stian/leviu": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

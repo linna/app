@@ -42,29 +42,43 @@
         </thead>
         <tfoot></tfoot>
         <tbody>
-            <?php foreach ($data->users as $user) { ?>
+            <?php foreach ($data->users as $user) {
+    ?>
                 <tr>
                     <td><?php echo $user->name ?></td>
                     <td><?php echo $user->description ?></td>
                     <td><?php echo $user->created ?></td>
                     <td>
-                        <?php if ($user->name == 'root') { ?>
+                        <?php if ($user->name == 'root') {
+    ?>
                         <span class="noaction"></span>
-                        <?php } else { ?>
-                        <span class="<?php echo ($user->active === 0) ? 'no' :'' ?>active" onclick="User.<?php echo ($user->active === 0) ? 'enable' :'disable' ?>(this, <?php echo $user->getId(); ?>)"></span>
+                        <?php 
+} else {
+    ?>
+                        <span class="<?php echo ($user->active === 0) ? 'no' :'' ?>active" onclick="User.<?php echo ($user->active === 0) ? 'enable' :'disable' ?>(this, <?php echo $user->getId();
+    ?>)"></span>
                         
-                        <?php }?>
+                        <?php 
+}
+    ?>
                     </td>
                     <!-- <td></td> -->
                     <td>
-                        <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
-                        <?php if ($user->name !== 'root') { ?>
-                        <button class="icon pencil-16" onclick="User.modify(this, <?php echo $user->getId(); ?>)"></button>
-                        <button class="icon trash-16" onclick="User.delete(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
-                        <?php } ?>
+                        <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId();
+    ?>, '<?php echo $user->name ?>')"></button>
+                        <?php if ($user->name !== 'root') {
+    ?>
+                        <button class="icon pencil-16" onclick="User.modify(this, <?php echo $user->getId();
+    ?>)"></button>
+                        <button class="icon trash-16" onclick="User.delete(this, <?php echo $user->getId();
+    ?>, '<?php echo $user->name ?>')"></button>
+                        <?php 
+}
+    ?>
                     </td>
                 </tr>  
-            <?php } ?>
+            <?php 
+} ?>
         </tbody>
     </table>
 </main>

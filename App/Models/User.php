@@ -53,7 +53,6 @@ class User extends Model
         if ($user->name !== 'root') {
             //$userMapper->delete($user);
         }
-        
     }
     
     public function changePassword($id)
@@ -68,14 +67,12 @@ class User extends Model
         $password = new Password();
         
         //password must be not nulla
-        if ($newPassword === null || $newPassword === '')
-        {
+        if ($newPassword === null || $newPassword === '') {
             return 2;
         }
         
         //password must be equal to confirm password
-        if ($newPassword !== $confirmPassword)
-        {
+        if ($newPassword !== $confirmPassword) {
             return 1;
         }
         
@@ -102,20 +99,18 @@ class User extends Model
         $checkUser = $userMapper->findByName($newName);
         
         //user name must be not null
-        if ($newName === null || $newName === '')
-        {
+        if ($newName === null || $newName === '') {
             return 2;
         }
         
         //user name must be unique
-        if (isset($checkUser->name) && $checkUser->name !== $user->name)
-        {
+        if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             return 1;
         }
         
         
         $user->name = $newName;
-        $user->description = $newDescription;       
+        $user->description = $newDescription;
                     
         $userMapper->save($user);
         

@@ -17,7 +17,9 @@
         </fieldset>
     </form>
     
-    <?php if ($data->loginError === true) { ?>
+    <?php if ($data->loginError === true) {
+    ?>
     <div class="message alert">username or password are incorrect</div>
-    <?php } ?>
+    <?php 
+} ?>
 </main>

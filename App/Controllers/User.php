@@ -57,15 +57,15 @@ class User extends Controller
     
     public function changePassword($user_id)
     {
-         $result = $this->model->changePassword($user_id);
+        $result = $this->model->changePassword($user_id);
  
-         echo json_encode($result);
+        echo json_encode($result);
     }
     
     public function modify($user_id)
     {
         $result = $this->model->modify($user_id);
  
-         echo json_encode($result);
+        echo json_encode($result);
     }
 }

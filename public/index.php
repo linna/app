@@ -20,7 +20,6 @@ use \Leviu\Routing\Router;
 use \Leviu\Routing\Dispatcher;
 use \Leviu\Autoloader;
 
-
 /**
  * Set a constant that holds the project's folder path, like "/var/www/".
  * DIRECTORY_SEPARATOR adds a slash to the end of the path
@@ -91,3 +90,4 @@ $dispatcher->dispatch();
 //echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
 //echo xdebug_time_index();
 //echo ' Seconds -->';
+
