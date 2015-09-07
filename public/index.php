@@ -56,18 +56,16 @@ $loader->addNamespaces([
 ]);
 
 
-//session handler, archive session in mysql :)
-$dbSessionHandler = new DatabaseSessionHandler('MY_SESSION');
-
-//set session handler and start session
-session_set_save_handler($dbSessionHandler, true);
 
 
 //initialize session
 Session::$expire = 1800;
 Session::$name = 'MY_SESSION';
+//session handler, archive session in mysql :)
+Session::$handler = new DatabaseSessionHandler('MY_SESSION');
 
-$session = Session::start();
+
+$session = Session::getInstance();
 
 
 //router
