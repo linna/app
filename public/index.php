@@ -59,21 +59,21 @@ $loader->addNamespaces([
 
 //initialize session
 Session::$expire = 1800;
-Session::$name = 'MY_SESSION';
+Session::$name = 'APP_SESSION';
 //session handler, archive session in mysql :)
 Session::$handler = new DatabaseSessionHandler();
-
+//setting cookie parameter
+Session::$cookieDomain = URL_DOMAIN;
+Session::$cookiePath = URL_SUB_FOLDER;
 
 $session = Session::getInstance();
 
 
 //router
 $router = new Router($routes, URL_SUB_FOLDER);
-
 //get route
 $route = $router->getRoute();
 
-//var_dump($route);
 
 //config dispatcher
 Dispatcher::$controller404 = 'Error404';
