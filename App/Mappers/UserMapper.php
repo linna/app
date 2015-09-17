@@ -57,7 +57,7 @@ class UserMapper extends MapperAbstract
         $pdos->bindParam(':id', $id, \PDO::PARAM_INT);
         $pdos->execute();
         
-        return $pdos->fetchObject('\Leviu\Auth\User');//$this->create($pdos->fetch());
+        return $pdos->fetchObject('\App\DomainObjects\User');//$this->create($pdos->fetch());
     }
 
     /**
@@ -78,7 +78,7 @@ class UserMapper extends MapperAbstract
         $pdos->bindParam(':name', $hashedUserName, \PDO::PARAM_STR);
         $pdos->execute();
         
-        return $pdos->fetchObject('\Leviu\Auth\User');//$this->create($pdos->fetch());
+        return $pdos->fetchObject('\App\DomainObjects\User');//$this->create($pdos->fetch());
     }
 
     
@@ -88,7 +88,7 @@ class UserMapper extends MapperAbstract
         
         $pdos->execute();
         
-        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Leviu\Auth\User');
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User');
     }
     
     /**

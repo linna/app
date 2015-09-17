@@ -52,7 +52,7 @@ $loader->addNamespaces([
     ['App\Controllers', __DIR__.'/../App/Controllers'],
     ['App\Models', __DIR__.'/../App/Models'],
     ['App\Mappers', __DIR__.'/../App/Mappers'],
-    ['App\DomainObjects', __DIR__.'/../App/Mappers'],
+    ['App\DomainObjects', __DIR__.'/../App/DomainObjects'],
 ]);
 
 

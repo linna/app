@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Leviu\Routing\Model;
-use Leviu\Auth\UserMapper;
 use Leviu\Auth\Password;
+use App\Mappers\UserMapper;
 
 class User extends Model
 {
