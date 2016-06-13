@@ -16,7 +16,5 @@
    
    "require-dev": {
         "s3b4stian/leviu": "dev-master"
-    },
-    
-    "license": "MIT"
+    }
 }
