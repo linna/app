@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Leviu\Routing\Model;
-use Leviu\Auth\Login;
 use App\Lib\Tree;
 
 class TreeTest extends Model
@@ -12,23 +11,21 @@ class TreeTest extends Model
     {
         parent::__construct();
     }
-    
+
     public function test()
     {
         $opt = [
-            "table" => "tree",
-            "primaryKey" => "tree_id",
-            "treeNodeName" => "node_name",
-            "treeNodeOrder" => "node_order",
-            "treeParentId" => "tree_parent_id",
-            "treeRoot" => "tree_root",
-            "treeLeft" => "tree_left",
-            "treeRight" => "tree_right",
+            'table' => 'tree',
+            'primaryKey' => 'tree_id',
+            'treeNodeName' => 'node_name',
+            'treeNodeOrder' => 'node_order',
+            'treeParentId' => 'tree_parent_id',
+            'treeRoot' => 'tree_root',
+            'treeLeft' => 'tree_left',
+            'treeRight' => 'tree_right',
         ];
 
         $tree = new Tree($opt);
-
-
 
         //$tree->buildTree();
         //$percorso = $tree->walkToNode(21);

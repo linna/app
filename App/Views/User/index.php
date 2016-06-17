@@ -55,7 +55,7 @@
                         <?php 
 } else {
     ?>
-                        <span class="<?php echo ($user->active === 0) ? 'no' :'' ?>active" onclick="User.<?php echo ($user->active === 0) ? 'enable' :'disable' ?>(this, <?php echo $user->getId();
+                        <span class="<?php echo ($user->active === 0) ? 'no' : '' ?>active" onclick="User.<?php echo ($user->active === 0) ? 'enable' : 'disable' ?>(this, <?php echo $user->getId();
     ?>)"></span>
                         
                         <?php 

@@ -17,25 +17,23 @@ class Login extends Model
     {
         $login = new LoginClass();
         $userMapper = new UserMapper();
-        
-        
+
         $tmp = $userMapper->findByName($_POST['user']);
-        
+
         $user = $_POST['user'];
         $password = $_POST['password'];
-        
+
         $storedUser = ($tmp) ? $tmp->name : '';
-        $storedPassword =  ($tmp) ? $tmp->password : '';
+        $storedPassword = ($tmp) ? $tmp->password : '';
         $storedId = ($tmp) ? $tmp->getId() : 0;
-        
-        
+
         return $login->login($user, $password, $storedUser, $storedPassword, $storedId);
     }
 
     public function logout()
     {
         $login = new LoginClass();
-        
+
         $login->logout();
     }
 }

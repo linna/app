@@ -1,7 +1,7 @@
 <?php
 
 /**
- * App_mk0
+ * App_mk0.
  *
  * This work would be a little PHP framework, a learn exercice. 
  * Work started from php MINI https://github.com/panique/mini good for understand how a MVC framework run :) 
@@ -10,39 +10,36 @@
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2015, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
+ *
  * @version 0.1.0
  */
-
-
 use \Leviu\Session\DatabaseSessionHandler;
 use \Leviu\Session\Session;
 use \Leviu\Routing\Router;
 use \Leviu\Routing\Dispatcher;
 use \Leviu\Autoloader;
 
-/**
+/*
  * Set a constant that holds the project's folder path, like "/var/www/".
  * DIRECTORY_SEPARATOR adds a slash to the end of the path
  */
-define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
-/**
+define('ROOT', dirname(__DIR__).DIRECTORY_SEPARATOR);
+/*
  * Set a constant that holds the project's "application" folder, like "/var/www/application".
  */
-define('APP', ROOT . 'App' . DIRECTORY_SEPARATOR);
-
+define('APP', ROOT.'App'.DIRECTORY_SEPARATOR);
 
 //load configuration from config file
-require APP . '/config/config.php';
+require APP.'/config/config.php';
 
 //load routes. 
-require APP . '/config/routes.php';
+require APP.'/config/routes.php';
 
 //load application class
 //for more information see http://www.php-fig.org/psr/psr-4/
 //require SRC . '/autoload.php';
 
 require '../vendor/autoload.php';
-
 
 $loader = new Autoloader();
 $loader->register();
@@ -55,9 +52,6 @@ $loader->addNamespaces([
     ['App\DomainObjects', __DIR__.'/../App/DomainObjects'],
 ]);
 
-
-
-
 //initialize session
 Session::$expire = 1800;
 Session::$name = 'APP_SESSION';
@@ -69,12 +63,10 @@ Session::$cookiePath = URL_SUB_FOLDER;
 
 $session = Session::getInstance();
 
-
 //router
 $router = new Router($routes, URL_SUB_FOLDER);
 //get route
 $route = $router->getRoute();
-
 
 //config dispatcher
 Dispatcher::$controller404 = 'Error404';
@@ -91,4 +83,3 @@ $dispatcher->dispatch();
 //echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
 //echo xdebug_time_index();
 //echo ' Seconds -->';
-

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * App_mk0
+ * App_mk0.
  *
  * This work would be a little PHP framework, a learn exercice. 
  * Work started from php MINI https://github.com/panique/mini good for understand how a MVC framework run :) 
@@ -10,20 +10,20 @@
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2015, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
+ *
  * @version 0.1.0
  */
 /**
  * @var array Contain declared routes
- * $routes[] = [
- *          'name' => null,
- *          'method'=> 'GET|POST|PATCH|PUT|DELETE',
- *          'url'=> '/',
- *          'controller'=> 'home',
- *          'action' => null,
- *      ];
+ *            $routes[] = [
+ *            'name' => null,
+ *            'method'=> 'GET|POST|PATCH|PUT|DELETE',
+ *            'url'=> '/',
+ *            'controller'=> 'home',
+ *            'action' => null,
+ *            ];
  */
 $routes = array();
-
 
 $routes[] = [
     'name' => null,
@@ -48,39 +48,7 @@ $routes[] = [
     'controller' => 'Login',
     'action' => null,
 ];
-/*
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/dologin',
-    'controller' => 'Login',
-    'action' => 'doLogin',
-];
 
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/loginError',
-    'controller' => 'Login',
-    'action' => 'loginError',
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/logout',
-    'controller' => 'Login',
-    'action' => 'logout',
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/unauthorized',
-    'controller' => 'Login',
-    'action' => 'unauthorized',
-];
-*/
 $routes[] = [
     'name' => null,
     'method' => 'GET',
@@ -96,58 +64,6 @@ $routes[] = [
     'controller' => 'User',
     'action' => null,
 ];
-
-/*
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/(uno|due|tre)/[id]',
-    'controller' => 'User',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/[id]/enable',
-    'controller' => 'User',
-    'action' => 'enable',
-];
-
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/[id]/disable',
-    'controller' => 'User',
-    'action' => 'disable',
-];
-
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/[id]/delete',
-    'controller' => 'User',
-    'action' => 'delete',
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/[id]/changePassword',
-    'controller' => 'User',
-    'action' => 'changePassword',
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/[id]/modify',
-    'controller' => 'User',
-    'action' => 'modify',
-];
-*/
 
 $routes[] = [
     'name' => null,

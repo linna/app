@@ -8,25 +8,25 @@ use Leviu\Auth\Login as LoginClass;
 class Login extends Controller
 {
     use \Leviu\Auth\ProtectTrait;
-    
+
     public function __construct()
     {
         parent::__construct(__CLASS__);
-        
+
         $this->model = $this->loadModel();
-        
+
         $this->protectMethod(new LoginClass());
-        
+
         $this->view->data->isLogged = $this->isLogged;
         $this->view->data->userName = $this->login->userName;
-        
+
         $this->view->data->loginError = false;
     }
 
     public function login()
     {
         $this->view->setTitle('App/Login');
-        
+
         $this->view->render('Login/index');
     }
 
@@ -35,11 +35,11 @@ class Login extends Controller
         $login = $this->model->doLogin();
 
         if ($login === true) {
-            header('location: ' . URL);
+            header('location: '.URL);
             die();
         }
 
-        header('location: ' . URL . 'loginError');
+        header('location: '.URL.'loginError');
         die();
     }
 
@@ -48,7 +48,7 @@ class Login extends Controller
         $this->view->data->loginError = true;
 
         $this->view->setTitle('App/LoginError');
-        
+
         $this->view->render('Login/index');
     }
 
@@ -56,7 +56,7 @@ class Login extends Controller
     {
         $this->model->logout();
 
-        header('location: ' . URL);
+        header('location: '.URL);
         die();
     }
 
