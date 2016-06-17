@@ -167,7 +167,9 @@ class UserMapper extends MapperAbstract
     {
         $pdos = $this->db->prepare("UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id");
         
-        $pdos->bindParam(':user_id', $obj->getId(), \PDO::PARAM_INT);
+        $objId = $obj->getId();
+        
+        $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
         
         $pdos->bindParam(':name', $obj->name, \PDO::PARAM_STR);
         $pdos->bindParam(':password', $obj->password, \PDO::PARAM_STR);
