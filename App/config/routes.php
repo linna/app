@@ -25,29 +25,6 @@
 $routes = array();
 
 
-//x-debug
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/public/index.php?XDEBUG_SESSION_START=netbeans-xdebug',
-    'controller' => 'Home',
-    'action' => null,
-];
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/public/index.php?XDEBUG_SESSION_STOP_NO_EXEC=netbeans-xdebug',
-    'controller' => 'Home',
-    'action' => null,
-];
-//end x-debug
-
-/*$testRoute = array();
-
-$testRoute[] = ['/user/[int:id]/enable', ['controller' => 'user', 'action' => 'enable']];
-$testRoute[] = ['/user/[int:id]/disable', ['controller' => 'user', 'action' => 'disable']];
-$testRoute[] = ['/user/[int:id]/:action', ['controller' => 'user']];*/
-
 $routes[] = [
     'name' => null,
     'method' => 'GET',
@@ -55,6 +32,7 @@ $routes[] = [
     'controller' => 'Home',
     'action' => null,
 ];
+
 $routes[] = [
     'name' => null,
     'method' => 'GET',
@@ -66,11 +44,11 @@ $routes[] = [
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/login',
+    'url' => '/(login|dologin|loginError|logout|unauthorized)',
     'controller' => 'Login',
     'action' => null,
 ];
-
+/*
 $routes[] = [
     'name' => null,
     'method' => 'GET',
@@ -102,12 +80,7 @@ $routes[] = [
     'controller' => 'Login',
     'action' => 'unauthorized',
 ];
-
-
-
-
-
-
+*/
 $routes[] = [
     'name' => null,
     'method' => 'GET',
@@ -119,15 +92,33 @@ $routes[] = [
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/user/[int:id]/enable',
+    'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
     'controller' => 'User',
-    'action' => 'enable',
+    'action' => null,
+];
+
+/*
+$routes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/user/(uno|due|tre)/[id]',
+    'controller' => 'User',
+    'action' => null,
 ];
 
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/user/[int:id]/disable',
+    'url' => '/user/[id]/enable',
+    'controller' => 'User',
+    'action' => 'enable',
+];
+
+
+$routes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/user/[id]/disable',
     'controller' => 'User',
     'action' => 'disable',
 ];
@@ -136,7 +127,7 @@ $routes[] = [
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/user/[int:id]/delete',
+    'url' => '/user/[id]/delete',
     'controller' => 'User',
     'action' => 'delete',
 ];
@@ -144,7 +135,7 @@ $routes[] = [
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/user/[int:id]/changePassword',
+    'url' => '/user/[id]/changePassword',
     'controller' => 'User',
     'action' => 'changePassword',
 ];
@@ -152,18 +143,11 @@ $routes[] = [
 $routes[] = [
     'name' => null,
     'method' => 'GET',
-    'url' => '/user/[int:id]/modify',
+    'url' => '/user/[id]/modify',
     'controller' => 'User',
     'action' => 'modify',
 ];
-
-/*$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/prova/[int:id]/filter/[int:year]/[string:month]/[int:day]',
-    'controller' => 'prova',
-    'action' => 'filter',
-];*/
+*/
 
 $routes[] = [
     'name' => null,
