@@ -23,7 +23,7 @@ class Login extends Controller
         $this->view->data->loginError = false;
     }
 
-    public function index()
+    public function login()
     {
         $this->view->setTitle('App/Login');
         
