@@ -2,7 +2,7 @@
   
 </footer>
 
-<script src="http://192.168.0.10/app/js/app.js"></script>
+<script src="<?php echo URL; ?>js/app.js"></script>
 
 <!-- app module specific js script -->
 <?php

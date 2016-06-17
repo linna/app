@@ -10,7 +10,7 @@
             var url = "<?php echo URL; ?>";
         </script>
 
-        <link href="http://192.168.0.10/app/css/app.css" rel="stylesheet" />
+        <link href="<?php echo URL; ?>css/app.css" rel="stylesheet" />
         
         <!-- app module specific css file -->
         <?php
