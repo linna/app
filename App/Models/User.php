@@ -65,7 +65,7 @@ class User extends Model
 
         $password = new Password();
 
-        //password must be not nulla
+        //password must be not null
         if ($newPassword === null || $newPassword === '') {
             return 2;
         }
