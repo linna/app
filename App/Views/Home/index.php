@@ -5,7 +5,7 @@
     <?php if ($data->isLogged === true) {
     ?>         
     
-    <p>You are logged like <b><?php echo $data->userName;
+    <p>You are logged as <b><?php echo $data->userName;
     ?></b> -  <a href="<?php echo URL;
     ?>logout">logout</a> </p>
     
