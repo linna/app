@@ -99,12 +99,16 @@ var User = {
                             //table.insertBefore(div, tr);
                             break;
                         case 0:
+                            
+                            tr.cells[0].innerHTML = data.new_user_name;
+                            tr.cells[1].innerHTML = data.new_user_description;
                             //div.classList.add('success');
                             //div.innerHTML = 'password succesfully changed :)';
                             //dialogContent.appendChild(div);
                             //passDialog.dialog.removeButton('dButton_change');
                             //newPassword.value = '';
                             //confirmPassword.value = '';
+                            User._modifyExitAfterSave(button, user_id);
                             break;
                     }
                 });
@@ -118,6 +122,25 @@ var User = {
         delete this.modOldUserName['user'+user_id];
         delete this.modOldUserDescription['user'+user_id];
     },
+    _modifyExitAfterSave: function (button, user_id){
+        
+        var tr = button.parentNode.parentNode;
+        var td = button.parentNode;
+        
+        var buttonCancel = this.modButtonCancel['user'+user_id];
+        var buttonSave = this.modButtonSave['user'+user_id];
+        
+
+        td.removeChild(buttonCancel);
+        td.removeChild(buttonSave);
+        
+        //tr.cells[0].innerHTML = this.modOldUserName['user'+user_id];
+        //tr.cells[1].innerHTML = this.modOldUserDescription['user'+user_id];
+        
+        this._cleanModifyTd(td);
+        this._modifyClear(user_id);
+        
+    }, 
     modifyExit: function (button, user_id){
         
         var tr = button.parentNode.parentNode;
