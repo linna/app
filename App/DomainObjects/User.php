@@ -63,8 +63,10 @@ class User extends DomainObjectAbstract
      */
     public function __construct()
     {
-        $this->active = (int) $this->active;
-        $this->_id = (int) $this->_id;
+        //$this->active = (int) $this->active;
+        //$this->_id = (int) $this->_id;
+        settype($this->_id, 'integer');
+        settype($this->active, 'integer');
     }
 
     /**

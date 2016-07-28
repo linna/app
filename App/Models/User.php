@@ -35,7 +35,7 @@ class User extends Model
         $userMapper = new UserMapper();
 
         $user = $userMapper->findById($id);
-
+        
         if ($user->name !== 'root') {
             $user->active = 0;
         }

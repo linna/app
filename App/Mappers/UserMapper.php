@@ -109,7 +109,7 @@ class UserMapper extends MapperAbstract
      * @since 0.1.0
      * @deprecated since version 0.1.0 Replaced with \PDO::FETCH_CLASS fetch option
      */
-    public function populate(DomainObjectAbstract $obj, $data)
+   /* public function populate(DomainObjectAbstract $obj, $data)
     {
         $obj->setId($data->user_id);
         $obj->name = $data->name;
@@ -120,7 +120,7 @@ class UserMapper extends MapperAbstract
         $obj->last_update = $data->last_update;
 
         return $obj;
-    }
+    }*/
 
     /**
      * _create.
