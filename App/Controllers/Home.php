@@ -29,11 +29,13 @@ class Home extends Controller
        
         $tree = $treeMapper->getTree();
         
-        echo '<p style="margin-top:20px;">recupero intero albero</p>';
+        echo '<table><tr><td><p style="margin-top:20px;">recupero intero albero</p>';
         
         foreach ($tree as $treeNode) {
             echo str_repeat('--', $treeNode->level).$treeNode->getId().'_'.$treeNode->name.' '.$treeNode->lft.'_'.$treeNode->rgt.'<br/>';
         }   
+        
+        echo '</td>';
         
         /*
         
@@ -58,38 +60,52 @@ class Home extends Controller
         //updating a node
         //$node = $treeMapper->getNodeById(3);
         //$node->name = 'Nodo Prova D';
-
         //$treeMapper->save($node);
         
         //create a node
-        //$parentNode = $treeMapper->getNodeById(3);
+        $parentNode = $treeMapper->getNodeById(1);
         
-        //$node1 = $treeMapper->create();
-        //$node1->name = 'Child Node 1';
-        //$treeMapper->save($node1, $parentNode);
+        //default insert method (insert as first child)
+        $node0 = $treeMapper->create();
+        $node0->name = 'Child Node 0';
+        $treeMapper->save($node0, $parentNode);
         
-        //$node2 = $treeMapper->create();
-        //$node2->name = 'Child Node 2';
-        //$parentNode->appendFirst($node2);
+        //insert as first child using mapper
+        $node1 = $treeMapper->create();
+        $node1->name = 'Child Node 1';
+        $treeMapper->insertAsFirstChild($node1, $parentNode);
         
+        //insert as first using parent node shortcut/link to mapper
+        $node3 = $treeMapper->create();
+        $node3->name = 'Child Node 3';
+        $parentNode->appendFirst($node3);
         
-        //delete a node: ways
+        //insert as last child using mapper
+        $parentNode = $treeMapper->getNodeById(1);
+        $node2 = $treeMapper->create();
+        $node2->name = 'Child Node 2';
+        $treeMapper->insertAsLastChild($node2, $parentNode);
+        
+        //insert as last using parent node shortcut/link to mapper
+        $parentNode = $treeMapper->getNodeById(1);
+        $node4 = $treeMapper->create();
+        $node4->name = 'Child Node 4';
+        $parentNode->appendLast($node4);
+        
+        //delete a node using node shortcut/link to mapper
         //$node = $treeMapper->getNodeById(2);
         //$node->delete();
-        
+         
+        //delete a node using mapper
         //$node = $treeMapper->getNodeById(3);
         //$treeMapper->delete($node);
         
         
         
-        
-        //$node = $treeMapper->getNodeById(3);
-        
-        //var_dump($node);
                
         $tree = $treeMapper->getTree();
         
-        echo '<p style="margin-top:20px;">recupero intero albero dopo</p>';
+        echo '<td><p style="margin-top:20px;">recupero intero albero dopo</p>';
         
         foreach ($tree as $treeNode) {
            //var_Dump($treeNode);
@@ -97,5 +113,6 @@ class Home extends Controller
             echo str_repeat('--', $treeNode->level).$treeNode->getId().'_'.$treeNode->name.' '.$treeNode->lft.'_'.$treeNode->rgt.'<br/>';
         }
         
+        echo '</td></tr></table>';
     }
 }

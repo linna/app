@@ -23,17 +23,15 @@ use App\Mappers\TreeMapper;
  */
 class TreeNode extends DomainObjectAbstract
 {
-    //private $position = 0;
-    
     /**
      * @var string User name
      */
-    //public $parent_id;
+    
     
     public $level;
 
     /**
-     * @var string User description
+     * @var string Node name
      */
     public $name;
 
@@ -82,12 +80,13 @@ class TreeNode extends DomainObjectAbstract
     public function appendFirst(DomainObjectAbstract &$nodeToAppend)
     {
         $mapper = new \App\Mappers\TreeMapper();
-        $nodeToAppend = $mapper->save($nodeToAppend, $this);
+        $nodeToAppend = $mapper->insertAsFirstChild($nodeToAppend, $this);
     }
     
     public function appendLast(DomainObjectAbstract &$nodeToAppend)
     {
-        
+        $mapper = new \App\Mappers\TreeMapper();
+        $nodeToAppend = $mapper->insertAsLastChild($nodeToAppend, $this);
     }
     
     public function delete()

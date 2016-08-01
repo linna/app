@@ -31,7 +31,7 @@ class TreeMapper extends MapperAbstract
     protected $db;
 
     /**
-     * UserMapper Constructor.
+     * TreeMapper Constructor.
      * 
      * Open only a database connection
      *
@@ -43,13 +43,13 @@ class TreeMapper extends MapperAbstract
     }
 
     /**
-     * findById.
+     * getNodeById.
      * 
-     * Fetch a user object by id
+     * Fetch a TreeNode object by id
      * 
-     * @param string $id
+     * @param int $id
      *
-     * @return User
+     * @return TreeNode
      *
      * @since 0.1.0
      */
@@ -223,43 +223,24 @@ class TreeMapper extends MapperAbstract
     }
     
     
-    //public function delete()
-    //{}
-    
     /**
-     * populate.
+     * save
      * 
-     * Populate the User (DomainObject) with
-     * the data.
+     * Overrides parent method for save objects in
+     * persistent storage
+     *  
+     * @param DomainObjectAbstract $treeNode
+     * @param DomainObjectAbstract $parentNode
      * 
-     * @param DomainObjectAbstract $obj
-     * @param object               $data
-     *
-     * @return User
-     *
-     * @since 0.1.0
-     * @deprecated since version 0.1.0 Replaced with \PDO::FETCH_CLASS fetch option
-     */
-    //public function populate(DomainObjectAbstract $obj, $data)
-    //{
-       /* $obj->setId($data->user_id);
-        $obj->name = $data->name;
-        $obj->description = $data->description;
-        $obj->password = $data->password;
-        $obj->active = (int) $data->active;
-        $obj->created = $data->created;
-        $obj->last_update = $data->last_update;
-
-        return $obj;*/
-    //}
-    
+     * @return DomainObjectAbstract tree node
+     */ 
     public function save(DomainObjectAbstract ...$treeNode)//, DomainObjectAbstract $parentNode)
     {
         $parentNode = isset($treeNode[1]) ? $treeNode[1] : null;
         $treeNode = $treeNode[0];
         
         if ($treeNode->getId() === 0) {
-            return $this->_tree_insert($treeNode, $parentNode);
+            return $this->insertAsFirstChild($treeNode, $parentNode);
            
         } else {
             return $this->_update($treeNode);
@@ -272,7 +253,7 @@ class TreeMapper extends MapperAbstract
      * 
      * Create a new User DomainObject
      *
-     * @return User
+     * @return TreeNode
      *
      * @since 0.1.0
      */
@@ -286,30 +267,30 @@ class TreeMapper extends MapperAbstract
      * 
      * Insert the DomainObject in persistent storage
      * 
-     * This may include connecting to the database
-     * and running an insert statement.
+     * In this mapper not utilized
      *
-     * @param DomainObjectAbstract $obj
+     * @param DomainObjectAbstract $treeNode
      *
      * @since 0.1.0
      */
     protected function _insert(DomainObjectAbstract $treeNode)
     {
-        return null;
+        
     }
-    
-    protected function _tree_insert(DomainObjectAbstract $treeNode, DomainObjectAbstract $parentNode)
+    /**
+     * Insert the DomainObject treeNode in persistent storage
+     * as first child of a parent node
+     * 
+     * @param DomainObjectAbstract $treeNode
+     * @param DomainObjectAbstract $parentNode
+     * 
+     * @return DomainObjectAbstract tree node
+     */
+    public function insertAsFirstChild(DomainObjectAbstract $treeNode, DomainObjectAbstract $parentNode)
     {   
                 
         $this->db->beginTransaction();
                 
-        //find tree left of new node parent id
-        //$pdos = $this->db->prepare('SELECT tree_left FROM tree WHERE tree_id = :id');
-        //$pdos->bindParam(':id', $treeNode->parent_id, \PDO::PARAM_INT);
-        //$pdos->execute();
-        
-        //$tree_left = (int) $pdos->fetch(\PDO::FETCH_OBJ)->tree_left;
-        
         $tree_left = $parentNode->lft;
         
         //update right side of nodes
@@ -321,7 +302,6 @@ class TreeMapper extends MapperAbstract
         $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + 2 WHERE tree_left > :left');
         $pdos->bindParam(':left', $tree_left, \PDO::PARAM_INT);
         $pdos->execute();
-        
         
         //insert new tree node
         $pdos = $this->db->prepare('INSERT INTO tree (tree_parent_id, node_name, node_order, tree_root, tree_left, tree_right) 
@@ -344,7 +324,53 @@ class TreeMapper extends MapperAbstract
         return $this->getNodeById($newNodeId);
         
     }
+    
+    /**
+     * Insert the DomainObject treeNode in persistent storage
+     * as last child of a parent node
+     * 
+     * @param DomainObjectAbstract $treeNode
+     * @param DomainObjectAbstract $parentNode
+     * 
+     * @return DomainObjectAbstract tree node
+     */
+    public function insertAsLastChild(DomainObjectAbstract $treeNode, DomainObjectAbstract $parentNode)
+    {
+        $this->db->beginTransaction();
+                
+        $tree_right = $parentNode->rgt;
+        
+        //update right side of nodes
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right + 2 WHERE tree_right > :right -1');
+        $pdos->bindParam(':right', $tree_right, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //update left side of nodes
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + 2 WHERE tree_left > :right -1');
+        $pdos->bindParam(':right', $tree_right, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //insert new tree node
+        $pdos = $this->db->prepare('INSERT INTO tree (tree_parent_id, node_name, node_order, tree_root, tree_left, tree_right) 
+        VALUES (0, :name, 0, 0, :left, :right)');
 
+        $left = $tree_right;
+        $right = $tree_right + 1;
+        
+        //$pdos->bindParam(':parent_id', $obj->parent_id, \PDO::PARAM_INT);//ok
+        $pdos->bindParam(':name', $treeNode->name, \PDO::PARAM_STR);
+        $pdos->bindParam(':left', $left, \PDO::PARAM_INT);
+        $pdos->bindParam(':right', $right, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //find new node and return it
+        $newNodeId = (int) $this->db->lastInsertId();
+        
+        $this->db->commit();
+        
+        return $this->getNodeById($newNodeId);
+    }
+    
     /**
      * _update.
      * 
@@ -382,23 +408,14 @@ class TreeMapper extends MapperAbstract
      * @since 0.1.0
      */
     protected function _delete(DomainObjectAbstract $treeNode)
-    {
-            
+    {    
         $tree_id = $treeNode->getId();
         $tree_left = (int) $treeNode->lft;
         $tree_right = (int) $treeNode->rgt;
         $tree_width = (int) ($tree_right - $tree_left + 1);
         
-        
         $this->db->beginTransaction();
                 
-        //find tree left, tree right, tree width for node
-        /*$pdos = $this->db->prepare('SELECT tree_left, tree_right, (tree_right - tree_left + 1) AS tree_width FROM tree WHERE tree_id = :id');
-        $pdos->bindParam(':id', $tree_id, \PDO::PARAM_INT);
-        $pdos->execute();
-        
-        $pdos_tmp = $pdos->fetch(\PDO::FETCH_OBJ);*/
-        
         //update right side of nodes
         $pdos = $this->db->prepare('DELETE FROM tree WHERE tree_left BETWEEN :left AND :right');
         $pdos->bindParam(':left', $tree_left, \PDO::PARAM_INT);
@@ -418,7 +435,6 @@ class TreeMapper extends MapperAbstract
         $pdos->execute();
                 
         $this->db->commit();
-        
-        //return $this->getNodeById($newNodeId);
+      
     }
 }
