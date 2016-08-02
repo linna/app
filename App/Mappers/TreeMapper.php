@@ -82,50 +82,19 @@ class TreeMapper extends MapperAbstract
         return $pdos->fetchObject('\App\DomainObjects\TreeNode');//$this->create($pdos->fetch());
     }
 
+    
     /**
-     * findByName.
+     * getTree
      * 
-     * Fetch a user object by name
-     * 
-     * @param string $name
-     *
-     * @return User
-     *
-     * @since 0.1.0
+     * @return TreeNode
      */
-   /* public function getNodeByName($name)
-    {
-        $pdos = $this->db->prepare('SELECT 
-            tree_id AS _id,
-            tree_parent_id AS parent_id,
-            node_name AS name,
-            node_order as position,
-            tree_root as is_root,
-            tree_left as lft,
-            tree_right as rgt,
-            last_update
-        FROM
-            tree
-        WHERE md5(node_name) = :name');
-
-        $hashedTreeName = md5($name);
-
-        $pdos->bindParam(':name', $hashedTreeName, \PDO::PARAM_STR);
-        $pdos->execute();
-
-        return $pdos->fetchObject('\App\DomainObjects\Tree');//$this->create($pdos->fetch());
-    }*/
-
     public function getTree()
     {
         $pdos = $this->db->prepare('
         SELECT 
             node.tree_id AS _id,
-            #node.tree_parent_id AS parent_id,
             (COUNT(parent.tree_id) - 1) AS level,
             node.node_name AS name,
-            #node.node_order as position,
-            #node.tree_root as is_root,
             node.tree_left as lft,
             node.tree_right as rgt,
             node.last_update
@@ -141,16 +110,18 @@ class TreeMapper extends MapperAbstract
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode');
     }
     
+    /**
+     * getTreeRoot
+     * 
+     * @return array
+     */
     public function getTreeRoot()
     {
         $pdos = $this->db->prepare('
         SELECT 
             node.tree_id AS _id,
-            #node.tree_parent_id AS parent_id,
             (COUNT(parent.tree_id) - 1) AS level,
             node.node_name AS name,
-            #node.node_order as position,
-            #node.tree_root as is_root,
             node.tree_left as lft,
             node.tree_right as rgt,
             node.last_update
@@ -166,16 +137,19 @@ class TreeMapper extends MapperAbstract
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode');
     }
     
+    /**
+     * getSubTree
+     * 
+     * @param int $id
+     * @return array
+     */
     public function getSubTree($id)
     {
         $pdos = $this->db->prepare('
         SELECT 
             node.tree_id AS _id,
-            #node.tree_parent_id AS parent_id,
             (COUNT(parent.tree_id) - 1) AS level,
             node.node_name AS name,
-            #node.node_order as position,
-            #node.tree_root as is_root,
             node.tree_left as lft,
             node.tree_right as rgt,
             node.last_update
@@ -194,16 +168,19 @@ class TreeMapper extends MapperAbstract
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode'); 
     }
     
+    /**
+     * getNodePath
+     * 
+     * @param int $id
+     * @return array
+     */
     public function getNodePath($id)
     {
         $pdos = $this->db->prepare('
         SELECT 
             node.tree_id AS _id,
-            #node.tree_parent_id AS parent_id,
             (COUNT(parent.tree_id) - 1) AS level,
             node.node_name AS name,
-            #node.node_order as position,
-            #node.tree_root as is_root,
             node.tree_left as lft,
             node.tree_right as rgt,
             node.last_update
@@ -234,7 +211,7 @@ class TreeMapper extends MapperAbstract
      * 
      * @return DomainObjectAbstract tree node
      */ 
-    public function save(DomainObjectAbstract ...$treeNode)//, DomainObjectAbstract $parentNode)
+    public function save(DomainObjectAbstract ...$treeNode)
     {
         $parentNode = isset($treeNode[1]) ? $treeNode[1] : null;
         $treeNode = $treeNode[0];
@@ -277,7 +254,25 @@ class TreeMapper extends MapperAbstract
     {
         
     }
+    
+    public function move(DomainObjectAbstract $treeNode)
+    {
+        
+    }
+    
+    public function moveAfter()
+    {
+        
+    }
+    
+    public function moveBefore()
+    {
+        
+    }
+    
     /**
+     * insertAsFirstChild
+     * 
      * Insert the DomainObject treeNode in persistent storage
      * as first child of a parent node
      * 
@@ -310,7 +305,6 @@ class TreeMapper extends MapperAbstract
         $left = $tree_left + 1;
         $right = $tree_left + 2;
         
-        //$pdos->bindParam(':parent_id', $obj->parent_id, \PDO::PARAM_INT);//ok
         $pdos->bindParam(':name', $treeNode->name, \PDO::PARAM_STR);
         $pdos->bindParam(':left', $left, \PDO::PARAM_INT);
         $pdos->bindParam(':right', $right, \PDO::PARAM_INT);
@@ -326,6 +320,8 @@ class TreeMapper extends MapperAbstract
     }
     
     /**
+     * insertAsLastChild
+     * 
      * Insert the DomainObject treeNode in persistent storage
      * as last child of a parent node
      * 
@@ -379,7 +375,7 @@ class TreeMapper extends MapperAbstract
      * This may include connecting to the database
      * and running an update statement.
      *
-     * @param DomainObjectAbstract $obj
+     * @param DomainObjectAbstract $treeNode
      *
      * @since 0.1.0
      */
@@ -403,7 +399,7 @@ class TreeMapper extends MapperAbstract
      * This may include connecting to the database
      * and running a delete statement.
      *
-     * @param DomainObjectAbstract $obj
+     * @param DomainObjectAbstract $treeNode
      *
      * @since 0.1.0
      */

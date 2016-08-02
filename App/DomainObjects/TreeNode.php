@@ -99,4 +99,6 @@ class TreeNode extends DomainObjectAbstract
     {
         return $this->$name;
     }
+    
+   
 }
