@@ -165,7 +165,7 @@ class TreeMapper extends MapperAbstract
         $pdos->bindParam(':id', $id, \PDO::PARAM_INT);
         $pdos->execute();
 
-        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode'); 
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode');
     }
     
     /**
@@ -196,7 +196,7 @@ class TreeMapper extends MapperAbstract
         $pdos->bindParam(':id', $id, \PDO::PARAM_INT);
         $pdos->execute();
 
-        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode'); 
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\TreeNode');
     }
     
     
@@ -210,7 +210,7 @@ class TreeMapper extends MapperAbstract
      * @param DomainObjectAbstract $parentNode
      * 
      * @return DomainObjectAbstract tree node
-     */ 
+     */
     public function save(DomainObjectAbstract ...$treeNode)
     {
         $parentNode = isset($treeNode[1]) ? $treeNode[1] : null;
@@ -218,7 +218,6 @@ class TreeMapper extends MapperAbstract
         
         if ($treeNode->getId() === 0) {
             return $this->insertAsFirstChild($treeNode, $parentNode);
-           
         } else {
             return $this->_update($treeNode);
         }
@@ -252,7 +251,6 @@ class TreeMapper extends MapperAbstract
      */
     protected function _insert(DomainObjectAbstract $treeNode)
     {
-        
     }
     
     public function move(DomainObjectAbstract $treeNode, DomainObjectAbstract $targetNode)
@@ -304,7 +302,7 @@ class TreeMapper extends MapperAbstract
         $this->db->beginTransaction();
         
         //create new space for subtree left side
-        
+
         echo "UPDATE tree SET tree_left = tree_left + $width WHERE tree_left > $newPos<br>";
         $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + :width WHERE tree_left >= :new_pos');
         $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
@@ -410,7 +408,6 @@ class TreeMapper extends MapperAbstract
     
     public function moveBefore(DomainObjectAbstract $treeNode, DomainObjectAbstract $targetNode)
     {
-       
         $newPos = $targetNode->lft;
         $width = $treeNode->rgt - $treeNode->lft + 1;
         $distance = $newPos - $treeNode->lft;
@@ -539,8 +536,7 @@ class TreeMapper extends MapperAbstract
      * @return DomainObjectAbstract tree node
      */
     public function insertAsFirstChild(DomainObjectAbstract $treeNode, DomainObjectAbstract $parentNode)
-    {   
-                
+    {
         $this->db->beginTransaction();
                 
         $tree_left = $parentNode->lft;
@@ -573,7 +569,6 @@ class TreeMapper extends MapperAbstract
         $this->db->commit();
         
         return $this->getNodeById($newNodeId);
-        
     }
     
     /**
@@ -661,7 +656,7 @@ class TreeMapper extends MapperAbstract
      * @since 0.1.0
      */
     protected function _delete(DomainObjectAbstract $treeNode)
-    {    
+    {
         $tree_id = $treeNode->getId();
         $tree_left = (int) $treeNode->lft;
         $tree_right = (int) $treeNode->rgt;
@@ -688,6 +683,5 @@ class TreeMapper extends MapperAbstract
         $pdos->execute();
                 
         $this->db->commit();
-      
     }
 }

@@ -16,8 +16,7 @@
         <?php
         foreach ($css as $file) {
             ?>
-        <link href="<?php echo $file;
-            ?>" rel="stylesheet" />
+        <link href="<?php echo $file; ?>" rel="stylesheet" />
         <?php
 
         }
@@ -32,15 +31,13 @@
             <a class="menu" href="<?php echo URL; ?>">home</a>
             <?php if ($data->isLogged === false) {
     ?>
-            <a class="menu" href="<?php echo URL;
-    ?>login">login</a>
+            <a class="menu" href="<?php echo URL; ?>login">login</a>
             <?php 
 }?>
             
             <?php if ($data->isLogged === true) {
     ?>
-            <a class="menu" href="<?php echo URL;
-    ?>logout">logout</a>
+            <a class="menu" href="<?php echo URL; ?>logout">logout</a>
             <?php 
 }?>
             
@@ -61,15 +58,13 @@
                     
                     <?php if ($data->isLogged === false) {
     ?>
-                    <li><a href="<?php echo URL;
-    ?>login">login</a></li>
+                    <li><a href="<?php echo URL; ?>login">login</a></li>
                     <?php 
 }?>
                     
                     <?php if ($data->isLogged === true) {
     ?>
-                    <li><a href="<?php echo URL;
-    ?>login">logout</a></li>
+                    <li><a href="<?php echo URL; ?>login">logout</a></li>
                     <?php 
 }?>
                     

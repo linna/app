@@ -55,26 +55,20 @@
                         <?php 
 } else {
     ?>
-                        <span class="<?php echo ($user->active === 0) ? 'no' : '' ?>active" onclick="User.<?php echo ($user->active === 0) ? 'enable' : 'disable' ?>(this, <?php echo $user->getId();
-    ?>)"></span>
+                        <span class="<?php echo ($user->active === 0) ? 'no' : '' ?>active" onclick="User.<?php echo ($user->active === 0) ? 'enable' : 'disable' ?>(this, <?php echo $user->getId(); ?>)"></span>
                         
                         <?php 
-}
-    ?>
+} ?>
                     </td>
                     <!-- <td></td> -->
                     <td>
-                        <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId();
-    ?>, '<?php echo $user->name ?>')"></button>
+                        <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
                         <?php if ($user->name !== 'root') {
     ?>
-                        <button class="icon pencil-16" onclick="User.modify(this, <?php echo $user->getId();
-    ?>)"></button>
-                        <button class="icon trash-16" onclick="User.delete(this, <?php echo $user->getId();
-    ?>, '<?php echo $user->name ?>')"></button>
+                        <button class="icon pencil-16" onclick="User.modify(this, <?php echo $user->getId(); ?>)"></button>
+                        <button class="icon trash-16" onclick="User.delete(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
                         <?php 
-}
-    ?>
+} ?>
                     </td>
                 </tr>  
             <?php 

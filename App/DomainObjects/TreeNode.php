@@ -15,6 +15,7 @@ namespace App\DomainObjects;
 
 use Leviu\Database\DomainObjectAbstract;
 use App\Mappers\TreeMapper;
+
 /**
  * User
  * - Class for manage users.
@@ -56,7 +57,7 @@ class TreeNode extends DomainObjectAbstract
     protected $rgt;
 
     //private $mapper;
-    
+
     /**
      * User Constructor.
      * 
@@ -91,33 +92,30 @@ class TreeNode extends DomainObjectAbstract
     
     public function delete()
     {
-       $mapper = new \App\Mappers\TreeMapper();
-       $mapper->delete($this);
+        $mapper = new \App\Mappers\TreeMapper();
+        $mapper->delete($this);
     }
     
     public function moveInto(DomainObjectAbstract $nodeTarget)
     {
-       $mapper = new \App\Mappers\TreeMapper();
-       $mapper->moveInto($this, $nodeTarget);
-       
+        $mapper = new \App\Mappers\TreeMapper();
+        $mapper->moveInto($this, $nodeTarget);
     }
     
     public function moveBefore(DomainObjectAbstract $nodeTarget)
     {
-       $mapper = new \App\Mappers\TreeMapper();
-       $mapper->moveBefore($this, $nodeTarget);
+        $mapper = new \App\Mappers\TreeMapper();
+        $mapper->moveBefore($this, $nodeTarget);
     }
     
     public function moveAfter(DomainObjectAbstract $nodeTarget)
     {
-       $mapper = new \App\Mappers\TreeMapper();
-       $mapper->moveAfter($this, $nodeTarget);
+        $mapper = new \App\Mappers\TreeMapper();
+        $mapper->moveAfter($this, $nodeTarget);
     }
     
     public function __get($name)
     {
         return $this->$name;
     }
-    
-   
 }

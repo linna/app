@@ -8,8 +8,7 @@
 <?php
 foreach ($js as $file) {
     ?>
-<script src="<?php echo $file;
-    ?>"></script>
+<script src="<?php echo $file; ?>"></script>
 <?php
 
 }
