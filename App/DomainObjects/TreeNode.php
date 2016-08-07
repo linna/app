@@ -95,6 +95,25 @@ class TreeNode extends DomainObjectAbstract
        $mapper->delete($this);
     }
     
+    public function moveInto(DomainObjectAbstract $nodeTarget)
+    {
+       $mapper = new \App\Mappers\TreeMapper();
+       $mapper->moveInto($this, $nodeTarget);
+       
+    }
+    
+    public function moveBefore(DomainObjectAbstract $nodeTarget)
+    {
+       $mapper = new \App\Mappers\TreeMapper();
+       $mapper->moveBefore($this, $nodeTarget);
+    }
+    
+    public function moveAfter(DomainObjectAbstract $nodeTarget)
+    {
+       $mapper = new \App\Mappers\TreeMapper();
+       $mapper->moveAfter($this, $nodeTarget);
+    }
+    
     public function __get($name)
     {
         return $this->$name;

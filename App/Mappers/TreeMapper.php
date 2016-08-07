@@ -255,19 +255,276 @@ class TreeMapper extends MapperAbstract
         
     }
     
-    public function move(DomainObjectAbstract $treeNode)
+    public function move(DomainObjectAbstract $treeNode, DomainObjectAbstract $targetNode)
     {
+        /*
+// calculate position adjustment variables
+    int width = node.getRpos() - node.getLpos() + 1;
+    int distance = newpos - node.getLpos();
+    int tmppos = node.getLpos();
+            
+    // backwards movement must account for new space
+    if (distance < 0) {
+        distance -= width;
+        tmppos += width;
+    }         
+         */
+        $newPos = $targetNode->lft;
+        $width = $treeNode->rgt - $treeNode->lft + 1;
+        $distance = $newPos - $treeNode->lft;
+        $tmpPos = $treeNode->lft;
+        $oldRight = $treeNode->rgt;
         
+        if ($distance < 0) {
+            $distance -= $width;
+            $tmpPos += $width;
+        }
+        
+        
+        /*var_dump($newPos);
+        var_dump($width);
+        var_dump($distance);
+        var_dump($tmpPos);
+        var_dump($oldRight);*/
+        
+        /**
+     *  -- create new space for subtree
+     *  UPDATE tags SET lpos = lpos + :width WHERE lpos >= :newpos
+     *  UPDATE tags SET rpos = rpos + :width WHERE rpos >= :newpos
+     * 
+     *  -- move subtree into new space
+     *  UPDATE tags SET lpos = lpos + :distance, rpos = rpos + :distance
+     *           WHERE lpos >= :tmppos AND rpos < :tmppos + :width
+     * 
+     *  -- remove old space vacated by subtree
+     *  UPDATE tags SET lpos = lpos - :width WHERE lpos > :oldrpos
+     *  UPDATE tags SET rpos = rpos - :width WHERE rpos > :oldrpos
+     */
+        
+        $this->db->beginTransaction();
+        
+        //create new space for subtree left side
+        
+        echo "UPDATE tree SET tree_left = tree_left + $width WHERE tree_left > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + :width WHERE tree_left >= :new_pos');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //create new space for subtree right side
+        echo "UPDATE tree SET tree_right = tree_right + $width WHERE tree_right > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right + :width WHERE tree_right > :new_pos');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //move subtree into new space
+        echo "UPDATE tree SET 
+        tree_left = tree_left + $distance, tree_right = tree_right + $distance
+        WHERE tree_left >= $tmpPos AND tree_right < $tmpPos + $width<br>";
+        
+        $pdos = $this->db->prepare('UPDATE tree SET 
+        tree_left = tree_left + :distance, tree_right = tree_right + :distance
+        WHERE tree_left >= :tmp_pos AND tree_right < :tmp_pos + :width');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':distance', $distance, \PDO::PARAM_INT);
+        $pdos->bindParam(':tmp_pos', $tmpPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree left side
+        echo "UPDATE tree SET tree_left = tree_left - $width WHERE tree_left > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left - :width WHERE tree_left > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree right side
+        echo "UPDATE tree SET tree_right = tree_right - $width WHERE tree_right > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right - :width WHERE tree_right > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        $this->db->commit();
     }
     
-    public function moveAfter()
+    public function moveInto(DomainObjectAbstract $treeNode, DomainObjectAbstract $targetNode)
     {
+        $newPos = $targetNode->lft + 1;
+        $width = $treeNode->rgt - $treeNode->lft + 1;
+        $distance = $newPos - $treeNode->lft;
+        $tmpPos = $treeNode->lft;
+        $oldRight = $treeNode->rgt;
         
+        if ($distance < 0) {
+            $distance -= $width;
+            $tmpPos += $width;
+        }
+        
+        $this->db->beginTransaction();
+        
+        //create new space for subtree left side
+        echo "UPDATE tree SET tree_left = tree_left + $width WHERE tree_left > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + :width WHERE tree_left >= :new_pos');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //create new space for subtree right side
+        echo "UPDATE tree SET tree_right = tree_right + $width WHERE tree_right > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right + :width WHERE tree_right > :new_pos - 1'
+                . '');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //move subtree into new space
+        echo "UPDATE tree SET 
+        tree_left = tree_left + $distance, tree_right = tree_right + $distance
+        WHERE tree_left >= $tmpPos AND tree_right < $tmpPos + $width<br>";
+        
+        $pdos = $this->db->prepare('UPDATE tree SET 
+        tree_left = tree_left + :distance, tree_right = tree_right + :distance
+        WHERE tree_left >= :tmp_pos AND tree_right < :tmp_pos + :width');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':distance', $distance, \PDO::PARAM_INT);
+        $pdos->bindParam(':tmp_pos', $tmpPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree left side
+        echo "UPDATE tree SET tree_left = tree_left - $width WHERE tree_left > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left - :width WHERE tree_left > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree right side
+        echo "UPDATE tree SET tree_right = tree_right - $width WHERE tree_right > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right - :width WHERE tree_right > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        $this->db->commit();
     }
     
-    public function moveBefore()
+    public function moveBefore(DomainObjectAbstract $treeNode, DomainObjectAbstract $targetNode)
     {
+       
+        $newPos = $targetNode->lft;
+        $width = $treeNode->rgt - $treeNode->lft + 1;
+        $distance = $newPos - $treeNode->lft;
+        $tmpPos = $treeNode->lft;
+        $oldRight = $treeNode->rgt;
         
+        if ($distance < 0) {
+            $distance -= $width;
+            $tmpPos += $width;
+        }
+        
+        $this->db->beginTransaction();
+        
+        //create new space for subtree left side
+        echo "UPDATE tree SET tree_left = tree_left + $width WHERE tree_left > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + :width WHERE tree_left >= :new_pos');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //create new space for subtree right side
+        echo "UPDATE tree SET tree_right = tree_right + $width WHERE tree_right > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right + :width WHERE tree_right > :new_pos');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //move subtree into new space
+        echo "UPDATE tree SET 
+        tree_left = tree_left + $distance, tree_right = tree_right + $distance
+        WHERE tree_left >= $tmpPos AND tree_right < $tmpPos + $width<br>";
+        
+        $pdos = $this->db->prepare('UPDATE tree SET 
+        tree_left = tree_left + :distance, tree_right = tree_right + :distance
+        WHERE tree_left >= :tmp_pos AND tree_right < :tmp_pos + :width');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':distance', $distance, \PDO::PARAM_INT);
+        $pdos->bindParam(':tmp_pos', $tmpPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree left side
+        echo "UPDATE tree SET tree_left = tree_left - $width WHERE tree_left > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left - :width WHERE tree_left > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree right side
+        echo "UPDATE tree SET tree_right = tree_right - $width WHERE tree_right > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right - :width WHERE tree_right > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        $this->db->commit();
+    }
+    
+    public function moveAfter(DomainObjectAbstract $treeNode, DomainObjectAbstract $targetNode)
+    {
+        $newPos = $targetNode->rgt + 1;
+        $width = $treeNode->rgt - $treeNode->lft + 1;
+        $distance = $newPos - $treeNode->lft;
+        $tmpPos = $treeNode->lft;
+        $oldRight = $treeNode->rgt;
+        
+        if ($distance < 0) {
+            $distance -= $width;
+            $tmpPos += $width;
+        }
+        
+        $this->db->beginTransaction();
+        
+        //create new space for subtree left side
+        echo "UPDATE tree SET tree_left = tree_left + $width WHERE tree_left > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left + :width WHERE tree_left >= :new_pos');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //create new space for subtree right side
+        echo "UPDATE tree SET tree_right = tree_right + $width WHERE tree_right > $newPos<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right + :width WHERE tree_right > :new_pos - 1');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':new_pos', $newPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //move subtree into new space
+        echo "UPDATE tree SET 
+        tree_left = tree_left + $distance, tree_right = tree_right + $distance
+        WHERE tree_left >= $tmpPos AND tree_right < $tmpPos + $width<br>";
+        
+        $pdos = $this->db->prepare('UPDATE tree SET 
+        tree_left = tree_left + :distance, tree_right = tree_right + :distance
+        WHERE tree_left >= :tmp_pos AND tree_right < :tmp_pos + :width');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':distance', $distance, \PDO::PARAM_INT);
+        $pdos->bindParam(':tmp_pos', $tmpPos, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree left side
+        echo "UPDATE tree SET tree_left = tree_left - $width WHERE tree_left > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_left = tree_left - :width WHERE tree_left > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        //remove old space vacated by subtree right side
+        echo "UPDATE tree SET tree_right = tree_right - $width WHERE tree_right > $oldRight<br>";
+        $pdos = $this->db->prepare('UPDATE tree SET tree_right = tree_right - :width WHERE tree_right > :old_right');
+        $pdos->bindParam(':width', $width, \PDO::PARAM_INT);
+        $pdos->bindParam(':old_right', $oldRight, \PDO::PARAM_INT);
+        $pdos->execute();
+        
+        $this->db->commit();
     }
     
     /**
