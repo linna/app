@@ -46,6 +46,7 @@
             
             <a class="menu" href="<?php echo URL; ?>protectedPage">protected page test</a>
             <a class="menu" href="<?php echo URL; ?>user">users</a>
+            <a class="menu" href="<?php echo URL; ?>tree">Tree</a>
             
         </header>
 
@@ -74,6 +75,7 @@
                     
                     <li><a href="<?php echo URL; ?>protectedPage">protected page test</a></li>
                     <li><a href="<?php echo URL; ?>user">users</a></li>
+                    <li><a href="<?php echo URL; ?>tree">Tree</a></li>
                 </ul>
                
             </div>

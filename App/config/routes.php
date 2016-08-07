@@ -72,3 +72,11 @@ $routes[] = [
     'controller' => 'ProtectedPage',
     'action' => null,
 ];
+
+$routes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/tree',
+    'controller' => 'Tree',
+    'action' => null,
+];
