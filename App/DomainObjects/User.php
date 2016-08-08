@@ -35,7 +35,7 @@ class User extends DomainObjectAbstract
     public $description;
 
     /**
-     * @var string User password
+     * @var string User hashed password
      */
     public $password;
 

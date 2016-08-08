@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Leviu\Routing\Model;
 use Leviu\Auth\Login as LoginClass;
+use Leviu\Auth\Password;
+use Leviu\Database\DomainObjectAbstract;
+use Leviu\Database\MapperAbstract;
 use App\Mappers\UserMapper;
 
 class Login extends Model
@@ -18,22 +21,37 @@ class Login extends Model
         $login = new LoginClass();
         $userMapper = new UserMapper();
 
-        $tmp = $userMapper->findByName($_POST['user']);
+        $dbUser = $userMapper->findByName($_POST['user']);
 
-        $user = $_POST['user'];
-        $password = $_POST['password'];
-
-        $storedUser = ($tmp) ? $tmp->name : '';
-        $storedPassword = ($tmp) ? $tmp->password : '';
-        $storedId = ($tmp) ? $tmp->getId() : 0;
-
-        return $login->login($user, $password, $storedUser, $storedPassword, $storedId);
+        if ($dbUser instanceof DomainObjectAbstract) {
+            if ($login->login($_POST['user'],
+                    $_POST['password'],
+                    $dbUser->name,
+                    $dbUser->password,
+                    $dbUser->getId())) {
+                $this->updatePassword($_POST['password'], $dbUser, $userMapper);
+                
+                return true;
+            }
+        }
+        
+        return false;
     }
-
+    
     public function logout()
     {
         $login = new LoginClass();
 
         $login->logout();
+    }
+    
+    protected function updatePassword($password, DomainObjectAbstract $user, MapperAbstract $mapper)
+    {
+        $p = new Password();
+        
+        if ($p->needs_rehash($password, $user->password)) {
+            $user->setPassword($password);
+            $mapper->save($user);
+        }
     }
 }

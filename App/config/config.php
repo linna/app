@@ -30,7 +30,7 @@ define('URL_PUBLIC_FOLDER', 'public');
  * URL_PROTOCOL:
  * The protocol. Don't change unless you know exactly what you do.
  */
-define('URL_PROTOCOL', 'http://');
+define('URL_PROTOCOL', 'https://');
 /*
  * URL_DOMAIN:
  * The domain. Don't change unless you know exactly what you do.
