@@ -49,7 +49,7 @@ class Login extends Model
     {
         $p = new Password();
         
-        if ($p->needs_rehash($password, $user->password)) {
+        if ($p->needs_rehash($user->password)) {
             $user->setPassword($password);
             $mapper->save($user);
         }
