@@ -13,7 +13,7 @@ class ProtectedPage extends Controller
     {
         parent::__construct(__CLASS__);
 
-        $this->protectController(new Login());
+        $this->protectController(new Login(), URL.'unauthorized');
 
         $this->view->data->isLogged = $this->isLogged;
         $this->view->data->userName = $this->login->userName;
