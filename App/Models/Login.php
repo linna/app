@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Leviu\Routing\Model;
+use Leviu\Mvc\Model;
 use Leviu\Auth\Login as LoginClass;
 use Leviu\Auth\Password;
 use Leviu\Database\DomainObjectAbstract;
@@ -13,7 +13,7 @@ class Login extends Model
 {
     public function __construct()
     {
-        parent::__construct();
+       
     }
 
     public function doLogin()

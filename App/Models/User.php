@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Leviu\Routing\Model;
+use Leviu\Mvc\Model;
 use Leviu\Auth\Password;
 use App\Mappers\UserMapper;
 
@@ -10,7 +10,7 @@ class User extends Model
 {
     public function __construct()
     {
-        parent::__construct();
+        
     }
 
     public function getAllUsers()
@@ -18,6 +18,7 @@ class User extends Model
         $userMapper = new UserMapper();
 
         return $userMapper->getAllUsers();
+
     }
 
     public function enable($id)
@@ -50,20 +51,14 @@ class User extends Model
         $user = $userMapper->findById($id);
 
         if ($user->name !== 'root') {
-            //$userMapper->delete($user);
+            $userMapper->delete($user);
         }
     }
 
     public function changePassword($id)
     {
-        $userMapper = new UserMapper();
-
-        $user = $userMapper->findById($id);
-
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
-
-        $password = new Password();
 
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
@@ -74,7 +69,11 @@ class User extends Model
         if ($newPassword !== $confirmPassword) {
             return 1;
         }
-
+        
+        $password = new Password();
+        $userMapper = new UserMapper();
+        $user = $userMapper->findById($id);
+        
         $hash = $password->hash($newPassword);
 
         $user->password = $hash;
@@ -86,25 +85,24 @@ class User extends Model
 
     public function modify($id)
     {
-        $userMapper = new UserMapper();
-
-        $user = $userMapper->findById($id);
-
         $newName = $_POST['new_user_name'];
         $newDescription = $_POST['new_user_description'];
-
-        $checkUser = $userMapper->findByName($newName);
-
+        
         //user name must be not null
         if ($newName === null || $newName === '') {
             return 2;
         }
-
+        
+        $checkUser = $userMapper->findByName($newName);
+        
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             return 1;
         }
-
+        
+        $userMapper = new UserMapper();
+        $user = $userMapper->findById($id);
+        
         $user->name = $newName;
         $user->description = $newDescription;
 

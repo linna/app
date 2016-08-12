@@ -15,8 +15,8 @@
  */
 use \Leviu\Session\DatabaseSessionHandler;
 use \Leviu\Session\Session;
-use \Leviu\Routing\Router;
-use \Leviu\Routing\Dispatcher;
+use \Leviu\Http\Router;
+use \Leviu\Http\Dispatcher;
 use \Leviu\Autoloader;
 
 /*

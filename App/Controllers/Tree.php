@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Leviu\Routing\Controller;
+use Leviu\Mvc\Controller;
 use Leviu\Auth\Login;
 
 class Tree extends Controller
