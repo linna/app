@@ -23,6 +23,6 @@ class Home extends Controller
     {
         $this->view->setTitle('App/Home');
 
-        $this->view->render('Home/index');
+        $this->view->render('Home');
     }
 }

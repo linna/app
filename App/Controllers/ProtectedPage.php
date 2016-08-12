@@ -23,6 +23,6 @@ class ProtectedPage extends Controller
     {
         $this->view->setTitle('App/ProtectedPage');
 
-        $this->view->render('ProtectedPage/index');
+        $this->view->render('ProtectedPage');
     }
 }

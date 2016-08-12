@@ -27,7 +27,7 @@ class Login extends Controller
     {
         $this->view->setTitle('App/Login');
 
-        $this->view->render('Login/index');
+        $this->view->render('Login');
     }
 
     public function doLogin()
@@ -49,7 +49,7 @@ class Login extends Controller
 
         $this->view->setTitle('App/LoginError');
 
-        $this->view->render('Login/index');
+        $this->view->render('Login');
     }
 
     public function logout()
@@ -62,6 +62,6 @@ class Login extends Controller
 
     public function unauthorized()
     {
-        $this->view->render('Login/unauthorized');
+        $this->view->render('Unauthorized');
     }
 }

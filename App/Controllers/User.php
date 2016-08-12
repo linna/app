@@ -37,7 +37,7 @@ class User extends Controller
         //load specific js script for this controller
         $this->view->addJs('js/user.js');
 
-        $this->view->render('User/index');
+        $this->view->render('User');
     }
 
     public function enable($user_id)

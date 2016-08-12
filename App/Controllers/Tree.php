@@ -23,7 +23,7 @@ class Tree extends Controller
     {
         $this->view->setTitle('App/Tree');
 
-        $this->view->render('Tree/index');
+        $this->view->render('Tree');
         
        /* $treeMapper = new \App\Mappers\TreeMapper;
        

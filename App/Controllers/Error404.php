@@ -23,6 +23,6 @@ class Error404 extends Controller
     {
         $this->view->setTitle('App/Error404');
 
-        $this->view->render('Error404/index');
+        $this->view->render('Error404');
     }
 }
