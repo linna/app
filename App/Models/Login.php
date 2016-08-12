@@ -13,7 +13,6 @@ class Login extends Model
 {
     public function __construct()
     {
-       
     }
 
     public function doLogin()

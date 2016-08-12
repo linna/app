@@ -10,7 +10,6 @@ class User extends Model
 {
     public function __construct()
     {
-        
     }
 
     public function getAllUsers()
@@ -18,7 +17,6 @@ class User extends Model
         $userMapper = new UserMapper();
 
         return $userMapper->getAllUsers();
-
     }
 
     public function enable($id)
