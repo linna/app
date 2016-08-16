@@ -105,7 +105,7 @@ class User extends DomainObjectAbstract
 
         $hash = $passUtil->hash($newPassword);
 
-        if (password_verify($oldPassword, $this->password)) {
+        if ($passUtil->verify($oldPassword, $this->password)) {
             $this->password = $hash;
 
             return true;
