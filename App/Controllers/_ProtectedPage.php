@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Leviu\Mvc\Controller;
 use Leviu\Auth\Login;
 
-class ProtectedPage extends Controller
+class _ProtectedPage extends Controller
 {
     use \Leviu\Auth\ProtectTrait;
 

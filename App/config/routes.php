@@ -80,3 +80,45 @@ $routes[] = [
     'controller' => 'Tree',
     'action' => null,
 ];
+
+$testroutes = array();
+
+$testroutes[] = [
+    'name' => 'Home',
+    'method' => 'GET',
+    'url' => '/',
+    'model' => 'HomeModel',
+    'view' => 'HomeView',
+    'controller' => 'HomeController',
+    'action' => null,
+];
+
+$testroutes[] = [
+    'name' => 'PageError',
+    'method' => 'GET',
+    'url' => '/error',
+    'model' => 'PageErrorModel',
+    'view' => 'PageErrorView',
+    'controller' => 'PageErrorController',
+    'action' => null,
+];
+
+$testroutes[] = [
+    'name' => 'User',
+    'method' => 'GET',
+    'url' => '/user',
+    'model' => 'UserModel',
+    'view' => 'UserView',
+    'controller' => 'UserController',
+    'action' => null,
+];
+
+$testroutes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
+    'model' => 'UserModel',
+    'view' => 'UserView',
+    'controller' => 'UserController',
+    'action' => null,
+];

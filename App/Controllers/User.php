@@ -3,41 +3,45 @@
 namespace App\Controllers;
 
 use Leviu\Mvc\Controller;
-use Leviu\Auth\Login;
+use App\Views\User as UserView;
+use App\Templates\HtmlTemplate as UserTemplate;
+use App\Models\User as UserModel;
 
 class User extends Controller
 {
-    use \Leviu\Auth\ProtectTrait;
+    //use \Leviu\Auth\ProtectTrait;
 
     public function __construct()
     {
-        parent::__construct(__CLASS__);
+        //parent::__construct(__CLASS__);
 
-        $this->model = $this->loadModel();
+        $this->model = new UserModel;
 
-        $this->protectController(new Login(), URL.'unauthorized');
+        //$this->protectController(new Login(), URL.'unauthorized');
 
-        $this->view->data->isLogged = $this->isLogged;
-        $this->view->data->userName = $this->login->userName;
+        //$this->view->data->isLogged = $this->isLogged;
+        //$this->view->data->userName = $this->login->userName;
     }
 
     public function index()
     {
-        $this->view->data->users = $this->model->getAllUsers();
-
-        $this->view->setTitle('App/Users');
-
-        //load specifc css file
-        $this->view->addCss('css/user.css');
+        $template = new UserTemplate('User');
+        $template->title = 'App/User';
+        
+        //load css for UserTemplate
+        $template->loadCss('css/user.css');
 
         //load javascript tools
-        $this->view->addJs('js/ajax.js');
-        $this->view->addJs('js/dialog.js');
+        $template->loadJs('js/ajax.js');
+        $template->loadJs('js/dialog.js');
 
         //load specific js script for this controller
-        $this->view->addJs('js/user.js');
-
-        $this->view->render('User');
+        $template->loadJs('js/user.js');
+        
+        
+        $view = new UserView();
+        $view->showAllUser();
+        $view->render($template);
     }
 
     public function enable($user_id)

@@ -16,7 +16,8 @@
 use \Leviu\Session\DatabaseSessionHandler;
 use \Leviu\Session\Session;
 use \Leviu\Http\Router;
-use \Leviu\Http\Dispatcher;
+//use \Leviu\Http\Dispatcher;
+use \Leviu\Http\FrontController;
 use \Leviu\Autoloader;
 
 /*
@@ -45,9 +46,11 @@ $loader = new Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
-    ['App\Lib', __DIR__.'/../App/Library'],
-    ['App\Controllers', __DIR__.'/../App/Controllers'],
+    //['App\Lib', __DIR__.'/../App/Library'],
     ['App\Models', __DIR__.'/../App/Models'],
+    ['App\Views', __DIR__.'/../App/Views'],
+    ['App\Controllers', __DIR__.'/../App/Controllers'],
+    ['App\Templates', __DIR__.'/../App/Templates'],
     ['App\Mappers', __DIR__.'/../App/Mappers'],
     ['App\DomainObjects', __DIR__.'/../App/DomainObjects'],
 ]);
@@ -64,22 +67,22 @@ Session::$cookiePath = URL_SUB_FOLDER;
 $session = Session::getInstance();
 
 //router
-$router = new Router($routes, URL_SUB_FOLDER);
+$router = new Router($testroutes, URL_SUB_FOLDER);
 //get route
 $route = $router->getRoute();
 
+
+
+$frontController = new FrontController($route, '\App\Controllers\\');
+$frontController->response();
+
+
+
 //config dispatcher
-Dispatcher::$controller404 = 'Error404';
-Dispatcher::$appNamespace = '\App\Controllers\\';
+//Dispatcher::$controller404 = 'Error404';
+//Dispatcher::$appNamespace = '\App\Controllers\\';
 
 //dispatch route
-$dispatcher = new Dispatcher($route);
+//$dispatcher = new Dispatcher($route);
 
-$dispatcher->dispatch();
-
-//only for debug, return time execution and memory usage
-//echo '<!-- Memory: ';
-//echo round(xdebug_memory_usage() / 1024, 2) , ' (';
-//echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
-//echo xdebug_time_index();
-//echo ' Seconds -->';
+//$dispatcher->dispatch();

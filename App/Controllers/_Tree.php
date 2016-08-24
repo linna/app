@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Leviu\Mvc\Controller;
 use Leviu\Auth\Login;
 
-class Tree extends Controller
+class _Tree extends Controller
 {
     use \Leviu\Auth\ProtectTrait;
 

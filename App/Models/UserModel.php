@@ -6,10 +6,11 @@ use Leviu\Mvc\Model;
 use Leviu\Auth\Password;
 use App\Mappers\UserMapper;
 
-class User extends Model
+class UserModel extends Model
 {
-    public function __construct()
+    public function __contruct()
     {
+        parent::__construct();
     }
 
     public function getAllUsers()
@@ -61,17 +62,22 @@ class User extends Model
 
     public function changePassword($id)
     {
+        //da filtrare nel controller
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
 
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
-            return 2;
+            $this->getUpdate = 2;
+            $this->notify();
+            return ;
         }
 
         //password must be equal to confirm password
         if ($newPassword !== $confirmPassword) {
-            return 1;
+            $this->getUpdate = 1;
+            $this->notify();
+            return ;
         }
         
         $password = new Password();
@@ -83,27 +89,36 @@ class User extends Model
         $user->password = $hash;
 
         $userMapper->save($user);
-
-        return 0;
+        
+        $this->getUpdate = 0;
+        $this->notify();
+        
+        return ;
     }
 
     public function modify($id)
     {
+        //da filtrare nel controller
         $newName = $_POST['new_user_name'];
         $newDescription = $_POST['new_user_description'];
         
         //user name must be not null
         if ($newName === null || $newName === '') {
-            return 2;
+            $this->getUpdate = 2;
+            $this->notify();
+            return ;
         }
         
         $userMapper = new UserMapper();
         
         $checkUser = $userMapper->findByName($newName);
         $user = $userMapper->findById($id);
+        
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
-            return 1;
+            $this->getUpdate = 1;
+            $this->notify();
+            return ;
         }
         
         
@@ -112,6 +127,8 @@ class User extends Model
 
         $userMapper->save($user);
 
-        return 0;
+        $this->getUpdate = 0;
+        $this->notify();
+        return ;
     }
 }
