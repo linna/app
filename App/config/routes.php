@@ -94,12 +94,12 @@ $testroutes[] = [
 ];
 
 $testroutes[] = [
-    'name' => 'PageError',
+    'name' => 'E404',
     'method' => 'GET',
     'url' => '/error',
-    'model' => 'PageErrorModel',
-    'view' => 'PageErrorView',
-    'controller' => 'PageErrorController',
+    'model' => 'E404Model',
+    'view' => 'E404View',
+    'controller' => 'E404Controller',
     'action' => null,
 ];
 

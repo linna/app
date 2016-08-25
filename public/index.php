@@ -66,14 +66,21 @@ Session::$cookiePath = URL_SUB_FOLDER;
 
 $session = Session::getInstance();
 
+$options = (object)[];
+$options->base_path = URL_SUB_FOLDER;
+$options->bad_route = 'E404';
 //router
-$router = new Router($testroutes, URL_SUB_FOLDER);
+$router = new Router($testroutes, $options);
 //get route
 $route = $router->getRoute();
 
 
+$options = (object)[];
+$options->model = 'App\Models\\';
+$options->view = 'App\Views\\';
+$options->controller = 'App\Controllers\\';
 
-$frontController = new FrontController($route, '\App\Controllers\\');
+$frontController = new FrontController($route, $options);
 $frontController->response();
 
 
