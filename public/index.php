@@ -74,7 +74,7 @@ Session::withOptions(array(
 
 $session = Session::getInstance();
 
-    
+
 $options = (object)[];
 $options->base_path = URL_SUB_FOLDER;
 $options->bad_route = 'E404';
