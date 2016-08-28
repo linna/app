@@ -10,6 +10,7 @@
  *
  */
 
+use \Leviu\Database\Database;
 use \Leviu\Session\DatabaseSessionHandler;
 use \Leviu\Session\Session;
 use \Leviu\Http\Router;
@@ -53,13 +54,15 @@ $loader->addNamespaces([
 ]);
 
 
+$dbase = Leviu\Database\Database::connect();
+
 $options = (object)[];
 $options->expire = 1800;
 $options->name = 'APP_SESSION';
 $options->cookieDomain = URL_DOMAIN;
 $options->cookiePath = URL_SUB_FOLDER;
 
-Session::setSessionHandler(new DatabaseSessionHandler());
+Session::setSessionHandler(new DatabaseSessionHandler($dbase));
 Session::setOptions($options);
 
 $session = Session::getInstance();
@@ -73,11 +76,12 @@ $router = new Router($_SERVER['REQUEST_URI'], $testroutes, $options);
 $route = $router->getRoute();
 
 
-$options = (object)[];
-$options->model = 'App\Models\\';
-$options->view = 'App\Views\\';
-$options->controller = 'App\Controllers\\';
 
-$frontController = new FrontController($route, $options);
+$frontController = new FrontController($route, array(
+        'modelNamespace' => 'App\Models\\',
+        'viewNamespace' => 'App\Views\\',
+        'controllerNamespace' => 'App\Controllers\\',
+    ));
+
 $frontController->response();
 

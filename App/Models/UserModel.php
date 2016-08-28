@@ -8,6 +8,7 @@ use App\Mappers\UserMapper;
 
 class UserModel extends Model
 {
+
     public function __contruct()
     {
         parent::__construct();
@@ -28,8 +29,10 @@ class UserModel extends Model
         $user->active = 1;
 
         $userMapper->save($user);
-        
-        return 0;
+
+        $this->getUpdate = 0;
+        $this->notify();
+        return;
     }
 
     public function disable($id)
@@ -37,14 +40,16 @@ class UserModel extends Model
         $userMapper = new UserMapper();
 
         $user = $userMapper->findById($id);
-        
+
         if ($user->name !== 'root') {
             $user->active = 0;
         }
 
         $userMapper->save($user);
-        
-        return 0;
+
+        $this->getUpdate = 0;
+        $this->notify();
+        return;
     }
 
     public function delete($id)
@@ -56,7 +61,7 @@ class UserModel extends Model
         if ($user->name !== 'root') {
             $userMapper->delete($user);
         }
-        
+
         return 0;
     }
 
@@ -70,30 +75,30 @@ class UserModel extends Model
         if ($newPassword === null || $newPassword === '') {
             $this->getUpdate = 2;
             $this->notify();
-            return ;
+            return;
         }
 
         //password must be equal to confirm password
         if ($newPassword !== $confirmPassword) {
             $this->getUpdate = 1;
             $this->notify();
-            return ;
+            return;
         }
-        
+
         $password = new Password();
         $userMapper = new UserMapper();
         $user = $userMapper->findById($id);
-        
+
         $hash = $password->hash($newPassword);
 
         $user->password = $hash;
 
         $userMapper->save($user);
-        
+
         $this->getUpdate = 0;
         $this->notify();
-        
-        return ;
+
+        return;
     }
 
     public function modify($id)
@@ -101,27 +106,27 @@ class UserModel extends Model
         //da filtrare nel controller
         $newName = $_POST['new_user_name'];
         $newDescription = $_POST['new_user_description'];
-        
+
         //user name must be not null
         if ($newName === null || $newName === '') {
             $this->getUpdate = 2;
             $this->notify();
-            return ;
+            return;
         }
-        
+
         $userMapper = new UserMapper();
-        
+
         $checkUser = $userMapper->findByName($newName);
         $user = $userMapper->findById($id);
-        
+
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             $this->getUpdate = 1;
             $this->notify();
-            return ;
+            return;
         }
-        
-        
+
+
         $user->name = $newName;
         $user->description = $newDescription;
 
@@ -129,6 +134,7 @@ class UserModel extends Model
 
         $this->getUpdate = 0;
         $this->notify();
-        return ;
+        return;
     }
+
 }
