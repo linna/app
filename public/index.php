@@ -52,20 +52,29 @@ $loader->addNamespaces([
 ]);
 
 
-$dbase = Leviu\Database\Database::connect();
+$dbase = Database::connect();
 
+/*
 $options = (object)[];
 $options->expire = 1800;
 $options->name = 'APP_SESSION';
 $options->cookieDomain = URL_DOMAIN;
 $options->cookiePath = URL_SUB_FOLDER;
+*/
 
 Session::setSessionHandler(new DatabaseSessionHandler($dbase));
-Session::setOptions($options);
+
+Session::withOptions(array(
+        'expire' => 1800,
+        'cookieDomain' => URL_DOMAIN,
+        'cookiePath' => URL_SUB_FOLDER,
+        'cookieSecure' => false,
+        'cookieHttpOnly' => true
+    ));
 
 $session = Session::getInstance();
 
-
+    
 $options = (object)[];
 $options->base_path = URL_SUB_FOLDER;
 $options->bad_route = 'E404';
