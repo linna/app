@@ -136,5 +136,4 @@ class UserModel extends Model
         $this->notify();
         return;
     }
-
 }

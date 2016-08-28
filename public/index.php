@@ -17,8 +17,6 @@ use \Leviu\Http\Router;
 use \Leviu\Http\FrontController;
 use \Leviu\Autoloader;
 
-
-
 /*
  * Set a constant that holds the project's folder path, like "/var/www/".
  * DIRECTORY_SEPARATOR adds a slash to the end of the path
@@ -84,4 +82,3 @@ $frontController = new FrontController($route, array(
     ));
 
 $frontController->response();
-

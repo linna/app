@@ -5,7 +5,6 @@ namespace App\Controllers;
 use Leviu\Mvc\Controller;
 use App\Models\E404Model;
 
-
 class E404Controller extends Controller
 {
     //use \Leviu\Auth\ProtectTrait;
@@ -22,6 +21,5 @@ class E404Controller extends Controller
 
     public function index()
     {
-       
     }
 }
