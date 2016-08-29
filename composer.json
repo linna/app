@@ -2,7 +2,7 @@
     "name": "s3b4stian/app",
     "type": "project",
     "description": "Leviu Test Application",
-    "keywords": ["test","app","framework"],
+    "keywords": ["test", "app", "framework"],
     "license": "MIT",
     "authors": [
         {
@@ -11,10 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0"
-    },
-   
-   "require": {
+        "php": ">=5.6.0",
         "s3b4stian/leviu": "dev-master"
     }
 }

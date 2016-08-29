@@ -54,14 +54,6 @@ $loader->addNamespaces([
 
 $dbase = Database::connect();
 
-/*
-$options = (object)[];
-$options->expire = 1800;
-$options->name = 'APP_SESSION';
-$options->cookieDomain = URL_DOMAIN;
-$options->cookiePath = URL_SUB_FOLDER;
-*/
-
 Session::setSessionHandler(new DatabaseSessionHandler($dbase));
 
 Session::withOptions(array(
@@ -75,11 +67,11 @@ Session::withOptions(array(
 $session = Session::getInstance();
 
 
-$options = (object)[];
-$options->base_path = URL_SUB_FOLDER;
-$options->bad_route = 'E404';
+$router = new Router($_SERVER['REQUEST_URI'], $testroutes, array(
+        'basePath' => URL_SUB_FOLDER,
+        'badRoute' => 'E404'
+    ));
 
-$router = new Router($_SERVER['REQUEST_URI'], $testroutes, $options);
 $route = $router->getRoute();
 
 
