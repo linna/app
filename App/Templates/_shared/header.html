@@ -26,57 +26,17 @@
     </head>
     <body>
         <header>
-            
-            <a class="menu icon home" href="#"></a>
             <a class="menu" href="<?php echo URL; ?>">home</a>
-            <?php if ($data->isLogged === false) {
-    ?>
+            <?php if ($data->login === false) { ?>
             <a class="menu" href="<?php echo URL; ?>login">login</a>
-            <?php 
-}?>
+            <?php }?>
             
-            <?php if ($data->isLogged === true) {
-    ?>
+            <?php if ($data->login === true) { ?>
             <a class="menu" href="<?php echo URL; ?>logout">logout</a>
-            <?php 
-}?>
+            <?php }?>
             
             <a class="menu" href="<?php echo URL; ?>protectedPage">protected page test</a>
             <a class="menu" href="<?php echo URL; ?>user">users</a>
             <a class="menu" href="<?php echo URL; ?>tree">Tree</a>
             
         </header>
-
-        <nav>
-            <div>
-
-            </div>
-            <div>
-                <ul>
-                    <li><h3>Welcome</h3></li>
-                    <li><a href="<?php echo URL; ?>">home</a></li>
-                    
-                    <?php if ($data->isLogged === false) {
-    ?>
-                    <li><a href="<?php echo URL; ?>login">login</a></li>
-                    <?php 
-}?>
-                    
-                    <?php if ($data->isLogged === true) {
-    ?>
-                    <li><a href="<?php echo URL; ?>login">logout</a></li>
-                    <?php 
-}?>
-                    
-                    <li><a href="<?php echo URL; ?>protectedPage">protected page test</a></li>
-                    <li><a href="<?php echo URL; ?>user">users</a></li>
-                    <li><a href="<?php echo URL; ?>tree">Tree</a></li>
-                </ul>
-               
-            </div>
-            <div>
-                <a class="closeNav" href="#">close</a>
-            </div>
-        </nav>
-
-

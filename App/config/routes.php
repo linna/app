@@ -122,3 +122,23 @@ $testroutes[] = [
     'controller' => 'UserController',
     'action' => null,
 ];
+
+$testroutes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/login',
+    'model' => 'LoginModel',
+    'view' => 'LoginView',
+    'controller' => 'LoginController',
+    'action' => null,
+];
+
+$testroutes[] = [
+    'name' => null,
+    'method' => 'GET',
+    'url' => '/(dologin|logout)',
+    'model' => 'LoginModel',
+    'view' => 'LoginView',
+    'controller' => 'LoginController',
+    'action' => null,
+];

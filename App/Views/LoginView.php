@@ -5,12 +5,12 @@ namespace App\Views;
 use Leviu\Mvc\View;
 use Leviu\Auth\Login;
 
-use App\Models\HomeModel;
+use App\Models\LoginModel;
 use App\Templates\HtmlTemplate;
 
-class HomeView extends View
+class LoginView extends View
 {
-    public function __construct(HomeModel $model)
+    public function __construct(LoginModel $model)
     {
         parent::__construct($model);
         
@@ -18,11 +18,18 @@ class HomeView extends View
         
         $this->data = array_merge($this->data, array('login' => $login->isLogged, 'userName' => $login->userName));
         
+        $this->data['loginError'] = false;
+    
+        $this->template = new HtmlTemplate('Login');
     }
     
     public function index()
     {
-        $this->template = new HtmlTemplate('Home');
-        $this->template->title = 'App/Home';
+        $this->template->title = 'App/Login';
+    }
+    
+    public function doLogin()
+    {
+        $this->template->title = 'App/LoginError';
     }
 }

@@ -3,19 +3,25 @@
 namespace App\Controllers;
 
 use Leviu\Mvc\Controller;
+use Leviu\Auth\Login;
+use Leviu\Auth\ProtectedController;
+
 use App\Models\UserModel;
 
 class UserController extends Controller
 {
-    //use \Leviu\Auth\ProtectTrait;
+    use ProtectedController;
 
     public function __construct(UserModel $model)
     {
         parent::__construct($model);
+        
+        $this->protect(new Login, URL.'login');
     }
 
     public function index()
     {
+        
     }
 
     public function enable($user_id)

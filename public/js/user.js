@@ -84,7 +84,7 @@ var User = {
                     div.classList.add('message');
                     div.style.textAlign = 'right';
 
-                    switch (response) {
+                    switch (response.error) {
                         case 2:
                             div.innerHTML = 'please choose a new user name :|';
                             div.classList.add('alert');
@@ -286,7 +286,7 @@ var User = {
                     var div = document.createElement('div');
                     div.classList.add('message');
 
-                    switch (response) {
+                    switch (response.error) {
                         case 2:
                             div.innerHTML = 'please choose a new password :|';
                             div.classList.add('alert');

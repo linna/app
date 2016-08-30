@@ -3,16 +3,21 @@
 namespace App\Views;
 
 use Leviu\Mvc\View;
+use Leviu\Auth\Login;
+
 use App\Models\UserModel;
 use App\Templates\HtmlTemplate;
 use App\Templates\JsonAjaxTemplate;
 
 class UserView extends View
 {
-    
     public function __construct(UserModel $model)
     {
         parent::__construct($model);
+        
+        $login = new Login();
+        
+        $this->data = array_merge($this->data, array('login' => $login->isLogged, 'userName' => $login->userName));
     }
     
     public function index()
@@ -31,37 +36,31 @@ class UserView extends View
         
         $this->template->title = 'App/User';
         
-        $this->data = (object) array('isLogged'=> false, 'userName' => null);
-        $this->data->users = $this->model->getAllUsers();
+        $this->data['users'] = $this->model->getAllUsers();
     }
     
     public function enable()
     {
         $this->template = new JsonAjaxTemplate();
-        //$this->data = 0;
     }
 
     public function disable()
     {
         $this->template = new JsonAjaxTemplate();
-        //$this->data = 0;
     }
 
     public function delete()
     {
         $this->template = new JsonAjaxTemplate();
-        //$this->data = 0;
     }
 
     public function changePassword()
     {
         $this->template = new JsonAjaxTemplate();
-        //$this->data = $this->notifiedData;
     }
 
     public function modify()
     {
         $this->template = new JsonAjaxTemplate();
-        //$this->data = $this->notifiedData;
     }
 }

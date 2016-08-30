@@ -30,7 +30,7 @@ class UserModel extends Model
 
         $userMapper->save($user);
 
-        $this->getUpdate = 0;
+        $this->getUpdate = ['error' => 0];
         $this->notify();
         return;
     }
@@ -47,7 +47,7 @@ class UserModel extends Model
 
         $userMapper->save($user);
 
-        $this->getUpdate = 0;
+        $this->getUpdate = ['error' => 0];
         $this->notify();
         return;
     }
@@ -73,14 +73,14 @@ class UserModel extends Model
 
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
-            $this->getUpdate = 2;
+            $this->getUpdate = ['error' => 2];
             $this->notify();
             return;
         }
 
         //password must be equal to confirm password
         if ($newPassword !== $confirmPassword) {
-            $this->getUpdate = 1;
+            $this->getUpdate = ['error' => 1];
             $this->notify();
             return;
         }
@@ -95,7 +95,7 @@ class UserModel extends Model
 
         $userMapper->save($user);
 
-        $this->getUpdate = 0;
+        $this->getUpdate = ['error' => 0];
         $this->notify();
 
         return;
@@ -109,7 +109,7 @@ class UserModel extends Model
 
         //user name must be not null
         if ($newName === null || $newName === '') {
-            $this->getUpdate = 2;
+            $this->getUpdate = ['error' => 2];
             $this->notify();
             return;
         }
@@ -121,7 +121,7 @@ class UserModel extends Model
 
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
-            $this->getUpdate = 1;
+            $this->getUpdate = ['error' => 1];
             $this->notify();
             return;
         }
@@ -132,7 +132,7 @@ class UserModel extends Model
 
         $userMapper->save($user);
 
-        $this->getUpdate = 0;
+        $this->getUpdate = ['error' => 0];
         $this->notify();
         return;
     }

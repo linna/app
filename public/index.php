@@ -72,11 +72,7 @@ $router = new Router($_SERVER['REQUEST_URI'], $testroutes, array(
         'badRoute' => 'E404'
     ));
 
-$route = $router->getRoute();
-
-
-
-$frontController = new FrontController($route, array(
+$frontController = new FrontController($router->getRoute(), array(
         'modelNamespace' => 'App\Models\\',
         'viewNamespace' => 'App\Views\\',
         'controllerNamespace' => 'App\Controllers\\',
