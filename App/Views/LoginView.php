@@ -16,7 +16,7 @@ class LoginView extends View
         
         $login = new Login();
         
-        $this->data = array_merge($this->data, array('login' => $login->isLogged, 'userName' => $login->userName));
+        $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
         
         $this->data['loginError'] = false;
     
