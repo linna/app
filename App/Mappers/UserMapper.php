@@ -28,67 +28,58 @@ class UserMapper extends MapperAbstract
     /**
      * @var object Database Connection
      */
-    protected $db;
+    protected $dBase;
 
     /**
      * UserMapper Constructor.
      * 
      * Open only a database connection
      *
-     * @since 0.1.0
      */
     public function __construct()
     {
-        $this->db = Database::connect();
+        $this->dBase = Database::connect();
     }
 
     /**
-     * findById.
-     * 
      * Fetch a user object by id
      * 
-     * @param string $id
+     * @param string $userId
      *
      * @return User
-     *
-     * @since 0.1.0
      */
-    public function findById($id)
+    public function findById($userId)
     {
-        $pdos = $this->db->prepare('SELECT user_id AS _id, name, description, password, active, created, last_update FROM user WHERE user_id = :id');
+        $pdos = $this->dBase->prepare('SELECT user_id AS _id, name, description, password, active, created, last_update FROM user WHERE user_id = :id');
 
-        $pdos->bindParam(':id', $id, \PDO::PARAM_INT);
+        $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
 
         return $pdos->fetchObject('\App\DomainObjects\User');//$this->create($pdos->fetch());
     }
 
     /**
-     * findByName.
-     * 
      * Fetch a user object by name
      * 
      * @param string $name
      *
      * @return User
-     *
-     * @since 0.1.0
      */
     public function findByName($name)
     {
-        $pdos = $this->db->prepare('SELECT user_id AS _id, name, description, password, active, created, last_update FROM user WHERE md5(name) = :name');
+        $pdos = $this->dBase->prepare('SELECT user_id AS _id, name, description, password, active, created, last_update FROM user WHERE md5(name) = :name');
 
         $hashedUserName = md5($name);
 
         $pdos->bindParam(':name', $hashedUserName, \PDO::PARAM_STR);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User');//$this->create($pdos->fetch());
+        return $pdos->fetchObject('\App\DomainObjects\User');
     }
 
     public function getAllUsers()
     {
-        $pdos = $this->db->prepare('SELECT user_id as _id, name, description, password, active, created, last_update FROM user ORDER BY name ASC');
+        $pdos = $this->dBase->prepare('SELECT user_id as _id, name, description, password, active, created, last_update FROM user ORDER BY name ASC');
 
         $pdos->execute();
 
@@ -118,37 +109,34 @@ class UserMapper extends MapperAbstract
      * This may include connecting to the database
      * and running an insert statement.
      *
-     * @param DomainObjectAbstract $obj
+     * @param DomainObjectInterface $user
      *
      * @since 0.1.0
      */
-    protected function _insert(DomainObjectInterface $obj)
+    protected function _insert(DomainObjectInterface $user)
     {
-        $pdos = $this->db->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
+        $pdos = $this->dBase->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
 
-        $pdos->bindParam(':name', $obj->name, \PDO::PARAM_STR);
-        $pdos->bindParam(':description', $obj->description, \PDO::PARAM_STR);
-        $pdos->bindParam(':password', $obj->password, \PDO::PARAM_STR);
+        $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
+        $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
+        $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
         $pdos->execute();
 
-        return $this->db->lastInsertId();
+        return $this->dBase->lastInsertId();
     }
 
     /**
-     * _update.
-     * 
      * Update the DomainObject in persistent storage
      * 
      * This may include connecting to the database
      * and running an update statement.
      *
-     * @param DomainObjectAbstract $obj
+     * @param DomainObjectInterface $obj
      *
-     * @since 0.1.0
      */
     protected function _update(DomainObjectInterface $obj)
     {
-        $pdos = $this->db->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
+        $pdos = $this->dBase->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
 
         $objId = $obj->getId();
 
@@ -176,7 +164,7 @@ class UserMapper extends MapperAbstract
      */
     protected function _delete(DomainObjectInterface $obj)
     {
-        $pdos = $this->db->prepare('DELETE FROM user WHERE user_id = :user_id');
+        $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
 
         $pdos->bindParam(':user_id', $obj->getId(), \PDO::PARAM_INT);
 

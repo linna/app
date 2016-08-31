@@ -24,28 +24,30 @@ class UserController extends Controller
         
     }
 
-    public function enable($user_id)
+    public function enable($userId)
     {
-        $this->model->enable($user_id);
+        $this->model->enable($userId);
     }
 
-    public function disable($user_id)
+    public function disable($userId)
     {
-        $this->model->disable($user_id);
+        $this->model->disable($userId);
     }
 
-    public function delete($user_id)
+    public function delete($userId)
     {
-        $this->model->delete($user_id);
+        $this->model->delete($userId);
     }
 
-    public function changePassword($user_id)
+    public function changePassword($userId)
     {
-        $this->model->changePassword($user_id);
+        //apply data filter to $_POST
+        $this->model->changePassword($userId, $_POST['new_password'], $_POST['confirm_password']);
     }
 
-    public function modify($user_id)
+    public function modify($userId)
     {
-        $this->model->modify($user_id);
+        //apply data filter to $_POST
+        $this->model->modify($userId, $_POST['new_user_name'], $_POST['new_user_description']);
     }
 }
