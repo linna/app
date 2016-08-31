@@ -84,11 +84,7 @@ class HtmlTemplate implements TemplateInterface
 
         $title = $this->title;
 
-        //var_dump($data);
-
         ob_start();
-
-        //echo APP."_pages/{$template}.html";
 
         try {
             if (!file_exists(APP."Templates/_pages/{$template}.html")) {

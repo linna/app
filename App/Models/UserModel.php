@@ -9,7 +9,7 @@ use App\Mappers\UserMapper;
 class UserModel extends Model
 {
 
-    public function __contruct()
+    public function __construct()
     {
         parent::__construct();
     }

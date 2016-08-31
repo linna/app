@@ -4,9 +4,6 @@ namespace App\Templates;
 
 use Leviu\Mvc\TemplateInterface;
 
-/**
- * Html Page Template
- */
 class JsonAjaxTemplate implements TemplateInterface
 {
     public $data = null;

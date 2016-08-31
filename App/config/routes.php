@@ -23,63 +23,6 @@
  *            'action' => null,
  *            ];
  */
-$routes = array();
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/',
-    'controller' => 'Home',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/error',
-    'controller' => 'Error404',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/(login|dologin|loginError|logout|unauthorized)',
-    'controller' => 'Login',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user',
-    'controller' => 'User',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
-    'controller' => 'User',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/protectedPage',
-    'controller' => 'ProtectedPage',
-    'action' => null,
-];
-
-$routes[] = [
-    'name' => null,
-    'method' => 'GET',
-    'url' => '/tree',
-    'controller' => 'Tree',
-    'action' => null,
-];
 
 $testroutes = array();
 

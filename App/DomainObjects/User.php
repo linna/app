@@ -59,12 +59,9 @@ class User extends DomainObjectAbstract
      * 
      * Do type conversion because PDO doesn't return any original type from db :(
      * 
-     * @since 0.1.0
      */
     public function __construct()
     {
-        //$this->active = (int) $this->active;
-        //$this->_id = (int) $this->_id;
         settype($this->_id, 'integer');
         settype($this->active, 'integer');
     }
@@ -76,7 +73,6 @@ class User extends DomainObjectAbstract
      * 
      * @param string $newPassword
      *
-     * @since 0.1.0
      */
     public function setPassword($newPassword)
     {
@@ -97,7 +93,6 @@ class User extends DomainObjectAbstract
      *
      * @return bool
      *
-     * @since 0.1.0
      */
     public function chagePassword($newPassword, $oldPassword)
     {

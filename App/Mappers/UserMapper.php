@@ -13,7 +13,7 @@
  */
 namespace App\Mappers;
 
-use Leviu\Database\DomainObjectAbstract;
+use Leviu\Database\DomainObjectInterface;
 use Leviu\Database\MapperAbstract;
 use Leviu\Database\Database;
 use App\DomainObjects\User;
@@ -122,7 +122,7 @@ class UserMapper extends MapperAbstract
      *
      * @since 0.1.0
      */
-    protected function _insert(DomainObjectAbstract $obj)
+    protected function _insert(DomainObjectInterface $obj)
     {
         $pdos = $this->db->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
 
@@ -146,7 +146,7 @@ class UserMapper extends MapperAbstract
      *
      * @since 0.1.0
      */
-    protected function _update(DomainObjectAbstract $obj)
+    protected function _update(DomainObjectInterface $obj)
     {
         $pdos = $this->db->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
 
@@ -174,7 +174,7 @@ class UserMapper extends MapperAbstract
      *
      * @since 0.1.0
      */
-    protected function _delete(DomainObjectAbstract $obj)
+    protected function _delete(DomainObjectInterface $obj)
     {
         $pdos = $this->db->prepare('DELETE FROM user WHERE user_id = :user_id');
 

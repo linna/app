@@ -10,12 +10,10 @@ class HomeController extends Controller
     public function __construct(HomeModel $model)
     {
         parent::__construct($model);
-
     }
 
     public function index()
     {
-        
-        
+           
     }
 }
