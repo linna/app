@@ -21,12 +21,10 @@ class LoginController extends Controller
     public function __construct(LoginModel $model)
     {
         parent::__construct($model);
-        
     }
     
     public function index()
     {
-        
     }
     
     public function doLogin()
@@ -35,7 +33,6 @@ class LoginController extends Controller
         $login = $this->model->doLogin($_POST['user'], $_POST['password']);
 
         if ($login === true) {
-            
             header('location: '.URL);
             return;
         }
@@ -47,5 +44,4 @@ class LoginController extends Controller
 
         header('location: '.URL);
     }
-
 }

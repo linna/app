@@ -29,7 +29,7 @@ class UserMapper extends MapperAbstract
     protected $dBase;
 
     /**
-     * Constructor.
+     * Constructor
      * 
      * Open only a database connection
      */

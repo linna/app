@@ -33,17 +33,14 @@ class LoginModel extends Model
         $dbUser = $userMapper->findByName($user);
 
         if ($dbUser instanceof User) {
-            
-           if ($login->login($user,
+            if ($login->login($user,
                     $password,
                     $dbUser->name,
                     $dbUser->password,
                     $dbUser->getId())) {
-            
-            $this->updatePassword($password, $dbUser, $userMapper);
+                $this->updatePassword($password, $dbUser, $userMapper);
                 
-            return true;
-        
+                return true;
             }
         }
         
