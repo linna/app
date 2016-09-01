@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Leviu\Mvc\Model;
-use Leviu\Auth\Password;
+use Linna\Mvc\Model;
+use Linna\Auth\Password;
 use App\Mappers\UserMapper;
 
 class UserModel extends Model
@@ -110,7 +110,7 @@ class UserModel extends Model
 
         $checkUser = $userMapper->findByName($newName);
         $user = $userMapper->findById($userId);
-
+        
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             $this->getUpdate = ['error' => 1];

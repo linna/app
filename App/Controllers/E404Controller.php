@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Leviu\Mvc\Controller;
+use Linna\Mvc\Controller;
 use App\Models\E404Model;
 
 class E404Controller extends Controller

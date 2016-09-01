@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Leviu\Mvc\Model;
+use Linna\Mvc\Model;
 
 class HomeModel extends Model
 {
-    public function __contruct()
+    public function __construct()
     {
         parent::__construct();
     }

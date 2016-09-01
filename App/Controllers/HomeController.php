@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Leviu\Mvc\Controller;
+use Linna\Mvc\Controller;
 use App\Models\HomeModel;
 
 class HomeController extends Controller

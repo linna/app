@@ -2,7 +2,7 @@
 
 namespace App\Templates;
 
-use Leviu\Mvc\TemplateInterface;
+use Linna\Mvc\TemplateInterface;
 
 /**
  * Html Page Template

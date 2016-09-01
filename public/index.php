@@ -10,12 +10,12 @@
  *
  */
 
-use \Leviu\Database\Database;
-use \Leviu\Session\DatabaseSessionHandler;
-use \Leviu\Session\Session;
-use \Leviu\Http\Router;
-use \Leviu\Http\FrontController;
-use \Leviu\Autoloader;
+use \Linna\Database\Database;
+use \Linna\Session\DatabaseSessionHandler;
+use \Linna\Session\Session;
+use \Linna\Http\Router;
+use \Linna\Http\FrontController;
+use \Linna\Autoloader;
 
 /*
  * Set a constant that holds the project's folder path, like "/var/www/".

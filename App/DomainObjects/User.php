@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Leviu.
+ * Linna.
  *
  * This work would be a little PHP framework, a learn exercice. 
  * 
@@ -13,8 +13,8 @@
  */
 namespace App\DomainObjects;
 
-use Leviu\Database\DomainObjectAbstract;
-use Leviu\Auth\Password;
+use Linna\Database\DomainObjectAbstract;
+use Linna\Auth\Password;
 
 /**
  * User
@@ -62,7 +62,7 @@ class User extends DomainObjectAbstract
      */
     public function __construct()
     {
-        settype($this->_id, 'integer');
+        settype($this->_Id, 'integer');
         settype($this->active, 'integer');
     }
 

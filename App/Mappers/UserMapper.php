@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Leviu.
+ * Linna.
  *
  * This work would be a little PHP framework, a learn exercice. 
  * 
@@ -13,9 +13,9 @@
  */
 namespace App\Mappers;
 
-use Leviu\Database\DomainObjectInterface;
-use Leviu\Database\MapperAbstract;
-use Leviu\Database\Database;
+use Linna\Database\DomainObjectInterface;
+use Linna\Database\MapperAbstract;
+use Linna\Database\Database;
 use App\DomainObjects\User;
 
 /**
@@ -50,12 +50,12 @@ class UserMapper extends MapperAbstract
      */
     public function findById($userId)
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS _id, name, description, password, active, created, last_update FROM user WHERE user_id = :id');
+        $pdos = $this->dBase->prepare('SELECT user_id AS _Id, name, description, password, active, created, last_update FROM user WHERE user_id = :id');
 
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User');//$this->create($pdos->fetch());
+        return $pdos->fetchObject('\App\DomainObjects\User');
     }
 
     /**
@@ -67,7 +67,7 @@ class UserMapper extends MapperAbstract
      */
     public function findByName($name)
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS _id, name, description, password, active, created, last_update FROM user WHERE md5(name) = :name');
+        $pdos = $this->dBase->prepare('SELECT user_id AS _Id, name, description, password, active, created, last_update FROM user WHERE md5(name) = :name');
 
         $hashedUserName = md5($name);
 
@@ -79,7 +79,7 @@ class UserMapper extends MapperAbstract
 
     public function getAllUsers()
     {
-        $pdos = $this->dBase->prepare('SELECT user_id as _id, name, description, password, active, created, last_update FROM user ORDER BY name ASC');
+        $pdos = $this->dBase->prepare('SELECT user_id as _Id, name, description, password, active, created, last_update FROM user ORDER BY name ASC');
 
         $pdos->execute();
 

@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Leviu\Mvc\Model;
-use Leviu\Auth\Login;
-use Leviu\Auth\Password;
+use Linna\Mvc\Model;
+use Linna\Auth\Login;
+use Linna\Auth\Password;
 use App\DomainObjects\User;
 use App\Mappers\UserMapper;
 
 class LoginModel extends Model
 {
-    public function __contruct()
+    public function __construct()
     {
         parent::__construct();
     }

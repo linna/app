@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use Leviu\Mvc\Controller;
-use Leviu\Auth\Login;
-use Leviu\Auth\ProtectedController;
+use Linna\Mvc\Controller;
+use Linna\Auth\Login;
+use Linna\Auth\ProtectedController;
 
 use App\Models\UserModel;
 

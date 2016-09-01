@@ -2,8 +2,8 @@
 
 namespace App\Views;
 
-use Leviu\Mvc\View;
-use Leviu\Auth\Login;
+use Linna\Mvc\View;
+use Linna\Auth\Login;
 
 use App\Models\LoginModel;
 use App\Templates\HtmlTemplate;
