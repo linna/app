@@ -1,16 +1,15 @@
 <?php
 
 /**
- * Linna.
+ * Linna App
  *
- * This work would be a little PHP framework, a learn exercice. 
  * 
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
- * @copyright (c) 2015, Sebastian Rapetti
+ * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  *
- * @version 0.1.0
  */
+
 namespace App\Mappers;
 
 use Linna\Database\DomainObjectInterface;
@@ -19,9 +18,8 @@ use Linna\Database\Database;
 use App\DomainObjects\User;
 
 /**
- * UserMapper.
+ * UserMapper
  * 
- * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  */
 class UserMapper extends MapperAbstract
 {
@@ -31,10 +29,9 @@ class UserMapper extends MapperAbstract
     protected $dBase;
 
     /**
-     * UserMapper Constructor.
+     * Constructor.
      * 
      * Open only a database connection
-     *
      */
     public function __construct()
     {
@@ -61,22 +58,27 @@ class UserMapper extends MapperAbstract
     /**
      * Fetch a user object by name
      * 
-     * @param string $name
+     * @param string $userName
      *
      * @return User
      */
-    public function findByName($name)
+    public function findByName($userName)
     {
         $pdos = $this->dBase->prepare('SELECT user_id AS _Id, name, description, password, active, created, last_update FROM user WHERE md5(name) = :name');
 
-        $hashedUserName = md5($name);
+        $hashedUserName = md5($userName);
 
         $pdos->bindParam(':name', $hashedUserName, \PDO::PARAM_STR);
         $pdos->execute();
 
         return $pdos->fetchObject('\App\DomainObjects\User');
     }
-
+    
+    /**
+     * Fetch all users stored in data base
+     * 
+     * @return array All users stored
+     */
     public function getAllUsers()
     {
         $pdos = $this->dBase->prepare('SELECT user_id as _Id, name, description, password, active, created, last_update FROM user ORDER BY name ASC');
@@ -88,13 +90,9 @@ class UserMapper extends MapperAbstract
 
     
     /**
-     * _create.
-     * 
      * Create a new User DomainObject
      *
      * @return User
-     *
-     * @since 0.1.0
      */
     protected function _create()
     {
@@ -102,16 +100,9 @@ class UserMapper extends MapperAbstract
     }
 
     /**
-     * _insert.
-     * 
      * Insert the DomainObject in persistent storage
      * 
-     * This may include connecting to the database
-     * and running an insert statement.
-     *
      * @param DomainObjectInterface $user
-     *
-     * @since 0.1.0
      */
     protected function _insert(DomainObjectInterface $user)
     {
@@ -128,45 +119,34 @@ class UserMapper extends MapperAbstract
     /**
      * Update the DomainObject in persistent storage
      * 
-     * This may include connecting to the database
-     * and running an update statement.
-     *
-     * @param DomainObjectInterface $obj
-     *
+     * @param DomainObjectInterface $user
      */
-    protected function _update(DomainObjectInterface $obj)
+    protected function _update(DomainObjectInterface $user)
     {
         $pdos = $this->dBase->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
 
-        $objId = $obj->getId();
+        $objId = $user->getId();
 
         $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
 
-        $pdos->bindParam(':name', $obj->name, \PDO::PARAM_STR);
-        $pdos->bindParam(':password', $obj->password, \PDO::PARAM_STR);
-        $pdos->bindParam(':description', $obj->description, \PDO::PARAM_STR);
-        $pdos->bindParam(':active', $obj->active, \PDO::PARAM_INT);
+        $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
+        $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
+        $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
+        $pdos->bindParam(':active', $user->active, \PDO::PARAM_INT);
 
         $pdos->execute();
     }
 
     /**
-     * __delete.
-     * 
      * Delete the DomainObject from persistent storage
      * 
-     * This may include connecting to the database
-     * and running a delete statement.
-     *
-     * @param DomainObjectAbstract $obj
-     *
-     * @since 0.1.0
+     * @param DomainObjectAbstract $user
      */
-    protected function _delete(DomainObjectInterface $obj)
+    protected function _delete(DomainObjectInterface $user)
     {
         $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
 
-        $pdos->bindParam(':user_id', $obj->getId(), \PDO::PARAM_INT);
+        $pdos->bindParam(':user_id', $user->getId(), \PDO::PARAM_INT);
 
         $pdos->execute();
     }
