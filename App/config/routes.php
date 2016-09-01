@@ -1,27 +1,13 @@
 <?php
 
 /**
- * App_mk0.
+ * Linna App
  *
- * This work would be a little PHP framework, a learn exercice. 
- * Work started from php MINI https://github.com/panique/mini good for understand how a MVC framework run :) 
- * I rewrote Router, Dispatcher, Controller and I added some new class like Model, View... etc for more flexibility  
  * 
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
- * @copyright (c) 2015, Sebastian Rapetti
+ * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  *
- * @version 0.1.0
- */
-/**
- * @var array Contain declared routes
- *            $routes[] = [
- *            'name' => null,
- *            'method'=> 'GET|POST|PATCH|PUT|DELETE',
- *            'url'=> '/',
- *            'controller'=> 'home',
- *            'action' => null,
- *            ];
  */
 
 $testroutes = array();

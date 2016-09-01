@@ -1,7 +1,7 @@
 <?php
 
 /**
- * App
+ * Linna App
  *
  * 
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
