@@ -1,0 +1,15 @@
+# .scrutinizer.yml
+checks:
+    php: true
+
+filter:
+    paths: ['src/*']
+    
+tools:
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
+
+build:
+    environment:
+php: 7.0.8
