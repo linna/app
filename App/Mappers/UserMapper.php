@@ -3,7 +3,7 @@
 /**
  * Linna App
  *
- * 
+ *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
@@ -19,7 +19,7 @@ use App\DomainObjects\User;
 
 /**
  * UserMapper
- * 
+ *
  */
 class UserMapper extends MapperAbstract
 {
@@ -30,7 +30,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Constructor
-     * 
+     *
      * Open only a database connection
      */
     public function __construct()
@@ -40,7 +40,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Fetch a user object by id
-     * 
+     *
      * @param string $userId
      *
      * @return User
@@ -57,7 +57,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Fetch a user object by name
-     * 
+     *
      * @param string $userName
      *
      * @return User
@@ -76,7 +76,7 @@ class UserMapper extends MapperAbstract
     
     /**
      * Fetch all users stored in data base
-     * 
+     *
      * @return array All users stored
      */
     public function getAllUsers()
@@ -101,7 +101,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Insert the DomainObject in persistent storage
-     * 
+     *
      * @param DomainObjectInterface $user
      */
     protected function _insert(DomainObjectInterface $user)
@@ -118,7 +118,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Update the DomainObject in persistent storage
-     * 
+     *
      * @param DomainObjectInterface $user
      */
     protected function _update(DomainObjectInterface $user)
@@ -139,7 +139,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Delete the DomainObject from persistent storage
-     * 
+     *
      * @param DomainObjectAbstract $user
      */
     protected function _delete(DomainObjectInterface $user)

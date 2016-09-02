@@ -3,7 +3,7 @@
 /**
  * Linna App
  *
- * 
+ *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
@@ -17,7 +17,7 @@ use Linna\Auth\Password;
 
 /**
  * Rapresent user
- * 
+ *
  */
 class User extends DomainObjectAbstract
 {
@@ -53,7 +53,7 @@ class User extends DomainObjectAbstract
 
     /**
      * Constructor
-     * 
+     *
      * Do type conversion because PDO doesn't return any original type from db :(
      */
     public function __construct()
@@ -64,7 +64,7 @@ class User extends DomainObjectAbstract
 
     /**
      * Set new user password without do any check
-     * 
+     *
      * @param string $newPassword
      *
      */
@@ -79,7 +79,7 @@ class User extends DomainObjectAbstract
 
     /**
      * Change user password only after check old password
-     * 
+     *
      * @param string $newPassword New user password
      * @param string $oldPassword Old user password
      *

@@ -3,7 +3,7 @@
 /**
  * Linna App
  *
- * 
+ *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
@@ -61,7 +61,7 @@ class HtmlTemplate implements TemplateInterface
     
    /**
      * Load a file css to shared template
-     * 
+     *
      * @param string $file Css file
      */
     public function loadCss($file)
@@ -71,7 +71,7 @@ class HtmlTemplate implements TemplateInterface
 
     /**
      * Load a file js to shared template
-     * 
+     *
      * @param string $file Js file
      */
     public function loadJs($file)
@@ -81,7 +81,7 @@ class HtmlTemplate implements TemplateInterface
 
     /**
      * Prepare template for render from View
-     * 
+     *
      * @throws \Exception if template path is incorrect
      */
     public function output()

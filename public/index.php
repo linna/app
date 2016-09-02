@@ -3,7 +3,7 @@
 /**
  * Linna App
  *
- * 
+ *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
@@ -30,7 +30,7 @@ define('APP', ROOT.'App'.DIRECTORY_SEPARATOR);
 //load configuration from config file
 require APP.'/config/config.php';
 
-//load routes. 
+//load routes.
 require APP.'/config/routes.php';
 
 //load application class
@@ -78,4 +78,5 @@ $frontController = new FrontController($router->getRoute(), array(
         'controllerNamespace' => 'App\Controllers\\',
     ));
 
+$frontController->run();
 $frontController->response();

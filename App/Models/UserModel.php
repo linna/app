@@ -3,7 +3,7 @@
 /**
  * Linna App
  *
- * 
+ *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2016, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
@@ -18,7 +18,6 @@ use App\Mappers\UserMapper;
 
 class UserModel extends Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -41,7 +40,7 @@ class UserModel extends Model
         $userMapper->save($user);
 
         $this->getUpdate = ['error' => 0];
-        $this->notify();
+        
         return;
     }
 
@@ -58,7 +57,7 @@ class UserModel extends Model
         $userMapper->save($user);
 
         $this->getUpdate = ['error' => 0];
-        $this->notify();
+        
         return;
     }
 
@@ -80,14 +79,12 @@ class UserModel extends Model
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
             $this->getUpdate = ['error' => 2];
-            $this->notify();
             return;
         }
 
         //password must be equal to confirm password
         if ($newPassword !== $confirmPassword) {
             $this->getUpdate = ['error' => 1];
-            $this->notify();
             return;
         }
 
@@ -102,7 +99,6 @@ class UserModel extends Model
         $userMapper->save($user);
 
         $this->getUpdate = ['error' => 0];
-        $this->notify();
 
         return;
     }
@@ -112,7 +108,6 @@ class UserModel extends Model
         //user name must be not null
         if ($newName === null || $newName === '') {
             $this->getUpdate = ['error' => 2];
-            $this->notify();
             return;
         }
 
@@ -124,7 +119,6 @@ class UserModel extends Model
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             $this->getUpdate = ['error' => 1];
-            $this->notify();
             return;
         }
 
@@ -134,7 +128,7 @@ class UserModel extends Model
         $userMapper->save($user);
 
         $this->getUpdate = ['error' => 0];
-        $this->notify();
+
         return;
     }
 }
