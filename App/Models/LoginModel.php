@@ -20,6 +20,7 @@ use App\Mappers\UserMapper;
 
 class LoginModel extends Model
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -31,38 +32,40 @@ class LoginModel extends Model
         $userMapper = new UserMapper();
 
         $dbUser = $userMapper->findByName($user);
+        
+        if (!($dbUser instanceof User)) {
+            
+            $this->getUpdate = ['loginError' => true];
+            
+            return false;
+        }
 
-        if ($dbUser instanceof User) {
-            if ($login->login($user,
-                    $password,
-                    $dbUser->name,
-                    $dbUser->password,
-                    $dbUser->getId())) {
-                $this->updatePassword($password, $dbUser, $userMapper);
-                
-                return true;
-            }
+        if ($login->login($user, $password, $dbUser->name, $dbUser->password, $dbUser->getId())) {
+            
+            $this->updatePassword($password, $dbUser, $userMapper);
+            
+            return true;
         }
         
         $this->getUpdate = ['loginError' => true];
-        $this->notify();
-        
+
         return false;
     }
-    
+
     public function logout()
     {
         $login = new Login();
         $login->logout();
     }
-    
+
     protected function updatePassword($password, User $user, UserMapper $mapper)
     {
         $passUtil = new Password();
-        
+
         if ($passUtil->needsRehash($user->password)) {
             $user->setPassword($password);
             $mapper->save($user);
         }
     }
+
 }
