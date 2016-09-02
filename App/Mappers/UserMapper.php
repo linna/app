@@ -107,7 +107,7 @@ class UserMapper extends MapperAbstract
     protected function _insert(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
-            throw new Exception('$user must be instance of User class');
+            throw new \Exception('$user must be instance of User class');
         }
 
         try {
@@ -119,7 +119,7 @@ class UserMapper extends MapperAbstract
             $pdos->execute();
 
             return $this->dBase->lastInsertId();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Mapper exception: ', $e->getMessage(), "\n";
         }
     }
@@ -132,7 +132,7 @@ class UserMapper extends MapperAbstract
     protected function _update(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
-            throw new Exception('$user must be instance of User class');
+            throw new \Exception('$user must be instance of User class');
         }
 
         try {
@@ -148,7 +148,7 @@ class UserMapper extends MapperAbstract
             $pdos->bindParam(':active', $user->active, \PDO::PARAM_INT);
 
             $pdos->execute();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Mapper exception: ', $e->getMessage(), "\n";
         }
     }
@@ -161,14 +161,14 @@ class UserMapper extends MapperAbstract
     protected function _delete(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
-            throw new Exception('$user must be instance of User class');
+            throw new \Exception('$user must be instance of User class');
         }
 
         try {
             $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
             $pdos->bindParam(':user_id', $user->getId(), \PDO::PARAM_INT);
             $pdos->execute();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Mapper exception: ', $e->getMessage(), "\n";
         }
     }
