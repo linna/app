@@ -23,6 +23,7 @@ use App\DomainObjects\User;
  */
 class UserMapper extends MapperAbstract
 {
+
     /**
      * @var object Database Connection
      */
@@ -73,7 +74,7 @@ class UserMapper extends MapperAbstract
 
         return $pdos->fetchObject('\App\DomainObjects\User');
     }
-    
+
     /**
      * Fetch all users stored in data base
      *
@@ -88,7 +89,6 @@ class UserMapper extends MapperAbstract
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User');
     }
 
-    
     /**
      * Create a new User DomainObject
      *
@@ -106,14 +106,22 @@ class UserMapper extends MapperAbstract
      */
     protected function _insert(DomainObjectInterface $user)
     {
-        $pdos = $this->dBase->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
+        if (!($user instanceof User)) {
+            throw new Exception('$user must be instance of User class');
+        }
 
-        $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
-        $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
-        $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
-        $pdos->execute();
+        try {
+            $pdos = $this->dBase->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
 
-        return $this->dBase->lastInsertId();
+            $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
+            $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
+            $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
+            $pdos->execute();
+
+            return $this->dBase->lastInsertId();
+        } catch (Exception $e) {
+            echo 'Mapper exception: ', $e->getMessage(), "\n";
+        }
     }
 
     /**
@@ -123,18 +131,26 @@ class UserMapper extends MapperAbstract
      */
     protected function _update(DomainObjectInterface $user)
     {
-        $pdos = $this->dBase->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
+        if (!($user instanceof User)) {
+            throw new Exception('$user must be instance of User class');
+        }
 
-        $objId = $user->getId();
+        try {
+            $pdos = $this->dBase->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
 
-        $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
+            $objId = $user->getId();
 
-        $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
-        $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
-        $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
-        $pdos->bindParam(':active', $user->active, \PDO::PARAM_INT);
+            $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
 
-        $pdos->execute();
+            $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
+            $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
+            $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
+            $pdos->bindParam(':active', $user->active, \PDO::PARAM_INT);
+
+            $pdos->execute();
+        } catch (Exception $e) {
+            echo 'Mapper exception: ', $e->getMessage(), "\n";
+        }
     }
 
     /**
@@ -144,10 +160,16 @@ class UserMapper extends MapperAbstract
      */
     protected function _delete(DomainObjectInterface $user)
     {
-        $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
+        if (!($user instanceof User)) {
+            throw new Exception('$user must be instance of User class');
+        }
 
-        $pdos->bindParam(':user_id', $user->getId(), \PDO::PARAM_INT);
-
-        $pdos->execute();
+        try {
+            $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
+            $pdos->bindParam(':user_id', $user->getId(), \PDO::PARAM_INT);
+            $pdos->execute();
+        } catch (Exception $e) {
+            echo 'Mapper exception: ', $e->getMessage(), "\n";
+        }
     }
 }
