@@ -12,6 +12,6 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "s3b4stian/linna-framework": ">=0.3.1"
+        "s3b4stian/linna-framework": "dev-master"
     }
 }
