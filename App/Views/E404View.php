@@ -14,6 +14,7 @@ namespace App\Views;
 
 use Linna\Mvc\View;
 use Linna\Auth\Login;
+use Linna\Session\Session;
 
 use App\Models\E404Model;
 use App\Templates\HtmlTemplate;
@@ -24,7 +25,7 @@ class E404View extends View
     {
         parent::__construct($model);
         
-        $login = new Login();
+        $login = new Login(Session::getInstance());
         
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
     }

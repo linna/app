@@ -18,26 +18,26 @@ use App\Mappers\UserMapper;
 
 class UserModel extends Model
 {
+    protected $mapper; 
+    
     public function __construct()
     {
         parent::__construct();
+        
+        $this->mapper = new UserMapper();
     }
 
     public function getAllUsers()
     {
-        $userMapper = new UserMapper();
-
-        return $userMapper->getAllUsers();
+        return $this->mapper->getAllUsers();
     }
 
     public function enable($id)
     {
-        $userMapper = new UserMapper();
-
-        $user = $userMapper->findById($id);
+        $user = $this->mapper->findById($id);
         $user->active = 1;
 
-        $userMapper->save($user);
+        $this->mapper->save($user);
 
         $this->getUpdate = ['error' => 0];
         
@@ -46,15 +46,13 @@ class UserModel extends Model
 
     public function disable($userId)
     {
-        $userMapper = new UserMapper();
-
-        $user = $userMapper->findById($userId);
+        $user = $this->mapper->findById($userId);
 
         if ($user->name !== 'root') {
             $user->active = 0;
         }
 
-        $userMapper->save($user);
+        $this->mapper->save($user);
 
         $this->getUpdate = ['error' => 0];
         
@@ -63,12 +61,10 @@ class UserModel extends Model
 
     public function delete($userId)
     {
-        $userMapper = new UserMapper();
-
-        $user = $userMapper->findById($userId);
+        $user = $this->mapper->findById($userId);
 
         if ($user->name !== 'root') {
-            $userMapper->delete($user);
+            $this->mapper->delete($user);
         }
 
         return 0;
@@ -89,14 +85,11 @@ class UserModel extends Model
         }
 
         $password = new Password();
-        $userMapper = new UserMapper();
-        $user = $userMapper->findById($userId);
+        
+        $user = $this->mapper->findById($userId);
+        $user->password = $password->hash($newPassword);
 
-        $hash = $password->hash($newPassword);
-
-        $user->password = $hash;
-
-        $userMapper->save($user);
+        $this->mapper->save($user);
 
         $this->getUpdate = ['error' => 0];
 
@@ -111,10 +104,8 @@ class UserModel extends Model
             return;
         }
 
-        $userMapper = new UserMapper();
-
-        $checkUser = $userMapper->findByName($newName);
-        $user = $userMapper->findById($userId);
+        $checkUser = $this->mapper->findByName($newName);
+        $user = $this->mapper->findById($userId);
         
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
@@ -125,7 +116,7 @@ class UserModel extends Model
         $user->name = $newName;
         $user->description = $newDescription;
 
-        $userMapper->save($user);
+        $this->mapper->save($user);
 
         $this->getUpdate = ['error' => 0];
 

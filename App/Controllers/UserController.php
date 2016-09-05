@@ -15,6 +15,7 @@ namespace App\Controllers;
 use Linna\Mvc\Controller;
 use Linna\Auth\Login;
 use Linna\Auth\ProtectedController;
+use Linna\Session\Session;
 
 use App\Models\UserModel;
 
@@ -26,7 +27,7 @@ class UserController extends Controller
     {
         parent::__construct($model);
         
-        $this->protect(new Login, URL.'login');
+        $this->protect(new Login(Session::getInstance()), URL.'login');
     }
 
     public function index()
