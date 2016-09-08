@@ -90,26 +90,33 @@ $loader->addNamespaces([
 
 $DIContainer = new DIContainer();
 
+$DIContainer->sessionHandler = function () {
     $dbase = Database::connect();
     return new DatabaseSessionHandler($dbase);
 };
 
 /*
 $DIContainer->UserModel = function(){
+
     $dbase = Database::connect();
     $userMapper = new App\Mappers\UserMapper($dbase);
+
     return new App\Models\UserModel($userMapper);
 };
 
 $DIContainer->UserController = function($model) {
+
     $session = Session::getInstance();
     $login = new Linna\Auth\Login($session);
+
     return new App\Controllers\UserController($model, $login);
 };
 
 $DIContainer->UserView = function($model) {
+
     $session = Session::getInstance();
     $login = new Linna\Auth\Login($session);
+
     return new App\Controllers\UserView($model, $login);
 };
 */
