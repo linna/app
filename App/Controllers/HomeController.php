@@ -21,8 +21,4 @@ class HomeController extends Controller
     {
         parent::__construct($model);
     }
-
-    public function index()
-    {
-    }
 }

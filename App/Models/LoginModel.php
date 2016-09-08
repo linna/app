@@ -15,7 +15,7 @@ namespace App\Models;
 use Linna\Mvc\Model;
 use Linna\Auth\Login;
 use Linna\Auth\Password;
-use Linna\Session\Session;
+//use Linna\Session\Session;
 
 use App\DomainObjects\User;
 use App\Mappers\UserMapper;
@@ -23,30 +23,34 @@ use App\Mappers\UserMapper;
 class LoginModel extends Model
 {
     protected $login;
-
-    public function __construct()
+    
+    protected $userMapper;
+    
+    protected $password;
+    
+    public function __construct(UserMapper $userMapper, Login $login, Password $password)
     {
         parent::__construct();
         
-        $this->login = new Login(Session::getInstance());
+        $this->login = $login;
+        $this->userMapper = $userMapper;
+        $this->password = $password;
     }
 
-    public function doLogin($user, $password)
+    public function doLogin($userName, $userPassword)
     {
-        $userMapper = new UserMapper();
+        //$userMapper = new UserMapper();
 
-        $dbUser = $userMapper->findByName($user);
+        $dbUser = $this->userMapper->findByName($userName);
         
         if (!($dbUser instanceof User)) {
-            
             $this->getUpdate = ['loginError' => true];
             
             return false;
         }
 
-        if ($this->login->login($user, $password, $dbUser->name, $dbUser->password, $dbUser->getId())) {
-            
-            $this->updatePassword($password, $dbUser, $userMapper);
+        if ($this->login->login($userName, $userPassword, $dbUser->name, $dbUser->password, $dbUser->getId())) {
+            $this->updatePassword($userPassword, $dbUser);
             
             return true;
         }
@@ -61,14 +65,13 @@ class LoginModel extends Model
         $this->login->logout();
     }
 
-    protected function updatePassword($password, User $user, UserMapper $mapper)
+    protected function updatePassword($password, User $user)
     {
-        $passUtil = new Password();
+        //$passUtil = new Password();
 
-        if ($passUtil->needsRehash($user->password)) {
+        if ($this->password->needsRehash($user->password)) {
             $user->setPassword($password);
-            $mapper->save($user);
+            $this->userMapper->save($user);
         }
     }
-
 }

@@ -10,9 +10,9 @@
  *
  */
 
-$testroutes = array();
+$appRoutes = array();
 
-$testroutes[] = [
+$appRoutes[] = [
     'name' => 'Home',
     'method' => 'GET',
     'url' => '/',
@@ -22,7 +22,7 @@ $testroutes[] = [
     'action' => null,
 ];
 
-$testroutes[] = [
+$appRoutes[] = [
     'name' => 'E404',
     'method' => 'GET',
     'url' => '/error',
@@ -32,7 +32,7 @@ $testroutes[] = [
     'action' => null,
 ];
 
-$testroutes[] = [
+$appRoutes[] = [
     'name' => 'User',
     'method' => 'GET',
     'url' => '/user',
@@ -42,7 +42,7 @@ $testroutes[] = [
     'action' => null,
 ];
 
-$testroutes[] = [
+$appRoutes[] = [
     'name' => null,
     'method' => 'GET',
     'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
@@ -52,7 +52,7 @@ $testroutes[] = [
     'action' => null,
 ];
 
-$testroutes[] = [
+$appRoutes[] = [
     'name' => null,
     'method' => 'GET',
     'url' => '/login',
@@ -62,7 +62,7 @@ $testroutes[] = [
     'action' => null,
 ];
 
-$testroutes[] = [
+$appRoutes[] = [
     'name' => null,
     'method' => 'GET',
     'url' => '/(dologin|logout)',

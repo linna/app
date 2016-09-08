@@ -14,7 +14,7 @@ namespace App\Views;
 
 use Linna\Mvc\View;
 use Linna\Auth\Login;
-use Linna\Session\Session;
+//use Linna\Session\Session;
 
 use App\Models\UserModel;
 use App\Templates\HtmlTemplate;
@@ -22,11 +22,9 @@ use App\Templates\JsonAjaxTemplate;
 
 class UserView extends View
 {
-    public function __construct(UserModel $model)
+    public function __construct(UserModel $model, Login $login)
     {
         parent::__construct($model);
-        
-        $login = new Login(Session::getInstance());
         
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
     }

@@ -23,9 +23,6 @@ class LoginController extends Controller
         parent::__construct($model);
     }
     
-    public function index()
-    {
-    }
     
     public function doLogin()
     {

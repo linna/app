@@ -21,8 +21,4 @@ class E404Controller extends Controller
     {
         parent::__construct($model);
     }
-
-    public function index()
-    {
-    }
 }

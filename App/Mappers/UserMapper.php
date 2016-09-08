@@ -34,9 +34,9 @@ class UserMapper extends MapperAbstract
      *
      * Open only a database connection
      */
-    public function __construct()
+    public function __construct(Database $dBase)
     {
-        $this->dBase = Database::connect();
+        $this->dBase = $dBase;
     }
 
     /**

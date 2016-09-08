@@ -9,12 +9,17 @@
  * @license http://opensource.org/licenses/MIT MIT License
  *
  */
-use \Linna\Database\Database;
-use \Linna\Session\DatabaseSessionHandler;
-use \Linna\Session\Session;
-use \Linna\Http\Router;
-use \Linna\Http\FrontController;
-use \Linna\Autoloader;
+use Linna\Database\Database;
+use Linna\Session\DatabaseSessionHandler;
+use Linna\Session\Session;
+use Linna\Http\Router;
+use Linna\Http\FrontController;
+use Linna\DI\DIContainer;
+use Linna\DI\DIResolver;
+use Linna\Autoloader;
+
+//use \Linna\Storage\Storage;
+//use \Linna\Storage\MysqlPDOAdapter;
 
 /**
  * Set a constant that holds the project's folder path, like "/var/www/".
@@ -83,12 +88,49 @@ $loader->addNamespaces([
     ['App\DomainObjects', __DIR__ . '/../App/DomainObjects'],
 ]);
 
-//database connection
-$dbase = Database::connect();
+$DIContainer = new DIContainer();
+
+    $dbase = Database::connect();
+    return new DatabaseSessionHandler($dbase);
+};
+
+/*
+$DIContainer->UserModel = function(){
+    $dbase = Database::connect();
+    $userMapper = new App\Mappers\UserMapper($dbase);
+    return new App\Models\UserModel($userMapper);
+};
+
+$DIContainer->UserController = function($model) {
+    $session = Session::getInstance();
+    $login = new Linna\Auth\Login($session);
+    return new App\Controllers\UserController($model, $login);
+};
+
+$DIContainer->UserView = function($model) {
+    $session = Session::getInstance();
+    $login = new Linna\Auth\Login($session);
+    return new App\Controllers\UserView($model, $login);
+};
+*/
+
+
+/*
+$pdo = new MysqlPDOAdapter(
+        'mysql:host=localhost;dbname=test;charset=utf8mb4',
+        'root',
+        'cagiva',
+        array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING));
+
+$storage = new Storage();
+$storage->pdo = $pdo->connect();
+*/
+
+$sessionHandler = $DIContainer->sessionHandler;
 
 //set session handler
 //optional if not set, app will use php session standard storage
-Session::setSessionHandler(new DatabaseSessionHandler($dbase));
+Session::setSessionHandler($sessionHandler());
 
 //se session options
 Session::withOptions(array(
@@ -103,17 +145,40 @@ Session::withOptions(array(
 $session = Session::getInstance();
 
 //start router
-$router = new Router($_SERVER['REQUEST_URI'], $testroutes, array(
+$router = new Router($_SERVER['REQUEST_URI'], $appRoutes, array(
     'basePath' => URL_SUB_FOLDER,
     'badRoute' => 'E404'
         ));
 
+//get route
+$route = $router->getRoute();
+
+//get model linked to route
+$routeModel = '\App\Models\\'.$route->getModel();
+//get view linked to route
+$routeView = '\App\Views\\'.$route->getView();
+//get controller linked to route
+$routeController = '\App\Controllers\\'.$route->getController();
+
+//create dipendency injection resolver
+$DIResolver = new DIResolver();
+
+//add unresolvable class to DIResolver
+$DIResolver->addUnResolvable('\Linna\Database\Database', Database::connect());
+$DIResolver->addUnResolvable('\Linna\Session\Session', Session::getInstance());
+        
+//resolve model
+$model = $DIResolver->resolve($routeModel);
+
+//resolve view
+$view = $DIResolver->resolve($routeView);
+
+//resolve controller
+$controller = $DIResolver->resolve($routeController);
+
+
 //start front controller
-$frontController = new FrontController($router->getRoute(), array(
-    'modelNamespace' => 'App\Models\\',
-    'viewNamespace' => 'App\Views\\',
-    'controllerNamespace' => 'App\Controllers\\',
-        ));
+$frontController = new FrontController($router->getRoute(), $model, $view, $controller);
 
 //run
 $frontController->run();

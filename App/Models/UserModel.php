@@ -18,13 +18,13 @@ use App\Mappers\UserMapper;
 
 class UserModel extends Model
 {
-    protected $mapper; 
+    protected $mapper;
     
-    public function __construct()
+    public function __construct(UserMapper $userMapper)
     {
         parent::__construct();
         
-        $this->mapper = new UserMapper();
+        $this->mapper = $userMapper;
     }
 
     public function getAllUsers()
