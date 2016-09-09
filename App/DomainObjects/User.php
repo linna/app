@@ -22,42 +22,50 @@ use Linna\Auth\Password;
 class User extends DomainObjectAbstract
 {
     /**
-     * @var string User name
+     * @var string $name User name
      */
     public $name;
 
     /**
-     * @var string User description
+     * @var string $description User description
      */
     public $description;
 
     /**
-     * @var string User hashed password
+     * @var string $password User hashed password
      */
     public $password;
 
     /**
-     * @var int It say if user is active or not
+     * @var int $active It say if user is active or not
      */
     public $active = 0;
 
     /**
-     * @var string User creation date
+     * @var string $created User creation date
      */
     public $created;
 
     /**
-     * @var string Last user update
+     * @var string $last_update Last user update
      */
     public $last_update;
-
+    
+    /**
+     *
+     * @var object $passwordUtility Password class for manage password 
+     */
+    private $passwordUtility;
+    
     /**
      * Constructor
      *
      * Do type conversion because PDO doesn't return any original type from db :(
      */
-    public function __construct()
+    public function __construct($password)
     {
+        $this->passwordUtility = $password;
+        
         settype($this->_Id, 'integer');
         settype($this->active, 'integer');
     }

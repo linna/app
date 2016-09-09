@@ -28,6 +28,8 @@ class E404View extends View
         parent::__construct($model);
         
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
+        
+        $this->htmlTemplate = $htmlTemplate;
     }
     
     public function index()

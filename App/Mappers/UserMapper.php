@@ -15,6 +15,8 @@ namespace App\Mappers;
 use Linna\Database\DomainObjectInterface;
 use Linna\Database\MapperAbstract;
 use Linna\Database\Database;
+use Linna\Auth\Password;
+
 use App\DomainObjects\User;
 
 /**
@@ -23,20 +25,24 @@ use App\DomainObjects\User;
  */
 class UserMapper extends MapperAbstract
 {
+    /**
+     * @var object $password Password util for user object
+     */
+    protected $password;
 
     /**
-     * @var object Database Connection
+     * @var object $dBase Database Connection
      */
     protected $dBase;
 
     /**
      * Constructor
      *
-     * Open only a database connection
      */
-    public function __construct(Database $dBase)
+    public function __construct(Database $dBase, Password $password)
     {
         $this->dBase = $dBase;
+        $this->password = $password;
     }
 
     /**
@@ -53,7 +59,7 @@ class UserMapper extends MapperAbstract
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User');
+        return $pdos->fetchObject('\App\DomainObjects\User', array($this->password));
     }
 
     /**
@@ -72,7 +78,7 @@ class UserMapper extends MapperAbstract
         $pdos->bindParam(':name', $hashedUserName, \PDO::PARAM_STR);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User');
+        return $pdos->fetchObject('\App\DomainObjects\User', array($this->password));
     }
 
     /**
@@ -86,7 +92,7 @@ class UserMapper extends MapperAbstract
 
         $pdos->execute();
 
-        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User');
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User', array($this->password));
     }
 
     /**
