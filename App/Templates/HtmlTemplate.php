@@ -53,10 +53,19 @@ class HtmlTemplate implements TemplateInterface
     /**
      * Constructor
      */
-    public function __construct($template)
+    public function __construct()
     {
-        $this->template = $template;
         $this->data = (object) null;
+    }
+    
+    /**
+     * Load html file
+     * 
+     * @param string $file Html file
+     */
+    public function loadHtml($file)
+    {
+        $this->template = $file;
     }
     
    /**

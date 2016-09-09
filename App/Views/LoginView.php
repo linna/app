@@ -20,7 +20,7 @@ use App\Templates\HtmlTemplate;
 
 class LoginView extends View
 {
-    public function __construct(LoginModel $model, Login $login)
+    public function __construct(LoginModel $model, Login $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
         
@@ -28,7 +28,10 @@ class LoginView extends View
         
         $this->data['loginError'] = false;
     
-        $this->template = new HtmlTemplate('Login');
+        $this->template = $htmlTemplate;
+        
+        $this->template->loadHtml('Login');
+
     }
     
     public function index()

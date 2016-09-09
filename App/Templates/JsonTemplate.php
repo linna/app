@@ -14,7 +14,7 @@ namespace App\Templates;
 
 use Linna\Mvc\TemplateInterface;
 
-class JsonAjaxTemplate implements TemplateInterface
+class JsonTemplate implements TemplateInterface
 {
     public $data = null;
     

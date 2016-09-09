@@ -17,21 +17,30 @@ use Linna\Auth\Login;
 
 use App\Models\UserModel;
 use App\Templates\HtmlTemplate;
-use App\Templates\JsonAjaxTemplate;
+use App\Templates\JsonTemplate;
 
 class UserView extends View
 {
-    public function __construct(UserModel $model, Login $login)
+    private $htmlTemplate;
+    
+    private $jsonTemplate;
+    
+    public function __construct(UserModel $model, Login $login, HtmlTemplate $htmlTemplate, JsonTemplate $jsonTemplate)
     {
         parent::__construct($model);
         
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
+        
+        $this->htmlTemplate = $htmlTemplate;
+        $this->jsonTemplate = $jsonTemplate; 
     }
     
     public function index()
     {
         //template configuration
-        $this->template = new HtmlTemplate('User');
+        $this->template = $this->htmlTemplate;
+        
+        $this->template->loadHtml('User');
         
         $this->template->loadCss('css/user.css');
 
@@ -49,26 +58,26 @@ class UserView extends View
     
     public function enable()
     {
-        $this->template = new JsonAjaxTemplate();
+        $this->template = $this->jsonTemplate;
     }
 
     public function disable()
     {
-        $this->template = new JsonAjaxTemplate();
+        $this->template = $this->jsonTemplate;
     }
 
     public function delete()
     {
-        $this->template = new JsonAjaxTemplate();
+        $this->template = $this->jsonTemplate;
     }
 
     public function changePassword()
     {
-        $this->template = new JsonAjaxTemplate();
+        $this->template = $this->jsonTemplate;
     }
 
     public function modify()
     {
-        $this->template = new JsonAjaxTemplate();
+        $this->template = $this->jsonTemplate;
     }
 }

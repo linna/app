@@ -96,33 +96,6 @@ $DIContainer->sessionHandler = function () {
 };
 
 /*
-$DIContainer->UserModel = function(){
-
-    $dbase = Database::connect();
-    $userMapper = new App\Mappers\UserMapper($dbase);
-
-    return new App\Models\UserModel($userMapper);
-};
-
-$DIContainer->UserController = function($model) {
-
-    $session = Session::getInstance();
-    $login = new Linna\Auth\Login($session);
-
-    return new App\Controllers\UserController($model, $login);
-};
-
-$DIContainer->UserView = function($model) {
-
-    $session = Session::getInstance();
-    $login = new Linna\Auth\Login($session);
-
-    return new App\Controllers\UserView($model, $login);
-};
-*/
-
-
-/*
 $pdo = new MysqlPDOAdapter(
         'mysql:host=localhost;dbname=test;charset=utf8mb4',
         'root',

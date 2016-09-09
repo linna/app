@@ -94,7 +94,7 @@ class UserMapper extends MapperAbstract
      *
      * @return User
      */
-    protected function _create()
+    protected function _Create()
     {
         return new User();
     }
@@ -104,7 +104,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectInterface $user
      */
-    protected function _insert(DomainObjectInterface $user)
+    protected function _Insert(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');
@@ -129,7 +129,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectInterface $user
      */
-    protected function _update(DomainObjectInterface $user)
+    protected function _Update(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');
@@ -158,7 +158,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectAbstract $user
      */
-    protected function _delete(DomainObjectInterface $user)
+    protected function _Delete(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');

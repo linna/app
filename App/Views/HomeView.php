@@ -21,18 +21,23 @@ use App\Templates\HtmlTemplate;
 
 class HomeView extends View
 {
-    public function __construct(HomeModel $model)
+    private $htmlTemplate;
+    
+    public function __construct(HomeModel $model, Login $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
         
-        $login = new Login(Session::getInstance());
-        
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
+        
+        $this->htmlTemplate = $htmlTemplate;
     }
     
     public function index()
     {
-        $this->template = new HtmlTemplate('Home');
+        $this->template = $this->htmlTemplate;
+        
+        $this->template->loadHtml('Home');
+        
         $this->template->title = 'App/Home';
     }
 }

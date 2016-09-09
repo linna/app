@@ -21,7 +21,9 @@ use App\Templates\HtmlTemplate;
 
 class E404View extends View
 {
-    public function __construct(E404Model $model, Login $login)
+    private $htmlTemplate;
+    
+    public function __construct(E404Model $model, Login $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
         
@@ -30,7 +32,10 @@ class E404View extends View
     
     public function index()
     {
-        $this->template = new HtmlTemplate('Error404');
+        $this->template = $this->htmlTemplate;
+        
+        $this->template->loadHtml('Error404');
+        
         $this->template->title = 'App/Page not found';
     }
 }
