@@ -28,7 +28,7 @@ class HtmlAjaxTemplate implements TemplateInterface
     
     /**
      * Load html file
-     * 
+     *
      * @param string $file Html file
      */
     public function loadHtml($file)

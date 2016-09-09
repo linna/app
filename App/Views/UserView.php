@@ -32,7 +32,7 @@ class UserView extends View
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
         
         $this->htmlTemplate = $htmlTemplate;
-        $this->jsonTemplate = $jsonTemplate; 
+        $this->jsonTemplate = $jsonTemplate;
     }
     
     public function index()

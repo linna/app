@@ -53,7 +53,7 @@ class User extends DomainObjectAbstract
     
     /**
      *
-     * @var object $passwordUtility Password class for manage password 
+     * @var object $passwordUtility Password class for manage password
      */
     private $passwordUtility;
     

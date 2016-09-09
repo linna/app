@@ -31,7 +31,6 @@ class LoginView extends View
         $this->template = $htmlTemplate;
         
         $this->template->loadHtml('Login');
-
     }
     
     public function index()

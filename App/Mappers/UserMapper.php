@@ -102,7 +102,7 @@ class UserMapper extends MapperAbstract
      */
     protected function _Create()
     {
-        return new User();
+        return new User($this->password);
     }
 
     /**
