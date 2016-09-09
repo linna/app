@@ -10,11 +10,9 @@
  *
  */
 use Linna\Database\Database;
-use Linna\Session\DatabaseSessionHandler;
 use Linna\Session\Session;
 use Linna\Http\Router;
 use Linna\Http\FrontController;
-use Linna\DI\DIContainer;
 use Linna\DI\DIResolver;
 use Linna\Autoloader;
 
@@ -88,12 +86,11 @@ $loader->addNamespaces([
     ['App\DomainObjects', __DIR__ . '/../App/DomainObjects'],
 ]);
 
-$DIContainer = new DIContainer();
+//create dipendency injection resolver
+$DIResolver = new DIResolver();
 
-$DIContainer->sessionHandler = function () {
-    $dbase = Database::connect();
-    return new DatabaseSessionHandler($dbase);
-};
+//add unresolvable class to DIResolver
+$DIResolver->cacheUnResolvable('\Linna\Database\Database', Database::connect());
 
 /*
 $pdo = new MysqlPDOAdapter(
@@ -106,11 +103,12 @@ $storage = new Storage();
 $storage->pdo = $pdo->connect();
 */
 
-$sessionHandler = $DIContainer->sessionHandler;
+$sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
+
 
 //set session handler
 //optional if not set, app will use php session standard storage
-Session::setSessionHandler($sessionHandler());
+Session::setSessionHandler($sessionHandler);
 
 //se session options
 Session::withOptions(array(
@@ -121,8 +119,9 @@ Session::withOptions(array(
     'cookieHttpOnly' => true
 ));
 
-//get session instance
-$session = Session::getInstance();
+//store session instance
+//call getInstance start the session
+$DIResolver->cacheUnResolvable('\Linna\Session\Session', Session::getInstance());
 
 //start router
 $router = new Router($_SERVER['REQUEST_URI'], $appRoutes, array(
@@ -139,14 +138,7 @@ $routeModel = '\App\Models\\'.$route->getModel();
 $routeView = '\App\Views\\'.$route->getView();
 //get controller linked to route
 $routeController = '\App\Controllers\\'.$route->getController();
-
-//create dipendency injection resolver
-$DIResolver = new DIResolver();
-
-//add unresolvable class to DIResolver
-$DIResolver->addUnResolvable('\Linna\Database\Database', Database::connect());
-$DIResolver->addUnResolvable('\Linna\Session\Session', Session::getInstance());
-        
+    
 //resolve model
 $model = $DIResolver->resolve($routeModel);
 
