@@ -14,7 +14,6 @@ namespace App\Views;
 
 use Linna\Mvc\View;
 use Linna\Auth\Login;
-//use Linna\Session\Session;
 
 use App\Models\UserModel;
 use App\Templates\HtmlTemplate;

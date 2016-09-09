@@ -14,18 +14,15 @@ namespace App\Views;
 
 use Linna\Mvc\View;
 use Linna\Auth\Login;
-use Linna\Session\Session;
 
 use App\Models\LoginModel;
 use App\Templates\HtmlTemplate;
 
 class LoginView extends View
 {
-    public function __construct(LoginModel $model)
+    public function __construct(LoginModel $model, Login $login)
     {
         parent::__construct($model);
-        
-        $login = new Login(Session::getInstance());
         
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
         

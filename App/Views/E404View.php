@@ -21,11 +21,9 @@ use App\Templates\HtmlTemplate;
 
 class E404View extends View
 {
-    public function __construct(E404Model $model)
+    public function __construct(E404Model $model, Login $login)
     {
         parent::__construct($model);
-        
-        $login = new Login(Session::getInstance());
         
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
     }
