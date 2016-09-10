@@ -75,7 +75,7 @@ class HtmlTemplate implements TemplateInterface
      */
     public function loadCss($file)
     {
-        $this->css[] = URL.$file;
+        $this->css[] = URL_STYLE.$file;
     }
 
     /**
@@ -85,7 +85,7 @@ class HtmlTemplate implements TemplateInterface
      */
     public function loadJs($file)
     {
-        $this->js[] = URL.$file;
+        $this->js[] = URL_STYLE.$file;
     }
 
     /**

@@ -9,6 +9,7 @@
  * @license http://opensource.org/licenses/MIT MIT License
  *
  */
+
 use Linna\Database\Database;
 use Linna\Session\Session;
 use Linna\Http\Router;
@@ -26,7 +27,7 @@ use Linna\Autoloader;
 define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
 /**
- * Set a constant that holds the project's "application" folder, like "/var/www/application".
+ * Set a constant that holds the project's core "application" folder, like "/var/www/html/app/App".
  */
 define('APP', ROOT . 'App' . DIRECTORY_SEPARATOR);
 
@@ -51,11 +52,20 @@ define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
  */
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 
+//set this to false if is not possible to utilize rewrite engine of web server
+define('REWRITE_ENGINE', true);
+
 /**
  * The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
  * then replace this line with full URL (and sub-folder) and a trailing slash.
  */
-define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
+if (REWRITE_ENGINE === false) {
+    define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER . '/index.php?/');
+    define('URL_STYLE', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER . DIRECTORY_SEPARATOR . URL_PUBLIC_FOLDER . DIRECTORY_SEPARATOR);
+} else {
+    define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
+    define('URL_STYLE', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
+}
 
 /**
  * define namespace under app will build
@@ -68,9 +78,8 @@ require APP . '/config/config.php';
 //load routes.
 require APP . '/config/routes.php';
 
-
 //composer autoload
-require '../vendor/autoload.php';
+require ROOT . '/vendor/autoload.php';
 
 //linna autoloader, load application class
 //for more information see http://www.php-fig.org/psr/psr-4/
@@ -126,7 +135,8 @@ $DIResolver->cacheUnResolvable('\Linna\Session\Session', Session::getInstance())
 //start router
 $router = new Router($_SERVER['REQUEST_URI'], $appRoutes, array(
     'basePath' => URL_SUB_FOLDER,
-    'badRoute' => 'E404'
+    'badRoute' => 'E404',
+    'rewriteMode' => REWRITE_ENGINE
         ));
 
 //get route
