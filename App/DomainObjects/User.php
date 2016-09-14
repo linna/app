@@ -49,7 +49,7 @@ class User extends DomainObjectAbstract
     /**
      * @var string $last_update Last user update
      */
-    public $last_update;
+    public $lastUpdate;
     
     /**
      *

@@ -54,7 +54,7 @@ class UserMapper extends MapperAbstract
      */
     public function findById($userId)
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS _Id, name, description, password, active, created, last_update FROM user WHERE user_id = :id');
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user WHERE user_id = :id');
 
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
@@ -71,7 +71,7 @@ class UserMapper extends MapperAbstract
      */
     public function findByName($userName)
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS _Id, name, description, password, active, created, last_update FROM user WHERE md5(name) = :name');
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user WHERE md5(name) = :name');
 
         $hashedUserName = md5($userName);
 
@@ -88,7 +88,7 @@ class UserMapper extends MapperAbstract
      */
     public function getAllUsers()
     {
-        $pdos = $this->dBase->prepare('SELECT user_id as _Id, name, description, password, active, created, last_update FROM user ORDER BY name ASC');
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC');
 
         $pdos->execute();
 
@@ -100,7 +100,7 @@ class UserMapper extends MapperAbstract
      *
      * @return User
      */
-    protected function _Create()
+    protected function oCreate()
     {
         return new User($this->password);
     }
@@ -110,7 +110,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectInterface $user
      */
-    protected function _Insert(DomainObjectInterface $user)
+    protected function oInsert(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');
@@ -135,7 +135,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectInterface $user
      */
-    protected function _Update(DomainObjectInterface $user)
+    protected function oUpdate(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');
@@ -164,7 +164,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectAbstract $user
      */
-    protected function _Delete(DomainObjectInterface $user)
+    protected function oDelete(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');

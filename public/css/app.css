@@ -234,6 +234,13 @@ END FOOTER
 .save-16 {background-image: url("../img/icon/16/save-16.png");}
 .cross-16 {background-image: url("../img/icon/16/x-mark-16.png");}
 
+.login .message{
+    width:398px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+}
+
 div.message{
     padding:10px;
     font-size:16px;
