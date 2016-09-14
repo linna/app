@@ -1,34 +1,19 @@
-<main>
-    <h1>Users</h1>
+<main class="user">
     <div id="changePasswordDialog">  
         <form method="post" action="#">
             <fieldset>
                 <div>
                     <label for="newpassword">new password</label>
-                    <input name="newpassword" id="newpassword" type="password" size="48"/>
+                    <input name="newpassword" id="newpassword" type="password"/>
                 </div>
                 <div>
                     <label for="confirmpassword">confirm password</label>
-                    <input name="confirmpassword" id="confirmpassword" type="password"  size="48"/>
+                    <input name="confirmpassword" id="confirmpassword" type="password"/>
                 </div>
             </fieldset>
         </form>
     </div>
-    <!--<div id="modifyDialog">  
-        <form method="post" action="#">
-            <fieldset>
-                <div>
-                    <label for="modifyusername">name</label>
-                    <input name="modifyusername" id="modifyusername" type="text" size="48"/>
-                </div>
-                <div>
-                    <label for="modifyuserdescription">description</label>
-                    <input name="modifyuserdescription" id="modifyuserdescription" type="text"  size="64"/>
-                </div>
-            </fieldset>
-        </form>
-    </div>-->
-    <div id="deleteDialog"><p>would you like delete this user (_username_)?</p><p>...please confirm action</p></div>
+    <div id="deleteDialog"><p>Would you like delete this user (_username_)?</p><p>...please confirm or exit</p></div>
     <table>
         <thead>
             <tr>
@@ -36,7 +21,6 @@
                 <th>description</th>
                 <th>created</th>
                 <th>active</th>
-                <!-- <th>online now</th> -->
                 <th>tools</th>
             </tr>
         </thead>
@@ -55,7 +39,6 @@
                         
                         <?php } ?>
                     </td>
-                    <!-- <td></td> -->
                     <td>
                         <button class="icon key-16" onclick="User.changePassword(this, <?php echo $user->getId(); ?>, '<?php echo $user->name ?>')"></button>
                         <?php if ($user->name !== 'root') { ?>

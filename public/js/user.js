@@ -9,13 +9,10 @@
  */
 
 var User = {
-    
     modOldUserName: {},
-    modOldUserDescription:{},
-    
+    modOldUserDescription: {},
     modButtonCancel: {},
     modButtonSave: {},
-    
     enable: function (button, user_id) {
 
         var ajax = new Ajax();
@@ -39,7 +36,7 @@ var User = {
     changePassword: function (button, user_id, user_name)
     {
         var passDialog = document.getElementById('changePasswordDialog');
-        
+
         passDialog.dialog.open({
             name: 'password change for ' + user_name + '...',
             buttons: {
@@ -55,170 +52,154 @@ var User = {
                 }
             }
         });
-        
+
         User._cleanPasswordForm();
     },
     modify: function (button, user_id)
     {
         var tr = button.parentNode.parentNode;
-        
+
         this._createModifyForm(tr, user_id);
         this._createButtonModifyForm(tr, user_id);
-        
+
     },
-    modifySave: function (button, user_id){
-        
+    modifySave: function (button, user_id) {
+
         var td = button.parentNode;
         var tr = td.parentNode;
-        //var table = tr.parentNode;
-        
-        
-        var newUserName = document.getElementById('newusername_'+user_id);
-        var newUserDescription = document.getElementById('newuserdescription_'+user_id);
-        
+
+        var newUserName = document.getElementById('newusername_' + user_id);
+        var newUserDescription = document.getElementById('newuserdescription_' + user_id);
+
         var ajax = new Ajax();
         var url_req = url + 'user/' + user_id + '/modify';
         var data = {
             new_user_name: newUserName.value,
             new_user_description: newUserDescription.value
         };
-        
+
         ajax.post(url_req, data)
                 .done(function (response, xhr) {
-                    
+
                     User._cleanModifyTd(td);
-                    
-                    //var dialogContent = document.querySelector('.content');
 
                     var div = document.createElement('div');
                     div.classList.add('message');
                     div.style.textAlign = 'right';
+                    div.style = 'text-align:left; margin-left: 0px; font-size:12px;'
 
                     switch (response.error) {
                         case 2:
                             div.innerHTML = 'please choose a new user name :|';
                             div.classList.add('alert');
-                            //tr.classList.add('alert');
-                            td.appendChild(div);
+                            td.insertBefore(div, td.firstChild);
                             break;
                         case 1:
                             div.innerHTML = 'this user name already present :(';
                             div.classList.add('error');
-                            //tr.classList.add('error');
-                            td.appendChild(div);
-                            //table.insertBefore(div, tr);
+                            td.insertBefore(div, td.firstChild);
                             break;
                         case 0:
-                            
+
                             tr.cells[0].innerHTML = data.new_user_name;
                             tr.cells[1].innerHTML = data.new_user_description;
-                            //div.classList.add('success');
-                            //div.innerHTML = 'password succesfully changed :)';
-                            //dialogContent.appendChild(div);
-                            //passDialog.dialog.removeButton('dButton_change');
-                            //newPassword.value = '';
-                            //confirmPassword.value = '';
                             User._modifyExitAfterSave(button, user_id);
                             break;
                     }
                 });
     },
-    
-    _modifyClear: function(user_id){
-        
-        delete this.modButtonCancel['user'+user_id];
-        delete this.modButtonSave['user'+user_id];
-        
-        delete this.modOldUserName['user'+user_id];
-        delete this.modOldUserDescription['user'+user_id];
+    _modifyClear: function (user_id) {
+
+        delete this.modButtonCancel['user' + user_id];
+        delete this.modButtonSave['user' + user_id];
+
+        delete this.modOldUserName['user' + user_id];
+        delete this.modOldUserDescription['user' + user_id];
     },
-    _modifyExitAfterSave: function (button, user_id){
-        
+    _modifyExitAfterSave: function (button, user_id) {
+
         var tr = button.parentNode.parentNode;
         var td = button.parentNode;
-        
-        var buttonCancel = this.modButtonCancel['user'+user_id];
-        var buttonSave = this.modButtonSave['user'+user_id];
-        
+
+        var buttonCancel = this.modButtonCancel['user' + user_id];
+        var buttonSave = this.modButtonSave['user' + user_id];
+
 
         td.removeChild(buttonCancel);
         td.removeChild(buttonSave);
-        
-        //tr.cells[0].innerHTML = this.modOldUserName['user'+user_id];
-        //tr.cells[1].innerHTML = this.modOldUserDescription['user'+user_id];
-        
+
         this._cleanModifyTd(td);
         this._modifyClear(user_id);
-        
-    }, 
-    modifyExit: function (button, user_id){
-        
+
+    },
+    modifyExit: function (button, user_id) {
+
         var tr = button.parentNode.parentNode;
         var td = button.parentNode;
-        
-        var buttonCancel = this.modButtonCancel['user'+user_id];
-        var buttonSave = this.modButtonSave['user'+user_id];
-        
+
+        var buttonCancel = this.modButtonCancel['user' + user_id];
+        var buttonSave = this.modButtonSave['user' + user_id];
+
 
         td.removeChild(buttonCancel);
         td.removeChild(buttonSave);
-        
-        tr.cells[0].innerHTML = this.modOldUserName['user'+user_id];
-        tr.cells[1].innerHTML = this.modOldUserDescription['user'+user_id];
-        
+
+        tr.cells[0].innerHTML = this.modOldUserName['user' + user_id];
+        tr.cells[1].innerHTML = this.modOldUserDescription['user' + user_id];
+
         this._cleanModifyTd(td);
         this._modifyClear(user_id);
-        
+
     },
-    _createModifyForm: function(tr, user_id){
-        
-        this.modOldUserName['user'+user_id] = tr.cells[0].innerHTML;
-        this.modOldUserDescription['user'+user_id] = tr.cells[1].innerHTML;
-        
+    _createModifyForm: function (tr, user_id) {
+
+        this.modOldUserName['user' + user_id] = tr.cells[0].innerHTML;
+        this.modOldUserDescription['user' + user_id] = tr.cells[1].innerHTML;
+
         var inputUserName = document.createElement('input');
         var inputUserDescription = document.createElement('input');
-         
-        inputUserName.id = 'newusername_'+user_id;
-        inputUserDescription.id = 'newuserdescription_'+user_id;
-        
+
+        inputUserName.id = 'newusername_' + user_id;
+        inputUserDescription.id = 'newuserdescription_' + user_id;
+
         inputUserName.value = tr.cells[0].innerHTML;
         inputUserDescription.value = tr.cells[1].innerHTML;
-            
+
         inputUserName.setAttribute('size', 14);
         inputUserDescription.setAttribute('size', 34);
-        
+
         tr.cells[0].innerHTML = '';
         tr.cells[1].innerHTML = '';
-        
+
         tr.cells[0].appendChild(inputUserName);
         tr.cells[1].appendChild(inputUserDescription);
-        
-        
+
+
     },
-    _createButtonModifyForm: function(tr, user_id){
-        
+    _createButtonModifyForm: function (tr, user_id) {
+
         var buttonCancel = document.createElement('button');
         var buttonSave = document.createElement('button');
-        
-        buttonCancel.id = 'userbuttonmodify_'+user_id;
+
+        buttonCancel.id = 'userbuttonmodify_' + user_id;
         buttonCancel.classList.add('icon');
         buttonCancel.classList.add('cross-16');
         buttonCancel.style.marginLeft = '10px';
-        
-        buttonSave.id = 'userbuttonsave_'+user_id;
+
+        buttonSave.id = 'userbuttonsave_' + user_id;
         buttonSave.classList.add('icon');
         buttonSave.classList.add('save-16');
-        
-        buttonCancel.setAttribute('onclick','User.modifyExit(this,' + user_id + ')');
-        buttonSave.setAttribute('onclick','User.modifySave(this,' + user_id + ')');
-        
-        this.modButtonCancel['user'+user_id] = buttonCancel;
-        this.modButtonSave['user'+user_id] = buttonSave;
-        
-        
+
+        buttonCancel.setAttribute('onclick', 'User.modifyExit(this,' + user_id + ')');
+        buttonSave.setAttribute('onclick', 'User.modifySave(this,' + user_id + ')');
+
+        this.modButtonCancel['user' + user_id] = buttonCancel;
+        this.modButtonSave['user' + user_id] = buttonSave;
+
+
         tr.cells[4].appendChild(buttonCancel);
         tr.cells[4].appendChild(buttonSave);
-        
+
     },
     delete: function (button, user_id, user_name)
     {
@@ -247,23 +228,21 @@ var User = {
         var messages = document.querySelectorAll('.message');
         var dialogContent = document.querySelector('.content');
         [].slice.call(messages).forEach(function (el, i) {
-            
-                dialogContent.removeChild(el);
+
+            dialogContent.removeChild(el);
         });
     },
     _cleanModifyTd: function (td)
     {
         var messages = document.querySelectorAll('.message');
-        //var dialogContent = document.querySelector('.content');
         [].slice.call(messages).forEach(function (el, i) {
             if (td.contains(el))
             {
                 td.removeChild(el);
-                
+
             }
         });
     },
-    
     _doDelete: function (button, user_id) {
 
         var ajax = new Ajax();
@@ -288,9 +267,9 @@ var User = {
         };
         ajax.post(url_req, data)
                 .done(function (response, xhr) {
-                    
+
                     User._cleanPasswordForm();
-                    
+
                     var dialogContent = document.querySelector('.content');
 
                     var div = document.createElement('div');

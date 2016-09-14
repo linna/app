@@ -26,15 +26,13 @@
     </head>
     <body>
         <header>
+            <div class="logo">Linna app</div>
             <a class="menu" href="<?php echo URL; ?>">home</a>
             <?php if ($data->login === false) { ?>
-            <a class="menu" href="<?php echo URL; ?>login">login</a>
+            <a class="menu" href="<?php echo URL; ?>login">sign in</a>
             <?php }?>
-            
             <?php if ($data->login === true) { ?>
-            <a class="menu" href="<?php echo URL; ?>logout">logout</a>
+            <a class="menu" href="<?php echo URL; ?>logout">sign out</a>
             <?php }?>
-            
-            <a class="menu" href="<?php echo URL; ?>user">users</a>
-            
+            <a class="menu" href="<?php echo URL; ?>user">users</a>    
         </header>

@@ -1,12 +1,17 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 8-ago-2015, 6.51.50
-    Author     : Sebastian
-*/
+/**
+ * Linna App
+ *
+ * 
+ * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
+ * @copyright (c) 2016, Sebastian Rapetti
+ * @license http://opensource.org/licenses/MIT MIT License
+ *
+ */
+
+
+table{
+    width:90%;
+}
 
 table thead th:nth-child(1)
 {
@@ -31,10 +36,9 @@ table thead th:nth-child(4)
 /*
 table thead th:nth-child(5)
 {
-    width:180px;
+    width:200px;
 }
 */
-
 .active,
 .noactive,
 .noaction
@@ -42,6 +46,8 @@ table thead th:nth-child(5)
     display:block;
     width:16px;
     height: 16px;
+    border-radius:2px;
+
 }
 
 .active
@@ -62,3 +68,10 @@ table thead th:nth-child(5)
 #deleteDialog,
 #modifyDialog
 {display:none;}
+
+
+input#newpassword,
+input#confirmpassword
+{
+    width:456px;
+}
