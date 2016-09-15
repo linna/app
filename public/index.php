@@ -17,9 +17,6 @@ use Linna\Http\FrontController;
 use Linna\DI\DIResolver;
 use Linna\Autoloader;
 
-//use \Linna\Storage\Storage;
-//use \Linna\Storage\MysqlPDOAdapter;
-
 /**
  * Set a constant that holds the project's folder path, like "/var/www/".
  * DIRECTORY_SEPARATOR adds a slash to the end of the path
@@ -100,17 +97,6 @@ $DIResolver = new DIResolver();
 
 //add unresolvable class to DIResolver
 $DIResolver->cacheUnResolvable('\Linna\Database\Database', Database::connect());
-
-/*
-$pdo = new MysqlPDOAdapter(
-        'mysql:host=localhost;dbname=test;charset=utf8mb4',
-        'root',
-        'cagiva',
-        array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING));
-
-$storage = new Storage();
-$storage->pdo = $pdo->connect();
-*/
 
 $sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
 
