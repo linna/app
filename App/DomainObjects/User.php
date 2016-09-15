@@ -66,7 +66,7 @@ class User extends DomainObjectAbstract
     {
         $this->passwordUtility = $password;
         
-        settype($this->_Id, 'integer');
+        settype($this->objectId, 'integer');
         settype($this->active, 'integer');
     }
 

@@ -160,7 +160,7 @@ $controller = $DIResolver->resolve($routeController);
 
 
 //start front controller
-$frontController = new FrontController($router->getRoute(), $model, $view, $controller);
+$frontController = new FrontController($route, $model, $view, $controller);
 
 //run
 $frontController->run();
