@@ -1,0 +1,17 @@
+<phpunit  colors="true" 
+          bootstrap="tests/bootstrap.php"
+>
+    <testsuites>
+        <testsuite name="Linna App Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">App/</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>
+</phpunit>

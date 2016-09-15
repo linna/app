@@ -2,3 +2,13 @@ language: php
 php:
   - 7.0
   - 7.1
+
+before_script: 
+- "composer require codeclimate/php-test-reporter --dev"
+- "composer install"
+
+script: 
+- "phpunit --coverage-clover build/logs/clover.xml"
+
+after_script:
+- CODECLIMATE_REPO_TOKEN="ea1f219277a5252d15c802943d472ee22ef87769366ea3f75ae28106dcaa8d76" vendor/bin/test-reporter
