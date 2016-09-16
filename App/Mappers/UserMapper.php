@@ -41,7 +41,7 @@ class UserMapper extends MapperAbstract
      */
     public function __construct(Database $dBase, Password $password)
     {
-        $this->dBase = $dBase;
+        $this->dBase = $dBase->connect();
         $this->password = $password;
     }
 
