@@ -1,9 +1,16 @@
 language: php
 php:
-  - 7.0
-  - 7.1
+- 7.0
+- 7.1
+
+services:
+- mysql
+  
 
 before_script: 
+- mysql -e 'create database test;'
+- mysql -u root test < tests/database.sql
+- phpunit --self-update
 - "composer require codeclimate/php-test-reporter --dev"
 - "composer install"
 

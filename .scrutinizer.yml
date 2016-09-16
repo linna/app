@@ -19,7 +19,15 @@ build:
     tests:
             override:
                 -
-                    command: 'phpunit --coverage-clover=clover.xml'
+                    command: '/usr/local/bin/phpunit --coverage-clover=clover.xml'
                     coverage:
                         file: 'clover.xml'
                         format: 'clover'
+
+    project_setup:
+            before:
+                - mysql -e "CREATE DATABASE test"
+                - mysql -u root test < tests/database.sql
+                - wget https://phar.phpunit.de/phpunit.phar
+                - chmod +x phpunit.phar
+                - sudo mv phpunit.phar /usr/local/bin/phpunit
