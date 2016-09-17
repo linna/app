@@ -18,8 +18,6 @@ use Linna\Http\FrontController;
 use Linna\DI\DIResolver;
 use Linna\Autoloader;
 
-
-
 //load configuration from config file
 require '../App/config/config.php';
 
@@ -46,9 +44,9 @@ $loader->addNamespaces([
 
 //create adapter
 $MysqlAdapter = new MysqlPDOAdapter(
-        DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, 
-        DB_USER, 
-        DB_PASS, 
+        DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET,
+        DB_USER,
+        DB_PASS,
         array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
         );
 
