@@ -20,11 +20,15 @@ class UserModel extends Model
 {
     protected $mapper;
     
-    public function __construct(UserMapper $userMapper)
+    protected $password;
+    
+    public function __construct(UserMapper $userMapper, Password $password)
     {
         parent::__construct();
         
         $this->mapper = $userMapper;
+        
+        $this->password = $password;
     }
 
     public function getAllUsers()
@@ -84,10 +88,8 @@ class UserModel extends Model
             return;
         }
 
-        $password = new Password();
-        
         $user = $this->mapper->findById($userId);
-        $user->password = $password->hash($newPassword);
+        $user->password = $this->password->hash($newPassword);
 
         $this->mapper->save($user);
 

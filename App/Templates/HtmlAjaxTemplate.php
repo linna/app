@@ -48,8 +48,6 @@ class HtmlAjaxTemplate implements TemplateInterface
             if (!file_exists(APP."Templates/_pages/{$template}.html")) {
                 throw new \Exception("The required Template ({$template}) not exist.");
             }
-
-           
             require APP."Templates/_pages/{$template}.html";
         } catch (\Exception $e) {
             echo 'Template exception: ', $e->getMessage(), "\n";

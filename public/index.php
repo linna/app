@@ -117,3 +117,10 @@ $frontController->run();
 
 //get front controller response
 $frontController->response();
+
+//only for debug, return time execution and memory usage
+//echo '<!-- Memory: ';
+//echo round(xdebug_memory_usage() / 1024, 2) , ' (';
+//echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
+//echo xdebug_time_index();
+//echo ' Seconds -->';
