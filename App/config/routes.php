@@ -19,7 +19,7 @@ $appRoutes[] = [
     'model' => 'HomeModel',
     'view' => 'HomeView',
     'controller' => 'HomeController',
-    'action' => null,
+    'action' => '',
 ];
 
 $appRoutes[] = [
@@ -29,7 +29,7 @@ $appRoutes[] = [
     'model' => 'E404Model',
     'view' => 'E404View',
     'controller' => 'E404Controller',
-    'action' => null,
+    'action' => '',
 ];
 
 $appRoutes[] = [
@@ -39,35 +39,35 @@ $appRoutes[] = [
     'model' => 'UserModel',
     'view' => 'UserView',
     'controller' => 'UserController',
-    'action' => null,
+    'action' => '',
 ];
 
 $appRoutes[] = [
-    'name' => null,
+    'name' => '',
     'method' => 'GET',
     'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
     'model' => 'UserModel',
     'view' => 'UserView',
     'controller' => 'UserController',
-    'action' => null,
+    'action' => '',
 ];
 
 $appRoutes[] = [
-    'name' => null,
+    'name' => '',
     'method' => 'GET',
     'url' => '/login',
     'model' => 'LoginModel',
     'view' => 'LoginView',
     'controller' => 'LoginController',
-    'action' => null,
+    'action' => '',
 ];
 
 $appRoutes[] = [
-    'name' => null,
+    'name' => '',
     'method' => 'GET',
     'url' => '/(dologin|logout)',
     'model' => 'LoginModel',
     'view' => 'LoginView',
     'controller' => 'LoginController',
-    'action' => null,
+    'action' => '',
 ];

@@ -39,8 +39,6 @@ class LoginModel extends Model
 
     public function doLogin($userName, $userPassword)
     {
-        //$userMapper = new UserMapper();
-
         $dbUser = $this->userMapper->findByName($userName);
         
         if (!($dbUser instanceof User)) {

@@ -80,11 +80,14 @@ Session::withOptions(array(
 $DIResolver->cacheUnResolvable('\Linna\Session\Session', Session::getInstance());
 
 //start router
-$router = new Router($_SERVER['REQUEST_URI'], $appRoutes, array(
+$router = new Router($appRoutes, array(
     'basePath' => URL_SUB_FOLDER,
     'badRoute' => 'E404',
     'rewriteMode' => REWRITE_ENGINE
         ));
+
+//evaluate request uri
+$router->validate($_SERVER['REQUEST_URI']);
 
 //get route
 $route = $router->getRoute();
