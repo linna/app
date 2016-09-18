@@ -55,7 +55,7 @@ class UserController extends Controller
     public function modify($userId)
     {
         $newUserName = filter_input(INPUT_POST, 'new_user_name', FILTER_SANITIZE_STRING);
-        $newUserDescription = filter_input(INPUT_POST, 'new_user_description', FILTER_SANITIZE_STRING);  
+        $newUserDescription = filter_input(INPUT_POST, 'new_user_description', FILTER_SANITIZE_STRING);
         
         $this->model->modify($userId, $newUserName, $newUserDescription);
     }

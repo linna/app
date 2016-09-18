@@ -18,6 +18,11 @@ use Linna\Http\FrontController;
 use Linna\DI\DIResolver;
 use Linna\Autoloader;
 
+/**
+ * Config File Section
+ *
+ */
+
 //load configuration from config file
 require '../App/config/config.php';
 
@@ -27,6 +32,10 @@ require APP . '/config/routes.php';
 //composer autoload
 require ROOT . '/vendor/autoload.php';
 
+/**
+ * Autoloader Section
+ *
+ */
 
 //linna autoloader, load application class
 //for more information see http://www.php-fig.org/psr/psr-4/
@@ -42,6 +51,21 @@ $loader->addNamespaces([
     ['App\DomainObjects', __DIR__ . '/../App/DomainObjects'],
 ]);
 
+/**
+ * Memcached Section
+ *
+ */
+
+//create memcached instance
+//$memcached = new Memcached();
+//connect to memcached server
+//$memcached->addServer('localhost', 11211);
+
+/**
+ * Database Section
+ *
+ */
+
 //create adapter
 $MysqlAdapter = new MysqlPDOAdapter(
         DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET,
@@ -51,16 +75,27 @@ $MysqlAdapter = new MysqlPDOAdapter(
         );
 
 //create data base object
-$DataBase = new Database($MysqlAdapter);
+$dataBase = new Database($MysqlAdapter);
+
+/**
+ * Dependency Injection Section
+ *
+ */
 
 //create dipendency injection resolver
 $DIResolver = new DIResolver();
 
 //add unresolvable class to DIResolver
-$DIResolver->cacheUnResolvable('\Linna\Database\Database', $DataBase);
+$DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
+//$DIResolver->cacheUnResolvable('\Memcached', $memcached);
+
+/**
+ * Session section
+ *
+ */
 
 $sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
-
+//$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
 
 //set session handler
 //optional if not set, app will use php session standard storage
@@ -78,6 +113,12 @@ Session::withOptions(array(
 //store session instance
 //call getInstance start the session
 $DIResolver->cacheUnResolvable('\Linna\Session\Session', Session::getInstance());
+
+/**
+ * Router Section
+ *
+ */
+
 
 //start router
 $router = new Router($appRoutes, array(
@@ -108,6 +149,10 @@ $view = $DIResolver->resolve($routeView);
 //resolve controller
 $controller = $DIResolver->resolve($routeController);
 
+/**
+ * Front Controller section
+ *
+ */
 
 //start front controller
 $frontController = new FrontController($route, $model, $view, $controller);
@@ -117,10 +162,3 @@ $frontController->run();
 
 //get front controller response
 $frontController->response();
-
-//only for debug, return time execution and memory usage
-//echo '<!-- Memory: ';
-//echo round(xdebug_memory_usage() / 1024, 2) , ' (';
-//echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
-//echo xdebug_time_index();
-//echo ' Seconds -->';
