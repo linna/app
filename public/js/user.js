@@ -100,7 +100,6 @@ var User = {
                             td.insertBefore(div, td.firstChild);
                             break;
                         case 0:
-
                             tr.cells[0].innerHTML = data.new_user_name;
                             tr.cells[1].innerHTML = data.new_user_description;
                             User._modifyExitAfterSave(button, user_id);
