@@ -26,8 +26,10 @@ class LoginController extends Controller
     
     public function doLogin()
     {
-        //apply data filter to $_POST
-        $login = $this->model->doLogin($_POST['user'], $_POST['password']);
+        $user = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_STRING);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        
+        $login = $this->model->doLogin($user, $password);
 
         if ($login === true) {
             header('location: '.URL);

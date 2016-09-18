@@ -12,7 +12,7 @@
 
 namespace App\DomainObjects;
 
-use Linna\Database\DomainObjectAbstract;
+use Linna\DataMapper\DomainObjectAbstract;
 use Linna\Auth\Password;
 
 /**

@@ -15,7 +15,6 @@ namespace App\Models;
 use Linna\Mvc\Model;
 use Linna\Auth\Login;
 use Linna\Auth\Password;
-//use Linna\Session\Session;
 
 use App\DomainObjects\User;
 use App\Mappers\UserMapper;
@@ -65,8 +64,6 @@ class LoginModel extends Model
 
     protected function updatePassword($password, User $user)
     {
-        //$passUtil = new Password();
-
         if ($this->password->needsRehash($user->password)) {
             $user->setPassword($password);
             $this->userMapper->save($user);

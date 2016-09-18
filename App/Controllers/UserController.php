@@ -46,13 +46,17 @@ class UserController extends Controller
 
     public function changePassword($userId)
     {
-        //apply data filter to $_POST
-        $this->model->changePassword($userId, $_POST['new_password'], $_POST['confirm_password']);
+        $newPassword = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
+        $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+        
+        $this->model->changePassword($userId, $newPassword, $confirmPassword);
     }
 
     public function modify($userId)
     {
-        //apply data filter to $_POST
-        $this->model->modify($userId, $_POST['new_user_name'], $_POST['new_user_description']);
+        $newUserName = filter_input(INPUT_POST, 'new_user_name', FILTER_SANITIZE_STRING);
+        $newUserDescription = filter_input(INPUT_POST, 'new_user_description', FILTER_SANITIZE_STRING);  
+        
+        $this->model->modify($userId, $newUserName, $newUserDescription);
     }
 }

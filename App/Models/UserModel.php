@@ -32,9 +32,9 @@ class UserModel extends Model
         return $this->mapper->getAllUsers();
     }
 
-    public function enable($id)
+    public function enable($userId)
     {
-        $user = $this->mapper->findById($id);
+        $user = $this->mapper->findById($userId);
         $user->active = 1;
 
         $this->mapper->save($user);
