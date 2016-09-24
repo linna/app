@@ -22,7 +22,7 @@ before_script:
 - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then composer install; fi
 
 script: 
-- phpunit --coverage-clover build/logs/clover.xml
+- if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then phpunit --coverage-clover build/logs/clover.xml; else phpunit; fi
 
 after_script:
 - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then CODECLIMATE_REPO_TOKEN="ea1f219277a5252d15c802943d472ee22ef87769366ea3f75ae28106dcaa8d76" vendor/bin/test-reporter; fi
