@@ -68,11 +68,11 @@ $loader->addNamespaces([
 
 //create adapter
 $MysqlAdapter = new MysqlPDOAdapter(
-        DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET,
-        DB_USER,
-        DB_PASS,
-        array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
-        );
+    DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET,
+    DB_USER,
+    DB_PASS,
+    array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
+);
 
 //create data base object
 $dataBase = new Database($MysqlAdapter);
@@ -119,16 +119,15 @@ $DIResolver->cacheUnResolvable('\Linna\Session\Session', Session::getInstance())
  *
  */
 
-
 //start router
 $router = new Router($appRoutes, array(
     'basePath' => URL_SUB_FOLDER,
     'badRoute' => 'E404',
     'rewriteMode' => REWRITE_ENGINE
-        ));
+));
 
-//evaluate request uri
-$router->validate($_SERVER['REQUEST_URI']);
+//evaluate request uri and method
+$router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //get route
 $route = $router->getRoute();
