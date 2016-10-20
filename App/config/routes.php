@@ -44,7 +44,7 @@ $appRoutes[] = [
 
 $appRoutes[] = [
     'name' => '',
-    'method' => 'GET',
+    'method' => 'GET|POST',
     'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
     'model' => 'UserModel',
     'view' => 'UserView',
@@ -64,7 +64,7 @@ $appRoutes[] = [
 
 $appRoutes[] = [
     'name' => '',
-    'method' => 'GET',
+    'method' => 'POST',
     'url' => '/(dologin|logout)',
     'model' => 'LoginModel',
     'view' => 'LoginView',
