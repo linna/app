@@ -64,7 +64,7 @@ $appRoutes[] = [
 
 $appRoutes[] = [
     'name' => '',
-    'method' => 'POST',
+    'method' => 'GET|POST',
     'url' => '/(dologin|logout)',
     'model' => 'LoginModel',
     'view' => 'LoginView',
