@@ -25,7 +25,7 @@ cd /var/www/html
 mkdir app
 sudo composer create-project --prefer-dist s3b4stian/linna-app app
 ```
-Where App is directory under webserver document root ex. /var/www/html/app
+Where "app" is directory under webserver document root ex. /var/www/html/app
 
 After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```
