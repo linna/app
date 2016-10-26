@@ -19,17 +19,19 @@ App run with default php.ini.
 
 ### Installation
 
+*Consider use of sudo command if need administrator privileges.*
+
 With [composer](https://getcomposer.org/)
 ```
 cd /var/www/html
 mkdir app
-sudo composer create-project --prefer-dist s3b4stian/linna-app app
+composer create-project --prefer-dist s3b4stian/linna-app app
 ```
 Where "app" is directory under webserver document root ex. /var/www/html/app
 
 After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```
-sudo composer dump-autoload --optimize
+composer dump-autoload --optimize
 ```
 #### Before run:
 You must create App database, SQL file is placed in tests directory
