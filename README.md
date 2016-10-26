@@ -9,7 +9,9 @@
 
 App Skeleton for Linna framework
 
-### Require
+## Getting Started
+
+### Requirements
 
 App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewirte on) web server. Mysql is also needed for run because App contains login and user managment examples that require database.
 
