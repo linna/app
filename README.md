@@ -29,7 +29,7 @@ Where "app" is directory under webserver document root ex. /var/www/html/app
 
 After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```
-composer dump-autoload --optimize
+sudo composer dump-autoload --optimize
 ```
 #### Before run:
 You must create App database, SQL file is placed in tests directory
