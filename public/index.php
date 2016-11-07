@@ -94,15 +94,12 @@ $DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
  *
  */
 
+//resolve Session Handler
 $sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
 //$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
 
-//set session handler
-//optional if not set, app will use php session standard storage
-Session::setSessionHandler($sessionHandler);
-
-//se session options
-Session::withOptions(array(
+//create session object
+$session = new Session(array(
     'expire' => 1800,
     'cookieDomain' => URL_DOMAIN,
     'cookiePath' => URL_SUB_FOLDER,
@@ -110,9 +107,16 @@ Session::withOptions(array(
     'cookieHttpOnly' => true
 ));
 
+//set session handler
+//optional if not set, app will use php session standard storage
+$session->setSessionHandler($sessionHandler);
+
+//start session
+$session->start();
+
 //store session instance
 //call getInstance start the session
-$DIResolver->cacheUnResolvable('\Linna\Session\Session', Session::getInstance());
+$DIResolver->cacheUnResolvable('\Linna\Session\Session', $session/*Session::getInstance()*/);
 
 /**
  * Router Section
