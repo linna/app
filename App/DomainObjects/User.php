@@ -76,7 +76,7 @@ class User extends DomainObjectAbstract
      * @param string $newPassword
      *
      */
-    public function setPassword($newPassword)
+    public function setPassword(string $newPassword)
     {
         $passUtil = new Password();
 
@@ -92,9 +92,8 @@ class User extends DomainObjectAbstract
      * @param string $oldPassword Old user password
      *
      * @return bool
-     *
      */
-    public function chagePassword($newPassword, $oldPassword)
+    public function chagePassword(string $newPassword, string $oldPassword) : bool
     {
         $passUtil = new Password();
 

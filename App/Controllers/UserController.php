@@ -29,22 +29,22 @@ class UserController extends Controller
         $this->protect($login, URL.'login');
     }
 
-    public function enable($userId)
+    public function enable(int $userId)
     {
         $this->model->enable($userId);
     }
 
-    public function disable($userId)
+    public function disable(int $userId)
     {
         $this->model->disable($userId);
     }
 
-    public function delete($userId)
+    public function delete(int $userId)
     {
         $this->model->delete($userId);
     }
 
-    public function changePassword($userId)
+    public function changePassword(int $userId)
     {
         $newPassword = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
         $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
@@ -52,7 +52,7 @@ class UserController extends Controller
         $this->model->changePassword($userId, $newPassword, $confirmPassword);
     }
 
-    public function modify($userId)
+    public function modify(int $userId)
     {
         $newUserName = filter_input(INPUT_POST, 'new_user_name', FILTER_SANITIZE_STRING);
         $newUserDescription = filter_input(INPUT_POST, 'new_user_description', FILTER_SANITIZE_STRING);

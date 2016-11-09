@@ -50,9 +50,9 @@ class UserMapper extends MapperAbstract
      *
      * @param string $userId
      *
-     * @return User
+     * @return User | bool
      */
-    public function findById($userId)
+    public function findById(int $userId)
     {
         $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user WHERE user_id = :id');
 
@@ -67,9 +67,9 @@ class UserMapper extends MapperAbstract
      *
      * @param string $userName
      *
-     * @return User
+     * @return User | bool
      */
-    public function findByName($userName)
+    public function findByName(string $userName)
     {
         $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user WHERE md5(name) = :name');
 
@@ -86,7 +86,7 @@ class UserMapper extends MapperAbstract
      *
      * @return array All users stored
      */
-    public function getAllUsers()
+    public function getAllUsers() : array
     {
         $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC');
 
@@ -100,7 +100,7 @@ class UserMapper extends MapperAbstract
      *
      * @return User
      */
-    protected function oCreate()
+    protected function oCreate() : User
     {
         return new User($this->password);
     }
@@ -110,7 +110,7 @@ class UserMapper extends MapperAbstract
      *
      * @param DomainObjectInterface $user
      */
-    protected function oInsert(DomainObjectInterface $user)
+    protected function oInsert(DomainObjectInterface $user) : int
     {
         if (!($user instanceof User)) {
             throw new \Exception('$user must be instance of User class');
@@ -124,7 +124,7 @@ class UserMapper extends MapperAbstract
             $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
             $pdos->execute();
 
-            return $this->dBase->lastInsertId();
+            return (int) $this->dBase->lastInsertId();
         } catch (\Exception $e) {
             echo 'Mapper exception: ', $e->getMessage(), "\n";
         }

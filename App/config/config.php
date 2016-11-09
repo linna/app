@@ -58,43 +58,37 @@ if (REWRITE_ENGINE === false) {
 }
 
 
-/*
- * Configuration for: Database
- * This is the place where you define your database credentials, database type etc.
+/**
+ * Configuration options for linna-framework classes
  */
 
-/*
- * DB_TYPE:
- * Indicates the driver used from PDO
- */
-define('DB_TYPE', 'mysql');
-
-/*
- * DB_HOST:
- * Database host
- */
-define('DB_HOST', 'localhost');
-
-/*
- * DB_NAME:
- * Database name
- */
-define('DB_NAME', 'test');
-
-/*
- * DB_USER:
- * Database user
- */
-define('DB_USER', 'root');
-
-/*
- * DB_PASS:
- * Database password
- */
-define('DB_PASS', 'cagiva');
-
-/*
- * DB_CHARSET:
- * Database charset
- */
-define('DB_CHARSET', 'utf8mb4');
+$options = [
+    
+    'session' => [
+        'expire' => 1800,
+        'cookieDomain' => URL_DOMAIN, //do not change here
+        'cookiePath' => URL_SUB_FOLDER, //do not change here
+        'cookieSecure' => false,
+        'cookieHttpOnly' => true
+    ],
+    
+    'router' => [
+        'basePath' => URL_SUB_FOLDER, //do not change here
+        'badRoute' => 'E404',
+        'rewriteMode' => REWRITE_ENGINE //do not change here
+    ],
+    
+    'pdo_mysql' => [
+        'db_type' => 'mysql',
+        'host' => 'localhost',
+        'db_name' => 'test',
+        'user' => 'root',
+        'password' => 'cagiva',
+        'charset' => 'utf8mb4'
+    ],
+    
+    'memcached' =>[
+        'host' => 'localhost',
+        'port' => 11211
+    ]
+];

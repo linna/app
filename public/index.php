@@ -59,7 +59,8 @@ $loader->addNamespaces([
 //create memcached instance
 //$memcached = new Memcached();
 //connect to memcached server
-//$memcached->addServer('localhost', 11211);
+//$memcached->addServer($options['memcached']['host'], $options['memcached']['port']);
+
 
 /**
  * Database Section
@@ -68,14 +69,16 @@ $loader->addNamespaces([
 
 //create adapter
 $MysqlAdapter = new MysqlPDOAdapter(
-    DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET,
-    DB_USER,
-    DB_PASS,
+    $options['pdo_mysql']['db_type'].':host='.$options['pdo_mysql']['host'].
+    ';dbname='.$options['pdo_mysql']['db_name'].';charset='.$options['pdo_mysql']['charset'],
+    $options['pdo_mysql']['user'],
+    $options['pdo_mysql']['password'],
     array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
 );
 
 //create data base object
 $dataBase = new Database($MysqlAdapter);
+
 
 /**
  * Dependency Injection Section
@@ -89,6 +92,7 @@ $DIResolver = new DIResolver();
 $DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
 //$DIResolver->cacheUnResolvable('\Memcached', $memcached);
 
+
 /**
  * Session section
  *
@@ -99,13 +103,7 @@ $sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
 //$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
 
 //create session object
-$session = new Session(array(
-    'expire' => 1800,
-    'cookieDomain' => URL_DOMAIN,
-    'cookiePath' => URL_SUB_FOLDER,
-    'cookieSecure' => false,
-    'cookieHttpOnly' => true
-));
+$session = new Session($options['session']);
 
 //set session handler
 //optional if not set, app will use php session standard storage
@@ -118,17 +116,14 @@ $session->start();
 //call getInstance start the session
 $DIResolver->cacheUnResolvable('\Linna\Session\Session', $session/*Session::getInstance()*/);
 
+
 /**
  * Router Section
  *
  */
 
 //start router
-$router = new Router($appRoutes, array(
-    'basePath' => URL_SUB_FOLDER,
-    'badRoute' => 'E404',
-    'rewriteMode' => REWRITE_ENGINE
-));
+$router = new Router($appRoutes, $options['router']);
 
 //evaluate request uri and method
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
@@ -151,6 +146,7 @@ $view = $DIResolver->resolve($routeView);
 
 //resolve controller
 $controller = $DIResolver->resolve($routeController);
+
 
 /**
  * Front Controller section

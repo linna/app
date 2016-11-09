@@ -63,7 +63,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param string $file Html file
      */
-    public function loadHtml($file)
+    public function loadHtml(string $file)
     {
         $this->template = $file;
     }
@@ -73,7 +73,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param string $file Css file
      */
-    public function loadCss($file)
+    public function loadCss(string $file)
     {
         $this->css[] = URL_STYLE.$file;
     }
@@ -83,7 +83,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param string $file Js file
      */
-    public function loadJs($file)
+    public function loadJs(string $file)
     {
         $this->js[] = URL_STYLE.$file;
     }

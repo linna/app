@@ -36,7 +36,7 @@ class LoginModel extends Model
         $this->password = $password;
     }
 
-    public function doLogin($userName, $userPassword)
+    public function doLogin(string $userName, string $userPassword) : bool
     {
         $dbUser = $this->userMapper->findByName($userName);
         
@@ -62,7 +62,7 @@ class LoginModel extends Model
         $this->login->logout();
     }
 
-    protected function updatePassword($password, User $user)
+    protected function updatePassword(string $password, User $user)
     {
         if ($this->password->needsRehash($user->password)) {
             $user->setPassword($password);

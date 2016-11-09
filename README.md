@@ -53,46 +53,27 @@ define('REWRITE_ENGINE', true);
 ```
 Database configuration
 ```php
-/*
- * Configuration for: Database
- * This is the place where you define your database credentials, database type etc.
+/**
+ * Configuration options for linna-framework classes
  */
 
-/*
- * DB_TYPE:
- * Indicates the driver used from PDO
- */
-define('DB_TYPE', 'mysql');
+$options = [
 
-/*
- * DB_HOST:
- * Database host
- */
-define('DB_HOST', 'localhost');
+    //other options
 
-/*
- * DB_NAME:
- * Database name
- */
-define('DB_NAME', 'test');
+    'pdo_mysql' => [
+        'db_type' => 'mysql',
+        'host' => 'localhost',
+        'db_name' => 'test',
+        'user' => 'root',
+        'password' => 'cagiva',
+        'charset' => 'utf8mb4'
+    ]
 
-/*
- * DB_USER:
- * Database user
- */
-define('DB_USER', 'root');
-
-/*
- * DB_PASS:
- * Database password
- */
-define('DB_PASS', 'password');
-
-/*
- * DB_CHARSET:
- * Database charset
- */
-define('DB_CHARSET', 'utf8mb4');
+    //other options
+];
 ```
+
+If needed add another section to options array for use another PDO drive or another database extensions
 
 Now App can be started from browser

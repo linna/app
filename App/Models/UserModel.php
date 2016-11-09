@@ -36,7 +36,7 @@ class UserModel extends Model
         return $this->mapper->getAllUsers();
     }
 
-    public function enable($userId)
+    public function enable(int $userId)
     {
         $user = $this->mapper->findById($userId);
         $user->active = 1;
@@ -48,7 +48,7 @@ class UserModel extends Model
         return;
     }
 
-    public function disable($userId)
+    public function disable(int $userId)
     {
         $user = $this->mapper->findById($userId);
 
@@ -63,7 +63,7 @@ class UserModel extends Model
         return;
     }
 
-    public function delete($userId)
+    public function delete(int $userId)
     {
         $user = $this->mapper->findById($userId);
 
@@ -74,7 +74,7 @@ class UserModel extends Model
         return 0;
     }
 
-    public function changePassword($userId, $newPassword, $confirmPassword)
+    public function changePassword(int $userId, string $newPassword, string $confirmPassword)
     {
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
@@ -98,7 +98,7 @@ class UserModel extends Model
         return;
     }
 
-    public function modify($userId, $newName, $newDescription)
+    public function modify(int $userId, string $newName, string $newDescription)
     {
         //user name must be not null
         if ($newName === null || $newName === '') {

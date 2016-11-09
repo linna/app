@@ -23,7 +23,6 @@ class LoginController extends Controller
         parent::__construct($model);
     }
     
-    
     public function doLogin()
     {
         $user = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_STRING);
