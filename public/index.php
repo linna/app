@@ -24,7 +24,7 @@ use Linna\Autoloader;
  */
 
 //load configuration from config file
-require '../App/config/config.php';
+require dirname(__DIR__) . '/App/config/config.php';
 
 //load routes.
 require APP . '/config/routes.php';
@@ -123,6 +123,7 @@ $DIResolver->cacheUnResolvable('\Linna\Session\Session', $session/*Session::getI
  */
 
 //start router
+//$router = new RouterCached($appRoutes, $options['router'], $memcached);
 $router = new Router($appRoutes, $options['router']);
 
 //evaluate request uri and method
