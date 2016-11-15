@@ -13,6 +13,7 @@
 use Linna\Database\MysqlPDOAdapter;
 use Linna\Database\Database;
 use Linna\Session\Session;
+//use Linna\Session\MemcachedSessionHandler;
 use Linna\Http\Router;
 use Linna\Http\FrontController;
 use Linna\DI\DIResolver;
@@ -91,6 +92,7 @@ $DIResolver = new DIResolver();
 //add unresolvable class to DIResolver
 $DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
 //$DIResolver->cacheUnResolvable('\Memcached', $memcached);
+//$DIResolver->cacheUnResolvable('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
 
 
 /**
@@ -101,6 +103,7 @@ $DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
 //resolve Session Handler
 $sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
 //$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
+//$sessionHandler = new MemcachedSessionHandler($memcached, $options['session']['expire']);
 
 //create session object
 $session = new Session($options['session']);
@@ -113,8 +116,7 @@ $session->setSessionHandler($sessionHandler);
 $session->start();
 
 //store session instance
-//call getInstance start the session
-$DIResolver->cacheUnResolvable('\Linna\Session\Session', $session/*Session::getInstance()*/);
+$DIResolver->cacheUnResolvable('\Linna\Session\Session', $session);
 
 
 /**
