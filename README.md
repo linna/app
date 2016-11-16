@@ -66,7 +66,7 @@ $options = [
         'host' => 'localhost',
         'db_name' => 'test',
         'user' => 'root',
-        'password' => 'cagiva',
+        'password' => 'password',
         'charset' => 'utf8mb4'
     ]
 

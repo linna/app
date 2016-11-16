@@ -103,7 +103,6 @@ $DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
 //resolve Session Handler
 $sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
 //$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
-//$sessionHandler = new MemcachedSessionHandler($memcached, $options['session']['expire']);
 
 //create session object
 $session = new Session($options['session']);
@@ -125,7 +124,6 @@ $DIResolver->cacheUnResolvable('\Linna\Session\Session', $session);
  */
 
 //start router
-//$router = new RouterCached($appRoutes, $options['router'], $memcached);
 $router = new Router($appRoutes, $options['router']);
 
 //evaluate request uri and method
