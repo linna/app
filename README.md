@@ -12,13 +12,11 @@ App Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-
-App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewirte on) web server. Mysql is also needed for run because App contains login and user managment examples that require database.
+App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewirte on) web server. Mysql (PDO Driver) is also needed for run because App contains login and user managment examples that require database.
 
 App run with default php.ini.
 
 ### Installation
-
 *Consider use of sudo command if need administrator privileges.*
 
 With [composer](https://getcomposer.org/)
@@ -33,7 +31,8 @@ After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-a
 ```
 composer dump-autoload --optimize
 ```
-#### Before run:
+
+### Before run
 You must create App database, SQL file is placed in tests directory
 ```
 cd /var/www/html/app
@@ -42,16 +41,16 @@ mysql -u root -p test < tests/database.sql
 ```
 Change config in config.php file placed in app/App/config directory.
 
-Protocol
+**Protocol**
 ```php
 define('URL_PROTOCOL', 'https://');
 ```
-Rewrite engine
+**Rewrite engine**
 ```php
 //set this to false if is not possible to utilize rewrite engine of web server
 define('REWRITE_ENGINE', true);
 ```
-Database configuration
+**Database configuration**
 ```php
 /**
  * Configuration options for linna-framework classes
