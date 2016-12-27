@@ -17,9 +17,9 @@
 define('ROOT', dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR);
 
 /**
- * Set a constant that holds the project's core "application" folder, like "/var/www/html/app/App".
+ * Set a constant that holds the project's core "application" folder, like "/var/www/html/app/".
  */
-define('APP', ROOT . 'App' . DIRECTORY_SEPARATOR);
+define('APP', ROOT . 'app' . DIRECTORY_SEPARATOR);
 
 /**
  * The folder that is visible to public, users will only have access to that folder so nobody can have a look into

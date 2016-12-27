@@ -106,13 +106,13 @@ class HtmlTemplate implements TemplateInterface
         ob_start();
 
         try {
-            if (!file_exists(APP."Templates/_pages/{$template}.html")) {
+            if (!file_exists(APP."src/Templates/_pages/{$template}.html")) {
                 throw new \Exception("The required Template ({$template}) not exist.");
             }
 
-            require APP.'Templates/_shared/header.html';
-            require APP."Templates/_pages/{$template}.html";
-            require APP.'Templates/_shared/footer.html';
+            require APP.'src/Templates/_shared/header.html';
+            require APP."src/Templates/_pages/{$template}.html";
+            require APP.'src/Templates/_shared/footer.html';
         } catch (\Exception $e) {
             echo 'Template exception: ', $e->getMessage(), "\n";
         }

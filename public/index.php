@@ -25,13 +25,13 @@ use Linna\Autoloader;
  */
 
 //load configuration from config file
-require dirname(__DIR__) . '/App/config/config.php';
+require dirname(__DIR__) . '/config/config.php';
 
 //load routes.
-require APP . '/config/routes.php';
+require APP . 'config/routes.php';
 
 //composer autoload
-require ROOT . '/vendor/autoload.php';
+require APP . 'vendor/autoload.php';
 
 /**
  * Autoloader Section
@@ -44,12 +44,12 @@ $loader = new Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
-    ['App\Models', __DIR__ . '/../App/Models'],
-    ['App\Views', __DIR__ . '/../App/Views'],
-    ['App\Controllers', __DIR__ . '/../App/Controllers'],
-    ['App\Templates', __DIR__ . '/../App/Templates'],
-    ['App\Mappers', __DIR__ . '/../App/Mappers'],
-    ['App\DomainObjects', __DIR__ . '/../App/DomainObjects'],
+    ['App\Models', __DIR__ . '/../src/Models'],
+    ['App\Views', __DIR__ . '/../src/Views'],
+    ['App\Controllers', __DIR__ . '/../src/Controllers'],
+    ['App\Templates', __DIR__ . '/../src/Templates'],
+    ['App\Mappers', __DIR__ . '/../src/Mappers'],
+    ['App\DomainObjects', __DIR__ . '/../src/DomainObjects'],
 ]);
 
 /**

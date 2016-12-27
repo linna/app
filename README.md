@@ -39,7 +39,7 @@ cd /var/www/html/app
 mysql -e 'create database test;'
 mysql -u root -p test < tests/database.sql
 ```
-Change config in config.php file placed in app/App/config directory.
+Change config in config.php file placed in /var/www/html/app/config directory.
 
 **Protocol**
 ```php
