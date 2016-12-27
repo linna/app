@@ -1,4 +1,7 @@
-# Linna App
+![Linna App](logo.png)
+<br/>
+<br/>
+<br/>
 [![Build Status](https://travis-ci.org/s3b4stian/linna-app.svg?branch=master)](https://travis-ci.org/s3b4stian/linna-app)
 [![Build Status](https://scrutinizer-ci.com/g/s3b4stian/linna-app/badges/build.png?b=master)](https://scrutinizer-ci.com/g/s3b4stian/linna-app/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/s3b4stian/linna-app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/s3b4stian/linna-app/?branch=master)
