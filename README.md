@@ -1,4 +1,4 @@
-![Linna App](logo.png)
+![Linna App](logo-app.png)
 <br/>
 <br/>
 <br/>
