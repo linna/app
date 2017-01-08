@@ -6,7 +6,7 @@ checks:
     javascript: true
 
 filter:
-    paths: ['App/*']
+    paths: ['src/*']
     
 tools:
     php_code_sniffer:
