@@ -20,18 +20,39 @@ use Linna\DI\DIResolver;
 use Linna\Autoloader;
 
 /**
- * Config File Section
- *
+ * Bootstrap and config
+ * 
  */
+
+
+//Set a constant that holds the project's folder path, like "/var/www/"
+define('ROOT', dirname(dirname(__DIR__)));
+
+//The domain, autodetected
+define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 
 //load configuration from config file
 require dirname(__DIR__) . '/config/config.php';
 
 //load routes.
-require APP . 'config/routes.php';
+require dirname(__DIR__) . '/config/routes.php';
 
 //composer autoload
-require APP . 'vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+//app 
+define('APP', ROOT . $options['app']['urlSubFolder']);
+
+//The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
+//then replace this line with full URL (and sub-folder) and a trailing slash.
+if ($options['router']['rewriteMode'] === false) {
+    define('URL', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder'] . '/index.php?/');
+    define('URL_STYLE', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder'] . '/' . $options['app']['urlPublicFolder'] . '/');
+} else {
+    define('URL', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder']);
+    define('URL_STYLE', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder']);
+}
+
 
 /**
  * Autoloader Section
@@ -51,6 +72,7 @@ $loader->addNamespaces([
     ['App\Mappers', __DIR__ . '/../src/Mappers'],
     ['App\DomainObjects', __DIR__ . '/../src/DomainObjects'],
 ]);
+
 
 /**
  * Memcached Section

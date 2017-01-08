@@ -44,21 +44,40 @@ mysql -u root -p test < tests/database.sql
 ```
 Change config in config.php file placed in /var/www/html/app/config directory.
 
-**Protocol**
+#### Protocol and app dir
 ```php
-define('URL_PROTOCOL', 'https://');
-```
-**Rewrite engine**
-```php
-//set this to false if is not possible to utilize rewrite engine of web server
-define('REWRITE_ENGINE', true);
-```
-**Database configuration**
-```php
-/**
- * Configuration options for linna-framework classes
- */
+$options = [
 
+    //other options
+
+    'app' => [
+        'urlProtocol' => 'https://',
+        'urlSubFolder' => '/app/', // es /var/www/html/app/
+        'urlPublicFolder' => 'public' // es /var/www/html/app/public
+    ],
+
+    //other options
+];
+```
+
+#### Rewrite engine
+```php
+$options = [
+
+    //other options
+
+    'router' => [
+        'basePath' => '/app/', //equal to urlSubFolder
+        'badRoute' => 'E404',
+        'rewriteMode' => true
+    ],
+
+    //other options
+];
+```
+
+#### Database configuration
+```php
 $options = [
 
     //other options
@@ -70,7 +89,7 @@ $options = [
         'user' => 'root',
         'password' => 'password',
         'charset' => 'utf8mb4'
-    ]
+    ],
 
     //other options
 ];
