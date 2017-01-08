@@ -20,7 +20,7 @@ App was written for run with linna-framework and need PHP 7.0 or higher, was tes
 App run with default php.ini.
 
 ### Installation
-*Consider use of sudo command if need administrator privileges.*
+*Consider use of sudo command if need administrator privileges and don't forget to set proper folder permissions*
 
 With [composer](https://getcomposer.org/)
 ```
