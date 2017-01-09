@@ -65,12 +65,12 @@ $loader = new Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
-    ['App\Models', __DIR__ . '/../src/Models'],
-    ['App\Views', __DIR__ . '/../src/Views'],
-    ['App\Controllers', __DIR__ . '/../src/Controllers'],
-    ['App\Templates', __DIR__ . '/../src/Templates'],
-    ['App\Mappers', __DIR__ . '/../src/Mappers'],
-    ['App\DomainObjects', __DIR__ . '/../src/DomainObjects'],
+    ['App\Models', APP . 'src/Models'],
+    ['App\Views', APP . 'src/Views'],
+    ['App\Controllers', APP . 'src/Controllers'],
+    ['App\Templates', APP . 'src/Templates'],
+    ['App\Mappers', APP . 'src/Mappers'],
+    ['App\DomainObjects', APP . 'src/DomainObjects'],
 ]);
 
 
