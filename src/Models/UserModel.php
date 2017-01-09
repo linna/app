@@ -107,7 +107,7 @@ class UserModel extends Model
         return;
     }
     
-    protected function modifyCheks(User $user, string $newName, string $newDescription) : bool
+    protected function modifyChecks(User $user, string $newName) : bool
     {
         //user name must be not null
         if ($newName === null || $newName === '') {
@@ -131,7 +131,7 @@ class UserModel extends Model
     {
         $user = $this->mapper->findById($userId);
         
-        if ($this->modifyCheks($user, $newName, $newDescription) === false){return;}
+        if ($this->modifyChecks($user, $newName) === false){return;}
         
         $user->name = $newName;
         $user->description = $newDescription;
