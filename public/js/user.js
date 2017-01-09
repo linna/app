@@ -14,23 +14,20 @@ var User = {
     modButtonCancel: {},
     modButtonSave: {},
     enable(button, userId) {
-
-        var ajax = new Ajax();
-        var url_req = url + 'user/' + userId + '/enable';
-        ajax.get(url_req)
-                .done(function (response, xhr) {
-                    button.className = 'active';
-                    button.setAttribute('onclick', 'User.disable(this, ' + userId + ')');
-                });
+        this.changeState("enable", userId, button);
     },
     disable(button, userId) {
-
+        this.changeState("disable", userId, button);
+    },
+    changeState(state, userId, button)
+    {
         var ajax = new Ajax();
-        var url_req = url + 'user/' + userId + '/disable';
-        ajax.get(url_req)
+        var urlReq = URL + 'user/' + userId + '/'+ state;
+        ajax.get(urlReq)
                 .done(function (response, xhr) {
-                    button.className = 'noactive';
-                    button.setAttribute('onclick', 'User.enable(this, ' + userId + ')');
+                    button.className = (state === 'enable') ? 'active' : 'noactive';
+                    var callMethod = (state === 'enable') ? 'disable' : 'enable';
+                    button.setAttribute('onclick', 'User.'+ callMethod +'(this, ' + userId + ')');
                 });
     },
     changePassword(button, userId, userName)
@@ -72,7 +69,7 @@ var User = {
         var newUserDescription = document.getElementById('newuserdescription_' + userId);
 
         var ajax = new Ajax();
-        var url_req = url + 'user/' + userId + '/modify';
+        var url_req = URL + 'user/' + userId + '/modify';
         var data = {
             new_user_name: newUserName.value,
             new_user_description: newUserDescription.value
@@ -245,7 +242,7 @@ var User = {
     _doDelete(button, userId) {
 
         var ajax = new Ajax();
-        var url_req = url + 'user/' + userId + '/delete';
+        var url_req = URL + 'user/' + userId + '/delete';
         ajax.get(url_req)
                 .done(function (response, xhr) {
 
@@ -259,7 +256,7 @@ var User = {
         var newPassword = document.getElementById('newpassword');
         var confirmPassword = document.getElementById('confirmpassword');
         var ajax = new Ajax();
-        var urlReq = url + 'user/' + userId + '/changePassword';
+        var urlReq = URL + 'user/' + userId + '/changePassword';
         var data = {
             new_password: newPassword.value,
             confirm_password: confirmPassword.value
