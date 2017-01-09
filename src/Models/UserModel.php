@@ -15,6 +15,7 @@ namespace App\Models;
 use Linna\Mvc\Model;
 use Linna\Auth\Password;
 use App\Mappers\UserMapper;
+use App\DomainObjects\User;
 
 class UserModel extends Model
 {
@@ -73,21 +74,29 @@ class UserModel extends Model
 
         return 0;
     }
-
-    public function changePassword(int $userId, string $newPassword, string $confirmPassword)
+    
+    protected function changePasswordChecks(string $newPassword, string $confirmPassword) :bool
     {
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
             $this->getUpdate = ['error' => 2];
-            return;
+            return false;
         }
 
         //password must be equal to confirm password
         if ($newPassword !== $confirmPassword) {
             $this->getUpdate = ['error' => 1];
-            return;
+            return false;
         }
-
+        
+        return true;
+    }
+    
+    public function changePassword(int $userId, string $newPassword, string $confirmPassword)
+    {
+        //do password checks
+        if ($this->changePasswordChecks($newPassword, $confirmPassword) === false){return;}
+        
         $user = $this->mapper->findById($userId);
         $user->password = $this->password->hash($newPassword);
 
@@ -97,24 +106,33 @@ class UserModel extends Model
 
         return;
     }
-
-    public function modify(int $userId, string $newName, string $newDescription)
+    
+    protected function modifyCheks(User $user, string $newName, string $newDescription) : bool
     {
         //user name must be not null
         if ($newName === null || $newName === '') {
             $this->getUpdate = ['error' => 2];
-            return;
+            return false;
         }
-
-        $checkUser = $this->mapper->findByName($newName);
-        $user = $this->mapper->findById($userId);
         
+        //search for user with new username
+        $checkUser = $this->mapper->findByName($newName);
+                
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             $this->getUpdate = ['error' => 1];
-            return;
+            return false;
         }
-
+        
+        return true;
+    }
+    
+    public function modify(int $userId, string $newName, string $newDescription)
+    {
+        $user = $this->mapper->findById($userId);
+        
+        if ($this->modifyCheks($user, $newName, $newDescription) === false){return;}
+        
         $user->name = $newName;
         $user->description = $newDescription;
 
