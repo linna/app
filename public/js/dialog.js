@@ -8,7 +8,7 @@
  *
  */
 
-'use strict';
+"use strict";
 
 //http://lea.verou.me/2015/04/idea-extending-native-dom-prototypes-without-collisions/
 
@@ -25,9 +25,9 @@ dialog.prototype = {
         var d = new Date();
         var n = d.getTime();
 
-        var o = document.createElement('div');
-        o.setAttribute('id', 'overlay_' + n);
-        o.classList.add('overlay');
+        var o = document.createElement("div");
+        o.setAttribute("id", "overlay_" + n);
+        o.classList.add("overlay");
 
         //console.log(this);
         this.currentOverlay = o;
@@ -44,10 +44,10 @@ dialog.prototype = {
     close() {
 
         this.element.id = this.currentElementId;
-        this.element.classList.remove('content');
-        this.element.removeAttribute('class');
+        this.element.classList.remove("content");
+        this.element.removeAttribute("class");
 
-        document.querySelector('main').appendChild(this.element);
+        document.querySelector("main").appendChild(this.element);
 
         document.body.removeChild(this.currentOverlay);
     },
@@ -57,45 +57,45 @@ dialog.prototype = {
         var dialogHeader = null;
         var dialogButtons = null;
 
-        this.element.classList.add('content');
+        this.element.classList.add("content");
 
         this.currentElementId = this.element.id;
 
-        this.element.removeAttribute('id');
+        this.element.removeAttribute("id");
 
 
         var buttonAddEvent = function (buttonEl, i) {
-            buttonEl.addEventListener('click', function (e) {
+            buttonEl.addEventListener("click", function (e) {
                 i(overlay);
             }, false);
         };
 
         for (var opt in options)
         {
-            if (opt === 'name')
+            if (opt === "name")
             {
-                var h = document.createElement('h1');
+                var h = document.createElement("h1");
                 h.innerHTML = options[opt];
 
                 dialogHeader = h;
             }
 
-            if (opt === 'buttons')
+            if (opt === "buttons")
             {
                 var button = options[opt];
 
-                dialogButtons = document.createElement('div');
-                dialogButtons.classList.add('buttons');
+                dialogButtons = document.createElement("div");
+                dialogButtons.classList.add("buttons");
                 
                 this.buttonBar = dialogButtons;
                 
                 for (var btn in button)
                 {
                     var currentCallback = button[btn];
-                    var b = document.createElement('button');
+                    var b = document.createElement("button");
 
                     b.innerHTML = btn;
-                    b.setAttribute('id', 'dButton_' + btn);
+                    b.setAttribute("id", "dButton_" + btn);
 
                     buttonAddEvent(b, currentCallback);
 
@@ -105,9 +105,9 @@ dialog.prototype = {
             }
         }
 
-        var overlayContent = document.createElement('div');
+        var overlayContent = document.createElement("div");
 
-        overlayContent.classList.add('dialog');
+        overlayContent.classList.add("dialog");
 
         overlayContent.appendChild(dialogHeader);
         overlayContent.appendChild(this.element);
