@@ -47,7 +47,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @var array $js Js file for template
      */
-    protected $js = array();
+    protected $javascript = array();
     
     
     /**
@@ -85,7 +85,7 @@ class HtmlTemplate implements TemplateInterface
      */
     public function loadJs(string $file)
     {
-        $this->js[] = URL_STYLE.$file;
+        $this->javascript[] = URL_STYLE.$file;
     }
 
     /**
@@ -99,7 +99,7 @@ class HtmlTemplate implements TemplateInterface
         
         $data = $this->data;
         $css = $this->css;
-        $js = $this->js;
+        $javascript = $this->javascript;
 
         $title = $this->title;
 
