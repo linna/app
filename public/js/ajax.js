@@ -8,7 +8,7 @@
  *
  */
 
-'use strict';
+"use strict";
 
 function Ajax() {
     var $public = {};
@@ -24,27 +24,27 @@ function Ajax() {
     };
 
     $public.get = function get(url) {
-        return $private.XHRConnection('GET', url, null);
+        return $private.XHRConnection("GET", url, null);
     };
 
     $public.post = function post(url, data) {
-        return $private.XHRConnection('POST', url, data);
+        return $private.XHRConnection("POST", url, data);
     };
 
     $public.put = function put(url, data) {
-        return $private.XHRConnection('PUT', url, data);
+        return $private.XHRConnection("PUT", url, data);
     };
 
     $public.delete = function del(url, data) {
-        return $private.XHRConnection('DELETE', url, data);
+        return $private.XHRConnection("DELETE", url, data);
     };
 
     $private.XHRConnection = function XHRConnection(type, url, data) {
         var xhr = new XMLHttpRequest();
-        var contentType = 'application/x-www-form-urlencoded';
-        xhr.open(type, url || '', true);
-        xhr.setRequestHeader('Content-Type', contentType);
-        xhr.addEventListener('readystatechange', $private.ready, false);
+        var contentType = "application/x-www-form-urlencoded";
+        xhr.open(type, url || "", true);
+        xhr.setRequestHeader("Content-Type", contentType);
+        xhr.addEventListener("readystatechange", $private.ready, false);
         xhr.send($private.objectToQueryString(data));
         return $private.promises();
     };
@@ -97,12 +97,12 @@ function Ajax() {
     $private.getQueryString = function getQueryString(object) {
         return Object.keys(object).map(function (item) {
             return encodeURIComponent(item)
-                    + '=' + encodeURIComponent(object[ item ]);
-        }).join('&');
+                    + "=" + encodeURIComponent(object[ item ]);
+        }).join("&");
     };
 
     $private.isObject = function isObject(data) {
-        return '[object Object]' === Object.prototype.toString.call(data);
+        return "[object Object]" === Object.prototype.toString.call(data);
     };
 
     return $public;
