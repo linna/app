@@ -39,13 +39,13 @@ var User = {
         passDialog.dialog.open({
             name: "password change for " + userName + "...",
             buttons: {
-                exit: function ()
+                exit()
                 {
                     passDialog.dialog.close();
                     document.getElementById("newpassword").value = "";
                     document.getElementById("confirmpassword").value = "";
                 },
-                change: function ()
+                change()
                 {
                     User._doChangePassword(passDialog, userId);
                 }
@@ -71,13 +71,13 @@ var User = {
         var newUserDescription = document.getElementById("newuserdescription_" + userId);
 
         var ajax = new Ajax();
-        var url_req = URL + "user/" + userId + "/modify";
+        var urlReq = URL + "user/" + userId + "/modify";
         var data = {
-            new_user_name: newUserName.value,
-            new_user_description: newUserDescription.value
+            newUserName: newUserName.value,
+            newUserDescription: newUserDescription.value
         };
 
-        ajax.post(url_req, data)
+        ajax.post(urlReq, data)
                 .done(function (response, xhr) {
 
                     User._cleanModifyTd(td);
@@ -88,12 +88,12 @@ var User = {
                     var div = document.createElement("div");
                     div.classList.add("message");
                     div.style.textAlign = "right";
-                    div.style = "text-align:left; margin-left: 0px; font-size:12px;"
+                    div.style = "text-align:left; margin-left: 0px; font-size:12px;";
                     
                     if (response.error === 0)
                     {
-                        tr.cells[0].innerHTML = data.new_user_name;
-                        tr.cells[1].innerHTML = data.new_user_description;
+                        tr.cells[0].innerHTML = data.newUserName;
+                        tr.cells[1].innerHTML = data.newUserDescription;
                         User._modifyExitAfterSave(button, userId);
                     }
                     
@@ -206,12 +206,12 @@ var User = {
         deleteDialog.dialog.open({
             name: "delete?",
             buttons: {
-                exit: function ()
+                exit()
                 {
                     deleteDialog.dialog.close();
                     deleteDialog.innerHTML = message;
                 },
-                confirm: function () {
+                confirm() {
 
                     User._doDelete(button, userId);
                     deleteDialog.dialog.close();
@@ -259,8 +259,8 @@ var User = {
         var ajax = new Ajax();
         var urlReq = URL + "user/" + userId + "/changePassword";
         var data = {
-            new_password: newPassword.value,
-            confirm_password: confirmPassword.value
+            newPassword: newPassword.value,
+            confirmPassword: confirmPassword.value
         };
         ajax.post(urlReq, data)
                 .done(function (response, xhr) {

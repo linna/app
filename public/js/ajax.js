@@ -24,22 +24,22 @@ function Ajax() {
     };
 
     $public.get = function get(url) {
-        return $private.XHRConnection("GET", url, null);
+        return $private.xhrConnection("GET", url, null);
     };
 
     $public.post = function post(url, data) {
-        return $private.XHRConnection("POST", url, data);
+        return $private.xhrConnection("POST", url, data);
     };
 
     $public.put = function put(url, data) {
-        return $private.XHRConnection("PUT", url, data);
+        return $private.xhrConnection("PUT", url, data);
     };
 
     $public.delete = function del(url, data) {
-        return $private.XHRConnection("DELETE", url, data);
+        return $private.xhrConnection("DELETE", url, data);
     };
 
-    $private.XHRConnection = function XHRConnection(type, url, data) {
+    $private.xhrConnection = function XHRConnection(type, url, data) {
         var xhr = new XMLHttpRequest();
         var contentType = "application/x-www-form-urlencoded";
         xhr.open(type, url || "", true);

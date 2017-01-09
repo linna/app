@@ -54,8 +54,8 @@ class UserController extends Controller
     {
         if ($this->authentication === false){return;}
         
-        $newPassword = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
-        $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+        $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_STRING);
+        $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_STRING);
         
         $this->model->changePassword($userId, $newPassword, $confirmPassword);
     }
@@ -64,8 +64,8 @@ class UserController extends Controller
     {
         if ($this->authentication === false){return;}
         
-        $newUserName = filter_input(INPUT_POST, 'new_user_name', FILTER_SANITIZE_STRING);
-        $newUserDescription = filter_input(INPUT_POST, 'new_user_description', FILTER_SANITIZE_STRING);
+        $newUserName = filter_input(INPUT_POST, 'newUserName', FILTER_SANITIZE_STRING);
+        $newUserDescription = filter_input(INPUT_POST, 'newUserDescription', FILTER_SANITIZE_STRING);
         
         $this->model->modify($userId, $newUserName, $newUserDescription);
     }

@@ -12,11 +12,11 @@
 
 //http://lea.verou.me/2015/04/idea-extending-native-dom-prototypes-without-collisions/
 
-var dialog = function (element) {
+var Dialog = function (element) {
     this.element = element;
 };
 
-dialog.prototype = {
+Dialog.prototype = {
     buttonBar: null,
     currentOverlay: null,
     currentElementId: null,
@@ -127,7 +127,7 @@ dialog.prototype = {
 Object.defineProperty(Element.prototype, "dialog", {
     get() {
         Object.defineProperty(this, "dialog", {
-            value: new dialog(this)
+            value: new Dialog(this)
         });
 
         return this.dialog;
