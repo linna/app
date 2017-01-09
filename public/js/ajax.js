@@ -15,11 +15,11 @@ function Ajax() {
     var $private = {};
 
     $private.methods = {
-        done: function () {
+        done() {
         },
-        error: function () {
+        error() {
         },
-        always: function () {
+        always() {
         }
     };
 

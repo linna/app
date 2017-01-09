@@ -20,7 +20,7 @@ dialog.prototype = {
     buttonBar: null,
     currentOverlay: null,
     currentElementId: null,
-    _generateUnOverlay: function () {
+    _generateUnOverlay() {
 
         var d = new Date();
         var n = d.getTime();
@@ -35,13 +35,13 @@ dialog.prototype = {
         return o;
     },
     
-    removeButton: function (buttonId)
+    removeButton(buttonId)
     {
         //console.log(this.buttonBar);
         this.buttonBar.removeChild(document.getElementById(buttonId));
     },
     
-    close: function () {
+    close() {
 
         this.element.id = this.currentElementId;
         this.element.classList.remove('content');
@@ -51,7 +51,7 @@ dialog.prototype = {
 
         document.body.removeChild(this.currentOverlay);
     },
-    open: function (options) {
+    open(options) {
         
        
         var dialogHeader = null;
@@ -69,7 +69,6 @@ dialog.prototype = {
                 i(overlay);
             }, false);
         };
-
 
         for (var opt in options)
         {
@@ -126,7 +125,7 @@ dialog.prototype = {
 
 
 Object.defineProperty(Element.prototype, "dialog", {
-    get: function () {
+    get() {
         Object.defineProperty(this, "dialog", {
             value: new dialog(this)
         });

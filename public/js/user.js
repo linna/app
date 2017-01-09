@@ -13,32 +13,32 @@ var User = {
     modOldUserDescription: {},
     modButtonCancel: {},
     modButtonSave: {},
-    enable: function (button, user_id) {
+    enable(button, userId) {
 
         var ajax = new Ajax();
-        var url_req = url + 'user/' + user_id + '/enable';
+        var url_req = url + 'user/' + userId + '/enable';
         ajax.get(url_req)
                 .done(function (response, xhr) {
                     button.className = 'active';
-                    button.setAttribute('onclick', 'User.disable(this, ' + user_id + ')');
+                    button.setAttribute('onclick', 'User.disable(this, ' + userId + ')');
                 });
     },
-    disable: function (button, user_id) {
+    disable(button, userId) {
 
         var ajax = new Ajax();
-        var url_req = url + 'user/' + user_id + '/disable';
+        var url_req = url + 'user/' + userId + '/disable';
         ajax.get(url_req)
                 .done(function (response, xhr) {
                     button.className = 'noactive';
-                    button.setAttribute('onclick', 'User.enable(this, ' + user_id + ')');
+                    button.setAttribute('onclick', 'User.enable(this, ' + userId + ')');
                 });
     },
-    changePassword: function (button, user_id, user_name)
+    changePassword(button, userId, userName)
     {
         var passDialog = document.getElementById('changePasswordDialog');
 
         passDialog.dialog.open({
-            name: 'password change for ' + user_name + '...',
+            name: 'password change for ' + userName + '...',
             buttons: {
                 exit: function ()
                 {
@@ -48,31 +48,31 @@ var User = {
                 },
                 change: function ()
                 {
-                    User._doChangePassword(passDialog, user_id);
+                    User._doChangePassword(passDialog, userId);
                 }
             }
         });
 
         User._cleanPasswordForm();
     },
-    modify: function (button, user_id)
+    modify(button, userId)
     {
         var tr = button.parentNode.parentNode;
 
-        this._createModifyForm(tr, user_id);
-        this._createButtonModifyForm(tr, user_id);
+        this._createModifyForm(tr, userId);
+        this._createButtonModifyForm(tr, userId);
 
     },
-    modifySave: function (button, user_id) {
+    modifySave(button, userId) {
 
         var td = button.parentNode;
         var tr = td.parentNode;
 
-        var newUserName = document.getElementById('newusername_' + user_id);
-        var newUserDescription = document.getElementById('newuserdescription_' + user_id);
+        var newUserName = document.getElementById('newusername_' + userId);
+        var newUserDescription = document.getElementById('newuserdescription_' + userId);
 
         var ajax = new Ajax();
-        var url_req = url + 'user/' + user_id + '/modify';
+        var url_req = url + 'user/' + userId + '/modify';
         var data = {
             new_user_name: newUserName.value,
             new_user_description: newUserDescription.value
@@ -102,64 +102,64 @@ var User = {
                         case 0:
                             tr.cells[0].innerHTML = data.new_user_name;
                             tr.cells[1].innerHTML = data.new_user_description;
-                            User._modifyExitAfterSave(button, user_id);
+                            User._modifyExitAfterSave(button, userId);
                             break;
                     }
                 });
     },
-    _modifyClear: function (user_id) {
+    _modifyClear(userId) {
 
-        delete this.modButtonCancel['user' + user_id];
-        delete this.modButtonSave['user' + user_id];
+        delete this.modButtonCancel['user' + userId];
+        delete this.modButtonSave['user' + userId];
 
-        delete this.modOldUserName['user' + user_id];
-        delete this.modOldUserDescription['user' + user_id];
+        delete this.modOldUserName['user' + userId];
+        delete this.modOldUserDescription['user' + userId];
     },
-    _modifyExitAfterSave: function (button, user_id) {
+    _modifyExitAfterSave(button, userId) {
 
         var tr = button.parentNode.parentNode;
         var td = button.parentNode;
 
-        var buttonCancel = this.modButtonCancel['user' + user_id];
-        var buttonSave = this.modButtonSave['user' + user_id];
+        var buttonCancel = this.modButtonCancel['user' + userId];
+        var buttonSave = this.modButtonSave['user' + userId];
 
 
         td.removeChild(buttonCancel);
         td.removeChild(buttonSave);
 
         this._cleanModifyTd(td);
-        this._modifyClear(user_id);
+        this._modifyClear(userId);
 
     },
-    modifyExit: function (button, user_id) {
+    modifyExit(button, userId) {
 
         var tr = button.parentNode.parentNode;
         var td = button.parentNode;
 
-        var buttonCancel = this.modButtonCancel['user' + user_id];
-        var buttonSave = this.modButtonSave['user' + user_id];
+        var buttonCancel = this.modButtonCancel['user' + userId];
+        var buttonSave = this.modButtonSave['user' + userId];
 
 
         td.removeChild(buttonCancel);
         td.removeChild(buttonSave);
 
-        tr.cells[0].innerHTML = this.modOldUserName['user' + user_id];
-        tr.cells[1].innerHTML = this.modOldUserDescription['user' + user_id];
+        tr.cells[0].innerHTML = this.modOldUserName['user' + userId];
+        tr.cells[1].innerHTML = this.modOldUserDescription['user' + userId];
 
         this._cleanModifyTd(td);
-        this._modifyClear(user_id);
+        this._modifyClear(userId);
 
     },
-    _createModifyForm: function (tr, user_id) {
+    _createModifyForm(tr, userId) {
 
-        this.modOldUserName['user' + user_id] = tr.cells[0].innerHTML;
-        this.modOldUserDescription['user' + user_id] = tr.cells[1].innerHTML;
+        this.modOldUserName['user' + userId] = tr.cells[0].innerHTML;
+        this.modOldUserDescription['user' + userId] = tr.cells[1].innerHTML;
 
         var inputUserName = document.createElement('input');
         var inputUserDescription = document.createElement('input');
 
-        inputUserName.id = 'newusername_' + user_id;
-        inputUserDescription.id = 'newuserdescription_' + user_id;
+        inputUserName.id = 'newusername_' + userId;
+        inputUserDescription.id = 'newuserdescription_' + userId;
 
         inputUserName.value = tr.cells[0].innerHTML;
         inputUserDescription.value = tr.cells[1].innerHTML;
@@ -175,36 +175,36 @@ var User = {
 
 
     },
-    _createButtonModifyForm: function (tr, user_id) {
+    _createButtonModifyForm(tr, userId) {
 
         var buttonCancel = document.createElement('button');
         var buttonSave = document.createElement('button');
 
-        buttonCancel.id = 'userbuttonmodify_' + user_id;
+        buttonCancel.id = 'userbuttonmodify_' + userId;
         buttonCancel.classList.add('icon');
         buttonCancel.classList.add('cross-16');
         buttonCancel.style.marginLeft = '10px';
 
-        buttonSave.id = 'userbuttonsave_' + user_id;
+        buttonSave.id = 'userbuttonsave_' + userId;
         buttonSave.classList.add('icon');
         buttonSave.classList.add('save-16');
 
-        buttonCancel.setAttribute('onclick', 'User.modifyExit(this,' + user_id + ')');
-        buttonSave.setAttribute('onclick', 'User.modifySave(this,' + user_id + ')');
+        buttonCancel.setAttribute('onclick', 'User.modifyExit(this,' + userId + ')');
+        buttonSave.setAttribute('onclick', 'User.modifySave(this,' + userId + ')');
 
-        this.modButtonCancel['user' + user_id] = buttonCancel;
-        this.modButtonSave['user' + user_id] = buttonSave;
+        this.modButtonCancel['user' + userId] = buttonCancel;
+        this.modButtonSave['user' + userId] = buttonSave;
 
 
         tr.cells[4].appendChild(buttonCancel);
         tr.cells[4].appendChild(buttonSave);
 
     },
-    delete: function (button, user_id, user_name)
+    delete(button, userId, userName)
     {
         var deleteDialog = document.getElementById('deleteDialog');
         var message = new String(deleteDialog.innerHTML);
-        deleteDialog.innerHTML = message.replace('_username_', user_name);
+        deleteDialog.innerHTML = message.replace('_username_', userName);
         deleteDialog.dialog.open({
             name: 'delete?',
             buttons: {
@@ -215,14 +215,14 @@ var User = {
                 },
                 confirm: function () {
 
-                    User._doDelete(button, user_id);
+                    User._doDelete(button, userId);
                     deleteDialog.dialog.close();
                     deleteDialog.innerHTML = message;
                 }
             }
         });
     },
-    _cleanPasswordForm: function ()
+    _cleanPasswordForm()
     {
         var messages = document.querySelectorAll('.message');
         var dialogContent = document.querySelector('.content');
@@ -231,7 +231,7 @@ var User = {
             dialogContent.removeChild(el);
         });
     },
-    _cleanModifyTd: function (td)
+    _cleanModifyTd(td)
     {
         var messages = document.querySelectorAll('.message');
         [].slice.call(messages).forEach(function (el, i) {
@@ -242,10 +242,10 @@ var User = {
             }
         });
     },
-    _doDelete: function (button, user_id) {
+    _doDelete(button, userId) {
 
         var ajax = new Ajax();
-        var url_req = url + 'user/' + user_id + '/delete';
+        var url_req = url + 'user/' + userId + '/delete';
         ajax.get(url_req)
                 .done(function (response, xhr) {
 
@@ -254,17 +254,17 @@ var User = {
                     tbody.removeChild(tr);
                 });
     },
-    _doChangePassword: function (passDialog, user_id) {
+    _doChangePassword(passDialog, userId) {
 
         var newPassword = document.getElementById('newpassword');
         var confirmPassword = document.getElementById('confirmpassword');
         var ajax = new Ajax();
-        var url_req = url + 'user/' + user_id + '/changePassword';
+        var urlReq = url + 'user/' + userId + '/changePassword';
         var data = {
             new_password: newPassword.value,
             confirm_password: confirmPassword.value
         };
-        ajax.post(url_req, data)
+        ajax.post(urlReq, data)
                 .done(function (response, xhr) {
 
                     User._cleanPasswordForm();
