@@ -80,27 +80,26 @@ var User = {
 
                     User._cleanModifyTd(td);
 
+                    var errorArray = ['','this user name already present :(','please choose a new user name :|'];
+                    var classArray = ['','error','alert'];
+                    
                     var div = document.createElement('div');
                     div.classList.add('message');
                     div.style.textAlign = 'right';
                     div.style = 'text-align:left; margin-left: 0px; font-size:12px;'
-
-                    switch (response.error) {
-                        case 2:
-                            div.innerHTML = 'please choose a new user name :|';
-                            div.classList.add('alert');
-                            td.insertBefore(div, td.firstChild);
-                            break;
-                        case 1:
-                            div.innerHTML = 'this user name already present :(';
-                            div.classList.add('error');
-                            td.insertBefore(div, td.firstChild);
-                            break;
-                        case 0:
-                            tr.cells[0].innerHTML = data.new_user_name;
-                            tr.cells[1].innerHTML = data.new_user_description;
-                            User._modifyExitAfterSave(button, userId);
-                            break;
+                    
+                    if (response.error === 0)
+                    {
+                        tr.cells[0].innerHTML = data.new_user_name;
+                        tr.cells[1].innerHTML = data.new_user_description;
+                        User._modifyExitAfterSave(button, userId);
+                    }
+                    
+                    if (response.error > 0)
+                    {
+                        div.innerHTML = errorArray[response.error];
+                        div.classList.add(classArray[response.error]);
+                        td.insertBefore(div, td.firstChild);
                     }
                 });
     },
@@ -265,31 +264,30 @@ var User = {
                 .done(function (response, xhr) {
 
                     User._cleanPasswordForm();
-
+                    
+                    var errorArray = ['','new password and confirm password are different :(','please choose a new password :|'];
+                    var classArray = ['','error','alert'];
+                    
                     var dialogContent = document.querySelector('.content');
 
                     var div = document.createElement('div');
                     div.classList.add('message');
-
-                    switch (response.error) {
-                        case 2:
-                            div.innerHTML = 'please choose a new password :|';
-                            div.classList.add('alert');
-                            dialogContent.appendChild(div);
-                            break;
-                        case 1:
-                            div.innerHTML = 'new password and confirm password are different :(';
-                            div.classList.add('error');
-                            dialogContent.appendChild(div);
-                            break;
-                        case 0:
-                            div.classList.add('success');
-                            div.innerHTML = 'password succesfully changed :)';
-                            dialogContent.appendChild(div);
-                            passDialog.dialog.removeButton('dButton_change');
-                            newPassword.value = '';
-                            confirmPassword.value = '';
-                            break;
+                    
+                    if (response.error === 0)
+                    {
+                        div.classList.add('success');
+                        div.innerHTML = 'password succesfully changed :)';
+                        dialogContent.appendChild(div);
+                        passDialog.dialog.removeButton('dButton_change');
+                        newPassword.value = '';
+                        confirmPassword.value = '';
+                    }
+                    
+                    if (response.error > 0)
+                    {
+                        div.innerHTML = errorArray[response.error];
+                        div.classList.add(classArray[response.error]);
+                        dialogContent.appendChild(div);
                     }
                 });
     }
