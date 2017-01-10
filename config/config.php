@@ -13,7 +13,7 @@
 $options = [
     
     'app' => [
-        'urlProtocol' => 'https://',
+        'urlProtocol' => 'http://',
         'urlSubFolder' => '/app/', // es /var/www/html/app/
         'urlPublicFolder' => 'public' // es /var/www/html/app/public
     ],
