@@ -96,6 +96,13 @@ $options = [
 ];
 ```
 
+App is ready for use as storage, Mysql through [pdo](http://php.net/manual/en/ref.pdo-mysql.php) and 
+Mongodb through [mongodb-php-library](https://github.com/mongodb/mongo-php-library).
+
+Mongodb require [mongodb-php-driver](https://github.com/mongodb/mongo-php-driver) enabled.
+
+Index.php in public folder already contains commented code for start with Mongodb, uncomment it if you need.
+
 If needed add another section to options array for use another PDO drive or another database extensions
 
 Now App can be started from browser
