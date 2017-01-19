@@ -16,7 +16,7 @@ App Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewirte on) web server. Mysql (PDO Driver) is also needed for run because App contains login and user managment examples that require database.
+App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewrite on) web server. Mysql (PDO Driver) is also needed for run because App contains login and user managment examples that require database.
 
 App run with default php.ini.
 
@@ -48,15 +48,12 @@ Change config in config.php file placed in /var/www/html/app/config directory.
 #### Protocol and app dir
 ```php
 $options = [
-
     //other options
-
     'app' => [
         'urlProtocol' => 'https://',
         'urlSubFolder' => '/app/', // es /var/www/html/app/
         'urlPublicFolder' => 'public' // es /var/www/html/app/public
     ],
-
     //other options
 ];
 ```
@@ -64,15 +61,12 @@ $options = [
 #### Rewrite engine
 ```php
 $options = [
-
     //other options
-
     'router' => [
         'basePath' => '/app/', //equal to urlSubFolder
         'badRoute' => 'E404',
         'rewriteMode' => true
     ],
-
     //other options
 ];
 ```
@@ -80,9 +74,7 @@ $options = [
 #### Database configuration
 ```php
 $options = [
-
     //other options
-
     'pdo_mysql' => [
         'db_type' => 'mysql',
         'host' => 'localhost',
@@ -91,7 +83,6 @@ $options = [
         'password' => 'password',
         'charset' => 'utf8mb4'
     ],
-
     //other options
 ];
 ```
@@ -101,8 +92,6 @@ Mongodb through [mongodb-php-library](https://github.com/mongodb/mongo-php-libra
 
 Mongodb require [mongodb-php-driver](https://github.com/mongodb/mongo-php-driver) enabled.
 
-Index.php in public folder already contains commented code for start with Mongodb, uncomment it if you need.
-
-If needed add another section to options array for use another PDO drive or another database extensions
+[index.php](https://github.com/s3b4stian/linna-app/blob/master/public/index.php) in public folder already contains commented code for start with Mongodb, uncomment it if you need.
 
 Now App can be started from browser
