@@ -10,8 +10,9 @@
  *
  */
 
-use Linna\Database\MysqlPDOAdapter;
-use Linna\Database\Database;
+use Linna\Storage\MysqlPdoAdapter;
+//use Linna\Storage\MysqliAdapter;
+//use Linna\Storage\MongoDbAdapter;
 use Linna\Session\Session;
 //use Linna\Session\MemcachedSessionHandler;
 use Linna\Http\Router;
@@ -23,7 +24,6 @@ use Linna\Autoloader;
  * Bootstrap and config
  * 
  */
-
 
 //Set a constant that holds the project's folder path, like "/var/www/"
 define('ROOT', dirname(dirname(__DIR__)));
@@ -75,35 +75,6 @@ $loader->addNamespaces([
 
 
 /**
- * Memcached Section
- *
- */
-
-//create memcached instance
-//$memcached = new Memcached();
-//connect to memcached server
-//$memcached->addServer($options['memcached']['host'], $options['memcached']['port']);
-
-
-/**
- * Database Section
- *
- */
-
-//create adapter
-$MysqlAdapter = new MysqlPDOAdapter(
-    $options['pdo_mysql']['db_type'].':host='.$options['pdo_mysql']['host'].
-    ';dbname='.$options['pdo_mysql']['db_name'].';charset='.$options['pdo_mysql']['charset'],
-    $options['pdo_mysql']['user'],
-    $options['pdo_mysql']['password'],
-    array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
-);
-
-//create data base object
-$dataBase = new Database($MysqlAdapter);
-
-
-/**
  * Dependency Injection Section
  *
  */
@@ -111,11 +82,51 @@ $dataBase = new Database($MysqlAdapter);
 //create dipendency injection resolver
 $DIResolver = new DIResolver();
 
-//add unresolvable class to DIResolver
-$DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
+
+/**
+ * Memcached Section
+ *
+ */
+
+//create memcached instance
+//$memcached = new Memcached();
+
+////connect to memcached server
+//$memcached->addServer($options['memcached']['host'], $options['memcached']['port']);
+
+////add unresolvable class to DIResolver
 //$DIResolver->cacheUnResolvable('\Memcached', $memcached);
 //$DIResolver->cacheUnResolvable('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
 
+/**
+ * Storage Section
+ *
+ */
+
+//create Mysql Pdo adapter
+$mysqlPdoAdapter = new MysqlPdoAdapter(
+    $options['pdo_mysql']['dsn'],
+    $options['pdo_mysql']['user'],
+    $options['pdo_mysql']['password'],
+    array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
+);
+
+//create Mysql Improved extension adapter
+/*$mysqliAdapter = new MysqliAdapter(
+    $options['mysqli']['host'],
+    $options['mysqli']['password'],
+    $options['mysqli']['user'],
+    $options['mysqli']['database'],
+    $options['mysqli']['port']
+);*/
+
+//create Mongodb adapter
+//$mongoDbAdapter = new MongoDbAdapter($options['mongo_db']['server_string']);
+
+//add unresolvable class to DIResolver
+$DIResolver->cacheUnResolvable('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);
+//$DIResolver->cacheUnResolvable('\Linna\Storage\MysqliAdapter', $mysqliAdapter);
+//$DIResolver->cacheUnResolvable('\Linna\Storage\MongoDbAdapter', $mongoDbAdapter);
 
 /**
  * Session section
@@ -123,7 +134,7 @@ $DIResolver->cacheUnResolvable('\Linna\Database\Database', $dataBase);
  */
 
 //resolve Session Handler
-$sessionHandler = $DIResolver->resolve('\Linna\Session\DatabaseSessionHandler');
+$sessionHandler = $DIResolver->resolve('\Linna\Session\MysqlPdoSessionHandler');
 //$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
 
 //create session object

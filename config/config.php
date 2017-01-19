@@ -33,12 +33,21 @@ $options = [
     ],
     
     'pdo_mysql' => [
-        'db_type' => 'mysql',
-        'host' => 'localhost',
-        'db_name' => 'test',
+        'dsn' => 'mysql:host=localhost;dbname=test;charset=utf8mb4',
         'user' => 'root',
         'password' => 'cagiva',
-        'charset' => 'utf8mb4'
+    ],
+    
+    'mysqli' => [
+        'host' => '127.0.0.1',
+        'user' => 'root',
+        'password' => 'cagiva',
+        'database' => 'test',
+        'port' => 3306
+    ],
+    
+    'mongo_db' => [
+        'server_string' => 'mongodb://localhost:27017'
     ],
     
     'memcached' =>[
