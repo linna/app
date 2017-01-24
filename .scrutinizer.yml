@@ -16,7 +16,9 @@ tools:
 build:
     environment:
         php: 7.0.8
-        mysql: 5.7
+        mysql: 5.5
+        memcached: true
+        mongodb: true
     tests:
             override:
                 -
@@ -27,6 +29,7 @@ build:
 
     project_setup:
             before:
+                - composer require mongodb/mongodb
                 - mysql -e "CREATE DATABASE test"
                 - mysql -u root test < tests/database.sql
                 - wget https://phar.phpunit.de/phpunit.phar
