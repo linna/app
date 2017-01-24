@@ -22,7 +22,7 @@ use Linna\Autoloader;
 
 /**
  * Bootstrap and config
- * 
+ *
  */
 
 //Set a constant that holds the project's folder path, like "/var/www/"
@@ -40,7 +40,7 @@ require dirname(__DIR__) . '/config/routes.php';
 //composer autoload
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-//app 
+//app
 define('APP', ROOT . $options['app']['urlSubFolder']);
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,

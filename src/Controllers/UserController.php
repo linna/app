@@ -31,28 +31,36 @@ class UserController extends Controller
 
     public function enable(int $userId)
     {
-        if ($this->authentication === false){return;}
+        if ($this->authentication === false) {
+            return;
+        }
         
         $this->model->enable($userId);
     }
 
     public function disable(int $userId)
     {
-        if ($this->authentication === false){return;}
+        if ($this->authentication === false) {
+            return;
+        }
         
         $this->model->disable($userId);
     }
 
     public function delete(int $userId)
     {
-        if ($this->authentication === false){return;}
+        if ($this->authentication === false) {
+            return;
+        }
         
         $this->model->delete($userId);
     }
 
     public function changePassword(int $userId)
     {
-        if ($this->authentication === false){return;}
+        if ($this->authentication === false) {
+            return;
+        }
         
         $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_STRING);
         $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_STRING);
@@ -62,7 +70,9 @@ class UserController extends Controller
 
     public function modify(int $userId)
     {
-        if ($this->authentication === false){return;}
+        if ($this->authentication === false) {
+            return;
+        }
         
         $newUserName = filter_input(INPUT_POST, 'newUserName', FILTER_SANITIZE_STRING);
         $newUserDescription = filter_input(INPUT_POST, 'newUserDescription', FILTER_SANITIZE_STRING);

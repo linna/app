@@ -95,7 +95,9 @@ class UserModel extends Model
     public function changePassword(int $userId, string $newPassword, string $confirmPassword)
     {
         //do password checks
-        if ($this->changePasswordChecks($newPassword, $confirmPassword) === false){return;}
+        if ($this->changePasswordChecks($newPassword, $confirmPassword) === false) {
+            return;
+        }
         
         $user = $this->mapper->findById($userId);
         $user->password = $this->password->hash($newPassword);
@@ -131,7 +133,9 @@ class UserModel extends Model
     {
         $user = $this->mapper->findById($userId);
         
-        if ($this->modifyChecks($user, $newName) === false){return;}
+        if ($this->modifyChecks($user, $newName) === false) {
+            return;
+        }
         
         $user->name = $newName;
         $user->description = $newDescription;
