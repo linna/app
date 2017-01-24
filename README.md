@@ -16,9 +16,15 @@ App Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewrite on) web server. Mysql (PDO Driver) is also needed for run because App contains login and user managment examples that require database.
+App was written for run with linna-framework and need PHP 7.0 or higher, 
+was tested under Linux with Apache (mod rewrite on) web server with default php.ini.
+Mysql (PDO Driver) is also needed for run because App contains login and user managment examples that require database.
 
-App run with default php.ini.
+App is also ready for use as storage Mongodb through [mongodb-php-library](https://github.com/mongodb/mongo-php-library).
+
+Mongodb require [mongodb-php-driver](https://github.com/mongodb/mongo-php-driver) enabled.
+
+[index.php](https://github.com/s3b4stian/linna-app/blob/master/public/index.php) in public folder contains commented code for start with Mongodb, uncomment it if you need.
 
 ### Installation
 *Consider use of sudo command if need administrator privileges and don't forget to set proper folder permissions*
@@ -30,6 +36,11 @@ mkdir app
 composer create-project --prefer-dist s3b4stian/linna-app app
 ```
 Where "app" is directory under webserver document root ex. /var/www/html/app
+
+If you need Mongodb
+```
+composer require mongodb/mongodb
+```
 
 After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```
@@ -48,9 +59,9 @@ Change config in config.php file placed in /var/www/html/app/config directory.
 #### Protocol and app dir
 ```php
 $options = [
-    //other options
+
     'app' => [
-        'urlProtocol' => 'https://',
+        'urlProtocol' => 'http://',
         'urlSubFolder' => '/app/', // es /var/www/html/app/
         'urlPublicFolder' => 'public' // es /var/www/html/app/public
     ],
@@ -76,22 +87,12 @@ $options = [
 $options = [
     //other options
     'pdo_mysql' => [
-        'db_type' => 'mysql',
-        'host' => 'localhost',
-        'db_name' => 'test',
+        'dsn' => 'mysql:host=localhost;dbname=test;charset=utf8mb4',
         'user' => 'root',
         'password' => 'password',
-        'charset' => 'utf8mb4'
     ],
     //other options
 ];
 ```
-
-App is ready for use as storage, Mysql through [pdo](http://php.net/manual/en/ref.pdo-mysql.php) and 
-Mongodb through [mongodb-php-library](https://github.com/mongodb/mongo-php-library).
-
-Mongodb require [mongodb-php-driver](https://github.com/mongodb/mongo-php-driver) enabled.
-
-[index.php](https://github.com/s3b4stian/linna-app/blob/master/public/index.php) in public folder already contains commented code for start with Mongodb, uncomment it if you need.
 
 Now App can be started from browser
