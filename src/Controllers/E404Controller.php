@@ -15,10 +15,20 @@ namespace App\Controllers;
 use Linna\Mvc\Controller;
 use App\Models\E404Model;
 
+/**
+ * Error 404 Controller
+ * 
+ */
 class E404Controller extends Controller
 {
+    /**
+     * Constructor
+     * 
+     * @param E404Model $model
+     */
     public function __construct(E404Model $model)
     {
+        //call parent construct
         parent::__construct($model);
     }
 }

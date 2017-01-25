@@ -13,33 +13,52 @@
 namespace App\Controllers;
 
 use Linna\Mvc\Controller;
-
 use App\Models\LoginModel;
 
+/**
+ * Login Controller
+ * 
+ */
 class LoginController extends Controller
 {
+    /**
+     * Contructor
+     * 
+     * @param LoginModel $model
+     */
     public function __construct(LoginModel $model)
     {
         parent::__construct($model);
     }
     
+    /**
+     * Execute Login
+     * 
+     * @return void
+     */
     public function doLogin()
     {
+        //sanitize input
         $user = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_STRING);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
         
-        $login = $this->model->doLogin($user, $password);
-
-        if ($login === true) {
+        //call login procedure from model and check if ok
+        if ($this->model->doLogin($user, $password) === true) {
+            //return to home
             header('location: '.URL);
             return;
         }
     }
-
+    
+    /**
+     * Logout
+     * 
+     */
     public function logout()
     {
+        //do logout
         $this->model->logout();
-
+        //return to home
         header('location: '.URL);
     }
 }

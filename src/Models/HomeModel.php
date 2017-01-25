@@ -14,8 +14,16 @@ namespace App\Models;
 
 use Linna\Mvc\Model;
 
+/**
+ * Home Page Model
+ * 
+ */
 class HomeModel extends Model
 {
+    /**
+     * Constructor
+     * 
+     */
     public function __construct()
     {
         parent::__construct();

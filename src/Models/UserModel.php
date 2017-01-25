@@ -17,6 +17,10 @@ use Linna\Auth\Password;
 use App\Mappers\UserMapper;
 use App\DomainObjects\User;
 
+/**
+ * User Model
+ * 
+ */
 class UserModel extends Model
 {
     protected $mapper;

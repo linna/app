@@ -16,7 +16,7 @@ use Linna\DataMapper\DomainObjectAbstract;
 use Linna\Auth\Password;
 
 /**
- * Rapresent user
+ * User
  *
  */
 class User extends DomainObjectAbstract
@@ -59,13 +59,15 @@ class User extends DomainObjectAbstract
     
     /**
      * Constructor
-     *
      * Do type conversion because PDO doesn't return any original type from db :(
+     * 
+     * @param Password $password
      */
     public function __construct(Password $password)
     {
         $this->passwordUtility = $password;
         
+        //set required type
         settype($this->objectId, 'integer');
         settype($this->active, 'integer');
     }
@@ -78,11 +80,8 @@ class User extends DomainObjectAbstract
      */
     public function setPassword(string $newPassword)
     {
-        $passUtil = new Password();
-
-        $hash = $passUtil->hash($newPassword);
-
-        $this->password = $hash;
+        //hash provided password
+        $this->password = $this->passwordUtility->hash($newPassword);
     }
 
     /**
@@ -95,12 +94,11 @@ class User extends DomainObjectAbstract
      */
     public function chagePassword(string $newPassword, string $oldPassword) : bool
     {
-        $passUtil = new Password();
-
-        $hash = $passUtil->hash($newPassword);
-
-        if ($passUtil->verify($oldPassword, $this->password)) {
-            $this->password = $hash;
+        //verfy password match
+        if ($this->passwordUtility->verify($oldPassword, $this->password)) {
+            
+            //if match set new password
+            $this->password = $this->passwordUtility->hash($newPassword);
 
             return true;
         }

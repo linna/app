@@ -16,7 +16,6 @@ use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
 use Linna\Storage\MysqlPdoAdapter;
 use Linna\Auth\Password;
-
 use App\DomainObjects\User;
 
 /**
@@ -26,18 +25,20 @@ use App\DomainObjects\User;
 class UserMapper extends MapperAbstract
 {
     /**
-     * @var object $password Password util for user object
+     * @var Password $password Password util for user object
      */
     protected $password;
 
     /**
-     * @var object $dBase Database Connection
+     * @var MysqlPdoAdapter $dBase Database Connection
      */
     protected $dBase;
 
     /**
      * Constructor
-     *
+     * 
+     * @param MysqlPdoAdapter $dBase
+     * @param Password $password
      */
     public function __construct(MysqlPdoAdapter $dBase, Password $password)
     {
@@ -109,11 +110,13 @@ class UserMapper extends MapperAbstract
      * Insert the DomainObject in persistent storage
      *
      * @param DomainObjectInterface $user
+     * @return int Last insert id
+     * @throws \InvalidArgumentException
      */
     protected function oInsert(DomainObjectInterface $user) : int
     {
         if (!($user instanceof User)) {
-            throw new \Exception('$user must be instance of User class');
+            throw new \InvalidArgumentException('$user must be instance of User class');
         }
 
         try {
@@ -125,8 +128,8 @@ class UserMapper extends MapperAbstract
             $pdos->execute();
 
             return (int) $this->dBase->lastInsertId();
-        } catch (\Exception $e) {
-            echo 'Mapper exception: ', $e->getMessage(), "\n";
+        } catch (\RuntimeException $e) {
+            echo 'Mapper: Insert not compled, ', $e->getMessage(), "\n";
         }
     }
 
