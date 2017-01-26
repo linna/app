@@ -14,13 +14,25 @@ namespace App\Templates;
 
 use Linna\Mvc\TemplateInterface;
 
+/**
+ * Html via Ajax Template
+ */
 class HtmlAjaxTemplate implements TemplateInterface
 {
-    protected $template = null;
+    /**
+     * @var string $template Html template to load 
+     */
+    protected $template;
     
-    public $data = null;
+    /**
+     * @var object $data Data for view
+     */
+    public $data;
     
-    
+    /**
+     * Constructor
+     * 
+     */
     public function __construct()
     {
         $this->data = (object) null;
@@ -35,21 +47,30 @@ class HtmlAjaxTemplate implements TemplateInterface
     {
         $this->template = $file;
     }
-   
+    
+    /**
+     * Output
+     * 
+     * @throws \InvalidArgumentException
+     */
     public function output()
     {
+        //get template
         $template = $this->template;
         
+        //get data for view
         $data = $this->data;
        
         ob_start();
         
         try {
+            //check if template name is correct
             if (!file_exists(APP."Templates/_pages/{$template}.html")) {
-                throw new \Exception("The required Template ({$template}) not exist.");
+                throw new \InvalidArgumentException("The required Template ({$template}) not exist.");
             }
+            //require template
             require APP."Templates/_pages/{$template}.html";
-        } catch (\Exception $e) {
+        } catch (\InvalidArgumentException $e) {
             echo 'Template exception: ', $e->getMessage(), "\n";
         }
         

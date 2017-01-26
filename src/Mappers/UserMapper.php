@@ -137,11 +137,12 @@ class UserMapper extends MapperAbstract
      * Update the DomainObject in persistent storage
      *
      * @param DomainObjectInterface $user
+     * @throws \InvalidArgumentException
      */
     protected function oUpdate(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
-            throw new \Exception('$user must be instance of User class');
+            throw new \InvalidArgumentException('$user must be instance of User class');
         }
 
         try {
@@ -166,11 +167,12 @@ class UserMapper extends MapperAbstract
      * Delete the DomainObject from persistent storage
      *
      * @param DomainObjectAbstract $user
+     * @throws \InvalidArgumentException
      */
     protected function oDelete(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
-            throw new \Exception('$user must be instance of User class');
+            throw new \InvalidArgumentException('$user must be instance of User class');
         }
 
         try {
