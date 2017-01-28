@@ -14,30 +14,43 @@ namespace App\Views;
 
 use Linna\Mvc\View;
 use Linna\Auth\Login;
-use Linna\Session\Session;
-
 use App\Models\E404Model;
 use App\Templates\HtmlTemplate;
 
+/**
+ * Error 404 View
+ *
+ */
 class E404View extends View
 {
-    private $htmlTemplate;
-    
+    /**
+     * Constructor
+     *
+     * @param E404Model $model
+     * @param Login $login
+     * @param HtmlTemplate $htmlTemplate
+     */
     public function __construct(E404Model $model, Login $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
         
+        //merge data passed from model with login information
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
         
-        $this->htmlTemplate = $htmlTemplate;
+        //store html template
+        $this->template = $htmlTemplate;
     }
     
+    /**
+     * Index
+     *
+     */
     public function index()
     {
-        $this->template = $this->htmlTemplate;
-        
+        //load error 404 html
         $this->template->loadHtml('Error404');
         
+        //set page title
         $this->template->title = 'App/Page not found';
     }
 }

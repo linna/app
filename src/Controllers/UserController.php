@@ -27,7 +27,7 @@ class UserController extends Controller
     
     /**
      * Contructor
-     * 
+     *
      * @param UserModel $model
      * @param Login $login
      */
@@ -41,13 +41,13 @@ class UserController extends Controller
     
     /**
      * Enable User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return void
      */
     public function enable(int $userId)
-    {   
+    {
         //check authentication
         if ($this->authentication === false) {
             return;
@@ -59,9 +59,9 @@ class UserController extends Controller
     
     /**
      * Disable User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return void
      */
     public function disable(int $userId)
@@ -77,9 +77,9 @@ class UserController extends Controller
     
     /**
      * Delete User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return void
      */
     public function delete(int $userId)
@@ -95,9 +95,9 @@ class UserController extends Controller
 
     /**
      * Change User Password
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return void
      */
     public function changePassword(int $userId)
@@ -116,9 +116,9 @@ class UserController extends Controller
     
     /**
      * Modify User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return void
      */
     public function modify(int $userId)

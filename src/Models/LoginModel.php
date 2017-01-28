@@ -40,7 +40,7 @@ class LoginModel extends Model
     
     /**
      * Constructor
-     * 
+     *
      * @param UserMapper $userMapper
      * @param Login $login
      * @param Password $password
@@ -56,13 +56,13 @@ class LoginModel extends Model
     
     /**
      * Do Login
-     * 
+     *
      * @param string $userName
      * @param string $userPassword
      * @return bool
      */
     public function doLogin(string $userName, string $userPassword) : bool
-    {   
+    {
         //get user from databese
         $dbUser = $this->userMapper->findByName($userName);
         
@@ -92,7 +92,7 @@ class LoginModel extends Model
 
     /**
      * Logout
-     * 
+     *
      */
     public function logout()
     {
@@ -101,7 +101,7 @@ class LoginModel extends Model
     
     /**
      * Update Password
-     * 
+     *
      * @param string $password
      * @param User $user
      */

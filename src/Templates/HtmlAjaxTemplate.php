@@ -20,7 +20,7 @@ use Linna\Mvc\TemplateInterface;
 class HtmlAjaxTemplate implements TemplateInterface
 {
     /**
-     * @var string $template Html template to load 
+     * @var string $template Html template to load
      */
     protected $template;
     
@@ -31,7 +31,7 @@ class HtmlAjaxTemplate implements TemplateInterface
     
     /**
      * Constructor
-     * 
+     *
      */
     public function __construct()
     {
@@ -50,7 +50,7 @@ class HtmlAjaxTemplate implements TemplateInterface
     
     /**
      * Output
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function output()

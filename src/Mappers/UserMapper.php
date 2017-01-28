@@ -36,7 +36,7 @@ class UserMapper extends MapperAbstract
 
     /**
      * Constructor
-     * 
+     *
      * @param MysqlPdoAdapter $dBase
      * @param Password $password
      */

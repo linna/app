@@ -60,7 +60,7 @@ class User extends DomainObjectAbstract
     /**
      * Constructor
      * Do type conversion because PDO doesn't return any original type from db :(
-     * 
+     *
      * @param Password $password
      */
     public function __construct(Password $password)

@@ -19,7 +19,7 @@ use App\DomainObjects\User;
 
 /**
  * User Model
- * 
+ *
  */
 class UserModel extends Model
 {
@@ -35,7 +35,7 @@ class UserModel extends Model
     
     /**
      * Constructor
-     * 
+     *
      * @param UserMapper $userMapper
      * @param Password $password
      */
@@ -50,7 +50,7 @@ class UserModel extends Model
 
     /**
      * Return all Users
-     * 
+     *
      * @return array
      */
     public function getAllUsers()
@@ -60,9 +60,9 @@ class UserModel extends Model
     
     /**
      * Enable a User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return int
      */
     public function enable(int $userId)
@@ -79,9 +79,9 @@ class UserModel extends Model
     
     /**
      * Disable a User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return int
      */
     public function disable(int $userId)
@@ -105,13 +105,13 @@ class UserModel extends Model
     
     /**
      * Delete a User
-     * 
+     *
      * @param int $userId
-     * 
+     *
      * @return int
      */
     public function delete(int $userId)
-    {   
+    {
         //get user
         $user = $this->mapper->findById($userId);
         
@@ -125,10 +125,10 @@ class UserModel extends Model
     
     /**
      * Checks before password change
-     * 
+     *
      * @param string $newPassword
      * @param string $confirmPassword
-     * 
+     *
      * @return bool
      */
     protected function changePasswordChecks(string $newPassword, string $confirmPassword) :bool
@@ -150,11 +150,11 @@ class UserModel extends Model
     
     /**
      * Change User password
-     * 
+     *
      * @param int $userId
      * @param string $newPassword
      * @param string $confirmPassword
-     * 
+     *
      * @return int
      */
     public function changePassword(int $userId, string $newPassword, string $confirmPassword)
@@ -180,10 +180,10 @@ class UserModel extends Model
     
     /**
      * Checks before modify a User
-     * 
+     *
      * @param User $user
      * @param string $newName
-     * 
+     *
      * @return bool
      */
     protected function modifyChecks(User $user, string $newName) : bool
@@ -208,11 +208,11 @@ class UserModel extends Model
     
     /**
      * Modify a User
-     * 
+     *
      * @param int $userId
      * @param string $newName
      * @param string $newDescription
-     * 
+     *
      * @return int
      */
     public function modify(int $userId, string $newName, string $newDescription)

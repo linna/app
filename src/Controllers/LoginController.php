@@ -17,13 +17,13 @@ use App\Models\LoginModel;
 
 /**
  * Login Controller
- * 
+ *
  */
 class LoginController extends Controller
 {
     /**
      * Contructor
-     * 
+     *
      * @param LoginModel $model
      */
     public function __construct(LoginModel $model)
@@ -33,7 +33,7 @@ class LoginController extends Controller
     
     /**
      * Execute Login
-     * 
+     *
      * @return void
      */
     public function doLogin()
@@ -52,7 +52,7 @@ class LoginController extends Controller
     
     /**
      * Logout
-     * 
+     *
      */
     public function logout()
     {

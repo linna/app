@@ -17,13 +17,13 @@ use App\Models\HomeModel;
 
 /**
  * Home Page Controller
- * 
+ *
  */
 class HomeController extends Controller
 {
     /**
      * Constructor
-     * 
+     *
      * @param HomeModel $model
      */
     public function __construct(HomeModel $model)

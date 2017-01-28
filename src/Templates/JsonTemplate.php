@@ -16,7 +16,7 @@ use Linna\Mvc\TemplateInterface;
 
 /**
  * Json Template
- * 
+ *
  */
 class JsonTemplate implements TemplateInterface
 {
@@ -27,7 +27,7 @@ class JsonTemplate implements TemplateInterface
     
     /**
      * Constructor
-     * 
+     *
      */
     public function __construct()
     {
@@ -36,7 +36,7 @@ class JsonTemplate implements TemplateInterface
     
     /**
      * Return data in json format
-     * 
+     *
      */
     public function output()
     {
