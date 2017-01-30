@@ -16,7 +16,6 @@ use Linna\Mvc\View;
 use Linna\Auth\Login;
 use App\Models\UserModel;
 use App\Templates\HtmlTemplate;
-use App\Templates\JsonTemplate;
 
 /**
  * User View
@@ -24,25 +23,14 @@ use App\Templates\JsonTemplate;
  */
 class UserView extends View
 {
-    /**
-     * @var HtmlTemplate $htmlTemplate Template for hatml pages
-     */
-    private $htmlTemplate;
-    
-    /**
-     * @var JsonTemplate $jsonTemplate Template for json data format
-     */
-    private $jsonTemplate;
-    
-    /**
+   /**
      * Constructor
      *
      * @param UserModel $model
      * @param Login $login
      * @param HtmlTemplate $htmlTemplate
-     * @param JsonTemplate $jsonTemplate
      */
-    public function __construct(UserModel $model, Login $login, HtmlTemplate $htmlTemplate, JsonTemplate $jsonTemplate)
+    public function __construct(UserModel $model, Login $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
         
@@ -50,8 +38,7 @@ class UserView extends View
         $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
         
         //store templates
-        $this->htmlTemplate = $htmlTemplate;
-        $this->jsonTemplate = $jsonTemplate;
+        $this->template = $htmlTemplate;
     }
     
     /**
@@ -60,9 +47,6 @@ class UserView extends View
      */
     public function index()
     {
-        //template configuration
-        $this->template = $this->htmlTemplate;
-        
         //load user template
         $this->template->loadHtml('User');
         //load user css
@@ -80,54 +64,5 @@ class UserView extends View
         
         //store data for view
         $this->data['users'] = $this->model->getAllUsers();
-    }
-    
-    /**
-     * Enable User
-     *
-     */
-    public function enable()
-    {
-        //set template
-        $this->template = $this->jsonTemplate;
-    }
-
-    /**
-     * Disable User
-     *
-     */
-    public function disable()
-    {
-        //set template
-        $this->template = $this->jsonTemplate;
-    }
-
-    /**
-     * Delete User
-     *
-     */
-    public function delete()
-    {
-        //set template
-        $this->template = $this->jsonTemplate;
-    }
-
-    /**
-     * Change Password
-     */
-    public function changePassword()
-    {
-        //set template
-        $this->template = $this->jsonTemplate;
-    }
-    
-    /**
-     * Modify Userr
-     *
-     */
-    public function modify()
-    {
-        //set template
-        $this->template = $this->jsonTemplate;
     }
 }

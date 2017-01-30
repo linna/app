@@ -47,7 +47,7 @@ $appRoutes[] = [
     'method' => 'GET|POST',
     'url' => '/user/[id]/(disable|enable|delete|changePassword|modify)',
     'model' => 'UserModel',
-    'view' => 'UserView',
+    'view' => 'UserActionView',
     'controller' => 'UserController',
     'action' => '',
 ];
