@@ -1,8 +1,8 @@
 {
     "name": "s3b4stian/linna-app",
     "type": "project",
-    "description": "Linna Application Skeleton",
-    "keywords": ["php", "app", "framework", "skeleton", "mvc", "learn"],
+    "description": "Linna Application",
+    "keywords": ["application", "learning", "mvc-application", "php", "skeleton"],
     "license": "MIT",
     "authors": [
         {
@@ -12,7 +12,6 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "s3b4stian/linna-framework": "dev-master",
-        "mongodb/mongodb": ">=1.1.0"
+        "s3b4stian/linna-framework": "dev-master"
     }
 }
