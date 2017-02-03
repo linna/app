@@ -23,7 +23,7 @@ use App\Templates\HtmlTemplate;
  */
 class UserView extends View
 {
-   /**
+    /**
      * Constructor
      *
      * @param UserModel $model
