@@ -95,8 +95,8 @@ $DIResolver = new DIResolver();
 //$memcached->addServer($options['memcached']['host'], $options['memcached']['port']);
 
 ////add unresolvable class to DIResolver
-//$DIResolver->cacheUnResolvable('\Memcached', $memcached);
-//$DIResolver->cacheUnResolvable('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
+//$DIResolver->cache('\Memcached', $memcached);
+//$DIResolver->cache('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
 
 /**
  * Storage Section
@@ -124,9 +124,9 @@ $mysqlPdoAdapter = new MysqlPdoAdapter(
 //$mongoDbAdapter = new MongoDbAdapter($options['mongo_db']['server_string']);
 
 //add unresolvable class to DIResolver
-$DIResolver->cacheUnResolvable('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);
-//$DIResolver->cacheUnResolvable('\Linna\Storage\MysqliAdapter', $mysqliAdapter);
-//$DIResolver->cacheUnResolvable('\Linna\Storage\MongoDbAdapter', $mongoDbAdapter);
+$DIResolver->cache('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);
+//$DIResolver->cache('\Linna\Storage\MysqliAdapter', $mysqliAdapter);
+//$DIResolver->cache('\Linna\Storage\MongoDbAdapter', $mongoDbAdapter);
 
 /**
  * Session section
@@ -148,7 +148,7 @@ $session->setSessionHandler($sessionHandler);
 $session->start();
 
 //store session instance
-$DIResolver->cacheUnResolvable('\Linna\Session\Session', $session);
+$DIResolver->cache('\Linna\Session\Session', $session);
 
 
 /**
