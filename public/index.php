@@ -10,7 +10,7 @@
  *
  */
 
-use Linna\Storage\MysqlPdoAdapter;
+//use Linna\Storage\MysqlPdoAdapter;
 //use Linna\Storage\MysqliAdapter;
 //use Linna\Storage\MongoDbAdapter;
 use Linna\Session\Session;
@@ -36,6 +36,9 @@ require dirname(__DIR__) . '/config/config.php';
 
 //load routes.
 require dirname(__DIR__) . '/config/routes.php';
+
+//load injections rules.
+require dirname(__DIR__) . '/config/injections.php';
 
 //composer autoload
 require dirname(__DIR__) . '/vendor/autoload.php';
@@ -81,7 +84,7 @@ $loader->addNamespaces([
 
 //create dipendency injection resolver
 $DIResolver = new DIResolver();
-
+$DIResolver->rules($injectionsRules);
 
 /**
  * Memcached Section
@@ -104,27 +107,27 @@ $DIResolver = new DIResolver();
  */
 
 //create Mysql Pdo adapter
-$mysqlPdoAdapter = new MysqlPdoAdapter(
-    $options['pdo_mysql']['dsn'],
-    $options['pdo_mysql']['user'],
-    $options['pdo_mysql']['password'],
-    array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
-);
+//$mysqlPdoAdapter = new MysqlPdoAdapter(
+//    $options['pdo_mysql']['dsn'],
+//    $options['pdo_mysql']['user'],
+//    $options['pdo_mysql']['password'],
+//    array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
+//);
 
 //create Mysql Improved extension adapter
-/*$mysqliAdapter = new MysqliAdapter(
-    $options['mysqli']['host'],
-    $options['mysqli']['password'],
-    $options['mysqli']['user'],
-    $options['mysqli']['database'],
-    $options['mysqli']['port']
-);*/
+//$mysqliAdapter = new MysqliAdapter(
+//    $options['mysqli']['host'],
+//    $options['mysqli']['password'],
+//    $options['mysqli']['user'],
+//    $options['mysqli']['database'],
+//    $options['mysqli']['port']
+//);
 
 //create Mongodb adapter
 //$mongoDbAdapter = new MongoDbAdapter($options['mongo_db']['server_string']);
 
 //add unresolvable class to DIResolver
-$DIResolver->cache('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);
+//$DIResolver->cache('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);
 //$DIResolver->cache('\Linna\Storage\MysqliAdapter', $mysqliAdapter);
 //$DIResolver->cache('\Linna\Storage\MongoDbAdapter', $mongoDbAdapter);
 
@@ -157,7 +160,7 @@ $DIResolver->cache('\Linna\Session\Session', $session);
  */
 
 //start router
-$router = new Router($appRoutes, $options['router']);
+$router = new Router($routes, $options['router']);
 
 //evaluate request uri and method
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
