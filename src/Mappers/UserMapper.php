@@ -30,14 +30,14 @@ class UserMapper extends MapperAbstract
     protected $password;
 
     /**
-     * @var PDO $dBase Database Connection
+     * @var \PDO $dBase Database Connection
      */
     protected $dBase;
 
     /**
      * Constructor
      *
-     * @param PDO $dBase
+     * @param \PDO $dBase
      * @param Password $password
      */
     public function __construct(MysqlPdoAdapter $dBase, Password $password)
