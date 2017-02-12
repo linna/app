@@ -65,16 +65,9 @@ class UserModel extends Model
      *
      * @return int
      */
-    public function enable(int $userId)
+    public function enable(int $userId) : int
     {
-        $user = $this->mapper->findById($userId);
-        $user->active = 1;
-
-        $this->mapper->save($user);
-
-        $this->getUpdate = ['error' => 0];
-        
-        return 1;
+        return $this->changeState($userId, 1);
     }
     
     /**
@@ -84,15 +77,30 @@ class UserModel extends Model
      *
      * @return int
      */
-    public function disable(int $userId)
+    public function disable(int $userId) : int
+    {
+        return $this->changeState($userId, 0);
+    }
+    
+    /**
+     * Enable or Disable user
+     * 
+     * @param int $userId
+     * @param int $state
+     * @return int
+     */
+    protected function changeState(int $userId, int $state) : int
     {
         //get user
         $user = $this->mapper->findById($userId);
-        
-        //verify if user is root and set to disable
-        if ($user->name !== 'root') {
-            $user->active = 0;
+       
+        //check for root user
+        if ($user->name === 'root') {
+            return 0;
         }
+        
+        //assign new state
+        $user->active = $state;
         
         //save
         $this->mapper->save($user);
@@ -102,7 +110,8 @@ class UserModel extends Model
         
         return 1;
     }
-    
+
+
     /**
      * Delete a User
      *
