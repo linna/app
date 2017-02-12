@@ -30,7 +30,7 @@ class UserMapper extends MapperAbstract
     protected $password;
 
     /**
-     * @var MysqlPdoAdapter $dBase Database Connection
+     * @var PDO $dBase Database Connection
      */
     protected $dBase;
 
@@ -42,11 +42,7 @@ class UserMapper extends MapperAbstract
      */
     public function __construct(MysqlPdoAdapter $dBase, Password $password)
     {
-        if (!(($connection= $dBase->getResource()) instanceof \PDO)) {
-            throw new \InvalidArgumentException('$connection must be instance of PDO class');
-        }        
-                
-        $this->dBase = $connection;
+        $this->dBase = $dBase->getResource();
         $this->password = $password;
     }
 
