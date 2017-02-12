@@ -176,8 +176,9 @@ class UserMapper extends MapperAbstract
         }
 
         try {
+            $objId = $user->getId();
             $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
-            $pdos->bindParam(':user_id', $user->getId(), \PDO::PARAM_INT);
+            $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
             $pdos->execute();
         } catch (\Exception $e) {
             echo 'Mapper exception: ', $e->getMessage(), "\n";
