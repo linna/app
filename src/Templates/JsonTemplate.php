@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Templates;
@@ -15,28 +14,25 @@ namespace App\Templates;
 use Linna\Mvc\TemplateInterface;
 
 /**
- * Json Template
- *
+ * Json Template.
  */
 class JsonTemplate implements TemplateInterface
 {
     /**
-     * @var object $data Data for view
+     * @var object Data for view
      */
     public $data;
-    
+
     /**
-     * Constructor
-     *
+     * Constructor.
      */
     public function __construct()
     {
         $this->data = (object) null;
     }
-    
+
     /**
-     * Return data in json format
-     *
+     * Return data in json format.
      */
     public function output()
     {

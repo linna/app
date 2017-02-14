@@ -1,55 +1,52 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Views;
 
-use Linna\Mvc\View;
-use Linna\Auth\Login;
 use App\Models\E404Model;
 use App\Templates\HtmlTemplate;
+use Linna\Auth\Login;
+use Linna\Mvc\View;
 
 /**
- * Error 404 View
- *
+ * Error 404 View.
  */
 class E404View extends View
 {
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param E404Model $model
-     * @param Login $login
+     * @param E404Model    $model
+     * @param Login        $login
      * @param HtmlTemplate $htmlTemplate
      */
     public function __construct(E404Model $model, Login $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
-        
+
         //merge data passed from model with login information
-        $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
-        
+        $this->data = array_merge($this->data, ['login' => $login->logged, 'userName' => $login->data['user_name']]);
+
         //store html template
         $this->template = $htmlTemplate;
     }
-    
+
     /**
-     * Index
-     *
+     * Index.
      */
     public function index()
     {
         //load error 404 html
         $this->template->loadHtml('Error404');
-        
+
         //set page title
         $this->template->title = 'App/Page not found';
     }
