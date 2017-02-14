@@ -1,28 +1,26 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Controllers;
 
-use Linna\Mvc\Controller;
 use App\Models\LoginModel;
+use Linna\Mvc\Controller;
 
 /**
- * Login Controller
- *
+ * Login Controller.
  */
 class LoginController extends Controller
 {
     /**
-     * Contructor
+     * Contructor.
      *
      * @param LoginModel $model
      */
@@ -30,9 +28,9 @@ class LoginController extends Controller
     {
         parent::__construct($model);
     }
-    
+
     /**
-     * Execute Login
+     * Execute Login.
      *
      * @return void
      */
@@ -41,18 +39,18 @@ class LoginController extends Controller
         //sanitize input
         $user = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_STRING);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-        
+
         //call login procedure from model and check if ok
         if ($this->model->doLogin($user, $password) === true) {
             //return to home
             header('location: '.URL);
+
             return;
         }
     }
-    
+
     /**
-     * Logout
-     *
+     * Logout.
      */
     public function logout()
     {

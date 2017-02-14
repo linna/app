@@ -1,46 +1,45 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Controllers;
 
-use Linna\Mvc\Controller;
+use App\Models\UserModel;
 use Linna\Auth\Login;
 use Linna\Auth\ProtectedController;
-use App\Models\UserModel;
+use Linna\Mvc\Controller;
 
 /**
- * User Controller
+ * User Controller.
  */
 class UserController extends Controller
 {
     //trait for protect this controller
     use ProtectedController;
-    
+
     /**
-     * Contructor
+     * Contructor.
      *
      * @param UserModel $model
-     * @param Login $login
+     * @param Login     $login
      */
     public function __construct(UserModel $model, Login $login)
     {
         parent::__construct($model);
-        
+
         //call trait function for protect controller
         $this->protect($login, URL.'login');
     }
-    
+
     /**
-     * Enable User
+     * Enable User.
      *
      * @param int $userId
      *
@@ -52,13 +51,13 @@ class UserController extends Controller
         if ($this->authentication === false) {
             return;
         }
-        
+
         //call model for enable
         $this->model->enable($userId);
     }
-    
+
     /**
-     * Disable User
+     * Disable User.
      *
      * @param int $userId
      *
@@ -70,13 +69,13 @@ class UserController extends Controller
         if ($this->authentication === false) {
             return;
         }
-        
+
         //call model for do disable action
         $this->model->disable($userId);
     }
-    
+
     /**
-     * Delete User
+     * Delete User.
      *
      * @param int $userId
      *
@@ -88,13 +87,13 @@ class UserController extends Controller
         if ($this->authentication === false) {
             return;
         }
-        
+
         //call model for do delete action
         $this->model->delete($userId);
     }
 
     /**
-     * Change User Password
+     * Change User Password.
      *
      * @param int $userId
      *
@@ -106,16 +105,16 @@ class UserController extends Controller
         if ($this->authentication === false) {
             return;
         }
-        
+
         $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_STRING);
         $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_STRING);
-        
+
         //call model for do change password action
         $this->model->changePassword($userId, $newPassword, $confirmPassword);
     }
-    
+
     /**
-     * Modify User
+     * Modify User.
      *
      * @param int $userId
      *
@@ -127,10 +126,10 @@ class UserController extends Controller
         if ($this->authentication === false) {
             return;
         }
-        
+
         $newUserName = filter_input(INPUT_POST, 'newUserName', FILTER_SANITIZE_STRING);
         $newUserDescription = filter_input(INPUT_POST, 'newUserDescription', FILTER_SANITIZE_STRING);
-        
+
         //call model for do modify action
         $this->model->modify($userId, $newUserName, $newUserDescription);
     }
