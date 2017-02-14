@@ -1,26 +1,25 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 //use Linna\Storage\MysqlPdoAdapter;
 //use Linna\Storage\MysqliAdapter;
 //use Linna\Storage\MongoDbAdapter;
-use Linna\Session\Session;
-//use Linna\Session\MemcachedSessionHandler;
-use Linna\Http\Router;
-use Linna\Http\FrontController;
-use Linna\DI\DIResolver;
 use Linna\Autoloader;
+//use Linna\Session\MemcachedSessionHandler;
+use Linna\DI\DIResolver;
+use Linna\Http\FrontController;
+use Linna\Http\Router;
+use Linna\Session\Session;
 
-/**
+/*
  * Bootstrap and config
  *
  */
@@ -32,34 +31,32 @@ define('ROOT', dirname(dirname(__DIR__)));
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 
 //load configuration from config file
-require dirname(__DIR__) . '/config/config.php';
+require dirname(__DIR__).'/config/config.php';
 
 //load routes.
-require dirname(__DIR__) . '/config/routes.php';
+require dirname(__DIR__).'/config/routes.php';
 
 //load injections rules.
-require dirname(__DIR__) . '/config/injections.php';
+require dirname(__DIR__).'/config/injections.php';
 
 //composer autoload
-require dirname(__DIR__) . '/vendor/autoload.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
 //app
-define('APP', ROOT . $options['app']['urlSubFolder']);
+define('APP', ROOT.$options['app']['urlSubFolder']);
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
 if ($options['router']['rewriteMode'] === false) {
-    define('URL', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder'] . 'index.php?/');
-    define('URL_STYLE', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder'] . '/' . $options['app']['urlPublicFolder'] . '/');
+    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'index.php?/');
+    define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'/'.$options['app']['urlPublicFolder'].'/');
 } else {
-    define('URL', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder']);
-    define('URL_STYLE', $options['app']['urlProtocol'] . URL_DOMAIN . $options['app']['urlSubFolder']);
+    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder']);
+    define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder']);
 }
 
-
 /**
- * Autoloader Section
- *
+ * Autoloader Section.
  */
 
 //linna autoloader, load application class
@@ -68,18 +65,16 @@ $loader = new Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
-    ['App\Models', APP . 'src/Models'],
-    ['App\Views', APP . 'src/Views'],
-    ['App\Controllers', APP . 'src/Controllers'],
-    ['App\Templates', APP . 'src/Templates'],
-    ['App\Mappers', APP . 'src/Mappers'],
-    ['App\DomainObjects', APP . 'src/DomainObjects'],
+    ['App\Models', APP.'src/Models'],
+    ['App\Views', APP.'src/Views'],
+    ['App\Controllers', APP.'src/Controllers'],
+    ['App\Templates', APP.'src/Templates'],
+    ['App\Mappers', APP.'src/Mappers'],
+    ['App\DomainObjects', APP.'src/DomainObjects'],
 ]);
 
-
 /**
- * Dependency Injection Section
- *
+ * Dependency Injection Section.
  */
 
 //create dipendency injection resolver
@@ -87,8 +82,7 @@ $DIResolver = new DIResolver();
 $DIResolver->rules($injectionsRules);
 
 /**
- * Memcached Section
- *
+ * Memcached Section.
  */
 
 //create memcached instance
@@ -102,8 +96,7 @@ $DIResolver->rules($injectionsRules);
 //$DIResolver->cache('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
 
 /**
- * Storage Section
- *
+ * Storage Section.
  */
 
 //create Mysql Pdo adapter
@@ -132,8 +125,7 @@ $DIResolver->rules($injectionsRules);
 //$DIResolver->cache('\Linna\Storage\MongoDbAdapter', $mongoDbAdapter);
 
 /**
- * Session section
- *
+ * Session section.
  */
 
 //resolve Session Handler
@@ -153,10 +145,8 @@ $session->start();
 //store session instance
 $DIResolver->cache('\Linna\Session\Session', $session);
 
-
 /**
- * Router Section
- *
+ * Router Section.
  */
 
 //start router
@@ -174,7 +164,7 @@ $routeModel = '\App\Models\\'.$route->getModel();
 $routeView = '\App\Views\\'.$route->getView();
 //get controller linked to route
 $routeController = '\App\Controllers\\'.$route->getController();
-    
+
 //resolve model
 $model = $DIResolver->resolve($routeModel);
 
@@ -184,10 +174,8 @@ $view = $DIResolver->resolve($routeView);
 //resolve controller
 $controller = $DIResolver->resolve($routeController);
 
-
 /**
- * Front Controller section
- *
+ * Front Controller section.
  */
 
 //start front controller

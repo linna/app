@@ -1,49 +1,46 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Views;
 
-use Linna\Mvc\View;
-use Linna\Auth\Login;
 use App\Models\UserModel;
 use App\Templates\JsonTemplate;
+use Linna\Auth\Login;
+use Linna\Mvc\View;
 
 /**
- * User View
- *
+ * User View.
  */
 class UserActionView extends View
 {
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param UserModel $model
-     * @param Login $login
+     * @param UserModel    $model
+     * @param Login        $login
      * @param JsonTemplate $jsonTemplate
      */
     public function __construct(UserModel $model, Login $login, JsonTemplate $jsonTemplate)
     {
         parent::__construct($model);
-        
+
         //merge data passed from model with login information
-        $this->data = array_merge($this->data, array('login' => $login->logged, 'userName' => $login->data['user_name']));
-        
+        $this->data = array_merge($this->data, ['login' => $login->logged, 'userName' => $login->data['user_name']]);
+
         //store templates
         $this->template = $jsonTemplate;
     }
-    
+
     /**
-     * Enable User
-     *
+     * Enable User.
      */
     public function enable()
     {
@@ -51,8 +48,7 @@ class UserActionView extends View
     }
 
     /**
-     * Disable User
-     *
+     * Disable User.
      */
     public function disable()
     {
@@ -60,8 +56,7 @@ class UserActionView extends View
     }
 
     /**
-     * Delete User
-     *
+     * Delete User.
      */
     public function delete()
     {
@@ -69,16 +64,15 @@ class UserActionView extends View
     }
 
     /**
-     * Change Password
+     * Change Password.
      */
     public function changePassword()
     {
         //do nothing
     }
-    
+
     /**
-     * Modify Userr
-     *
+     * Modify Userr.
      */
     public function modify()
     {

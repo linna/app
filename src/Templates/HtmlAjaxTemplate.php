@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Templates;
@@ -15,31 +14,30 @@ namespace App\Templates;
 use Linna\Mvc\TemplateInterface;
 
 /**
- * Html via Ajax Template
+ * Html via Ajax Template.
  */
 class HtmlAjaxTemplate implements TemplateInterface
 {
     /**
-     * @var string $template Html template to load
+     * @var string Html template to load
      */
     protected $template;
-    
+
     /**
-     * @var object $data Data for view
+     * @var object Data for view
      */
     public $data;
-    
+
     /**
-     * Constructor
-     *
+     * Constructor.
      */
     public function __construct()
     {
         $this->data = (object) null;
     }
-    
+
     /**
-     * Load html file
+     * Load html file.
      *
      * @param string $file Html file
      */
@@ -47,9 +45,9 @@ class HtmlAjaxTemplate implements TemplateInterface
     {
         $this->template = $file;
     }
-    
+
     /**
-     * Output
+     * Output.
      *
      * @throws \InvalidArgumentException
      */
@@ -57,12 +55,12 @@ class HtmlAjaxTemplate implements TemplateInterface
     {
         //get template
         $template = $this->template;
-        
+
         //get data for view
         $data = $this->data;
-       
+
         ob_start();
-        
+
         try {
             //check if template name is correct
             if (!file_exists(APP."Templates/_pages/{$template}.html")) {
@@ -73,7 +71,7 @@ class HtmlAjaxTemplate implements TemplateInterface
         } catch (\InvalidArgumentException $e) {
             echo 'Template exception: ', $e->getMessage(), "\n";
         }
-        
+
         ob_end_flush();
     }
 }

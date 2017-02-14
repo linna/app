@@ -1,28 +1,26 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Controllers;
 
-use Linna\Mvc\Controller;
 use App\Models\HomeModel;
+use Linna\Mvc\Controller;
 
 /**
- * Home Page Controller
- *
+ * Home Page Controller.
  */
 class HomeController extends Controller
 {
     /**
-     * Constructor
+     * Constructor.
      *
      * @param HomeModel $model
      */

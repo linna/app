@@ -1,43 +1,41 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Mappers;
 
+use App\DomainObjects\User;
+use Linna\Auth\Password;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
 use Linna\Storage\MysqlPdoAdapter;
-use Linna\Auth\Password;
-use App\DomainObjects\User;
 
 /**
- * UserMapper
- *
+ * UserMapper.
  */
 class UserMapper extends MapperAbstract
 {
     /**
-     * @var Password $password Password util for user object
+     * @var Password Password util for user object
      */
     protected $password;
 
     /**
-     * @var \PDO $dBase Database Connection
+     * @var \PDO Database Connection
      */
     protected $dBase;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param \PDO $dBase
+     * @param \PDO     $dBase
      * @param Password $password
      */
     public function __construct(MysqlPdoAdapter $dBase, Password $password)
@@ -47,7 +45,7 @@ class UserMapper extends MapperAbstract
     }
 
     /**
-     * Fetch a user object by id
+     * Fetch a user object by id.
      *
      * @param string $userId
      *
@@ -60,11 +58,11 @@ class UserMapper extends MapperAbstract
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User', array($this->password));
+        return $pdos->fetchObject('\App\DomainObjects\User', [$this->password]);
     }
 
     /**
-     * Fetch a user object by name
+     * Fetch a user object by name.
      *
      * @param string $userName
      *
@@ -79,11 +77,11 @@ class UserMapper extends MapperAbstract
         $pdos->bindParam(':name', $hashedUserName, \PDO::PARAM_STR);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User', array($this->password));
+        return $pdos->fetchObject('\App\DomainObjects\User', [$this->password]);
     }
 
     /**
-     * Fetch all users stored in data base
+     * Fetch all users stored in data base.
      *
      * @return array All users stored
      */
@@ -93,11 +91,11 @@ class UserMapper extends MapperAbstract
 
         $pdos->execute();
 
-        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User', array($this->password));
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User', [$this->password]);
     }
 
     /**
-     * Create a new User DomainObject
+     * Create a new User DomainObject.
      *
      * @return User
      */
@@ -107,11 +105,13 @@ class UserMapper extends MapperAbstract
     }
 
     /**
-     * Insert the DomainObject in persistent storage
+     * Insert the DomainObject in persistent storage.
      *
      * @param DomainObjectInterface $user
-     * @return int Last insert id
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return int Last insert id
      */
     protected function oInsert(DomainObjectInterface $user) : int
     {
@@ -134,9 +134,10 @@ class UserMapper extends MapperAbstract
     }
 
     /**
-     * Update the DomainObject in persistent storage
+     * Update the DomainObject in persistent storage.
      *
      * @param DomainObjectInterface $user
+     *
      * @throws \InvalidArgumentException
      */
     protected function oUpdate(DomainObjectInterface $user)
@@ -164,9 +165,10 @@ class UserMapper extends MapperAbstract
     }
 
     /**
-     * Delete the DomainObject from persistent storage
+     * Delete the DomainObject from persistent storage.
      *
      * @param DomainObjectAbstract $user
+     *
      * @throws \InvalidArgumentException
      */
     protected function oDelete(DomainObjectInterface $user)
