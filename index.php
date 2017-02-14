@@ -1,14 +1,13 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 //if rewrite engine is not enabled, this line start the app
-include __DIR__ . DIRECTORY_SEPARATOR . 'public/index.php';
+include __DIR__.DIRECTORY_SEPARATOR.'public/index.php';

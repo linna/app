@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Templates;
@@ -15,51 +14,45 @@ namespace App\Templates;
 use Linna\Mvc\TemplateInterface;
 
 /**
- * Html Page Template
+ * Html Page Template.
  */
 class HtmlTemplate implements TemplateInterface
 {
     /**
-     *
-     * @var string $template Template to load
+     * @var string Template to load
      */
     protected $template = null;
-    
+
     /**
-     *
-     * @var string $title Template Title
+     * @var string Template Title
      */
     public $title = 'App';
-    
+
     /**
-     *
-     * @var object $data Data for template
+     * @var object Data for template
      */
     public $data = null;
-    
+
     /**
-     *
-     * @var array $css Css file for template
+     * @var array Css file for template
      */
-    protected $css = array();
-    
+    protected $css = [];
+
     /**
-     *
-     * @var array $js Js file for template
+     * @var array Js file for template
      */
-    protected $javascript = array();
-    
-    
+    protected $javascript = [];
+
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
         $this->data = (object) null;
     }
-    
+
     /**
-     * Load html file
+     * Load html file.
      *
      * @param string $file Html file
      */
@@ -67,9 +60,9 @@ class HtmlTemplate implements TemplateInterface
     {
         $this->template = $file;
     }
-    
-   /**
-     * Load a file css to shared template
+
+    /**
+     * Load a file css to shared template.
      *
      * @param string $file Css file
      */
@@ -79,7 +72,7 @@ class HtmlTemplate implements TemplateInterface
     }
 
     /**
-     * Load a file js to shared template
+     * Load a file js to shared template.
      *
      * @param string $file Js file
      */
@@ -89,14 +82,14 @@ class HtmlTemplate implements TemplateInterface
     }
 
     /**
-     * Prepare template for render from View
+     * Prepare template for render from View.
      *
      * @throws \Exception if template path is incorrect
      */
     public function output()
     {
         $template = $this->template;
-        
+
         $data = $this->data;
         $css = $this->css;
         $javascript = $this->javascript;
@@ -116,14 +109,14 @@ class HtmlTemplate implements TemplateInterface
         } catch (\Exception $e) {
             echo 'Template exception: ', $e->getMessage(), "\n";
         }
-        
+
         //only for debug, return time execution and memory usage
         echo '<!-- Memory: ';
         echo round(xdebug_memory_usage() / 1024, 2) , ' (';
         echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
         echo xdebug_time_index();
         echo ' Seconds -->';
-        
+
         ob_end_flush();
     }
 }

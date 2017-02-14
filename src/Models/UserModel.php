@@ -1,55 +1,53 @@
 <?php
 
 /**
- * Linna App
+ * Linna App.
  *
  *
  * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
- *
  */
 
 namespace App\Models;
 
-use Linna\Mvc\Model;
-use Linna\Auth\Password;
-use App\Mappers\UserMapper;
 use App\DomainObjects\User;
+use App\Mappers\UserMapper;
+use Linna\Auth\Password;
+use Linna\Mvc\Model;
 
 /**
- * User Model
- *
+ * User Model.
  */
 class UserModel extends Model
 {
     /**
-     * @var UserMapper $mapper Mapper for user object
+     * @var UserMapper Mapper for user object
      */
     protected $mapper;
-    
+
     /**
-     * @var Password $password Password utility class
+     * @var Password Password utility class
      */
     protected $password;
-    
+
     /**
-     * Constructor
+     * Constructor.
      *
      * @param UserMapper $userMapper
-     * @param Password $password
+     * @param Password   $password
      */
     public function __construct(UserMapper $userMapper, Password $password)
     {
         parent::__construct();
-        
+
         $this->mapper = $userMapper;
-        
+
         $this->password = $password;
     }
 
     /**
-     * Return all Users
+     * Return all Users.
      *
      * @return array
      */
@@ -57,9 +55,9 @@ class UserModel extends Model
     {
         return $this->mapper->getAllUsers();
     }
-    
+
     /**
-     * Enable a User
+     * Enable a User.
      *
      * @param int $userId
      *
@@ -69,9 +67,9 @@ class UserModel extends Model
     {
         return $this->changeState($userId, 1);
     }
-    
+
     /**
-     * Disable a User
+     * Disable a User.
      *
      * @param int $userId
      *
@@ -81,39 +79,39 @@ class UserModel extends Model
     {
         return $this->changeState($userId, 0);
     }
-    
+
     /**
-     * Enable or Disable user
-     * 
+     * Enable or Disable user.
+     *
      * @param int $userId
      * @param int $state
+     *
      * @return int
      */
     protected function changeState(int $userId, int $state) : int
     {
         //get user
         $user = $this->mapper->findById($userId);
-       
+
         //check for root user
         if ($user->name === 'root') {
             return 0;
         }
-        
+
         //assign new state
         $user->active = $state;
-        
+
         //save
         $this->mapper->save($user);
-        
+
         //store no error code for update view
         $this->getUpdate = ['error' => 0];
-        
+
         return 1;
     }
 
-
     /**
-     * Delete a User
+     * Delete a User.
      *
      * @param int $userId
      *
@@ -123,7 +121,7 @@ class UserModel extends Model
     {
         //get user
         $user = $this->mapper->findById($userId);
-        
+
         //verify if user is root and delete
         if ($user->name !== 'root') {
             $this->mapper->delete($user);
@@ -131,9 +129,9 @@ class UserModel extends Model
 
         return 1;
     }
-    
+
     /**
-     * Checks before password change
+     * Checks before password change.
      *
      * @param string $newPassword
      * @param string $confirmPassword
@@ -145,22 +143,24 @@ class UserModel extends Model
         //password must be not null
         if ($newPassword === null || $newPassword === '') {
             $this->getUpdate = ['error' => 2];
+
             return false;
         }
 
         //password must be equal to confirm password
         if ($newPassword !== $confirmPassword) {
             $this->getUpdate = ['error' => 1];
+
             return false;
         }
-        
+
         return true;
     }
-    
+
     /**
-     * Change User password
+     * Change User password.
      *
-     * @param int $userId
+     * @param int    $userId
      * @param string $newPassword
      * @param string $confirmPassword
      *
@@ -172,25 +172,25 @@ class UserModel extends Model
         if ($this->changePasswordChecks($newPassword, $confirmPassword) === false) {
             return 0;
         }
-        
+
         //get user
         $user = $this->mapper->findById($userId);
         //set new password
         $user->password = $this->password->hash($newPassword);
-        
+
         //save
         $this->mapper->save($user);
-        
+
         //store no error code for update view
         $this->getUpdate = ['error' => 0];
 
         return 1;
     }
-    
+
     /**
-     * Checks before modify a User
+     * Checks before modify a User.
      *
-     * @param User $user
+     * @param User   $user
      * @param string $newName
      *
      * @return bool
@@ -200,25 +200,27 @@ class UserModel extends Model
         //user name must be not null
         if ($newName === null || $newName === '') {
             $this->getUpdate = ['error' => 2];
+
             return false;
         }
-        
+
         //search for user with new username
         $checkUser = $this->mapper->findByName($newName);
-                
+
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
             $this->getUpdate = ['error' => 1];
+
             return false;
         }
-        
+
         return true;
     }
-    
+
     /**
-     * Modify a User
+     * Modify a User.
      *
-     * @param int $userId
+     * @param int    $userId
      * @param string $newName
      * @param string $newDescription
      *
@@ -228,20 +230,20 @@ class UserModel extends Model
     {
         //get user
         $user = $this->mapper->findById($userId);
-        
+
         //check User modify checks
         if ($this->modifyChecks($user, $newName) === false) {
             return 0;
         }
-        
+
         //set new name
         $user->name = $newName;
         //set new description
         $user->description = $newDescription;
-        
+
         //save
         $this->mapper->save($user);
-        
+
         //store no error code for update view
         $this->getUpdate = ['error' => 0];
 
