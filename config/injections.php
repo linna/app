@@ -17,5 +17,5 @@ $injectionsRules = [
     ],
     '\Linna\Auth\Password' => [
         0 => $options['password'],
-    ]
+    ],
 ];
