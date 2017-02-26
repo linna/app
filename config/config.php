@@ -52,4 +52,9 @@ $options = [
         'host' => 'localhost',
         'port' => 11211,
     ],
+    
+    'password' => [
+        'cost' => 11,
+        'algo' => PASSWORD_DEFAULT,
+    ],
 ];
