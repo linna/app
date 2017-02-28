@@ -14,7 +14,7 @@
 //use Linna\Storage\MongoDbAdapter;
 use Linna\Autoloader;
 //use Linna\Session\MemcachedSessionHandler;
-use Linna\DI\DIResolver;
+use Linna\DI\Resolver;
 use Linna\Http\FrontController;
 use Linna\Http\Router;
 use Linna\Session\Session;
@@ -78,8 +78,8 @@ $loader->addNamespaces([
  */
 
 //create dipendency injection resolver
-$DIResolver = new DIResolver();
-$DIResolver->rules($injectionsRules);
+$resolver = new Resolver();
+$resolver->rules($injectionsRules);
 
 /**
  * Memcached Section.
@@ -92,8 +92,8 @@ $DIResolver->rules($injectionsRules);
 //$memcached->addServer($options['memcached']['host'], $options['memcached']['port']);
 
 ////add unresolvable class to DIResolver
-//$DIResolver->cache('\Memcached', $memcached);
-//$DIResolver->cache('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
+//$resolver->cache('\Memcached', $memcached);
+//$resolver->cache('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
 
 /**
  * Storage Section.
@@ -129,7 +129,7 @@ $DIResolver->rules($injectionsRules);
  */
 
 //resolve Session Handler
-$sessionHandler = $DIResolver->resolve('\Linna\Session\MysqlPdoSessionHandler');
+$sessionHandler = $resolver->resolve('\Linna\Session\MysqlPdoSessionHandler');
 //$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
 
 //create session object
@@ -143,7 +143,7 @@ $session->setSessionHandler($sessionHandler);
 $session->start();
 
 //store session instance
-$DIResolver->cache('\Linna\Session\Session', $session);
+$resolver->cache('\Linna\Session\Session', $session);
 
 /**
  * Router Section.
@@ -166,13 +166,13 @@ $routeView = '\App\Views\\'.$route->getView();
 $routeController = '\App\Controllers\\'.$route->getController();
 
 //resolve model
-$model = $DIResolver->resolve($routeModel);
+$model = $resolver->resolve($routeModel);
 
 //resolve view
-$view = $DIResolver->resolve($routeView);
+$view = $resolver->resolve($routeView);
 
 //resolve controller
-$controller = $DIResolver->resolve($routeController);
+$controller = $resolver->resolve($routeController);
 
 /**
  * Front Controller section.
