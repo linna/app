@@ -104,7 +104,7 @@ $resolver->rules($injectionsRules);
 //    $options['pdo_mysql']['dsn'],
 //    $options['pdo_mysql']['user'],
 //    $options['pdo_mysql']['password'],
-//    array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING)
+//    [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING]
 //);
 
 //create Mysql Improved extension adapter
@@ -117,7 +117,7 @@ $resolver->rules($injectionsRules);
 //);
 
 //create Mongodb adapter
-//$mongoDbAdapter = new MongoDbAdapter($options['mongo_db']['server_string']);
+//$mongoDbAdapter = new MongoDbAdapter($options['mongo_db']['uri']);
 
 //add unresolvable class to DIResolver
 //$DIResolver->cache('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);

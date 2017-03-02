@@ -34,6 +34,7 @@ $options = [
         'dsn'      => 'mysql:host=localhost;dbname=test;charset=utf8mb4',
         'user'     => 'root',
         'password' => 'cagiva',
+        'options'  => [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING],
     ],
 
     'mysqli' => [
@@ -45,7 +46,9 @@ $options = [
     ],
 
     'mongo_db' => [
-        'server_string' => 'mongodb://localhost:27017',
+        'uri' => 'mongodb://localhost:27017',
+        'uriOptions' => [],
+        'driverOptions' => [],
     ],
 
     'memcached' => [
