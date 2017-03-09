@@ -46,8 +46,8 @@ $options = [
     ],
 
     'mongo_db' => [
-        'uri' => 'mongodb://localhost:27017',
-        'uriOptions' => [],
+        'uri'           => 'mongodb://localhost:27017',
+        'uriOptions'    => [],
         'driverOptions' => [],
     ],
 

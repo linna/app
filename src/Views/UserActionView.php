@@ -25,7 +25,7 @@ class UserActionView extends View
      * Constructor.
      *
      * @param UserModel    $model
-     * @param Authenticate        $login
+     * @param Authenticate $login
      * @param JsonTemplate $jsonTemplate
      */
     public function __construct(UserModel $model, Authenticate $login, JsonTemplate $jsonTemplate)
