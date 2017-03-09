@@ -25,7 +25,7 @@ class LoginView extends View
      * Constructor.
      *
      * @param LoginModel   $model
-     * @param Authenticate        $login
+     * @param Authenticate $login
      * @param HtmlTemplate $htmlTemplate
      */
     public function __construct(LoginModel $model, Authenticate $login, HtmlTemplate $htmlTemplate)

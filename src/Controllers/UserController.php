@@ -27,8 +27,8 @@ class UserController extends Controller
     /**
      * Contructor.
      *
-     * @param UserModel $model
-     * @param Authenticate     $login
+     * @param UserModel    $model
+     * @param Authenticate $login
      */
     public function __construct(UserModel $model, Authenticate $login)
     {

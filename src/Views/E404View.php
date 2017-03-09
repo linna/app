@@ -25,7 +25,7 @@ class E404View extends View
      * Constructor.
      *
      * @param E404Model    $model
-     * @param Authenticate        $login
+     * @param Authenticate $login
      * @param HtmlTemplate $htmlTemplate
      */
     public function __construct(E404Model $model, Authenticate $login, HtmlTemplate $htmlTemplate)

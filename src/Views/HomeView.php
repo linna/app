@@ -25,7 +25,7 @@ class HomeView extends View
      * Constructor.
      *
      * @param HomeModel    $model
-     * @param Authenticate        $login
+     * @param Authenticate $login
      * @param HtmlTemplate $htmlTemplate
      */
     public function __construct(HomeModel $model, Authenticate $login, HtmlTemplate $htmlTemplate)
