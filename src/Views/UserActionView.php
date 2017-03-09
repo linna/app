@@ -13,7 +13,7 @@ namespace App\Views;
 
 use App\Models\UserModel;
 use App\Templates\JsonTemplate;
-use Linna\Auth\Login;
+use Linna\Auth\Authenticate;
 use Linna\Mvc\View;
 
 /**
@@ -25,10 +25,10 @@ class UserActionView extends View
      * Constructor.
      *
      * @param UserModel    $model
-     * @param Login        $login
+     * @param Authenticate        $login
      * @param JsonTemplate $jsonTemplate
      */
-    public function __construct(UserModel $model, Login $login, JsonTemplate $jsonTemplate)
+    public function __construct(UserModel $model, Authenticate $login, JsonTemplate $jsonTemplate)
     {
         parent::__construct($model);
 

@@ -13,7 +13,7 @@ namespace App\Models;
 
 use App\DomainObjects\User;
 use App\Mappers\UserMapper;
-use Linna\Auth\Login;
+use Linna\Auth\Authenticate;
 use Linna\Auth\Password;
 use Linna\Mvc\Model;
 
@@ -44,7 +44,7 @@ class LoginModel extends Model
      * @param Login      $login
      * @param Password   $password
      */
-    public function __construct(UserMapper $userMapper, Login $login, Password $password)
+    public function __construct(UserMapper $userMapper, Authenticate $login, Password $password)
     {
         parent::__construct();
 

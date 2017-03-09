@@ -13,7 +13,7 @@ namespace App\Views;
 
 use App\Models\LoginModel;
 use App\Templates\HtmlTemplate;
-use Linna\Auth\Login;
+use Linna\Auth\Authenticate;
 use Linna\Mvc\View;
 
 /**
@@ -25,10 +25,10 @@ class LoginView extends View
      * Constructor.
      *
      * @param LoginModel   $model
-     * @param Login        $login
+     * @param Authenticate        $login
      * @param HtmlTemplate $htmlTemplate
      */
-    public function __construct(LoginModel $model, Login $login, HtmlTemplate $htmlTemplate)
+    public function __construct(LoginModel $model, Authenticate $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
 

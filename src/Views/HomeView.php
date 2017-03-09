@@ -13,7 +13,7 @@ namespace App\Views;
 
 use App\Models\HomeModel;
 use App\Templates\HtmlTemplate;
-use Linna\Auth\Login;
+use Linna\Auth\Authenticate;
 use Linna\Mvc\View;
 
 /**
@@ -25,10 +25,10 @@ class HomeView extends View
      * Constructor.
      *
      * @param HomeModel    $model
-     * @param Login        $login
+     * @param Authenticate        $login
      * @param HtmlTemplate $htmlTemplate
      */
-    public function __construct(HomeModel $model, Login $login, HtmlTemplate $htmlTemplate)
+    public function __construct(HomeModel $model, Authenticate $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
 

@@ -12,7 +12,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
-use Linna\Auth\Login;
+use Linna\Auth\Authenticate;
 use Linna\Auth\ProtectedController;
 use Linna\Mvc\Controller;
 
@@ -28,9 +28,9 @@ class UserController extends Controller
      * Contructor.
      *
      * @param UserModel $model
-     * @param Login     $login
+     * @param Authenticate     $login
      */
-    public function __construct(UserModel $model, Login $login)
+    public function __construct(UserModel $model, Authenticate $login)
     {
         parent::__construct($model);
 
