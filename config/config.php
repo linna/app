@@ -31,7 +31,7 @@ $options = [
     ],
 
     'pdo_mysql' => [
-        'dsn'      => 'mysql:host=localhost;dbname=test;charset=utf8mb4',
+        'dsn'      => 'mysql:host=localhost;dbname=linna_db;charset=utf8mb4',
         'user'     => 'root',
         'password' => 'cagiva',
         'options'  => [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING],
@@ -41,7 +41,7 @@ $options = [
         'host'     => '127.0.0.1',
         'user'     => 'root',
         'password' => 'cagiva',
-        'database' => 'test',
+        'database' => 'linna_db',
         'port'     => 3306,
     ],
 
