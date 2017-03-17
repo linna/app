@@ -11,16 +11,19 @@
 
 namespace App\Mappers;
 
-use App\DomainObjects\User;
 use Linna\Auth\Password;
+use Linna\Auth\User;
+use Linna\Auth\UserMapperInterface;
+use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
+use Linna\DataMapper\NullDomainObject;
 use Linna\Storage\MysqlPdoAdapter;
 
 /**
  * UserMapper.
  */
-class UserMapper extends MapperAbstract
+class UserMapper extends MapperAbstract implements UserMapperInterface
 {
     /**
      * @var Password Password util for user object
@@ -49,16 +52,18 @@ class UserMapper extends MapperAbstract
      *
      * @param string $userId
      *
-     * @return User | bool
+     * @return DomainObjectAbstract
      */
-    public function findById(int $userId)
+    public function fetchById(int $userId) : DomainObjectInterface
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user WHERE user_id = :id');
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user WHERE user_id = :id');
 
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User', [$this->password]);
+        $result = $pdos->fetchObject('\Linna\Auth\User', [$this->password]);
+        
+        return ($result instanceof User) ? $result : new NullDomainObject;
     }
 
     /**
@@ -66,18 +71,20 @@ class UserMapper extends MapperAbstract
      *
      * @param string $userName
      *
-     * @return User | bool
+     * @return DomainObjectAbstract
      */
-    public function findByName(string $userName)
+    public function fetchByName(string $userName) : DomainObjectInterface
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user WHERE md5(name) = :name');
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user WHERE md5(name) = :name');
 
         $hashedUserName = md5($userName);
 
         $pdos->bindParam(':name', $hashedUserName, \PDO::PARAM_STR);
         $pdos->execute();
 
-        return $pdos->fetchObject('\App\DomainObjects\User', [$this->password]);
+        $result = $pdos->fetchObject('\Linna\Auth\User', [$this->password]);
+        
+        return ($result instanceof User) ? $result : new NullDomainObject;
     }
 
     /**
@@ -85,21 +92,40 @@ class UserMapper extends MapperAbstract
      *
      * @return array All users stored
      */
-    public function getAllUsers() : array
+    public function fetchAll() : array
     {
-        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC');
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC');
 
         $pdos->execute();
 
-        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\App\DomainObjects\User', [$this->password]);
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\User', [$this->password]);
     }
 
+    /**
+     * Fetch users with limit.
+     *
+     * @param int $offset
+     * @param int $rowCount
+     * 
+     * @return array
+     */
+    public function fetchLimit(int $offset, int $rowCount) : array
+    {
+        $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC LIMIT :offset, :rowcount');
+        
+        $pdos->bindParam(':offset', $offset, \PDO::PARAM_INT);
+        $pdos->bindParam(':rowcount', $rowCount, \PDO::PARAM_INT);
+        $pdos->execute();
+
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\User', [$this->password]);
+    }
+    
     /**
      * Create a new User DomainObject.
      *
      * @return User
      */
-    protected function oCreate() : User
+    protected function concreteCreate() : User
     {
         return new User($this->password);
     }
@@ -113,16 +139,17 @@ class UserMapper extends MapperAbstract
      *
      * @return int Last insert id
      */
-    protected function oInsert(DomainObjectInterface $user) : int
+    protected function concreteInsert(DomainObjectInterface $user) : int
     {
         if (!($user instanceof User)) {
             throw new \InvalidArgumentException('$user must be instance of User class');
         }
 
         try {
-            $pdos = $this->dBase->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
+            $pdos = $this->dBase->prepare('INSERT INTO user (name, email, description, password, created) VALUES (:name, :email, :description, :password, NOW())');
 
             $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
+            $pdos->bindParam(':email', $user->email, \PDO::PARAM_STR);
             $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
             $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
             $pdos->execute();
@@ -140,20 +167,21 @@ class UserMapper extends MapperAbstract
      *
      * @throws \InvalidArgumentException
      */
-    protected function oUpdate(DomainObjectInterface $user)
+    protected function concreteUpdate(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \InvalidArgumentException('$user must be instance of User class');
         }
 
         try {
-            $pdos = $this->dBase->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
+            $pdos = $this->dBase->prepare('UPDATE user SET name = :name, email = :email, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
 
             $objId = $user->getId();
 
             $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
 
             $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
+            $pdos->bindParam(':email', $user->email, \PDO::PARAM_STR);
             $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
             $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
             $pdos->bindParam(':active', $user->active, \PDO::PARAM_INT);
@@ -171,7 +199,7 @@ class UserMapper extends MapperAbstract
      *
      * @throws \InvalidArgumentException
      */
-    protected function oDelete(DomainObjectInterface $user)
+    protected function concreteDelete(DomainObjectInterface $user)
     {
         if (!($user instanceof User)) {
             throw new \InvalidArgumentException('$user must be instance of User class');

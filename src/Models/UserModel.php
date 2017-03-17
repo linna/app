@@ -11,9 +11,9 @@
 
 namespace App\Models;
 
-use App\DomainObjects\User;
 use App\Mappers\UserMapper;
 use Linna\Auth\Password;
+use Linna\Auth\User;
 use Linna\Mvc\Model;
 
 /**
@@ -53,7 +53,7 @@ class UserModel extends Model
      */
     public function getAllUsers()
     {
-        return $this->mapper->getAllUsers();
+        return $this->mapper->fetchAll();
     }
 
     /**
@@ -91,7 +91,7 @@ class UserModel extends Model
     protected function changeState(int $userId, int $state) : int
     {
         //get user
-        $user = $this->mapper->findById($userId);
+        $user = $this->mapper->fetchById($userId);
 
         //check for root user
         if ($user->name === 'root') {
@@ -120,7 +120,7 @@ class UserModel extends Model
     public function delete(int $userId)
     {
         //get user
-        $user = $this->mapper->findById($userId);
+        $user = $this->mapper->fetchById($userId);
 
         //verify if user is root and delete
         if ($user->name !== 'root') {
@@ -174,7 +174,7 @@ class UserModel extends Model
         }
 
         //get user
-        $user = $this->mapper->findById($userId);
+        $user = $this->mapper->fetchById($userId);
         //set new password
         $user->password = $this->password->hash($newPassword);
 
@@ -205,7 +205,7 @@ class UserModel extends Model
         }
 
         //search for user with new username
-        $checkUser = $this->mapper->findByName($newName);
+        $checkUser = $this->mapper->fetchByName($newName);
 
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
@@ -229,7 +229,7 @@ class UserModel extends Model
     public function modify(int $userId, string $newName, string $newDescription)
     {
         //get user
-        $user = $this->mapper->findById($userId);
+        $user = $this->mapper->fetchById($userId);
 
         //check User modify checks
         if ($this->modifyChecks($user, $newName) === false) {

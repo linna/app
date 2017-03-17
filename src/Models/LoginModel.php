@@ -11,10 +11,10 @@
 
 namespace App\Models;
 
-use App\DomainObjects\User;
 use App\Mappers\UserMapper;
 use Linna\Auth\Authenticate;
 use Linna\Auth\Password;
+use Linna\Auth\User;
 use Linna\Mvc\Model;
 
 /**
@@ -64,7 +64,7 @@ class LoginModel extends Model
     public function doLogin(string $userName, string $userPassword) : bool
     {
         //get user from databese
-        $dbUser = $this->userMapper->findByName($userName);
+        $dbUser = $this->userMapper->fetchByName($userName);
 
         //if user is not a Userobject return error
         if (!($dbUser instanceof User)) {
