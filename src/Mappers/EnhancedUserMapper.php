@@ -29,18 +29,18 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
      * @var PermissionMapperInterface Permission Mapper
      */
     protected $permissionMapper;
-    
+
     /**
      * Constructor.
      *
-     * @param MysqlPdoAdapter $dBase
-     * @param Password $password
+     * @param MysqlPdoAdapter           $dBase
+     * @param Password                  $password
      * @param PermissionMapperInterface $permissionMapper
      */
     public function __construct(MysqlPdoAdapter $dBase, Password $password, PermissionMapperInterface $permissionMapper)
     {
         parent::__construct($dBase, $password);
-        
+
         $this->permissionMapper = $permissionMapper;
     }
 
@@ -59,13 +59,13 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
         $pdos->execute();
 
         $user = $pdos->fetchObject('\Linna\Auth\EnhancedUser', [$this->password]);
-        
+
         if (!($user instanceof EnhancedUser)) {
-            return new NullDomainObject;
+            return new NullDomainObject();
         }
-        
+
         $user->setPermissions($this->permissionMapper->fetchUserPermission($userId));
-        
+
         return $user;
     }
 
@@ -86,13 +86,13 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
         $pdos->execute();
 
         $user = $pdos->fetchObject('\Linna\Auth\EnhancedUser', [$this->password]);
-        
+
         if (!($user instanceof EnhancedUser)) {
-            return new NullDomainObject;
+            return new NullDomainObject();
         }
-        
+
         $user->setPermissions($this->permissionMapper->fetchUserPermission($user->getId()));
-        
+
         return $user;
     }
 
@@ -108,7 +108,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
         $pdos->execute();
 
         $users = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\EnhancedUser', [$this->password]);
-        
+
         return $this->setPermissionsToUsersArray($users);
     }
 
@@ -117,85 +117,83 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
      *
      * @param int $offset
      * @param int $rowCount
-     * 
+     *
      * @return array
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
         $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC LIMIT :offset, :rowcount');
-        
+
         $pdos->bindParam(':offset', $offset, \PDO::PARAM_INT);
         $pdos->bindParam(':rowcount', $rowCount, \PDO::PARAM_INT);
         $pdos->execute();
 
         $users = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\EnhancedUser', [$this->password]);
-        
+
         return $this->setPermissionsToUsersArray($users);
     }
-    
+
     /**
-     * Set Permission on every EnhancedUser instance inside an array
-     * 
+     * Set Permission on every EnhancedUser instance inside an array.
+     *
      * @param array $users
+     *
      * @return array
      */
     protected function setPermissionsToUsersArray(array $users) : array
     {
         $arrayUsers = [];
-        
-        foreach ($users as $user)
-        {
+
+        foreach ($users as $user) {
             $user->setPermissions($this->permissionMapper->fetchUserPermission($user->getId()));
             $arrayUsers[] = $user;
         }
-        
+
         return $arrayUsers;
     }
-    
+
     /**
-     * Grant permission to User
-     * 
+     * Grant permission to User.
+     *
      * @param EnhancedUser $user
-     * @param string $permission
+     * @param string       $permission
      */
     public function grant(EnhancedUser &$user, string $permission)
     {
-        if ($this->permissionMapper->permissionExist($permission))
-        {
+        if ($this->permissionMapper->permissionExist($permission)) {
             $pdos = $this->dBase->prepare('INSERT INTO user_permission (user_id, permission_id) VALUES (:user_id, (SELECT permission_id FROM permission WHERE name = :permission))');
-            
+
             $userId = $user->getId();
-            
+
             $pdos->bindParam(':user_id', $userId, \PDO::PARAM_INT);
             $pdos->bindParam(':permission', $permission, \PDO::PARAM_STR);
             $pdos->execute();
-            
+
             $user->setPermissions($this->permissionMapper->fetchUserPermission($userId));
         }
     }
-    
+
     /**
-     * Revoke permission to User
-     * 
+     * Revoke permission to User.
+     *
      * @param EnhancedUser $user
-     * @param string $permission
+     * @param string       $permission
      */
     public function revoke(EnhancedUser &$user, string $permission)
     {
-        if ($this->permissionMapper->permissionExist($permission))
-        {
+        if ($this->permissionMapper->permissionExist($permission)) {
             $pdos = $this->dBase->prepare('DELETE FROM user_permission WHERE user_id = :user_id AND permission_id = (SELECT permission_id FROM permission WHERE name = :permission)');
-            
+
             $userId = $user->getId();
-            
+
             $pdos->bindParam(':user_id', $userId, \PDO::PARAM_INT);
             $pdos->bindParam(':permission', $permission, \PDO::PARAM_STR);
             $pdos->execute();
-            
+
             $user->setPermissions($this->permissionMapper->fetchUserPermission($userId));
         }
     }
-    
+
     /**
      * Create a new User DomainObject.
      *

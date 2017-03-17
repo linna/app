@@ -51,10 +51,10 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         $pdos->bindParam(':id', $permissionId, \PDO::PARAM_INT);
         $pdos->execute();
-        
+
         $result = $pdos->fetchObject('\Linna\Auth\Permission');
-        
-        return ($result instanceof Permission) ? $result : new NullDomainObject;
+
+        return ($result instanceof Permission) ? $result : new NullDomainObject();
     }
 
     /**
@@ -70,31 +70,31 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
-    
+
     /**
      * Fetch permissions with limit.
      *
      * @param int $offset
      * @param int $rowCount
-     * 
+     *
      * @return array
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
         $pdos = $this->dBase->prepare('SELECT permission_id AS objectId, name, description, last_update AS lastUpdate FROM permission LIMIT :offset, :rowcount');
-        
+
         $pdos->bindParam(':offset', $offset, \PDO::PARAM_INT);
         $pdos->bindParam(':rowcount', $rowCount, \PDO::PARAM_INT);
         $pdos->execute();
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
-    
+
     /**
-     * Get User permissions
-     * 
+     * Get User permissions.
+     *
      * @param int $userId
-     * 
+     *
      * @return array
      */
     public function fetchUserPermission(int $userId) : array
@@ -108,20 +108,20 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
-        
+
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
-    
+
     public function permissionExist(string $permission) : bool
     {
         $pdos = $this->dBase->prepare('SELECT permission_id FROM permission WHERE name = :name');
 
         $pdos->bindParam(':name', $permission, \PDO::PARAM_STR);
         $pdos->execute();
-        
+
         return ($pdos->rowCount() > 0) ? true : false;
     }
-    
+
     /**
      * Create a new User DomainObject.
      *
