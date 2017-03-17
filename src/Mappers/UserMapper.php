@@ -62,8 +62,8 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
         $pdos->execute();
 
         $result = $pdos->fetchObject('\Linna\Auth\User', [$this->password]);
-        
-        return ($result instanceof User) ? $result : new NullDomainObject;
+
+        return ($result instanceof User) ? $result : new NullDomainObject();
     }
 
     /**
@@ -83,8 +83,8 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
         $pdos->execute();
 
         $result = $pdos->fetchObject('\Linna\Auth\User', [$this->password]);
-        
-        return ($result instanceof User) ? $result : new NullDomainObject;
+
+        return ($result instanceof User) ? $result : new NullDomainObject();
     }
 
     /**
@@ -106,20 +106,20 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
      *
      * @param int $offset
      * @param int $rowCount
-     * 
+     *
      * @return array
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
         $pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC LIMIT :offset, :rowcount');
-        
+
         $pdos->bindParam(':offset', $offset, \PDO::PARAM_INT);
         $pdos->bindParam(':rowcount', $rowCount, \PDO::PARAM_INT);
         $pdos->execute();
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\User', [$this->password]);
     }
-    
+
     /**
      * Create a new User DomainObject.
      *
