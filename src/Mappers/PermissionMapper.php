@@ -91,13 +91,35 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Get User permissions.
+     * Fetch Group's permissions.
+     *
+     * @param int $groupId
+     *
+     * @return array
+     */
+    public function fetchPermissionsByGroup(int $groupId) : array
+    {
+        $pdos = $this->dBase->prepare('
+        SELECT gp.permission_id AS objectId, name, description, last_update AS lastUpdate
+        FROM permission AS p
+        INNER JOIN group_permission AS gp 
+        ON gp.permission_id = p.permission_id
+        WHERE gp.group_id = :id');
+
+        $pdos->bindParam(':id', $groupId, \PDO::PARAM_INT);
+        $pdos->execute();
+
+        return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
+    }
+    
+    /**
+     * Fetch User's permissions.
      *
      * @param int $userId
      *
      * @return array
      */
-    public function fetchUserPermission(int $userId) : array
+    public function fetchPermissionsByUser(int $userId) : array
     {
         $pdos = $this->dBase->prepare('
         SELECT up.permission_id AS objectId, name, description, last_update AS lastUpdate
@@ -112,6 +134,12 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
 
+    /**
+     * Check if permission exist
+     * 
+     * @param string $permission
+     * @return bool
+     */
     public function permissionExist(string $permission) : bool
     {
         $pdos = $this->dBase->prepare('SELECT permission_id FROM permission WHERE name = :name');
@@ -143,22 +171,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
      */
     protected function concreteInsert(DomainObjectInterface $permission) : int
     {
-        /*if (!($user instanceof User)) {
-            throw new \InvalidArgumentException('$user must be instance of User class');
-        }
-
-        try {
-            $pdos = $this->dBase->prepare('INSERT INTO user (name, description, password, created) VALUES (:name, :description, :password, NOW())');
-
-            $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
-            $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
-            $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
-            $pdos->execute();
-
-            return (int) $this->dBase->lastInsertId();
-        } catch (\RuntimeException $e) {
-            echo 'Mapper: Insert not compled, ', $e->getMessage(), "\n";
-        }*/
+        return 0;
     }
 
     /**
@@ -170,48 +183,18 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
      */
     protected function concreteUpdate(DomainObjectInterface $permission)
     {
-        /*if (!($user instanceof User)) {
-            throw new \InvalidArgumentException('$user must be instance of User class');
-        }
-
-        try {
-            $pdos = $this->dBase->prepare('UPDATE user SET name = :name, description = :description,  password = :password, active = :active WHERE user_id = :user_id');
-
-            $objId = $user->getId();
-
-            $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
-
-            $pdos->bindParam(':name', $user->name, \PDO::PARAM_STR);
-            $pdos->bindParam(':password', $user->password, \PDO::PARAM_STR);
-            $pdos->bindParam(':description', $user->description, \PDO::PARAM_STR);
-            $pdos->bindParam(':active', $user->active, \PDO::PARAM_INT);
-
-            $pdos->execute();
-        } catch (\Exception $e) {
-            echo 'Mapper exception: ', $e->getMessage(), "\n";
-        }*/
+        
     }
 
     /**
      * Delete the DomainObject from persistent storage.
      *
-     * @param DomainObjectAbstract $user
+     * @param DomainObjectAbstract $permission
      *
      * @throws \InvalidArgumentException
      */
     protected function concreteDelete(DomainObjectInterface $permission)
     {
-        /*if (!($user instanceof User)) {
-            throw new \InvalidArgumentException('$user must be instance of User class');
-        }
-
-        try {
-            $objId = $user->getId();
-            $pdos = $this->dBase->prepare('DELETE FROM user WHERE user_id = :user_id');
-            $pdos->bindParam(':user_id', $objId, \PDO::PARAM_INT);
-            $pdos->execute();
-        } catch (\Exception $e) {
-            echo 'Mapper exception: ', $e->getMessage(), "\n";
-        }*/
+        
     }
 }

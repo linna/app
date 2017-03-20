@@ -64,7 +64,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
             return new NullDomainObject();
         }
 
-        $user->setPermissions($this->permissionMapper->fetchUserPermission($userId));
+        $user->setPermissions($this->permissionMapper->fetchPermissionsByUser($userId));
 
         return $user;
     }
@@ -91,7 +91,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
             return new NullDomainObject();
         }
 
-        $user->setPermissions($this->permissionMapper->fetchUserPermission($user->getId()));
+        $user->setPermissions($this->permissionMapper->fetchPermissionsByUser($user->getId()));
 
         return $user;
     }
@@ -145,13 +145,13 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
         $arrayUsers = [];
 
         foreach ($users as $user) {
-            $user->setPermissions($this->permissionMapper->fetchUserPermission($user->getId()));
+            $user->setPermissions($this->permissionMapper->fetchPermissionsByUser($user->getId()));
             $arrayUsers[] = $user;
         }
 
         return $arrayUsers;
     }
-
+    
     /**
      * Grant permission to User.
      *
@@ -169,7 +169,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
             $pdos->bindParam(':permission', $permission, \PDO::PARAM_STR);
             $pdos->execute();
 
-            $user->setPermissions($this->permissionMapper->fetchUserPermission($userId));
+            $user->setPermissions($this->permissionMapper->fetchPermissionsByUser($userId));
         }
     }
 
@@ -190,7 +190,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
             $pdos->bindParam(':permission', $permission, \PDO::PARAM_STR);
             $pdos->execute();
 
-            $user->setPermissions($this->permissionMapper->fetchUserPermission($userId));
+            $user->setPermissions($this->permissionMapper->fetchPermissionsByUser($userId));
         }
     }
 
