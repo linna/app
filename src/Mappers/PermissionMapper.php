@@ -41,7 +41,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     /**
      * Fetch a permission by id.
      *
-     * @param string $permissionId
+     * @param int $permissionId
      *
      * @return DomainObjectInterface
      */
@@ -57,6 +57,25 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
         return ($result instanceof Permission) ? $result : new NullDomainObject();
     }
 
+    /**
+     * Fetch a permission by name.
+     *
+     * @param string $permissionName
+     *
+     * @return DomainObjectInterface
+     */
+    public function fetchByName(string $permissionName) : DomainObjectInterface
+    {
+        $pdos = $this->dBase->prepare('SELECT permission_id AS objectId, name, description, last_update AS lastUpdate FROM permission WHERE name = :name');
+
+        $pdos->bindParam(':name', $permissionName, \PDO::PARAM_STR);
+        $pdos->execute();
+
+        $result = $pdos->fetchObject('\Linna\Auth\Permission');
+
+        return ($result instanceof Permission) ? $result : new NullDomainObject();
+    }
+    
     /**
      * Fetch all permission stored in data base.
      *
@@ -91,22 +110,22 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch Group's permissions.
+     * Fetch Role's permissions.
      *
-     * @param int $groupId
+     * @param int $roleId
      *
      * @return array
      */
-    public function fetchPermissionsByGroup(int $groupId) : array
+    public function fetchPermissionsByRole(int $roleId) : array
     {
         $pdos = $this->dBase->prepare('
-        SELECT gp.permission_id AS objectId, name, description, last_update AS lastUpdate
+        SELECT rp.permission_id AS objectId, name, description, last_update AS lastUpdate
         FROM permission AS p
-        INNER JOIN group_permission AS gp 
-        ON gp.permission_id = p.permission_id
-        WHERE gp.group_id = :id');
+        INNER JOIN role_permission AS rp 
+        ON rp.permission_id = p.permission_id
+        WHERE rp.role_id = :id');
 
-        $pdos->bindParam(':id', $groupId, \PDO::PARAM_INT);
+        $pdos->bindParam(':id', $roleId, \PDO::PARAM_INT);
         $pdos->execute();
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');

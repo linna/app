@@ -109,7 +109,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
 
         $users = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\EnhancedUser', [$this->password]);
 
-        return $this->setPermissionsToUsersArray($users);
+        return $this->fillUsersArray($users);
     }
 
     /**
@@ -130,9 +130,29 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
 
         $users = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\EnhancedUser', [$this->password]);
 
-        return $this->setPermissionsToUsersArray($users);
+        return $this->fillUsersArray($users);
     }
 
+    /**
+     * Fetch users ina group.
+     * 
+     * @param int $roleId
+     * @return array
+     */
+    public function fetchUserByRole(int $roleId) : array
+    {
+        $pdos = $this->dBase->prepare('SELECT u.user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate
+        FROM user AS u INNER JOIN user_role AS ur ON u.user_id = ur.user_id
+        WHERE role_id = :id');
+
+        $pdos->bindParam(':id', $roleId, \PDO::PARAM_INT);
+        $pdos->execute();
+
+        $users = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\EnhancedUser', [$this->password]);
+
+        return $this->fillUsersArray($users);
+    }
+    
     /**
      * Set Permission on every EnhancedUser instance inside an array.
      *
@@ -140,7 +160,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
      *
      * @return array
      */
-    protected function setPermissionsToUsersArray(array $users) : array
+    protected function fillUsersArray(array $users) : array
     {
         $arrayUsers = [];
 
