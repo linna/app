@@ -11,6 +11,7 @@
 
 namespace App\Mappers;
 
+use Linna\Auth\Permission;
 use Linna\Auth\PermissionMapperInterface;
 use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
@@ -152,7 +153,39 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
+    
+    /**
+     * Genereate Permission Hash table.
+     * 
+     * @return array
+     */
+    public function generatePermissionHashTable() : array
+    {
+        $pdos = $this->dBase->query("(SELECT sha2(concat(u.user_id, '.', up.permission_id),0) as p_hash
+            FROM user AS u
+            INNER JOIN user_permission AS up
+            ON u.user_id = up.permission_id)
 
+            UNION
+
+            (SELECT sha2(concat(u.user_id, '.', rp.permission_id),0) as p_hash
+            FROM user AS u
+            INNER JOIN user_role AS ur
+            INNER JOIN role AS r
+            INNER JOIN role_permission as rp
+            ON u.user_id = ur.user_id
+            AND ur.role_id = r.role_id
+            AND r.role_id = rp.role_id)
+
+            ORDER BY p_hash");
+        
+        //$result = $pdos->fetchAll(\PDO::FETCH_COLUMN);
+        
+        //var_dump(array_flip($pdos->fetchAll(\PDO::FETCH_COLUMN));
+        
+        return array_flip($pdos->fetchAll(\PDO::FETCH_COLUMN));
+    }
+    
     /**
      * Check if permission exist
      * 
