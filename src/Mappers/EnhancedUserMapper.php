@@ -135,8 +135,9 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
 
     /**
      * Fetch users by role.
-     * 
+     *
      * @param int $roleId
+     *
      * @return array
      */
     public function fetchUserByRole(int $roleId) : array
@@ -152,19 +153,19 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
 
         return $this->fillUsersArray($users);
     }
-    
+
     /**
      * Fetch users by permission.
-     * 
+     *
      * @param int $permissionId
-     * 
+     *
      * @return array
      */
     public function fetchUserByPermission(int $permissionId) : array
     {
         return [];
     }
-    
+
     /**
      * Set Permission on every EnhancedUser instance inside an array.
      *
@@ -183,7 +184,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
 
         return $arrayUsers;
     }
-    
+
     /**
      * Grant permission to User.
      *
