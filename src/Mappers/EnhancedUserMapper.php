@@ -134,7 +134,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Fetch users ina group.
+     * Fetch users by role.
      * 
      * @param int $roleId
      * @return array
@@ -151,6 +151,18 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
         $users = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\EnhancedUser', [$this->password]);
 
         return $this->fillUsersArray($users);
+    }
+    
+    /**
+     * Fetch users by permission.
+     * 
+     * @param int $permissionId
+     * 
+     * @return array
+     */
+    public function fetchUserByPermission(int $permissionId) : array
+    {
+        return [];
     }
     
     /**
@@ -217,9 +229,9 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     /**
      * Create a new User DomainObject.
      *
-     * @return User
+     * @return EnhancedUser
      */
-    protected function concreteCreate() : User
+    protected function concreteCreate() : DomainObjectInterface
     {
         return new EnhancedUser($this->password);
     }

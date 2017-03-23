@@ -125,7 +125,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
      *
      * @return User
      */
-    protected function concreteCreate() : User
+    protected function concreteCreate() : DomainObjectInterface
     {
         return new User($this->password);
     }

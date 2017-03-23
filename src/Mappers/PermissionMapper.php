@@ -179,10 +179,6 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
             ORDER BY p_hash");
         
-        //$result = $pdos->fetchAll(\PDO::FETCH_COLUMN);
-        
-        //var_dump(array_flip($pdos->fetchAll(\PDO::FETCH_COLUMN));
-        
         return array_flip($pdos->fetchAll(\PDO::FETCH_COLUMN));
     }
     
@@ -207,7 +203,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
      *
      * @return User
      */
-    protected function concreteCreate() : Permission
+    protected function concreteCreate() : DomainObjectInterface
     {
         return new Permission();
     }

@@ -66,7 +66,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Fetch a permission by id.
+     * Fetch a role by id.
      *
      * @param string $roleId
      *
@@ -95,7 +95,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Fetch all permission stored in data base.
+     * Fetch all roles stored in data base.
      *
      * @return array
      */
@@ -133,7 +133,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
      * Set Permission and Users on every Role instance inside passed array.
      *
      * @param array $roles
-     *
+     * 
      * @return array
      */
     protected function fillRolesArray(array $roles) : array
@@ -153,38 +153,13 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
     
     /**
-     * Return an array with Group Permissions
-     * 
-     * @param int $roleId
-     * @return array
-     */
-    public function fetchRolePermissions(int $roleId) : array
-    {
-        return [];
-    }
-    
-    /**
-     * Return an array with Group Users
-     * 
-     * @param int $roleId
-     * @return array
-     */
-    //public function fetchUsersByRole(int $roleId) : array
-    //{
-        //$pdos = $this->dBase->prepare('SELECT user_id AS objectId, name, email, description, password, active, created, last_update AS lastUpdate FROM user ORDER BY name ASC');
-
-        //$pdos->execute();
-
-       // return []; //$pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\User', [$this->password]);
-    //}
-    
-    /**
      * Return permission inherited by an User from Groups
      * 
-     * @param int $userId
+     * @param Role $role
+     * @param User $user
      * @return array
      */
-    public function fetchUserInheritedPermissions(int $userId) : array
+    public function fetchUserInheritedPermissions(Role &$role, User $user) : array
     {
         return [];
     }
@@ -234,25 +209,25 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Create a new User DomainObject.
+     * Create a new Role DomainObject.
      *
-     * @return User
+     * @return Role
      */
-    protected function concreteCreate() : Permission
+    protected function concreteCreate() : DomainObjectInterface
     {
-        return new Group();
+        return new Role();
     }
 
     /**
      * Insert the DomainObject in persistent storage.
      *
-     * @param DomainObjectInterface $group
+     * @param DomainObjectInterface $role
      *
      * @throws \InvalidArgumentException
      *
      * @return int Last insert id
      */
-    protected function concreteInsert(DomainObjectInterface $group) : int
+    protected function concreteInsert(DomainObjectInterface $role) : int
     {
         return 0;
     }
@@ -260,11 +235,11 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     /**
      * Update the DomainObject in persistent storage.
      *
-     * @param DomainObjectInterface $group
+     * @param DomainObjectInterface $role
      *
      * @throws \InvalidArgumentException
      */
-    protected function concreteUpdate(DomainObjectInterface $group)
+    protected function concreteUpdate(DomainObjectInterface $role)
     {
 
     }
@@ -272,11 +247,11 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     /**
      * Delete the DomainObject from persistent storage.
      *
-     * @param DomainObjectAbstract $group
+     * @param DomainObjectAbstract $role
      *
      * @throws \InvalidArgumentException
      */
-    protected function concreteDelete(DomainObjectInterface $group)
+    protected function concreteDelete(DomainObjectInterface $role)
     {
 
     }
