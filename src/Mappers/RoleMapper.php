@@ -11,11 +11,11 @@
 
 namespace App\Mappers;
 
-use Linna\Auth\Role;
-use Linna\Auth\RoleMapperInterface;
+use Linna\Auth\EnhancedUserMapperInterface;
 use Linna\Auth\Password;
 use Linna\Auth\PermissionMapperInterface;
-use Linna\Auth\EnhancedUserMapperInterface;
+use Linna\Auth\Role;
+use Linna\Auth\RoleMapperInterface;
 use Linna\Auth\User;
 use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
@@ -32,7 +32,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
      * @var Password Password util for user object
      */
     protected $password;
-    
+
     /**
      * @var \PDO Database Connection
      */
@@ -42,21 +42,21 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
      * @var PermissionMapperInterface Permission Mapper
      */
     protected $permissionMapper;
-    
+
     /**
      * @var EnhancedUserMapperInterface Permission Mapper
      */
     protected $userMapper;
-    
+
     /**
      * Constructor.
      *
      * @param MysqlPdoAdapter $dBase
      */
     public function __construct(
-            MysqlPdoAdapter $dBase, 
-            Password $password, 
-            EnhancedUserMapperInterface $userMapper, 
+            MysqlPdoAdapter $dBase,
+            Password $password,
+            EnhancedUserMapperInterface $userMapper,
             PermissionMapperInterface $permissionMapper)
     {
         $this->dBase = $dBase->getResource();
@@ -80,17 +80,17 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
         $pdos->execute();
 
         $role = $pdos->fetchObject('\Linna\Auth\Role');
-        
+
         if (!($role instanceof Role)) {
             return new NullDomainObject();
         }
-        
+
         $roleUsers = $this->userMapper->fetchUserByRole($roleId);
         $rolePermissions = $this->permissionMapper->fetchPermissionsByRole($roleId);
-        
+
         $role->setUsers($roleUsers);
         $role->setPermissions($rolePermissions);
-        
+
         return $role;
     }
 
@@ -125,7 +125,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
         $pdos->execute();
 
         $roles = $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Role');
-        
+
         return $this->fillRolesArray($roles);
     }
 
@@ -133,7 +133,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
      * Set Permission and Users on every Role instance inside passed array.
      *
      * @param array $roles
-     * 
+     *
      * @return array
      */
     protected function fillRolesArray(array $roles) : array
@@ -151,61 +151,58 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
 
         return $arrayRoles;
     }
-    
+
     /**
-     * Return permission inherited by an User from Groups
-     * 
+     * Return permission inherited by an User from Groups.
+     *
      * @param Role $role
      * @param User $user
+     *
      * @return array
      */
     public function fetchUserInheritedPermissions(Role &$role, User $user) : array
     {
         return [];
     }
-    
+
     /**
-     * Grant a Permission for a Role
-     * 
-     * @param Role $role
+     * Grant a Permission for a Role.
+     *
+     * @param Role   $role
      * @param string $permission
      */
     public function permissionGrant(Role &$role, string $permission)
     {
-        
     }
 
     /**
-     * Revoke a Permission for a Role
-     * 
-     * @param Role $role
+     * Revoke a Permission for a Role.
+     *
+     * @param Role   $role
      * @param string $permission
      */
     public function permissionRevoke(Role &$role, string $permission)
     {
-        
     }
-    
+
     /**
-     * Add an User for a Role
-     * 
+     * Add an User for a Role.
+     *
      * @param Role $role
      * @param User $user
      */
     public function userAdd(Role &$role, User $user)
     {
-        
     }
 
     /**
-     * Remove an User for a Role
-     * 
+     * Remove an User for a Role.
+     *
      * @param Role $role
      * @param User $user
      */
     public function userRemove(Role &$role, User $user)
     {
-        
     }
 
     /**
@@ -241,7 +238,6 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
      */
     protected function concreteUpdate(DomainObjectInterface $role)
     {
-
     }
 
     /**
@@ -253,6 +249,5 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
      */
     protected function concreteDelete(DomainObjectInterface $role)
     {
-
     }
 }

@@ -76,7 +76,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         return ($result instanceof Permission) ? $result : new NullDomainObject();
     }
-    
+
     /**
      * Fetch all permission stored in data base.
      *
@@ -131,7 +131,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
-    
+
     /**
      * Fetch User's permissions.
      *
@@ -153,10 +153,10 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
 
         return $pdos->fetchAll(\PDO::FETCH_CLASS, '\Linna\Auth\Permission');
     }
-    
+
     /**
      * Genereate Permission Hash table.
-     * 
+     *
      * @return array
      */
     public function generatePermissionHashTable() : array
@@ -178,14 +178,15 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
             AND r.role_id = rp.role_id)
 
             ORDER BY p_hash");
-        
+
         return array_flip($pdos->fetchAll(\PDO::FETCH_COLUMN));
     }
-    
+
     /**
-     * Check if permission exist
-     * 
+     * Check if permission exist.
+     *
      * @param string $permission
+     *
      * @return bool
      */
     public function permissionExist(string $permission) : bool
@@ -231,7 +232,6 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
      */
     protected function concreteUpdate(DomainObjectInterface $permission)
     {
-        
     }
 
     /**
@@ -243,6 +243,5 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
      */
     protected function concreteDelete(DomainObjectInterface $permission)
     {
-        
     }
 }
