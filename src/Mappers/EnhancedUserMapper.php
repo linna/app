@@ -45,11 +45,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Fetch a user object by id.
-     *
-     * @param string $userId
-     *
-     * @return DomainObjectAbstract
+     * {@inheritDoc}
      */
     public function fetchById(int $userId) : DomainObjectInterface
     {
@@ -70,11 +66,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Fetch a user object by name.
-     *
-     * @param string $userName
-     *
-     * @return DomainObjectInterface
+     * {@inheritDoc}
      */
     public function fetchByName(string $userName) : DomainObjectInterface
     {
@@ -97,9 +89,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Fetch all users stored in data base.
-     *
-     * @return array All users stored
+     * {@inheritDoc}
      */
     public function fetchAll() : array
     {
@@ -113,12 +103,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Fetch users with limit.
-     *
-     * @param int $offset
-     * @param int $rowCount
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -134,11 +119,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Fetch users by role.
-     *
-     * @param int $roleId
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchUserByRole(int $roleId) : array
     {
@@ -186,10 +167,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Grant permission to User.
-     *
-     * @param EnhancedUser $user
-     * @param string       $permission
+     * {@inheritDoc}
      */
     public function grant(EnhancedUser &$user, string $permission)
     {
@@ -207,10 +185,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Revoke permission to User.
-     *
-     * @param EnhancedUser $user
-     * @param string       $permission
+     * {@inheritDoc}
      */
     public function revoke(EnhancedUser &$user, string $permission)
     {
@@ -228,9 +203,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * Create a new User DomainObject.
-     *
-     * @return EnhancedUser
+     * {@inheritDoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {

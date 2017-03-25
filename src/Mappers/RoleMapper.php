@@ -17,7 +17,6 @@ use Linna\Auth\PermissionMapperInterface;
 use Linna\Auth\Role;
 use Linna\Auth\RoleMapperInterface;
 use Linna\Auth\User;
-use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
 use Linna\DataMapper\NullDomainObject;
@@ -66,11 +65,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Fetch a role by id.
-     *
-     * @param string $roleId
-     *
-     * @return DomainObjectInterface
+     * {@inheritDoc}
      */
     public function fetchById(int $roleId) : DomainObjectInterface
     {
@@ -95,9 +90,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Fetch all roles stored in data base.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchAll() : array
     {
@@ -109,12 +102,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Fetch permissions with limit.
-     *
-     * @param int $offset
-     * @param int $rowCount
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -153,12 +141,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Return permission inherited by an User from Groups.
-     *
-     * @param Role $role
-     * @param User $user
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchUserInheritedPermissions(Role &$role, User $user) : array
     {
@@ -166,49 +149,35 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Grant a Permission for a Role.
-     *
-     * @param Role   $role
-     * @param string $permission
+     * {@inheritDoc}
      */
     public function permissionGrant(Role &$role, string $permission)
     {
     }
 
     /**
-     * Revoke a Permission for a Role.
-     *
-     * @param Role   $role
-     * @param string $permission
+     * {@inheritDoc}
      */
     public function permissionRevoke(Role &$role, string $permission)
     {
     }
 
     /**
-     * Add an User for a Role.
-     *
-     * @param Role $role
-     * @param User $user
+     * {@inheritDoc}
      */
     public function userAdd(Role &$role, User $user)
     {
     }
 
     /**
-     * Remove an User for a Role.
-     *
-     * @param Role $role
-     * @param User $user
+     * {@inheritDoc}
      */
     public function userRemove(Role &$role, User $user)
     {
     }
 
     /**
-     * Create a new Role DomainObject.
-     *
-     * @return Role
+     * {@inheritDoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {
@@ -216,13 +185,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Insert the DomainObject in persistent storage.
-     *
-     * @param DomainObjectInterface $role
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return int Last insert id
+     * {@inheritDoc}
      */
     protected function concreteInsert(DomainObjectInterface $role) : int
     {
@@ -230,22 +193,14 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * Update the DomainObject in persistent storage.
-     *
-     * @param DomainObjectInterface $role
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritDoc}
      */
     protected function concreteUpdate(DomainObjectInterface $role)
     {
     }
 
     /**
-     * Delete the DomainObject from persistent storage.
-     *
-     * @param DomainObjectAbstract $role
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritDoc}
      */
     protected function concreteDelete(DomainObjectInterface $role)
     {

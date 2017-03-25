@@ -48,11 +48,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Fetch a user object by id.
-     *
-     * @param string $userId
-     *
-     * @return DomainObjectAbstract
+     * {@inheritDoc}
      */
     public function fetchById(int $userId) : DomainObjectInterface
     {
@@ -88,9 +84,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Fetch all users stored in data base.
-     *
-     * @return array All users stored
+     * {@inheritDoc}
      */
     public function fetchAll() : array
     {
@@ -102,12 +96,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Fetch users with limit.
-     *
-     * @param int $offset
-     * @param int $rowCount
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -121,9 +110,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Create a new User DomainObject.
-     *
-     * @return User
+     * {@inheritDoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {
@@ -131,13 +118,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Insert the DomainObject in persistent storage.
-     *
-     * @param DomainObjectInterface $user
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return int Last insert id
+     * {@inheritDoc}
      */
     protected function concreteInsert(DomainObjectInterface $user) : int
     {
@@ -161,11 +142,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Update the DomainObject in persistent storage.
-     *
-     * @param DomainObjectInterface $user
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritDoc}
      */
     protected function concreteUpdate(DomainObjectInterface $user)
     {
@@ -193,11 +170,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * Delete the DomainObject from persistent storage.
-     *
-     * @param DomainObjectAbstract $user
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritDoc}
      */
     protected function concreteDelete(DomainObjectInterface $user)
     {

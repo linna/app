@@ -40,11 +40,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch a permission by id.
-     *
-     * @param int $permissionId
-     *
-     * @return DomainObjectInterface
+     * {@inheritDoc}
      */
     public function fetchById(int $permissionId) : DomainObjectInterface
     {
@@ -59,11 +55,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch a permission by name.
-     *
-     * @param string $permissionName
-     *
-     * @return DomainObjectInterface
+     * {@inheritDoc}
      */
     public function fetchByName(string $permissionName) : DomainObjectInterface
     {
@@ -78,9 +70,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch all permission stored in data base.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchAll() : array
     {
@@ -92,12 +82,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch permissions with limit.
-     *
-     * @param int $offset
-     * @param int $rowCount
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -111,11 +96,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch Role's permissions.
-     *
-     * @param int $roleId
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchPermissionsByRole(int $roleId) : array
     {
@@ -133,11 +114,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Fetch User's permissions.
-     *
-     * @param int $userId
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function fetchPermissionsByUser(int $userId) : array
     {
@@ -155,9 +132,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Genereate Permission Hash table.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function generatePermissionHashTable() : array
     {
@@ -183,11 +158,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Check if permission exist.
-     *
-     * @param string $permission
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function permissionExist(string $permission) : bool
     {
@@ -200,9 +171,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Create a new User DomainObject.
-     *
-     * @return User
+     * {@inheritDoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {
@@ -210,13 +179,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Insert the DomainObject in persistent storage.
-     *
-     * @param DomainObjectInterface $permission
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return int Last insert id
+     * {@inheritDoc}
      */
     protected function concreteInsert(DomainObjectInterface $permission) : int
     {
@@ -224,22 +187,14 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * Update the DomainObject in persistent storage.
-     *
-     * @param DomainObjectInterface $permission
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritDoc}
      */
     protected function concreteUpdate(DomainObjectInterface $permission)
     {
     }
 
     /**
-     * Delete the DomainObject from persistent storage.
-     *
-     * @param DomainObjectAbstract $permission
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritDoc}
      */
     protected function concreteDelete(DomainObjectInterface $permission)
     {
