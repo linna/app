@@ -134,25 +134,28 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     /**
      * {@inheritDoc}
      */
-    public function generatePermissionHashTable() : array
+    public function fetchUserPermissionHashTable(int $userId) : array
     {
-        $pdos = $this->dBase->query("(SELECT sha2(concat(u.user_id, '.', up.permission_id),0) as p_hash
-            FROM user AS u
-            INNER JOIN user_permission AS up
-            ON u.user_id = up.permission_id)
+        $pdos = $this->dBase->prepare("(SELECT sha2(concat(u.user_id, '.', up.permission_id),0) as p_hash
+        FROM user AS u
+        INNER JOIN user_permission AS up
+        ON u.user_id = up.permission_id WHERE u.user_id = :id)
 
-            UNION
+        UNION
 
-            (SELECT sha2(concat(u.user_id, '.', rp.permission_id),0) as p_hash
-            FROM user AS u
-            INNER JOIN user_role AS ur
-            INNER JOIN role AS r
-            INNER JOIN role_permission as rp
-            ON u.user_id = ur.user_id
-            AND ur.role_id = r.role_id
-            AND r.role_id = rp.role_id)
+        (SELECT sha2(concat(u.user_id, '.', rp.permission_id),0) as p_hash
+        FROM user AS u
+        INNER JOIN user_role AS ur
+        INNER JOIN role AS r
+        INNER JOIN role_permission as rp
+        ON u.user_id = ur.user_id
+        AND ur.role_id = r.role_id
+        AND r.role_id = rp.role_id WHERE u.user_id = :id)
 
-            ORDER BY p_hash");
+        ORDER BY p_hash");
+        
+        $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
+        $pdos->execute();
 
         return array_flip($pdos->fetchAll(\PDO::FETCH_COLUMN));
     }
