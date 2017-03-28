@@ -1,13 +1,12 @@
 <main class="home">
-    <h1>Home Page</h1>
-    <p>In a real application this is the homepage</p>
+    <p class="first">In a real application this is the homepage</p>
     
     <?php if ($data->login === true) { ?>         
     
-    <p>Welcome <b><?php echo $data->userName; ?></b> -  <a href="<?php echo URL; ?>logout">sign out</a> </p>
+    <p>Welcome <b><?php echo $data->userName; ?></b> - <a href="<?php echo URL; ?>logout">sign out</a></p>
     
     <?php }else{ ?>
-    <p>Try app autentication with &quot;root&quot; for user and &quot;password&quot; for password</p>
+    <p>Try authentication with &quot;root&quot; as user and &quot;password&quot; for password</p>
     
     <?php } ?>
 </main>

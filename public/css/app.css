@@ -162,13 +162,15 @@ MAIN
     border-radius: 2px;
 }
 
-
-
 .home p{
     font-size:30px;
     margin-bottom:15px;
     color:#ccc;
     text-align: center;
+}
+
+p.first{
+    margin-top:10%;
 }
 
 .home b{
