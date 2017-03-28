@@ -15,7 +15,6 @@ use Linna\Auth\EnhancedUser;
 use Linna\Auth\EnhancedUserMapperInterface;
 use Linna\Auth\Password;
 use Linna\Auth\PermissionMapperInterface;
-use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\NullDomainObject;
 use Linna\Storage\MysqlPdoAdapter;
@@ -45,7 +44,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchById(int $userId) : DomainObjectInterface
     {
@@ -66,7 +65,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchByName(string $userName) : DomainObjectInterface
     {
@@ -89,7 +88,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchAll() : array
     {
@@ -103,7 +102,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -119,7 +118,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchUserByRole(int $roleId) : array
     {
@@ -167,7 +166,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function grant(EnhancedUser &$user, string $permission)
     {
@@ -185,7 +184,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function revoke(EnhancedUser &$user, string $permission)
     {
@@ -203,7 +202,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {

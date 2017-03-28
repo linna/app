@@ -48,7 +48,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchById(int $userId) : DomainObjectInterface
     {
@@ -84,7 +84,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchAll() : array
     {
@@ -96,7 +96,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -110,7 +110,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {
@@ -118,7 +118,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteInsert(DomainObjectInterface $user) : int
     {
@@ -142,7 +142,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteUpdate(DomainObjectInterface $user)
     {
@@ -170,7 +170,7 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteDelete(DomainObjectInterface $user)
     {

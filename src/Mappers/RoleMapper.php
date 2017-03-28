@@ -65,7 +65,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchById(int $roleId) : DomainObjectInterface
     {
@@ -90,7 +90,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchAll() : array
     {
@@ -102,7 +102,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -141,7 +141,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchUserInheritedPermissions(Role &$role, User $user) : array
     {
@@ -149,35 +149,35 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function permissionGrant(Role &$role, string $permission)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function permissionRevoke(Role &$role, string $permission)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function userAdd(Role &$role, User $user)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function userRemove(Role &$role, User $user)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {
@@ -185,7 +185,7 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteInsert(DomainObjectInterface $role) : int
     {
@@ -193,14 +193,14 @@ class RoleMapper extends MapperAbstract implements RoleMapperInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteUpdate(DomainObjectInterface $role)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteDelete(DomainObjectInterface $role)
     {

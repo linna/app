@@ -13,7 +13,6 @@ namespace App\Mappers;
 
 use Linna\Auth\Permission;
 use Linna\Auth\PermissionMapperInterface;
-use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
 use Linna\DataMapper\NullDomainObject;
@@ -40,7 +39,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchById(int $permissionId) : DomainObjectInterface
     {
@@ -55,7 +54,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchByName(string $permissionName) : DomainObjectInterface
     {
@@ -70,7 +69,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchAll() : array
     {
@@ -82,7 +81,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchLimit(int $offset, int $rowCount) : array
     {
@@ -96,7 +95,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchPermissionsByRole(int $roleId) : array
     {
@@ -114,7 +113,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchPermissionsByUser(int $userId) : array
     {
@@ -132,7 +131,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fetchUserPermissionHashTable(int $userId) : array
     {
@@ -153,7 +152,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
         AND r.role_id = rp.role_id WHERE u.user_id = :id)
 
         ORDER BY p_hash");
-        
+
         $pdos->bindParam(':id', $userId, \PDO::PARAM_INT);
         $pdos->execute();
 
@@ -161,7 +160,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function permissionExist(string $permission) : bool
     {
@@ -174,7 +173,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteCreate() : DomainObjectInterface
     {
@@ -182,7 +181,7 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteInsert(DomainObjectInterface $permission) : int
     {
@@ -190,14 +189,14 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteUpdate(DomainObjectInterface $permission)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function concreteDelete(DomainObjectInterface $permission)
     {
