@@ -50,8 +50,8 @@ composer dump-autoload --optimize
 You must create App database, SQL file is placed in tests directory
 ```
 cd /var/www/html/app
-mysql -e 'create database test;'
-mysql -u root -p test < tests/database.sql
+mysql -e 'create database linna_db;'
+mysql -u root -p linna_db < tests/linna_db.sql
 ```
 Change config in config.php file placed in /var/www/html/app/config directory.
 
