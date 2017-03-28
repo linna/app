@@ -48,7 +48,7 @@ define('APP', ROOT.$options['app']['urlSubFolder']);
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
 if ($options['router']['rewriteMode'] === false) {
-    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'index.php?/');
+    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'index.php?index=/');
     define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'/'.$options['app']['urlPublicFolder'].'/');
 } else {
     define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder']);
