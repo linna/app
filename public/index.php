@@ -8,12 +8,12 @@
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  */
-
 use Linna\Autoloader;
 use Linna\DI\Resolver;
 use Linna\Http\Router;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
+
 //use Linna\Session\MemcachedSessionHandler;
 //use Linna\Storage\MysqlPdoAdapter;
 //use Linna\Storage\MysqliAdapter;
@@ -157,7 +157,6 @@ $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //get route
 $route = $router->getRoute()->getArray();
-
 
 //resolve model
 $model = $resolver->resolve('\App\Models\\'.$route['model']);
