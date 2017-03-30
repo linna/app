@@ -9,15 +9,15 @@
  * @license http://opensource.org/licenses/MIT MIT License
  */
 
+use Linna\Autoloader;
+use Linna\DI\Resolver;
+use Linna\Http\Router;
+use Linna\Mvc\FrontController;
+use Linna\Session\Session;
+//use Linna\Session\MemcachedSessionHandler;
 //use Linna\Storage\MysqlPdoAdapter;
 //use Linna\Storage\MysqliAdapter;
 //use Linna\Storage\MongoDbAdapter;
-use Linna\Autoloader;
-//use Linna\Session\MemcachedSessionHandler;
-use Linna\DI\Resolver;
-use Linna\Http\FrontController;
-use Linna\Http\Router;
-use Linna\Session\Session;
 
 /*
  * Bootstrap and config
@@ -48,7 +48,7 @@ define('APP', ROOT.$options['app']['urlSubFolder']);
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
 if ($options['router']['rewriteMode'] === false) {
-    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'index.php?index=/');
+    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'index.php/');
     define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'/'.$options['app']['urlPublicFolder'].'/');
 } else {
     define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder']);
@@ -156,30 +156,24 @@ $router = new Router($routes, $options['router']);
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //get route
-$route = $router->getRoute();
+$route = $router->getRoute()->getArray();
 
-//get model linked to route
-$routeModel = '\App\Models\\'.$route->getModel();
-//get view linked to route
-$routeView = '\App\Views\\'.$route->getView();
-//get controller linked to route
-$routeController = '\App\Controllers\\'.$route->getController();
 
 //resolve model
-$model = $resolver->resolve($routeModel);
+$model = $resolver->resolve('\App\Models\\'.$route['model']);
 
 //resolve view
-$view = $resolver->resolve($routeView);
+$view = $resolver->resolve('\App\Views\\'.$route['view']);
 
 //resolve controller
-$controller = $resolver->resolve($routeController);
+$controller = $resolver->resolve('\App\Controllers\\'.$route['controller']);
 
 /**
  * Front Controller section.
  */
 
 //start front controller
-$frontController = new FrontController($route, $model, $view, $controller);
+$frontController = new FrontController($model, $view, $controller, $route['action'], $route['param']);
 
 //run
 $frontController->run();
