@@ -18,7 +18,7 @@ use Linna\DataMapper\DomainObjectAbstract;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
 use Linna\DataMapper\NullDomainObject;
-use Linna\Storage\MysqlPdoAdapter;
+use Linna\Storage\MysqlPdoObject;
 
 /**
  * UserMapper.
@@ -38,10 +38,10 @@ class UserMapper extends MapperAbstract implements UserMapperInterface
     /**
      * Constructor.
      *
-     * @param \PDO     $dBase
-     * @param Password $password
+     * @param MysqlPdoObject $dBase
+     * @param Password       $password
      */
-    public function __construct(MysqlPdoAdapter $dBase, Password $password)
+    public function __construct(MysqlPdoObject $dBase, Password $password)
     {
         $this->dBase = $dBase->getResource();
         $this->password = $password;

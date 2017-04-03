@@ -32,11 +32,11 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     /**
      * Constructor.
      *
-     * @param MysqlPdoAdapter           $dBase
+     * @param MysqlPdoObject            $dBase
      * @param Password                  $password
      * @param PermissionMapperInterface $permissionMapper
      */
-    public function __construct(MysqlPdoAdapter $dBase, Password $password, PermissionMapperInterface $permissionMapper)
+    public function __construct(MysqlPdoObject $dBase, Password $password, PermissionMapperInterface $permissionMapper)
     {
         parent::__construct($dBase, $password);
 

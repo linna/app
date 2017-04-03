@@ -31,9 +31,9 @@ class PermissionMapper extends MapperAbstract implements PermissionMapperInterfa
     /**
      * Constructor.
      *
-     * @param MysqlPdoAdapter $dBase
+     * @param MysqlPdoObject $dBase
      */
-    public function __construct(MysqlPdoAdapter $dBase)
+    public function __construct(MysqlPdoObject $dBase)
     {
         $this->dBase = $dBase->getResource();
     }
