@@ -16,7 +16,7 @@ use Linna\Auth\PermissionMapperInterface;
 use Linna\DataMapper\DomainObjectInterface;
 use Linna\DataMapper\MapperAbstract;
 use Linna\DataMapper\NullDomainObject;
-use Linna\Storage\MysqlPdoAdapter;
+use Linna\Storage\MysqlPdoObject;
 
 /**
  * PermissionMapper.
