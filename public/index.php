@@ -156,7 +156,7 @@ $router = new Router($routes, $options['router']);
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //get route
-$route = $router->getRoute()->getArray();
+$route = $router->getRoute()->toArray();
 
 //resolve model
 $model = $resolver->resolve('\App\Models\\'.$route['model']);
