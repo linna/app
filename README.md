@@ -4,10 +4,7 @@
 <br/>
 [![Build Status](https://travis-ci.org/s3b4stian/linna-app.svg?branch=master)](https://travis-ci.org/s3b4stian/linna-app)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/s3b4stian/linna-app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/s3b4stian/linna-app/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/s3b4stian/linna-app/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/s3b4stian/linna-app/?branch=master)
 [![Code Climate](https://codeclimate.com/github/s3b4stian/linna-app/badges/gpa.svg)](https://codeclimate.com/github/s3b4stian/linna-app)
-[![Test Coverage](https://codeclimate.com/github/s3b4stian/linna-app/badges/coverage.svg)](https://codeclimate.com/github/s3b4stian/linna-app/coverage)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f58934188e73440c8319072b42315cef)](https://www.codacy.com/app/s3b4stian/linna-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=s3b4stian/linna-app&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://styleci.io/repos/41215510/shield?branch=master&style=flat)](https://styleci.io/repos/41215510)
 
 App Skeleton for Linna framework
