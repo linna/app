@@ -14,14 +14,8 @@ use Linna\Http\Router;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
 
-//use Linna\Session\MemcachedSessionHandler;
-//use Linna\Storage\MysqlPdoAdapter;
-//use Linna\Storage\MysqliAdapter;
-//use Linna\Storage\MongoDbAdapter;
-
-/*
- * Bootstrap and config
- *
+/**
+ * Bootstrap and config.
  */
 
 //Set a constant that holds the project's folder path, like "/var/www/"
@@ -80,49 +74,6 @@ $loader->addNamespaces([
 //create dipendency injection resolver
 $resolver = new Resolver();
 $resolver->rules($injectionsRules);
-
-/**
- * Memcached Section.
- */
-
-//create memcached instance
-//$memcached = new Memcached();
-
-////connect to memcached server
-//$memcached->addServer($options['memcached']['host'], $options['memcached']['port']);
-
-////add unresolvable class to DIResolver
-//$resolver->cache('\Memcached', $memcached);
-//$resolver->cache('\Linna\Session\MemcachedSessionHandler', new MemcachedSessionHandler($memcached, $options['session']['expire']));
-
-/**
- * Storage Section.
- */
-
-//create Mysql Pdo adapter
-//$mysqlPdoAdapter = new MysqlPdoAdapter(
-//    $options['pdo_mysql']['dsn'],
-//    $options['pdo_mysql']['user'],
-//    $options['pdo_mysql']['password'],
-//    [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING]
-//);
-
-//create Mysql Improved extension adapter
-//$mysqliAdapter = new MysqliAdapter(
-//    $options['mysqli']['host'],
-//    $options['mysqli']['password'],
-//    $options['mysqli']['user'],
-//    $options['mysqli']['database'],
-//    $options['mysqli']['port']
-//);
-
-//create Mongodb adapter
-//$mongoDbAdapter = new MongoDbAdapter($options['mongo_db']['uri']);
-
-//add unresolvable class to DIResolver
-//$DIResolver->cache('\Linna\Storage\MysqlPdoAdapter', $mysqlPdoAdapter);
-//$DIResolver->cache('\Linna\Storage\MysqliAdapter', $mysqliAdapter);
-//$DIResolver->cache('\Linna\Storage\MongoDbAdapter', $mongoDbAdapter);
 
 /**
  * Session section.
