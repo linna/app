@@ -81,7 +81,6 @@ $resolver->rules($injectionsRules);
 
 //resolve Session Handler
 $sessionHandler = $resolver->resolve('\Linna\Session\MysqlPdoSessionHandler');
-//$sessionHandler = $DIResolver->resolve('\Linna\Session\MemcachedSessionHandler');
 
 //create session object
 $session = new Session($options['session']);
