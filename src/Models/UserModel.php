@@ -14,6 +14,7 @@ namespace App\Models;
 use App\Mappers\UserMapper;
 use Linna\Auth\Password;
 use Linna\Auth\User;
+use Linna\DataMapper\NullDomainObject;
 use Linna\Mvc\Model;
 
 /**
@@ -92,6 +93,10 @@ class UserModel extends Model
     {
         //get user
         $user = $this->mapper->fetchById($userId);
+        
+        if ($user instanceof NullDomainObject){
+            return 0;
+        }
 
         //check for root user
         if ($user->name === 'root') {
@@ -121,6 +126,10 @@ class UserModel extends Model
     {
         //get user
         $user = $this->mapper->fetchById($userId);
+        
+        if ($user instanceof NullDomainObject){
+            return 0;
+        }
 
         //verify if user is root and delete
         if ($user->name !== 'root') {
@@ -175,6 +184,11 @@ class UserModel extends Model
 
         //get user
         $user = $this->mapper->fetchById($userId);
+
+        if ($user instanceof NullDomainObject){
+            return 0;
+        }
+
         //set new password
         $user->password = $this->password->hash($newPassword);
 
@@ -206,6 +220,10 @@ class UserModel extends Model
 
         //search for user with new username
         $checkUser = $this->mapper->fetchByName($newName);
+        
+        if ($user instanceof NullDomainObject){
+            return false;
+        }
 
         //user name must be unique
         if (isset($checkUser->name) && $checkUser->name !== $user->name) {
@@ -230,6 +248,10 @@ class UserModel extends Model
     {
         //get user
         $user = $this->mapper->fetchById($userId);
+
+        if ($user instanceof NullDomainObject){
+            return 0;
+        }
 
         //check User modify checks
         if ($this->modifyChecks($user, $newName) === false) {
