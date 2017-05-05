@@ -6,6 +6,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/s3b4stian/linna-app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/s3b4stian/linna-app/?branch=master)
 [![Code Climate](https://codeclimate.com/github/s3b4stian/linna-app/badges/gpa.svg)](https://codeclimate.com/github/s3b4stian/linna-app)
 [![StyleCI](https://styleci.io/repos/41215510/shield?branch=master&style=flat)](https://styleci.io/repos/41215510)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/82f6198a-17b1-4b2d-bb67-c61f3b20bf59/mini.png)](https://insight.sensiolabs.com/projects/82f6198a-17b1-4b2d-bb67-c61f3b20bf59)
 
 App Skeleton for Linna framework
 
