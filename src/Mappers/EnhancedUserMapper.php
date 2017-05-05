@@ -32,7 +32,7 @@ class EnhancedUserMapper extends UserMapper implements EnhancedUserMapperInterfa
     /**
      * Constructor.
      *
-     * @param MysqlPdoStorage            $dBase
+     * @param MysqlPdoStorage           $dBase
      * @param Password                  $password
      * @param PermissionMapperInterface $permissionMapper
      */

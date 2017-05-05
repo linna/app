@@ -14,7 +14,7 @@ use Linna\Http\Router;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
 
-/**
+/*
  * Bootstrap and config.
  */
 
