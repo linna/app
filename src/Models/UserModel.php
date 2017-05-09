@@ -202,7 +202,7 @@ class UserModel extends Model
         if ($newName === null || $newName === '') {
             $this->getUpdate = ['error' => 2];
 
-            return false;
+            return true;
         }
 
         //search for user with new username
@@ -212,10 +212,10 @@ class UserModel extends Model
         if ($checkUser instanceof User && $checkUser->name !== $user->name) {
             $this->getUpdate = ['error' => 1];
 
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -233,7 +233,7 @@ class UserModel extends Model
         $user = $this->mapper->fetchById($userId);
 
         //check User modify checks
-        if ($this->modifyChecks($user, $newName) === false) {
+        if ($this->modifyChecks($user, $newName)) {
             return 0;
         }
 
