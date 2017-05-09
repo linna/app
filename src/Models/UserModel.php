@@ -209,7 +209,7 @@ class UserModel extends Model
         $checkUser = $this->mapper->fetchByName($newName);
 
         //user name must be unique
-        if (isset($checkUser->name) && $checkUser->name !== $user->name) {
+        if ($checkUser instanceof User && $checkUser->name !== $user->name) {
             $this->getUpdate = ['error' => 1];
 
             return false;
