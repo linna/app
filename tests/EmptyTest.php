@@ -12,7 +12,8 @@ use PHPUnit\Framework\TestCase;
 
 class EmptyTest extends TestCase
 {
-    public function testAnything(){
+    public function testAnything()
+    {
         $this->assertEquals(true, true);
     }
 }
