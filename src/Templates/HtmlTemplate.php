@@ -87,12 +87,12 @@ class HtmlTemplate implements TemplateInterface
     public function getOutput() : string
     {
         extract([
-            'data' => $this->data,
-            'title' => $this->title,
-            'css' => $this->css,
+            'data'       => $this->data,
+            'title'      => $this->title,
+            'css'        => $this->css,
             'javascript' => $this->javascript,
         ]);
-        
+
         ob_start();
 
         require APP.'src/Templates/_shared/header.html';

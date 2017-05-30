@@ -10,7 +10,7 @@
  */
 $injectionsRules = [
     '\Linna\Storage\PdoStorage' => [
-        0 => $options['pdo_mysql']
+        0 => $options['pdo_mysql'],
     ],
     '\Linna\Auth\Password' => [
         0 => $options['password'],
