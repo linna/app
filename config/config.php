@@ -12,20 +12,20 @@ $options = [
 
     'app' => [
         'urlProtocol'     => 'http://',
-        'urlSubFolder'    => '/app/', // es /var/www/html/app/
-        'urlPublicFolder' => 'public', // es /var/www/html/app/public
+        'urlSubFolder'    => '/app', // es /var/www/html/app/
+        'urlPublicFolder' => '/app/public', // es /var/www/html/app/public
     ],
 
     'session' => [
         'expire'         => 1800,
         'cookieDomain'   => URL_DOMAIN, //do not change here
-        'cookiePath'     => '/app/', //equal to urlSubFolder
+        'cookiePath'     => '/app', //equal to urlSubFolder
         'cookieSecure'   => false,
         'cookieHttpOnly' => true,
     ],
 
     'router' => [
-        'basePath'    => '/app/', //equal to urlSubFolder
+        'basePath'    => '/app', //equal to urlSubFolder
         'badRoute'    => 'E404',
         'rewriteMode' => true,
     ],
@@ -34,7 +34,12 @@ $options = [
         'dsn'      => 'mysql:host=localhost;dbname=linna_db;charset=utf8mb4',
         'user'     => 'root',
         'password' => 'cagiva',
-        'options'  => [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING],
+        'options'  => [
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, 
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_PERSISTENT => false,
+            \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
+        ],
     ],
 
     'mysqli' => [

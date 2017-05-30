@@ -86,7 +86,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @throws \Exception if template path is incorrect
      */
-    public function output()
+    public function getOutput() : string
     {
         $template = $this->template;
 
@@ -110,13 +110,10 @@ class HtmlTemplate implements TemplateInterface
             echo 'Template exception: ', $e->getMessage(), "\n";
         }
 
-        //only for debug, return time execution and memory usage
-        echo '<!-- Memory: ';
-        echo round(xdebug_memory_usage() / 1024, 2) , ' (';
-        echo round(xdebug_peak_memory_usage() / 1024, 2) , ') KByte - Time: ';
-        echo xdebug_time_index();
-        echo ' Seconds -->';
-
-        ob_end_flush();
+        $output = ob_get_contents();
+        
+        ob_end_clean();
+        
+        return $output;
     }
 }

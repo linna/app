@@ -8,6 +8,8 @@
  * @copyright (c) 2017, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  */
+declare(strict_types=1);
+
 use Linna\Autoloader;
 use Linna\DI\Resolver;
 use Linna\Http\Router;
@@ -37,17 +39,19 @@ require dirname(__DIR__).'/config/injections.php';
 require dirname(__DIR__).'/vendor/autoload.php';
 
 //app
-define('APP', ROOT.$options['app']['urlSubFolder']);
+define('APP', ROOT.$options['app']['urlSubFolder'].'/');
+
+//rewrite mode check for provide proper url.
+$rewriteRouterPoint = '/';
+
+if ($options['router']['rewriteMode'] === false) {
+    $rewriteRouterPoint = '/index.php/';
+}
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
-if ($options['router']['rewriteMode'] === false) {
-    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'index.php/');
-    define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].'/'.$options['app']['urlPublicFolder'].'/');
-} else {
-    define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder']);
-    define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder']);
-}
+define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].$rewriteRouterPoint);
+define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlPublicFolder'].'/');
 
 /**
  * Autoloader Section.
@@ -128,4 +132,4 @@ $frontController = new FrontController($model, $view, $controller, $route['actio
 $frontController->run();
 
 //get front controller response
-$frontController->response();
+echo $frontController->response();

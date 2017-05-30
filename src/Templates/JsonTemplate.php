@@ -34,8 +34,8 @@ class JsonTemplate implements TemplateInterface
     /**
      * Return data in json format.
      */
-    public function output()
+    public function getOutput() : string
     {
-        echo json_encode($this->data);
+        return json_encode($this->data);
     }
 }

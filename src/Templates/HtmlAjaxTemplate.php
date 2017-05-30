@@ -51,7 +51,7 @@ class HtmlAjaxTemplate implements TemplateInterface
      *
      * @throws \InvalidArgumentException
      */
-    public function output()
+    public function getOutput() : string
     {
         //get template
         $template = $this->template;
@@ -72,6 +72,10 @@ class HtmlAjaxTemplate implements TemplateInterface
             echo 'Template exception: ', $e->getMessage(), "\n";
         }
 
-        ob_end_flush();
+        $output = ob_get_contents();
+        
+        ob_end_clean();
+        
+        return $output;
     }
 }
