@@ -62,7 +62,7 @@ class HtmlTemplate implements TemplateInterface
     }
 
     /**
-     * Load a file css to shared template.
+     * Load a file css in to shared template.
      *
      * @param string $file Css file
      */
@@ -72,7 +72,7 @@ class HtmlTemplate implements TemplateInterface
     }
 
     /**
-     * Load a file js to shared template.
+     * Load a file js in to shared template.
      *
      * @param string $file Js file
      */
@@ -82,38 +82,23 @@ class HtmlTemplate implements TemplateInterface
     }
 
     /**
-     * Prepare template for render from View.
-     *
-     * @throws \Exception if template path is incorrect
+     * Output.
      */
     public function getOutput() : string
     {
-        $template = $this->template;
-
-        $data = $this->data;
-        $css = $this->css;
-        $javascript = $this->javascript;
-
-        $title = $this->title;
-
+        extract([
+            'data' => $this->data,
+            'title' => $this->title,
+            'css' => $this->css,
+            'javascript' => $this->javascript,
+        ]);
+        
         ob_start();
 
-        try {
-            if (!file_exists(APP."src/Templates/_pages/{$template}.html")) {
-                throw new \Exception("The required Template ({$template}) not exist.");
-            }
+        require APP.'src/Templates/_shared/header.html';
+        require APP."src/Templates/_pages/{$this->template}.html";
+        require APP.'src/Templates/_shared/footer.html';
 
-            require APP.'src/Templates/_shared/header.html';
-            require APP."src/Templates/_pages/{$template}.html";
-            require APP.'src/Templates/_shared/footer.html';
-        } catch (\Exception $e) {
-            echo 'Template exception: ', $e->getMessage(), "\n";
-        }
-
-        $output = ob_get_contents();
-        
-        ob_end_clean();
-        
-        return $output;
+        return ob_get_clean();
     }
 }

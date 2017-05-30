@@ -48,34 +48,15 @@ class HtmlAjaxTemplate implements TemplateInterface
 
     /**
      * Output.
-     *
-     * @throws \InvalidArgumentException
      */
     public function getOutput() : string
     {
-        //get template
-        $template = $this->template;
-
-        //get data for view
-        $data = $this->data;
+        extract(['data' => $this->data]);
 
         ob_start();
 
-        try {
-            //check if template name is correct
-            if (!file_exists(APP."Templates/_pages/{$template}.html")) {
-                throw new \InvalidArgumentException("The required Template ({$template}) not exist.");
-            }
-            //require template
-            require APP."Templates/_pages/{$template}.html";
-        } catch (\InvalidArgumentException $e) {
-            echo 'Template exception: ', $e->getMessage(), "\n";
-        }
+        require APP."Templates/_pages/{$this->template}.html";
 
-        $output = ob_get_contents();
-        
-        ob_end_clean();
-        
-        return $output;
+        return ob_get_clean();
     }
 }

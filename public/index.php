@@ -83,11 +83,11 @@ $resolver->rules($injectionsRules);
  * Session section.
  */
 
-//resolve Session Handler
-$sessionHandler = $resolver->resolve('\Linna\Session\MysqlPdoSessionHandler');
-
 //create session object
 $session = new Session($options['session']);
+
+//resolve Session Handler
+$sessionHandler = $resolver->resolve('\Linna\Session\MysqlPdoSessionHandler');
 
 //set session handler
 //optional if not set, app will use php session standard storage
