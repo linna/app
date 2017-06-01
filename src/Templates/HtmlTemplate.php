@@ -96,7 +96,7 @@ class HtmlTemplate implements TemplateInterface
         ob_start();
 
         require APP."src/Templates/_pages/{$this->template}.html";
-        
+
         return ob_get_clean();
     }
 }
