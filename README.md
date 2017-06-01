@@ -32,12 +32,6 @@ composer dump-autoload --optimize
 ```
 
 ### Before run
-You must create App database, SQL file is placed in tests directory
-```
-cd /var/www/html/app
-mysql -e 'create database linna_db;'
-mysql -u root -p linna_db < tests/linna_db.sql
-```
 Change config in config.php file placed in /var/www/html/app/config directory.
 
 #### Protocol and app dir
@@ -45,9 +39,9 @@ Change config in config.php file placed in /var/www/html/app/config directory.
 $options = [
 
     'app' => [
-        'urlProtocol' => 'http://',
-        'urlSubFolder' => '/app/', // es /var/www/html/app/
-        'urlPublicFolder' => 'public' // es /var/www/html/app/public
+        'urlProtocol'     => 'http://',
+        'urlSubFolder'    => '/app', // es /var/www/html/app/
+        'urlPublicFolder' => '/app/public', // es /var/www/html/app/public
     ],
     //other options
 ];
@@ -58,22 +52,9 @@ $options = [
 $options = [
     //other options
     'router' => [
-        'basePath' => '/app/', //equal to urlSubFolder
-        'badRoute' => 'E404',
-        'rewriteMode' => true
-    ],
-    //other options
-];
-```
-
-#### Database configuration
-```php
-$options = [
-    //other options
-    'pdo_mysql' => [
-        'dsn' => 'mysql:host=localhost;dbname=test;charset=utf8mb4',
-        'user' => 'root',
-        'password' => 'password',
+        'basePath'    => '/app', //equal to urlSubFolder
+        'badRoute'    => 'E404',
+        'rewriteMode' => true,
     ],
     //other options
 ];
