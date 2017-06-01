@@ -95,10 +95,8 @@ class HtmlTemplate implements TemplateInterface
 
         ob_start();
 
-        require APP.'src/Templates/_shared/header.html';
         require APP."src/Templates/_pages/{$this->template}.html";
-        require APP.'src/Templates/_shared/footer.html';
-
+        
         return ob_get_clean();
     }
 }

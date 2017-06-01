@@ -13,15 +13,7 @@ App Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-App was written for run with linna-framework and need PHP 7.0 or higher, 
-was tested under Linux with Apache (mod rewrite on) web server with default php.ini.<br/>
-Mysql (PDO Driver) is also needed for run because App contains login and user managment examples that require database.
-
-App is also ready for use as storage Mongodb through [mongodb-php-library](https://github.com/mongodb/mongo-php-library).
-
-Mongodb require [mongodb-php-driver](https://github.com/mongodb/mongo-php-driver) enabled.
-
-[index.php](https://github.com/s3b4stian/linna-app/blob/master/public/index.php) in public folder contains commented code for start with Mongodb, uncomment it if you need.
+App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewrite on) web server with default php.ini.  
 
 ### Installation
 *Consider use of sudo command if need administrator privileges and don't forget to set proper folder permissions*
@@ -33,11 +25,6 @@ mkdir app
 composer create-project --prefer-dist s3b4stian/linna-app app
 ```
 Where "app" is directory under webserver document root ex. /var/www/html/app
-
-If you need Mongodb
-```
-composer require mongodb/mongodb
-```
 
 After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```

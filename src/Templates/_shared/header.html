@@ -1,29 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title><?php echo $title; ?></title>
-        
-        <script>
-            const URL = "<?php echo URL; ?>";
-        </script>
+<header>
 
-        <link href="<?php echo URL_STYLE; ?>css/app.css" rel="stylesheet" />
-        
-        <!-- app module specific css file -->
-        <?php
-        foreach ($css as $file) {
-            ?>
-        <link href="<?php echo $file; ?>" rel="stylesheet" />
-        <?php
-
-        }
-        ?>
-        <!-- end specific css file -->
-        
-    </head>
-    <body>
-        <header>
-            <div class="logo">linna app</div>
-            <a class="menu" href="<?php echo URL; ?>">home</a>  
-        </header>
+</header>
