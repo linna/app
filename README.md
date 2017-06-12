@@ -20,7 +20,7 @@ With [composer](https://getcomposer.org/)
 ```
 cd /var/www/html
 mkdir app
-composer create-project --prefer-dist s3b4stian/linna-app app
+composer create-project --prefer-dist linna/app app
 ```
 Where "app" is directory under webserver document root ex. /var/www/html/app
 
