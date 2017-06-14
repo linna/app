@@ -11,6 +11,9 @@
             "homepage": "https://github.com/linna/app"
         }
     ],
+    "support": {
+        "issues": "https://github.com/linna/app/issues"
+    },
     "require": {
         "php": ">=7.0.0",
         "linna/framework": "^v0.18"
