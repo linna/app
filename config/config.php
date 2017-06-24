@@ -17,6 +17,7 @@ $options = [
     ],
 
     'session' => [
+        'name'           => 'linna_session',
         'expire'         => 1800,
         'cookieDomain'   => URL_DOMAIN, //do not change here
         'cookiePath'     => '/app', //equal to urlSubFolder
