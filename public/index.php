@@ -11,7 +11,7 @@
 declare(strict_types=1);
 
 use Linna\Autoloader;
-use Linna\DI\Resolver;
+use Linna\DI\Container;
 use Linna\Http\Router;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
@@ -75,9 +75,9 @@ $loader->addNamespaces([
  * Dependency Injection Section.
  */
 
-//create dipendency injection resolver
-$resolver = new Resolver();
-$resolver->rules($injectionsRules);
+//create dipendency injection container
+$container = new Container();
+$container->setRules($injectionsRules);
 
 /**
  * Session section.
@@ -86,11 +86,15 @@ $resolver->rules($injectionsRules);
 //create session object
 $session = new Session($options['session']);
 
+//select custom session handler
+//$handler = $container->resolve(Linna\Session\MysqlPdoSessionHandler::class);
+//$session->setSessionHandler($handler);
+
 //start session
 $session->start();
 
 //store session instance
-$resolver->cache('\Linna\Session\Session', $session);
+$container->set(Linna\Session\Session::class, $session);
 
 /**
  * Router Section.
@@ -106,13 +110,13 @@ $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 $route = $router->getRoute()->toArray();
 
 //resolve model
-$model = $resolver->resolve('\App\Models\\'.$route['model']);
+$model = $container->resolve($route['model']);
 
 //resolve view
-$view = $resolver->resolve('\App\Views\\'.$route['view']);
+$view = $container->resolve($route['view']);
 
 //resolve controller
-$controller = $resolver->resolve('\App\Controllers\\'.$route['controller']);
+$controller = $container->resolve($route['controller']);
 
 /**
  * Front Controller section.
