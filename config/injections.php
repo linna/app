@@ -9,10 +9,10 @@
  * @license http://opensource.org/licenses/MIT MIT License
  */
 $injectionsRules = [
-    '\Linna\Storage\PdoStorage' => [
+    Linna\Storage\PdoStorage::class => [
         0 => $options['pdo_mysql'],
     ],
-    '\Linna\Auth\Password' => [
+    Linna\Auth\Password::class => [
         0 => $options['password'],
     ],
 ];
