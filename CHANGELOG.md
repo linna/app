@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unrelased][v0.10.0](https://github.com/s3b4stian/linna-app/compare/v0.9.0...v0.10.0) - 2017-XX-XX
+
+### Changed
+* `.htaccess` configurations moved to virtual host config file
+* `README.md` virtual host rewrite mod config added
+
+### Removed
+* `.htaccess` in `/` directory
+* `.htaccess` in `/public` directory
+
 ## [v0.9.0](https://github.com/s3b4stian/linna-app/compare/v0.8.0...v0.9.0) - 2017-06-24
 
 ### Changed

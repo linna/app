@@ -86,10 +86,6 @@ $container->setRules($injectionsRules);
 //create session object
 $session = new Session($options['session']);
 
-//select custom session handler
-//$handler = $container->resolve(Linna\Session\MysqlPdoSessionHandler::class);
-//$session->setSessionHandler($handler);
-
 //start session
 $session->start();
 
