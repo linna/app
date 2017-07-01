@@ -45,7 +45,7 @@ $options = [
 ];
 ```
 
-#### Rewrite engine
+#### Url Rewriting
 ```php
 $options = [
     //other options
@@ -71,13 +71,13 @@ For Apache mod_rewrite config please see:
 
     # Other virtual host directives.
 
-    <Directory /your/www/dir/app>
+    <Directory /var/www/html/app>
         RewriteEngine on
         # Route to /app/public
         RewriteRule ^(.*)  public/$1 [L]
     </Directory>
 
-    <Directory /your/www/dir/app/public>
+    <Directory /var/www/html/app/public>
         # Necessary to prevent problems when using a controller named "index" and having a root index.php
         # more here: http://httpd.apache.org/docs/2.2/content-negotiation.html
         Options -MultiViews
