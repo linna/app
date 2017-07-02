@@ -11,7 +11,7 @@ App Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache (mod rewrite on) web server with default php.ini.  
+App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache web server with default php.ini.  
 
 ### Installation
 *Consider use of sudo command if need administrator privileges and don't forget to set proper folder permissions*
@@ -58,7 +58,7 @@ $options = [
 ];
 ```
 
-### Apache Virtual Host config for mod rewrite
+### Apache Virtual Host config for mod_rewrite
 If you enable rewriteMode in config.php need to add to your virtual host configuration file
 the following line of code.  
 
@@ -79,7 +79,7 @@ For Apache mod_rewrite config please see:
 
     <Directory /var/www/html/app/public>
         # Necessary to prevent problems when using a controller named "index" and having a root index.php
-        # more here: http://httpd.apache.org/docs/2.2/content-negotiation.html
+        # more here: http://httpd.apache.org/docs/current/content-negotiation.html
         Options -MultiViews
 
         # Activates URL rewriting (like myproject.com/controller/action/1/2/3)
@@ -111,4 +111,45 @@ For Apache mod_rewrite config please see:
 </VirtualHost>
 ```
 
-Now App can be started from browser
+### .htaccess config for mod_rewrite
+If you haven't access to your apache virtual host configuration, 
+you can add .htaccess files to the App for enable mod_rewrite.  
+
+Create `.htaccess` file in `app/` directory with this content:
+```ApacheConf
+RewriteEngine on
+# Route to /app/public
+RewriteRule ^(.*)  public/$1 [L]
+```
+
+Create `.htaccess` file in `app/public/` directory with this content:
+```ApacheConf
+# Necessary to prevent problems when using a controller named "index" and having a root index.php
+# more here: http://httpd.apache.org/docs/current/content-negotiation.html
+Options -MultiViews
+
+# Activates URL rewriting (like myproject.com/controller/action/1/2/3)
+RewriteEngine On
+
+# Prevent people from looking directly into folders
+Options -Indexes
+
+# If the following conditions are true, then rewrite the URL:
+# If the requested filename is not a directory,
+RewriteCond %{REQUEST_FILENAME} !-d
+# and if the requested filename is not a regular file that exists,
+RewriteCond %{REQUEST_FILENAME} !-f
+# and if the requested filename is not a symbolic link,
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# then rewrite the URL in the following way:
+# Take the whole request filename and provide it as the value of a
+# "url" query parameter to index.php. Append any query string from
+# the original URL as further query parameters (QSA), and stop
+# processing (L).
+# https://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa
+# https://httpd.apache.org/docs/current/rewrite/flags.html#flag_l
+RewriteRule ^(.+)$ index.php [QSA,L]
+```
+
+Now App can be started from browser.
