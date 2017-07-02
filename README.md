@@ -6,15 +6,15 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/linna/app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/linna/app/?branch=master)
 [![StyleCI](https://styleci.io/repos/41215510/shield?branch=master&style=flat)](https://styleci.io/repos/41215510)
 
-App Skeleton for Linna framework
+Application Skeleton for Linna framework
 
 ## Getting Started
 
 ### Requirements
-App was written for run with linna-framework and need PHP 7.0 or higher, was tested under Linux with Apache web server with default php.ini.  
 
 ### Installation
-*Consider use of sudo command if need administrator privileges and don't forget to set proper folder permissions*
+*Consider use of sudo command if need administrator privileges and don't 
+forget to set proper folder permissions*
 
 With [composer](https://getcomposer.org/)
 ```Shell
@@ -22,7 +22,7 @@ cd /var/www/html
 mkdir app
 composer create-project --prefer-dist linna/app app
 ```
-Where "app" is directory under webserver document root ex. /var/www/html/app
+Where app is directory under webserver document root ex. `/var/www/html/app`
 
 After, run composer [dump-acoutoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```Shell
@@ -30,7 +30,7 @@ composer dump-autoload --optimize
 ```
 
 ### Before run
-Change config in config.php file placed in /var/www/html/app/config directory.
+Change config in `config.php` file placed in `/var/www/html/app/config` directory.
 
 #### Protocol and app dir
 ```php
@@ -58,9 +58,9 @@ $options = [
 ];
 ```
 
-### Apache Virtual Host config for mod_rewrite
-If you enable rewriteMode in config.php need to add to your virtual host configuration file
-the following line of code.  
+#### Apache Virtual Host config for mod_rewrite
+If you enable the option of the router named `rewriteMode` in `config.php`, 
+need to add to your virtual host configuration file the following line of code.  
 
 For Apache VirtualHost config please see:  
 [http://httpd.apache.org/docs/current/vhosts/](http://httpd.apache.org/docs/current/vhosts/)  
@@ -111,9 +111,9 @@ For Apache mod_rewrite config please see:
 </VirtualHost>
 ```
 
-### .htaccess config for mod_rewrite
+#### .htaccess config for mod_rewrite
 If you haven't access to your apache virtual host configuration, 
-you can add .htaccess files to the App for enable mod_rewrite.  
+you can add .htaccess files to the app for enable mod_rewrite.  
 
 Create `.htaccess` file in `app/` directory with this content:
 ```ApacheConf
