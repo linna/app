@@ -17,7 +17,7 @@ App was written for run with linna-framework and need PHP 7.0 or higher, was tes
 *Consider use of sudo command if need administrator privileges and don't forget to set proper folder permissions*
 
 With [composer](https://getcomposer.org/)
-```
+```Shell
 cd /var/www/html
 mkdir app
 composer create-project --prefer-dist linna/app app
@@ -25,7 +25,7 @@ composer create-project --prefer-dist linna/app app
 Where "app" is directory under webserver document root ex. /var/www/html/app
 
 After, run composer [dump-acoutoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
-```
+```Shell
 composer dump-autoload --optimize
 ```
 
@@ -66,7 +66,7 @@ For Apache VirtualHost config please see:
 [http://httpd.apache.org/docs/current/vhosts/](http://httpd.apache.org/docs/current/vhosts/)  
 For Apache mod_rewrite config please see:  
 [https://httpd.apache.org/docs/current/rewrite/](https://httpd.apache.org/docs/current/rewrite/)  
-```
+```ApacheConf
 <VirtualHost *:80>
 
     # Other virtual host directives.
