@@ -15,8 +15,8 @@ App was written for run with [linna/framework](https://github.com/linna/framewor
 and need PHP 7.0 or higher, was tested under Linux with Apache web server with default php.ini.  
 
 ### Installation
-*Consider use of sudo command if need administrator privileges and don't 
-forget to set proper folder permissions*
+> **Note:** Consider use of sudo command if need administrator privileges and don't 
+forget to set proper folder permissions
 
 With [composer](https://getcomposer.org/)
 ```Shell
