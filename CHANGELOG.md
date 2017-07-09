@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unrelased] [v0.10.0](https://github.com/s3b4stian/linna-app/compare/v0.9.0...v0.10.0) - 2017-XX-XX
+## [Unrelased] [v0.10.0](https://github.com/linna/app/compare/v0.9.0...v0.10.0) - 2017-XX-XX
 
 ### Added
 * `favicon.png` in `/public` directory
@@ -16,16 +16,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * `.htaccess` configurations moved to virtual host config file
 * `README.md` virtual host rewrite mod config added
 
+### Fixed
+* `CHANGELOG.md` links url
+
 ### Removed
 * `.htaccess` in `/` directory
 * `.htaccess` in `/public` directory
 
-## [v0.9.0](https://github.com/s3b4stian/linna-app/compare/v0.8.0...v0.9.0) - 2017-06-24
+## [v0.9.0](https://github.com/linna/app/v0.8.0...v0.9.0) - 2017-06-24
 
 ### Changed
-* require [linna-framework v0.19.0](https://github.com/s3b4stian/linna-framework/releases/tag/v0.19.0)
+* require [linna-framework v0.19.0](https://github.com/linna/framework/releases/tag/v0.19.0)
 
-## [v0.8.0](https://github.com/s3b4stian/linna-app/compare/v0.7.0...v0.8.0) - 2017-06-01
+## [v0.8.0](https://github.com/linna/app/compare/v0.7.0...v0.8.0) - 2017-06-01
 
 ### Removed
 * all files for login and user
@@ -39,9 +42,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * option default for `urlSubFolder` changed from `/app/` to `/app`
 * option default for `urlPublicFolder` changed from `public` to `/app/public`
 * `Linna\Mvc\FrontController` usage changed on `public/index.php`
-* require [linna-framework v0.17.0](https://github.com/s3b4stian/linna-framework/releases/tag/v0.17.0)
+* require [linna-framework v0.17.0](https://github.com/linna/framework/releases/tag/v0.17.0)
 
-## [v0.7.0](https://github.com/s3b4stian/linna-app/compare/v0.6.1...v0.7.0) - 2017-03-28
+## [v0.7.0](https://github.com/linna/app/compare/v0.6.1...v0.7.0) - 2017-03-28
 
 ### Changed
-* require [linna-framework v0.15.0](https://github.com/s3b4stian/linna-framework/releases/tag/v0.15.0)
+* require [linna-framework v0.15.0](https://github.com/linna/framework/releases/tag/v0.15.0)
