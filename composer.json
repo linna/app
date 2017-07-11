@@ -3,12 +3,12 @@
     "type": "project",
     "description": "Linna Application",
     "keywords": ["application", "learning", "mvc", "php", "skeleton"],
+    "homepage": "https://github.com/linna/app",
     "license": "MIT",
     "authors": [
         {
             "name": "Sebastian Rapetti",
-            "email": "sebastian.rapetti@alice.it",
-            "homepage": "https://github.com/linna/app"
+            "email": "sebastian.rapetti@alice.it"
         }
     ],
     "support": {
