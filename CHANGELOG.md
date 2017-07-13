@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * `robots.txt` in `/public` directory
 
 ### Changed
+* `declare(strict_types=1);` added where missing
 * `.htaccess` configurations moved to virtual host config file
 * `README.md` virtual host rewrite mod config added
 
