@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unrelased] [v0.10.0](https://github.com/linna/app/compare/v0.9.0...v0.10.0) - 2017-XX-XX
 
 ### Added
-* possibility to declare routes as `Linna\Http\RouteCollection` and compile it as php static arrays
+* `bin/compile-routes' script for export routes as php array
+* possibility to declare routes as `Linna\Http\RouteCollection` and compile it as php array
 * `favicon.png` in `/public` directory
 * `robots.txt` in `/public` directory
 
