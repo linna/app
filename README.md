@@ -42,6 +42,7 @@ $options = [
         'urlProtocol'     => 'http://',
         'urlSubFolder'    => '/app', // es /var/www/html/app/
         'urlPublicFolder' => '/app/public', // es /var/www/html/app/public
+        'useCompiledRoutes' => true,
     ],
     //other options
 ];
