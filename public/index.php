@@ -19,6 +19,9 @@ use Linna\Session\Session;
  * Bootstrap and config.
  */
 
+//composer autoload
+require dirname(__DIR__).'/vendor/autoload.php';
+
 //Set a constant that holds the project's folder path, like "/var/www/"
 define('ROOT', dirname(dirname(__DIR__)));
 
@@ -26,31 +29,22 @@ define('ROOT', dirname(dirname(__DIR__)));
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 
 //load configuration from config file
-require dirname(__DIR__).'/config/config.php';
-
-//load routes.
-require dirname(__DIR__).'/config/routes.php';
-
-//load injections rules.
-require dirname(__DIR__).'/config/injections.php';
-
-//composer autoload
-require dirname(__DIR__).'/vendor/autoload.php';
+$config = include dirname(__DIR__).'/config/config.php';
 
 //app
-define('APP', ROOT.$options['app']['urlSubFolder'].'/');
+define('APP', ROOT.$config['app']['urlSubFolder'].'/');
 
 //rewrite mode check for provide proper url.
 $rewriteRouterPoint = '/';
 
-if ($options['router']['rewriteMode'] === false) {
+if ($config['router']['rewriteMode'] === false) {
     $rewriteRouterPoint = '/index.php/';
 }
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
-define('URL', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlSubFolder'].$rewriteRouterPoint);
-define('URL_STYLE', $options['app']['urlProtocol'].URL_DOMAIN.$options['app']['urlPublicFolder'].'/');
+define('URL', $config['app']['urlProtocol'].URL_DOMAIN.$config['app']['urlSubFolder'].$rewriteRouterPoint);
+define('URL_STYLE', $config['app']['urlProtocol'].URL_DOMAIN.$config['app']['urlPublicFolder'].'/');
 
 /**
  * Autoloader Section.
@@ -74,6 +68,9 @@ $loader->addNamespaces([
  * Dependency Injection Section.
  */
 
+//get injections rules
+$injectionsRules = include dirname(__DIR__).'/config/injections.php';
+
 //create dipendency injection container
 $container = new Container();
 $container->setRules($injectionsRules);
@@ -83,7 +80,7 @@ $container->setRules($injectionsRules);
  */
 
 //create session object
-$session = new Session($options['session']);
+$session = new Session($config['session']);
 
 //start session
 $session->start();
@@ -95,8 +92,14 @@ $container->set(Linna\Session\Session::class, $session);
  * Router Section.
  */
 
+//get route source
+$routeSource = ($config['app']['useCompiledRoutes']) ? 'routes.php' : 'routes.compiled.php';
+
+//get routes from source
+$routes = include dirname(__DIR__)."/config/{$routeSource}";
+
 //start router
-$router = new Router($routes, $options['router']);
+$router = new Router($routes, $config['router']);
 
 //evaluate request uri and method
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

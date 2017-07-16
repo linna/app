@@ -9,12 +9,13 @@
  */
 declare(strict_types=1);
 
-$options = [
+return [
 
     'app' => [
-        'urlProtocol'     => 'http://',
-        'urlSubFolder'    => '/app', // es /var/www/html/app/
-        'urlPublicFolder' => '/app/public', // es /var/www/html/app/public
+        'urlProtocol'       => 'http://',
+        'urlSubFolder'      => '/app', // es /var/www/html/app/
+        'urlPublicFolder'   => '/app/public', // es /var/www/html/app/public
+        'useCompiledRoutes' => true
     ],
 
     'session' => [

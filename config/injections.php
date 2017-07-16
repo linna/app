@@ -9,11 +9,11 @@
  */
 declare(strict_types=1);
 
-$injectionsRules = [
+return [
     Linna\Storage\PdoStorage::class => [
-        0 => $options['pdo_mysql'],
+        0 => $config['pdo_mysql'],
     ],
     Linna\Auth\Password::class => [
-        0 => $options['password'],
+        0 => $config['password'],
     ],
 ];
