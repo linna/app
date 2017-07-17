@@ -11,11 +11,11 @@ Application Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-App was written for run with [linna/framework](https://github.com/linna/framework) 
+App was written for run with [linna/framework](https://github.com/linna/framework)
 and need PHP 7.0 or higher, was tested under Linux with Apache web server with default php.ini.  
 
 ### Installation
-> **Note:** Consider use of sudo command if need administrator privileges and don't 
+> **Note:** Consider use of sudo command if need administrator privileges and don't
 forget to set proper folder permissions
 
 With [composer](https://getcomposer.org/)
@@ -26,7 +26,7 @@ composer create-project --prefer-dist linna/app app
 ```
 Where app is directory under webserver document root ex. `/var/www/html/app`
 
-After, run composer [dump-acoutoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
+After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload) for optimize file autoloading
 ```Shell
 composer dump-autoload --optimize
 ```
@@ -62,7 +62,7 @@ $options = [
 ```
 
 #### Apache Virtual Host config for mod_rewrite
-If you enable the option of the router named `rewriteMode` in `config.php`, 
+If you enable the option of the router named `rewriteMode` in `config.php`,
 need to add to your virtual host configuration file the following line of code.  
 
 For Apache VirtualHost config please see:  
@@ -115,7 +115,7 @@ For Apache mod_rewrite config please see:
 ```
 
 #### .htaccess config for mod_rewrite
-If you haven't access to your apache virtual host configuration, 
+If you haven't access to your apache virtual host configuration,
 you can add .htaccess files to the app for enable mod_rewrite.  
 
 Create `.htaccess` file in `app/` directory with this content:
