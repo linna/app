@@ -3,14 +3,14 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/) 
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unrelased] [v0.10.0](https://github.com/linna/app/compare/v0.9.0...v0.10.0) - 2017-XX-XX
+## [v0.10.0](https://github.com/linna/app/compare/v0.9.0...v0.10.0) - 2017-07-17
 
 ### Added
-* `bin/compile-routes' script for export routes as php array
-* possibility to declare routes as `Linna\Http\RouteCollection` and compile it as php array
+* `bin/compile-routes` script for export routes as php array
+* possibility to declare routes as `Linna\Http\RouteCollection` and export it as php array
 * `favicon.png` in `/public` directory
 * `robots.txt` in `/public` directory
 
@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 * `CHANGELOG.md` links url
+* file permissions
 
 ### Removed
 * `.htaccess` in `/` directory
