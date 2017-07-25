@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.10.1](https://github.com/linna/app/compare/v0.10.0...v0.10.1) - 2017-07-25
+
+### Changed
+* `config/config.php` option `useCompiledRoutes` default changed to `false`
+
+### Added
+* `config/config.php` option `rewriteModeOffRouter` in `router` section
+
+### Fixed
+* app working in rewrite mode off
+
 ## [v0.10.0](https://github.com/linna/app/compare/v0.9.0...v0.10.0) - 2017-07-17
 
 ### Added
