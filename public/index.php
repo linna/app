@@ -35,11 +35,7 @@ $config = include dirname(__DIR__).'/config/config.php';
 define('APP', ROOT.$config['app']['urlSubFolder'].'/');
 
 //rewrite mode check for provide proper url.
-$rewriteRouterPoint = '/';
-
-if ($config['router']['rewriteMode'] === false) {
-    $rewriteRouterPoint = '/index.php/';
-}
+$rewriteRouterPoint = ($config['router']['rewriteMode']) ? '' : $config['router']['rewriteModeOffRouter'];
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.

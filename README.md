@@ -53,9 +53,10 @@ $options = [
 $options = [
     //other options
     'router' => [
-        'basePath'    => '/app', //equal to urlSubFolder
-        'badRoute'    => 'E404',
-        'rewriteMode' => true,
+        'basePath'              => '/app', //equal to urlSubFolder
+        'badRoute'              => 'E404',
+        'rewriteMode'           => true,
+        'rewriteModeOffRouter'  => '/index.php?',
     ],
     //other options
 ];

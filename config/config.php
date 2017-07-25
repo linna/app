@@ -15,7 +15,7 @@ return [
         'urlProtocol'       => 'http://',
         'urlSubFolder'      => '/app', // es /var/www/html/app/
         'urlPublicFolder'   => '/app/public', // es /var/www/html/app/public
-        'useCompiledRoutes' => true
+        'useCompiledRoutes' => false
     ],
 
     'session' => [
@@ -28,9 +28,10 @@ return [
     ],
 
     'router' => [
-        'basePath'    => '/app', //equal to urlSubFolder
-        'badRoute'    => 'E404',
-        'rewriteMode' => true,
+        'basePath'             => '/app', //equal to urlSubFolder
+        'badRoute'             => 'E404',
+        'rewriteMode'          => true,
+        'rewriteModeOffRouter' => '/index.php?',
     ],
 
     'pdo_mysql' => [
@@ -47,8 +48,8 @@ return [
 
     'mysqli' => [
         'host'     => '127.0.0.1',
-        'user'     => 'root',
-        'password' => 'cagiva',
+        'user'     => '',
+        'password' => '',
         'database' => 'linna_db',
         'port'     => 3306,
     ],
