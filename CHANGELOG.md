@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.11.0](https://github.com/linna/app/compare/v0.10.1...v0.11.0) - 2017-XX-XX
+
+### Changed
+* `App\Templates\HtmlTemplate->__construct()` now require as parameters template and css directory
+* require [linna/framework v0.21.0](https://github.com/linna/framework/releases/tag/v0.21.0)
+
+### Added
+* `App\Templates\HtmlTemplate` section to `config/injections.php`
+
 ## [v0.10.1](https://github.com/linna/app/compare/v0.10.0...v0.10.1) - 2017-07-25
 
 ### Changed
