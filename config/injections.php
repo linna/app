@@ -16,4 +16,8 @@ return [
     Linna\Auth\Password::class => [
         0 => $config['password'],
     ],
+    App\Templates\HtmlTemplate::class => [
+        0 => APP_DIR.'/src/Templates/_pages',
+        1 => URL_STYLE,
+    ]
 ];

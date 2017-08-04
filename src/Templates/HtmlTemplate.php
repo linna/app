@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace App\Templates;
 
 use Linna\Mvc\TemplateInterface;
+use stdClass;
 
 /**
  * Html Page Template.
@@ -31,7 +32,7 @@ class HtmlTemplate implements TemplateInterface
     /**
      * @var object Data for template
      */
-    public $data = null;
+    public $data;
 
     /**
      * @var array Css file for template
@@ -44,11 +45,23 @@ class HtmlTemplate implements TemplateInterface
     protected $javascript = [];
 
     /**
+     * @var string Template directory 
+     */
+    protected $templateDir;
+    
+    /**
+     * @var string Css directory 
+     */
+    protected $cssDir;
+    
+    /**
      * Constructor.
      */
-    public function __construct()
+    public function __construct(string $templateDir, string $cssDir)
     {
-        $this->data = (object) null;
+        $this->data = new stdClass();
+        $this->templateDir = $templateDir;
+        $this->cssDir = $cssDir;
     }
 
     /**
@@ -68,7 +81,7 @@ class HtmlTemplate implements TemplateInterface
      */
     public function loadCss(string $file)
     {
-        $this->css[] = URL_STYLE.$file;
+        $this->css[] = $this->cssDir.$file;
     }
 
     /**
@@ -78,7 +91,7 @@ class HtmlTemplate implements TemplateInterface
      */
     public function loadJs(string $file)
     {
-        $this->javascript[] = URL_STYLE.$file;
+        $this->javascript[] = $this->cssDir.$file;
     }
 
     /**
@@ -95,7 +108,7 @@ class HtmlTemplate implements TemplateInterface
 
         ob_start();
 
-        require APP."src/Templates/_pages/{$this->template}.html";
+        require "{$this->templateDir}/{$this->template}.html";
 
         return ob_get_clean();
     }
