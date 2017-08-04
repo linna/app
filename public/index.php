@@ -19,20 +19,17 @@ use Linna\Session\Session;
  * Bootstrap and config.
  */
 
-//composer autoload
-require dirname(__DIR__).'/vendor/autoload.php';
-
-//Set a constant that holds the project's folder path, like "/var/www/"
-define('ROOT', dirname(dirname(__DIR__)));
+//set a constant that hold the full path to app directory
+define('APP_DIR', dirname(__DIR__));
 
 //The domain, autodetected
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 
-//load configuration from config file
-$config = include dirname(__DIR__).'/config/config.php';
+//composer autoload
+require APP_DIR.'/vendor/autoload.php';
 
-//app
-define('APP', ROOT.$config['app']['urlSubFolder'].'/');
+//load configuration from config file
+$config = include APP_DIR.'/config/config.php';
 
 //rewrite mode check for provide proper url.
 $rewriteRouterPoint = ($config['router']['rewriteMode']) ? '' : $config['router']['rewriteModeOffRouter'];
@@ -52,12 +49,12 @@ $loader = new Autoloader();
 $loader->register();
 
 $loader->addNamespaces([
-    ['App\Models', APP.'src/Models'],
-    ['App\Views', APP.'src/Views'],
-    ['App\Controllers', APP.'src/Controllers'],
-    ['App\Templates', APP.'src/Templates'],
-    ['App\Mappers', APP.'src/Mappers'],
-    ['App\DomainObjects', APP.'src/DomainObjects'],
+    ['App\Models', APP_DIR.'/src/Models'],
+    ['App\Views', APP_DIR.'/src/Views'],
+    ['App\Controllers', APP_DIR.'/src/Controllers'],
+    ['App\Templates', APP_DIR.'/src/Templates'],
+    ['App\Mappers', APP_DIR.'/src/Mappers'],
+    ['App\DomainObjects', APP_DIR.'/src/DomainObjects'],
 ]);
 
 /**
@@ -65,7 +62,7 @@ $loader->addNamespaces([
  */
 
 //get injections rules
-$injectionsRules = include dirname(__DIR__).'/config/injections.php';
+$injectionsRules = include APP_DIR.'/config/injections.php';
 
 //create dipendency injection container
 $container = new Container();
@@ -92,7 +89,7 @@ $container->set(Linna\Session\Session::class, $session);
 $routeSource = ($config['app']['useCompiledRoutes']) ? 'routes.php' : 'routes.compiled.php';
 
 //get routes from source
-$routes = include dirname(__DIR__)."/config/{$routeSource}";
+$routes = include APP_DIR."/config/{$routeSource}";
 
 //start router
 $router = new Router($routes, $config['router']);
