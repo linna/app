@@ -45,15 +45,15 @@ class HtmlTemplate implements TemplateInterface
     protected $javascript = [];
 
     /**
-     * @var string Template directory 
+     * @var string Template directory
      */
     protected $templateDir;
-    
+
     /**
-     * @var string Css directory 
+     * @var string Css directory
      */
     protected $cssDir;
-    
+
     /**
      * Constructor.
      */
