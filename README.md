@@ -39,10 +39,14 @@ Change config in `config.php` file placed in `/var/www/html/app/config` director
 $options = [
 
     'app' => [
-        'urlProtocol'     => 'http://',
-        'urlSubFolder'    => '/app', // es /var/www/html/app/
-        'urlPublicFolder' => '/app/public', // es /var/www/html/app/public
-        'useCompiledRoutes' => true,
+        //protocol utilized [http://, https://]
+        'protocol'       => 'http://',
+        //folder of the app, if app isn't in the web server root
+        'subFolder'      => '/app',
+        //public folder of the app
+        'publicFolder'   => '/app/public',
+        //define if app use routes exported in static array [true, false]
+        'compiledRoutes' => false
     ],
     //other options
 ];

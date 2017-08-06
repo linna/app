@@ -36,8 +36,8 @@ $rewriteRouterPoint = ($config['router']['rewriteMode']) ? '' : $config['router'
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
-define('URL', $config['app']['urlProtocol'].URL_DOMAIN.$config['app']['urlSubFolder'].$rewriteRouterPoint);
-define('URL_STYLE', $config['app']['urlProtocol'].URL_DOMAIN.$config['app']['urlPublicFolder'].'/');
+define('URL', $config['app']['protocol'].URL_DOMAIN.$config['app']['subFolder'].$rewriteRouterPoint);
+define('URL_STYLE', $config['app']['protocol'].URL_DOMAIN.$config['app']['publicFolder'].'/');
 
 /**
  * Autoloader Section.
@@ -86,7 +86,7 @@ $container->set(Linna\Session\Session::class, $session);
  */
 
 //get route source
-$routeSource = ($config['app']['useCompiledRoutes']) ? 'routes.php' : 'routes.compiled.php';
+$routeSource = ($config['app']['compiledRoutes']) ? 'routes.php' : 'routes.compiled.php';
 
 //get routes from source
 $routes = include APP_DIR."/config/{$routeSource}";

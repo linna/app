@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 * `App\Templates\HtmlTemplate->__construct()` now require as parameters template and css directory
 * require [linna/framework v0.21.0](https://github.com/linna/framework/releases/tag/v0.21.0)
+* option `urlProtocol` renamed to `protocol`
+* option `urlSubFolder` renamed to `subFolder`
+* option `urlPublicFolder` renamed to `publicFolder`
+* option `useCompiledRoutes` renamed to `compiledRoutes`
 
 ### Added
 * `App\Templates\HtmlTemplate` section to `config/injections.php`
