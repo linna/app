@@ -33,7 +33,7 @@ class E404View extends View
         parent::__construct($model);
 
         //merge data passed from model with login information
-        $this->data = array_merge($this->data, ['login' => $login->logged, 'userName' => $login->getLoginData()['user_name']]);
+        $this->data = array_merge($this->data, ['login' => $login->islogged(), 'userName' => $login->getLoginData()['user_name']]);
 
         //store html template
         $this->template = $htmlTemplate;
