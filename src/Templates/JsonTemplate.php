@@ -32,6 +32,16 @@ class JsonTemplate implements TemplateInterface
     }
 
     /**
+     * Set the output data.
+     *
+     * @param array $data
+     */
+    public function setData(array $data)
+    {
+        $this->data = (object) $data;
+    }
+
+    /**
      * Return data in json format.
      */
     public function getOutput() : string

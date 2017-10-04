@@ -95,6 +95,16 @@ class HtmlTemplate implements TemplateInterface
     }
 
     /**
+     * Set the output data.
+     *
+     * @param array $data
+     */
+    public function setData(array $data)
+    {
+        $this->data = (object) $data;
+    }
+
+    /**
      * Output.
      */
     public function getOutput() : string

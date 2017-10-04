@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v0.11.0](https://github.com/linna/app/compare/v0.10.1...v0.11.0) - 2017-XX-XX
+## [v0.11.0](https://github.com/linna/app/compare/v0.10.1...v0.11.0) - 2017-10-04
 
 ### Changed
 * `App\Models\E404Model` renamed to `App\Models\NullModel`, use it when page do not require elaborated data
