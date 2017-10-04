@@ -31,7 +31,7 @@ return array (
     'name' => 'E404',
     'method' => 'GET',
     'url' => '/error',
-    'model' => 'App\\Models\\E404Model',
+    'model' => 'App\\Models\\NullModel',
     'view' => 'App\\Views\\E404View',
     'controller' => 'App\\Controllers\\E404Controller',
     'action' => '',

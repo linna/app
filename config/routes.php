@@ -25,7 +25,7 @@ return (new RouteCollection([
         'name'       => 'E404',
         'method'     => 'GET',
         'url'        => '/error',
-        'model'      => App\Models\E404Model::class,
+        'model'      => App\Models\NullModel::class,
         'view'       => App\Views\E404View::class,
         'controller' => App\Controllers\E404Controller::class
     ])

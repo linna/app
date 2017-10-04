@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [v0.11.0](https://github.com/linna/app/compare/v0.10.1...v0.11.0) - 2017-XX-XX
 
 ### Changed
+* `App\Models\E404Model` renamed to `App\Models\NullModel`, use it when page do not require elaborated data
 * `App\Templates\HtmlTemplate->__construct()` now require as parameters template and css directory
 * require [linna/framework v0.21.0](https://github.com/linna/framework/releases/tag/v0.21.0)
 * option `urlProtocol` renamed to `protocol`

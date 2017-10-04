@@ -14,15 +14,16 @@ namespace App\Models;
 use Linna\Mvc\Model;
 
 /**
- * Error 404 Model.
+ * Null Model.
+ * Use this class when a page not need data from persistent storage.
  */
-class E404Model extends Model
+class NullModel extends Model
 {
     /**
      * Constructor.
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    //public function __construct()
+    //{
+        //parent::__construct();
+    //}
 }
