@@ -10,9 +10,9 @@
  */
 declare(strict_types=1);
 
-return array (
-  0 => 
-  array (
+return array(
+  0 =>
+  array(
     'name' => 'Home',
     'method' => 'GET',
     'url' => '/',
@@ -21,13 +21,13 @@ return array (
     'controller' => 'App\\Controllers\\HomeController',
     'action' => '',
     'default' => false,
-    'param' => 
-    array (
+    'param' =>
+    array(
     ),
     'callback' => false,
   ),
-  1 => 
-  array (
+  1 =>
+  array(
     'name' => 'E404',
     'method' => 'GET',
     'url' => '/error',
@@ -36,8 +36,8 @@ return array (
     'controller' => 'App\\Controllers\\E404Controller',
     'action' => '',
     'default' => false,
-    'param' => 
-    array (
+    'param' =>
+    array(
     ),
     'callback' => false,
   ),
