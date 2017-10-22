@@ -16,6 +16,12 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "linna/framework": "^v0.21"
+        "linna/framework": "^v0.21",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"copy('.env.example', '.env');\""
+        ]
     }
 }

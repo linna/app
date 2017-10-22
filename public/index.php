@@ -28,6 +28,9 @@ define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 //composer autoload
 require APP_DIR.'/vendor/autoload.php';
 
+//Load environment variables from .env file
+(new Dotenv\Dotenv(APP_DIR))->load();
+
 //load configuration from config file
 $config = include APP_DIR.'/config/config.php';
 

@@ -23,7 +23,7 @@ return [
     ],
 
     'session' => [
-        'name'           => 'linna_session',
+        'name'           => env('SESSION_NAME', 'linna_session'),
         'expire'         => 1800,
         'cookieDomain'   => URL_DOMAIN, //do not change here
         'cookiePath'     => '/app', //equal to urlSubFolder
@@ -39,9 +39,9 @@ return [
     ],
 
     'pdo_mysql' => [
-        'dsn'      => 'mysql:host=localhost;dbname=linna_db;charset=utf8mb4',
-        'user'     => 'root',
-        'password' => 'cagiva',
+        'dsn'      => 'mysql:host=' . env('DB_HOST', 'localhost') . ';dbname=' . env('DB_NAME', 'linna_db') . ';charset=utf8mb4',
+        'user'     => env('DB_USER', 'root'),
+        'password' => env('DB_PASSWORD', 'cagiva'),
         'options'  => [
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
             \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
@@ -51,10 +51,10 @@ return [
     ],
 
     'mysqli' => [
-        'host'     => '127.0.0.1',
-        'user'     => '',
-        'password' => '',
-        'database' => 'linna_db',
+        'host'     => env('DB_HOST', 'localhost'),
+        'user'     => env('DB_USER', 'root'),
+        'password' => env('DB_PASSWORD', 'cagiva'),
+        'database' => env('DB_NAME', 'linna_db'),
         'port'     => 3306,
     ],
 
@@ -65,8 +65,8 @@ return [
     ],
 
     'memcached' => [
-        'host' => 'localhost',
-        'port' => 11211,
+        'host' => env('MEMCACHED_HOST', 'localhost'),
+        'port' => env('MEMCACHED_PORT', '11211'),
     ],
 
     'password' => [
