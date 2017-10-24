@@ -13,7 +13,7 @@ return [
     Linna\Storage\PdoStorage::class => [
         0 => $config['pdo_mysql'],
     ],
-    Linna\Auth\Password::class => [
+    Linna\Authentication\Password::class => [
         0 => $config['password'],
     ],
     App\Templates\HtmlTemplate::class => [

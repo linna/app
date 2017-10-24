@@ -13,7 +13,7 @@ namespace App\Views;
 
 use App\Models\NullModel;
 use App\Templates\HtmlTemplate;
-use Linna\Auth\Authenticate;
+use Linna\Authentication\Authenticate;
 use Linna\Mvc\View;
 
 /**

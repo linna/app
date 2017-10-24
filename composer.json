@@ -16,6 +16,6 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "linna/framework": "^v0.21"
+        "linna/framework": "^v0.22"
     }
 }

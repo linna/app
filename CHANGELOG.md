@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.12.0](https://github.com/linna/app/compare/v0.11.0...v0.12.0) - 2017-10-24
+
+### Changed
+* require [linna/framework v0.22.0](https://github.com/linna/framework/releases/tag/v0.22.0)
+
 ## [v0.11.0](https://github.com/linna/app/compare/v0.10.1...v0.11.0) - 2017-10-04
 
 ### Changed
