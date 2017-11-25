@@ -11,7 +11,7 @@ Application Skeleton for Linna framework
 ## Getting Started
 
 ### Requirements
-App was written for run with [linna/framework](https://github.com/linna/framework)
+App was written for run with [linna/framework](https://github.com/linna/framework) >= v0.22.0
 and need PHP 7.0 or higher, was tested under Linux with Apache web server with default php.ini.  
 
 ### Installation
