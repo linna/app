@@ -1,14 +1,7 @@
 language: php
 php:
-- 7.0.21
 - 7.1
 - 7.2
-- nightly
-
-matrix:
-  allow_failures:
-  - php: nightly
-  - php: 7.2
 
 before_script:
 - composer install

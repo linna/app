@@ -15,7 +15,7 @@
         "issues": "https://github.com/linna/app/issues"
     },
     "require": {
-        "php": ">=7.0.0",
+        "php": "^7.1",
         "linna/framework": "^v0.23"
     }
 }
