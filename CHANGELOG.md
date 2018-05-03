@@ -10,7 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 * require [linna/framework v0.24.0](https://github.com/linna/framework/releases/tag/v0.24.0)
-* Minimun PHP version: 7.1
+* minimun PHP version: 7.1
+
+### Fixed
+* compiled routes bug in `index.php`
 
 ## [v0.12.0](https://github.com/linna/app/compare/v0.11.0...v0.12.0) - 2017-10-24
 
