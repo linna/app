@@ -86,7 +86,7 @@ $container->set(Linna\Session\Session::class, $session);
  */
 
 //get route source
-$routeSource = ($config['app']['compiledRoutes']) ? 'routes.php' : 'routes.compiled.php';
+$routeSource = ($config['app']['compiledRoutes']) ? 'routes.compiled.php' : 'routes.php';
 
 //get routes from source
 $routes = include APP_DIR."/config/{$routeSource}";
