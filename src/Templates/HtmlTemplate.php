@@ -107,7 +107,7 @@ class HtmlTemplate implements TemplateInterface
     /**
      * Output.
      */
-    public function getOutput() : string
+    public function getOutput(): string
     {
         extract([
             'data'       => $this->data,
