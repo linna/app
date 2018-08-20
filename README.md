@@ -1,11 +1,24 @@
-![Linna App](logo-app.png)
+<div align="center">
+    <a href="#"><img src="logo-linna-96.png" alt="Linna Logo"></a>
+</div>
+
 <br/>
+
+<div align="center">
+    <a href="#"><img src="logo-app.png" alt="Linna dotenv Logo"></a>
+</div>
+
 <br/>
-<br/>
+
+<div align="center">
+
 [![Build Status](https://travis-ci.org/linna/app.svg?branch=master)](https://travis-ci.org/linna/app)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/linna/app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/linna/app/?branch=master)
 [![StyleCI](https://styleci.io/repos/41215510/shield?branch=master&style=flat)](https://styleci.io/repos/41215510)
 
+</div>
+
+## About
 Application Skeleton for Linna framework
 
 ## Getting Started
