@@ -22,5 +22,10 @@
         "infection/infection": "^0.10",
         "phpstan/phpstan": "^0.10",
         "phpunit/phpunit": "^7.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Linna\\Tests\\": "tests/"
+        }
     }
 }
