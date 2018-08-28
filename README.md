@@ -18,14 +18,14 @@
 
 </div>
 
-## About
+# About
 Application Skeleton for Linna framework
 
-## Requirements
+# Requirements
 App was written for run with [linna/framework](https://github.com/linna/framework) >= v0.22.0
 and need PHP 7.1 or higher, was tested under Linux with Apache web server with default php.ini.  
 
-## Installation
+# Installation
 > **Note:** Consider use of sudo command if need administrator privileges and don't
 forget to set proper folder permissions
 
@@ -42,10 +42,10 @@ After, run composer [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-a
 composer dump-autoload --optimize
 ```
 
-## Before run
+# Before run
 Change config in `config.php` file placed in `/var/www/html/app/config` directory.
 
-### Protocol and app dir
+## Protocol and app dir
 ```php
 $options = [
 
@@ -63,7 +63,7 @@ $options = [
 ];
 ```
 
-### Url Rewriting
+## Url Rewriting
 ```php
 $options = [
     //other options
@@ -77,7 +77,7 @@ $options = [
 ];
 ```
 
-### Apache Virtual Host config for mod_rewrite
+## Apache Virtual Host config for mod_rewrite
 If you enable the option of the router named `rewriteMode` in `config.php`,
 need to add to your virtual host configuration file the following line of code.  
 
@@ -130,7 +130,7 @@ For Apache mod_rewrite config please see:
 </VirtualHost>
 ```
 
-### .htaccess config for mod_rewrite
+## .htaccess config for mod_rewrite
 If you haven't access to your apache virtual host configuration,
 you can add .htaccess files to the app for enable mod_rewrite.  
 
