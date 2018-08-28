@@ -10,7 +10,7 @@
 declare(strict_types=1);
 
 use Linna\Autoloader;
-use Linna\DI\Container;
+use Linna\Container\Container;
 use Linna\Http\Router;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
@@ -65,8 +65,7 @@ $loader->addNamespaces([
 $injectionsRules = include APP_DIR.'/config/injections.php';
 
 //create dipendency injection container
-$container = new Container();
-$container->setRules($injectionsRules);
+$container = new Container($injectionsRules);
 
 /**
  * Session section.
@@ -79,7 +78,7 @@ $session = new Session($config['session']);
 $session->start();
 
 //store session instance
-$container->set(Linna\Session\Session::class, $session);
+$container->set(Session::class, $session);
 
 /**
  * Router Section.

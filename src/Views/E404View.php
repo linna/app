@@ -13,7 +13,7 @@ namespace App\Views;
 
 use App\Models\NullModel;
 use App\Templates\HtmlTemplate;
-use Linna\Authentication\Authenticate;
+use Linna\Authentication\Authentication;
 use Linna\Mvc\View;
 
 /**
@@ -24,11 +24,11 @@ class E404View extends View
     /**
      * Constructor.
      *
-     * @param NullModel    $model
-     * @param Authenticate $login
-     * @param HtmlTemplate $htmlTemplate
+     * @param NullModel      $model
+     * @param Authentication $login
+     * @param HtmlTemplate   $htmlTemplate
      */
-    public function __construct(NullModel $model, Authenticate $login, HtmlTemplate $htmlTemplate)
+    public function __construct(NullModel $model, Authentication $login, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model);
 

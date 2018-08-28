@@ -16,6 +16,6 @@
     },
     "require": {
         "php": "^7.1",
-        "linna/framework": "^v0.23"
+        "linna/framework": "dev-master"
     }
 }
