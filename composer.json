@@ -16,7 +16,7 @@
     },
     "require": {
         "php": "^7.1",
-        "linna/framework": "dev-master"
+        "linna/framework": "^0.24"
     },
     "require-dev": {
         "infection/infection": "^0.10",
