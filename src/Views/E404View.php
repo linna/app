@@ -45,7 +45,7 @@ class E404View extends View
     public function index()
     {
         //set 404 error
-        header("HTTP/1.1 404 Not Found");
+        http_response_code(404);
 
         //load error 404 html
         $this->template->loadHtml('Error404');
