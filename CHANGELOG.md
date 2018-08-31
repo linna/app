@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 * require [linna/framework v0.24.0](https://github.com/linna/framework/releases/tag/v0.24.0)
 * minimun PHP version: 7.1
+* E404 route now responds with 404 status code
 
 ### Fixed
 * compiled routes bug in `index.php`
