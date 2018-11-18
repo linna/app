@@ -30,7 +30,7 @@ build:
     project_setup:
             before:
                 - mysql -e "CREATE DATABASE linna_db"
-                - mysql -u root linna_db < tests/linna_db.sql
+                - mysql -u root linna_db < tests/linna_db_mysql.sql
                 - wget https://phar.phpunit.de/phpunit.phar
                 - chmod +x phpunit.phar
                 - sudo mv phpunit.phar /usr/local/bin/phpunit
