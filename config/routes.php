@@ -9,8 +9,8 @@
  */
 declare(strict_types=1);
 
-use Linna\Http\Route;
-use Linna\Http\RouteCollection;
+use Linna\Router\Route;
+use Linna\Router\RouteCollection;
 
 return (new RouteCollection([
     new Route([

@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 use Linna\Autoloader;
 use Linna\Container\Container;
-use Linna\Http\Router;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
+use Linna\Router\Router;
 
 /*
  * Bootstrap and config.
