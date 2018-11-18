@@ -16,10 +16,10 @@
     },
     "require": {
         "php": "^7.1",
-        "linna/framework": "^0.24"
+        "linna/framework": "dev-b0.25.0"
     },
     "require-dev": {
-        "infection/infection": "^0.10",
+        "infection/infection": "^0.11",
         "phpstan/phpstan": "^0.10",
         "phpunit/phpunit": "^7.0"
     },
