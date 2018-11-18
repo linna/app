@@ -14,22 +14,14 @@ namespace App\Templates;
 use Linna\Mvc\TemplateInterface;
 
 /**
- * Json Template.
+ * Null Template.
  */
-class JsonTemplate implements TemplateInterface
+class NullTemplate implements TemplateInterface
 {
     /**
      * @var object Data for view
      */
     public $data;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->data = (object) null;
-    }
 
     /**
      * Set the output data.
@@ -42,10 +34,10 @@ class JsonTemplate implements TemplateInterface
     }
 
     /**
-     * Return data in json format.
+     * Return void string.
      */
     public function getOutput(): string
     {
-        return json_encode($this->data);
+        return '';
     }
 }

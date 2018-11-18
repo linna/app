@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] [v0.14.0](https://github.com/linna/app/compare/v0.13.0...v0.14.0) - 201X-XX-XX
 
+### Added
+* `App\Controllers\NullController` class
+* `App\Templates\NullTemplate` class
+* `App\Views\NullView` class
+
 ### Changed
 * require [linna/framework v0.25.0](https://github.com/linna/framework/releases/tag/v0.25.0)
 

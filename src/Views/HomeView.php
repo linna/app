@@ -25,24 +25,21 @@ class HomeView extends View
      * Constructor.
      *
      * @param HomeModel      $model
-     * @param Authentication $login
      * @param HtmlTemplate   $htmlTemplate
+     * @param Authentication $login
      */
-    public function __construct(HomeModel $model, Authentication $login, HtmlTemplate $htmlTemplate)
+    public function __construct(HomeModel $model, HtmlTemplate $htmlTemplate, Authentication $login)
     {
-        parent::__construct($model);
+        parent::__construct($model, $htmlTemplate);
 
         //merge data passed from model with login information
         $this->data = array_merge($this->data, ['login' => $login->islogged(), 'userName' => $login->getLoginData()['user_name']]);
-
-        //store html template
-        $this->template = $htmlTemplate;
     }
 
     /**
      * Index.
      */
-    public function index()
+    public function index(): void
     {
         //load home html
         $this->template->loadHtml('Home');

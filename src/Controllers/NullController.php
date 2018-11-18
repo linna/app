@@ -11,20 +11,20 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Models\HomeModel;
+use App\Models\NullModel;
 use Linna\Mvc\Controller;
 
 /**
- * Home Page Controller.
+ * Null Controller.
  */
-class HomeController extends Controller
+class NullController extends Controller
 {
     /**
      * Constructor.
      *
-     * @param HomeModel $model
+     * @param NullModel $model
      */
-    public function __construct(HomeModel $model)
+    public function __construct(NullModel $model)
     {
         parent::__construct($model);
     }
