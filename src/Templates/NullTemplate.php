@@ -24,6 +24,14 @@ class NullTemplate implements TemplateInterface
     public $data;
 
     /**
+     * Class Constructor.
+     */
+    public function __construct()
+    {
+        $this->data = (object) null;
+    }
+
+    /**
      * Set the output data.
      *
      * @param array $data

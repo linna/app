@@ -9,7 +9,13 @@
  */
 declare(strict_types=1);
 
+use App\Controllers\NullController;
+use App\Models\NullModel;
+use App\Templates\NullTemplate;
+use App\Views\NullView;
+
 use Linna\Autoloader;
+use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Container\Container;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
@@ -99,24 +105,36 @@ $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 //get route
 $route = $router->getRoute()->toArray();
 
-//resolve model
-$model = $container->resolve($route['model']);
-
-//resolve view
-$view = $container->resolve($route['view']);
-
-//resolve controller
-$controller = $container->resolve($route['controller']);
-
 /**
- * Front Controller section.
+ * Model View Controller Section.
  */
 
-//start front controller
-$frontController = new FrontController($model, $view, $controller, $route['action'], $route['param']);
-
-//run
-$frontController->run();
-
-//get front controller response
-echo $frontController->response();
+//try to resolve mvc components, if AuthenticationException is throwed
+//complete script with null objects
+try {
+    //get route
+    $route = $router->getRoute()->toArray();
+    //resolve model
+    $model = $container->resolve($route['model']);
+    //resolve view
+    $view = $container->resolve($route['view']);
+    //resolve controller
+    $controller = $container->resolve($route['controller']);
+    //start front controller
+    $frontController = new FrontController($model, $view, $controller, $route['action'], $route['param']);
+    //run
+    $frontController->run();
+} catch (AuthenticationException $e) {
+    //create instances off null objects
+    $model = new NullModel();
+    $view = new NullView($model, new NullTemplate());
+    $controller = new NullController($model);
+    //void route
+    $route = ['action' => '', 'param' => []];
+    //start front controller
+    $frontController = new FrontController($model, $view, $controller, $route['action'], $route['param']);
+    //run
+    $frontController->run();
+} finally {
+    echo $frontController->response();
+}

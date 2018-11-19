@@ -19,4 +19,11 @@ use Linna\Mvc\Model;
  */
 class NullModel extends Model
 {
+    /**
+     * Class Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
