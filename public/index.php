@@ -10,11 +10,11 @@
 declare(strict_types=1);
 
 use App\Controllers\NullController;
+use App\Helper\AppDotEnv;
 use App\Models\NullModel;
 use App\Templates\NullTemplate;
 use App\Views\NullView;
 
-use Linna\Autoloader;
 use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Container\Container;
 use Linna\Mvc\FrontController;
@@ -46,22 +46,13 @@ define('URL', $config['app']['protocol'].URL_DOMAIN.$config['app']['subFolder'].
 define('URL_STYLE', $config['app']['protocol'].URL_DOMAIN.$config['app']['publicFolder'].'/');
 
 /**
- * Autoloader Section.
+ * Dotenv Section
  */
 
-//linna autoloader, load application class
-//for more information see http://www.php-fig.org/psr/psr-4/
-$loader = new Autoloader();
-$loader->register();
-
-$loader->addNamespaces([
-    ['App\Models', APP_DIR.'/src/Models'],
-    ['App\Views', APP_DIR.'/src/Views'],
-    ['App\Controllers', APP_DIR.'/src/Controllers'],
-    ['App\Templates', APP_DIR.'/src/Templates'],
-    ['App\Mappers', APP_DIR.'/src/Mappers'],
-    ['App\DomainObjects', APP_DIR.'/src/DomainObjects'],
-]);
+//create .env instance
+$env = new AppDotEnv();
+//load .env file and override config values
+$env->override($config['app']['envFile'], $config);
 
 /**
  * Dependency Injection Section.
@@ -112,8 +103,6 @@ $route = $router->getRoute()->toArray();
 //try to resolve mvc components, if AuthenticationException is throwed
 //complete script with null objects
 try {
-    //get route
-    $route = $router->getRoute()->toArray();
     //resolve model
     $model = $container->resolve($route['model']);
     //resolve view

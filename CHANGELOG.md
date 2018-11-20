@@ -10,11 +10,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 * `App\Controllers\NullController` class
+* `App\Helper\AppDotEnv;` class
 * `App\Templates\NullTemplate` class
 * `App\Views\NullView` class
+* Dotenv section in `public/index.php`
+* option `envFile` to `app` section in `config/config.php`
 
 ### Changed
 * require [linna/framework v0.25.0](https://github.com/linna/framework/releases/tag/v0.25.0)
+* `composer.json` autoload section
+* all App classes are loaded with composer autoload
+
+### Removed
+* Autoloader section from `public/index.php`
 
 ## [v0.13.0](https://github.com/linna/app/compare/v0.12.0...v0.13.0) - 2018-09-01
 

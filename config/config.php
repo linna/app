@@ -19,20 +19,22 @@ return [
         //public folder of the app
         'publicFolder'   => '/app/public',
         //define if app use routes exported in static array [true, false]
-        'compiledRoutes' => false
+        'compiledRoutes' => false,
+        //.env file
+        'envFile'           => '../.env'
     ],
 
     'session' => [
         'name'           => 'linna_session',
         'expire'         => 1800,
         'cookieDomain'   => URL_DOMAIN, //do not change here
-        'cookiePath'     => '/app', //equal to urlSubFolder
+        'cookiePath'     => '/app', //equal to app.subFolder
         'cookieSecure'   => false,
         'cookieHttpOnly' => true,
     ],
 
     'router' => [
-        'basePath'             => '/app', //equal to urlSubFolder
+        'basePath'             => '/app', //equal to app.subFolder
         'badRoute'             => 'E404',
         'rewriteMode'          => true,
         'rewriteModeOffRouter' => '/index.php?',
