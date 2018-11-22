@@ -195,8 +195,8 @@ RewriteRule ^(.+)$ index.php [QSA,L]
 ```
 
 ## Nginx 
-For Nginx Server Blocks config please see:
-[https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/](https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/)
+For Nginx Server Blocks config please see:  
+[https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/](https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/)  
 
 Setting url rewrite with Nginx is simpler than Apache counterpart, 
 add `try_files $uri $uri/ /index.php?$args;` to `location` block:
