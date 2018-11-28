@@ -19,6 +19,7 @@ use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Container\Container;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
+use Linna\Router\NullRoute;
 use Linna\Router\Router;
 
 /*
@@ -94,7 +95,10 @@ $router = new Router($routes, $config['router']);
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //get route
-$route = $router->getRoute()->toArray();
+$route = $router->getRoute();
+
+//create route array
+$routeArray = $route->toArray();
 
 /**
  * Model View Controller Section.
@@ -103,25 +107,29 @@ $route = $router->getRoute()->toArray();
 //try to resolve mvc components, if AuthenticationException is throwed
 //complete script with null objects
 try {
-    //resolve model
-    $model = $container->resolve($route['model']);
-    //resolve view
-    $view = $container->resolve($route['view']);
-    //resolve controller
-    $controller = $container->resolve($route['controller']);
+
     //start front controller
-    $frontController = new FrontController($model, $view, $controller, $route['action'], $route['param']);
+    $frontController = new FrontController(
+        $container->resolve($routeArray['model']),
+        $container->resolve($routeArray['view']),
+        $container->resolve($routeArray['controller']),
+        $route
+    );
+
     //run
     $frontController->run();
 } catch (AuthenticationException $e) {
+
     //create instances off null objects
     $model = new NullModel();
-    $view = new NullView($model, new NullTemplate());
-    $controller = new NullController($model);
-    //void route
-    $route = ['action' => '', 'param' => []];
-    //start front controller
-    $frontController = new FrontController($model, $view, $controller, $route['action'], $route['param']);
+
+    $frontController = new FrontController(
+        $model,
+        new NullView($model, new NullTemplate()),
+        new NullController($model),
+        new NullRoute()
+    );
+
     //run
     $frontController->run();
 } finally {
