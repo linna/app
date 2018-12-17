@@ -14,7 +14,8 @@ return [
         0 => $config['pdo_mysql'],
     ],
     Linna\Authentication\Password::class => [
-        0 => $config['password'],
+        0 => $config['password_algo'],
+        1 => $config['password_options']
     ],
     App\Templates\HtmlTemplate::class => [
         0 => APP_DIR.'/src/Templates/_pages',

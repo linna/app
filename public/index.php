@@ -82,11 +82,8 @@ $container->set(Session::class, $session);
  * Router Section.
  */
 
-//get route source
-$routeSource = ($config['app']['compiledRoutes']) ? 'routes.compiled.php' : 'routes.php';
-
 //get routes from source
-$routes = include APP_DIR."/config/{$routeSource}";
+$routes = include APP_DIR.'/config/routes.php';
 
 //start router
 $router = new Router($routes, $config['router']);
@@ -96,9 +93,6 @@ $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //get route
 $route = $router->getRoute();
-
-//create route array
-$routeArray = $route->toArray();
 
 /**
  * Model View Controller Section.
@@ -110,9 +104,9 @@ try {
 
     //start front controller
     $frontController = new FrontController(
-        $container->resolve($routeArray['model']),
-        $container->resolve($routeArray['view']),
-        $container->resolve($routeArray['controller']),
+        $container->resolve($route->model),
+        $container->resolve($route->view),
+        $container->resolve($route->controller),
         $route
     );
 

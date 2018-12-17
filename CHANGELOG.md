@@ -23,6 +23,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 * Autoloader section from `public/index.php`
+* `bin/compile-routes` script
+* `config/routes.compiled.php` file
+* option `compiledRoutes` to `app` section in `config/config.php`
 
 ## [v0.13.0](https://github.com/linna/app/compare/v0.12.0...v0.13.0) - 2018-09-01
 

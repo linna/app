@@ -15,17 +15,14 @@ return [
         //protocol utilized [http://, https://]
         //default value [http://]
         'protocol'       => 'http://',
-        //folder of the app, if app isn't in the web server root add a 
+        //folder of the app, if app isn't in the web server root add a
         //directory (/app, /other/app) else insert a / (slash) as value
         //default value [/app]
         'subFolder'      => '/app',
         //public folder of the app, starting from web server root
         //default value [/app/public]
         'publicFolder'   => '/app/public',
-        //define if app use routes exported in static array [true, false]
-        //default value [false]
-        'compiledRoutes' => false,
-        //.env file position, remember to add ../ if don't use an absolute path 
+        //.env file position, remember to add ../ if don't use an absolute path
         'envFile'           => '../.env'
     ],
 
@@ -51,8 +48,8 @@ return [
     ],
 
     'router' => [
-        //must be equal to app.subFolder, it represents the part of the path 
-        //that the router ignore when check a route. Example '/app/user/delete/5' 
+        //must be equal to app.subFolder, it represents the part of the path
+        //that the router ignore when check a route. Example '/app/user/delete/5'
         //become '/user/delete/5' where the router subtract the basePath
         //default [/app]
         'basePath'             => '/app',
@@ -97,8 +94,9 @@ return [
         'port' => 11211,
     ],
 
-    'password' => [
-        'cost' => 11,
-        'algo' => PASSWORD_DEFAULT,
+    'password_algo' => PASSWORD_DEFAULT,
+
+    'password_options' => [
+        'cost' => 11
     ],
 ];
