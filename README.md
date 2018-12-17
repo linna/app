@@ -67,14 +67,16 @@ $options = [
 
     'app' => [
         //protocol utilized [http://, https://]
+        //default value [http://]
         'protocol'       => 'http://',
-        //folder of the app, if app isn't in the web server root
+        //folder of the app, if app isn't in the web server root add a
+        //directory (/app, /other/app) else insert a / (slash) as value
+        //default value [/app]
         'subFolder'      => '/app',
-        //public folder of the app
+        //public folder of the app, starting from web server root
+        //default value [/app/public]
         'publicFolder'   => '/app/public',
-        //define if app use routes exported in static array [true, false]
-        'compiledRoutes' => false,
-        //.env file
+        //.env file position, remember to add ../ if don't use an absolute path
         'envFile'           => '../.env'
     ],
 
@@ -89,9 +91,18 @@ $options = [
     //other options
 
     'router' => [
-        'basePath'             => '/app', //equal to app.subFolder
+        //must be equal to app.subFolder, it represents the part of the path
+        //that the router ignore when check a route. Example '/app/user/delete/5'
+        //become '/user/delete/5' where the router subtract the basePath
+        //default [/app]
+        'basePath'             => '/app',
+        //name of the fallback route
+        //default [E404]
         'badRoute'             => 'E404',
+        //url rewriting
+        //default [true]
         'rewriteMode'          => true,
+        //part of the url that the router ignore when url rewriting is off
         'rewriteModeOffRouter' => '/index.php?',
     ],
 
