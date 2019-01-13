@@ -17,7 +17,7 @@
     "require": {
         "php": "^7.1",
         "linna/dotenv": "^1.0",
-        "linna/framework": "dev-b0.25.0"
+        "linna/framework": "^0.25.0"
     },
     "require-dev": {
         "infection/infection": "^0.11",
