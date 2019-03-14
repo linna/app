@@ -29,4 +29,4 @@ return (new RouteCollection([
         'view'       => App\Views\E404View::class,
         'controller' => App\Controllers\E404Controller::class
     ])
-]))->getArrayCopy();
+]));

@@ -35,9 +35,9 @@ Application Skeleton for Linna framework
 
 # Requirements
 * App need [linna/framework](https://github.com/linna/framework), please read the
-[changelog](https://github.com/linna/app/blob/b0.14.0/CHANGELOG.md) for know with 
+[changelog](https://github.com/linna/app/blob/b0.15.0/CHANGELOG.md) for know with 
 which version the app works.
-* PHP 7.1 or higher.
+* PHP 7.2 or higher.
 
 > **Note:** App was only tested under Linux with Apache web server with default php.ini
 

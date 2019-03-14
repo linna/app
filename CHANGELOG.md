@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.15.0](https://github.com/linna/app/compare/v0.14.0...v0.15.0) - 2019-XX-XX
+
+### Changed
+* require PHP 7.2
+* require [linna/framework v0.26.0](https://github.com/linna/framework/releases/tag/v0.26.0)
+
 ## [v0.14.0](https://github.com/linna/app/compare/v0.13.0...v0.14.0) - 2019-01-13
 
 ### Added

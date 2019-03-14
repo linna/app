@@ -17,12 +17,12 @@
     "require": {
         "php": "^7.1",
         "linna/dotenv": "^1.0",
-        "linna/framework": "^0.25.0"
+        "linna/framework": "dev-b0.26.0"
     },
     "require-dev": {
-        "infection/infection": "^0.11",
-        "phpstan/phpstan": "^0.10",
-        "phpunit/phpunit": "^7.0"
+        "infection/infection": "^0.12",
+        "phpstan/phpstan": "^0.11",
+        "phpunit/phpunit": "^7.2"
     },
     "autoload": {
         "psr-4": {
