@@ -109,17 +109,17 @@ class HtmlTemplate implements TemplateInterface
      */
     public function getOutput(): string
     {
-        extract([
+        \extract([
             'data'       => $this->data,
             'title'      => $this->title,
             'css'        => $this->css,
             'javascript' => $this->javascript,
         ]);
 
-        ob_start();
+        \ob_start();
 
         require "{$this->templateDir}/{$this->template}.html";
 
-        return ob_get_clean();
+        return \ob_get_clean();
     }
 }

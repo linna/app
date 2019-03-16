@@ -33,7 +33,7 @@ class HomeView extends View
         parent::__construct($model, $htmlTemplate);
 
         //merge data passed from model with login information
-        $this->data = array_merge($this->data, ['login' => $login->islogged(), 'userName' => $login->getLoginData()['user_name']]);
+        $this->data = \array_merge($this->data, ['login' => $login->islogged(), 'userName' => $login->getLoginData()['user_name']]);
     }
 
     /**

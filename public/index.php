@@ -27,10 +27,10 @@ use Linna\Router\Router;
  */
 
 //set a constant that hold the full path to app directory
-define('APP_DIR', dirname(__DIR__));
+\define('APP_DIR', \dirname(__DIR__));
 
 //The domain, autodetected
-define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
+\define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 
 //composer autoload
 require APP_DIR.'/vendor/autoload.php';
@@ -43,8 +43,8 @@ $rewriteRouterPoint = ($config['router']['rewriteMode']) ? '' : $config['router'
 
 //The final, auto-detected URL (build via the segments above). If you don't want to use auto-detection,
 //then replace this line with full URL (and sub-folder) and a trailing slash.
-define('URL', $config['app']['protocol'].URL_DOMAIN.$config['app']['subFolder'].$rewriteRouterPoint);
-define('URL_STYLE', $config['app']['protocol'].URL_DOMAIN.$config['app']['publicFolder'].'/');
+\define('URL', $config['app']['protocol'].URL_DOMAIN.$config['app']['subFolder'].$rewriteRouterPoint);
+\define('URL_STYLE', $config['app']['protocol'].URL_DOMAIN.$config['app']['publicFolder'].'/');
 
 /**
  * Dotenv Section

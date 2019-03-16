@@ -62,11 +62,11 @@ class AppDotEnv extends DotEnv
         $array = [];
 
         foreach ($keys as $key) {
-            $value = getenv($key);
+            $value = \getenv($key);
 
             if ($value !== false) {
-                $names = explode('.', $key);
-                $count = count($names);
+                $names = \explode('.', $key);
+                $count = \count($names);
 
                 if ($count === 1) {
                     $array[$names[0]] = $value;
@@ -86,6 +86,6 @@ class AppDotEnv extends DotEnv
             }
         }
 
-        $config = array_merge($array, $config);
+        $config = \array_merge($array, $config);
     }
 }
