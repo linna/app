@@ -14,14 +14,15 @@ namespace App\Templates;
 use Linna\Mvc\TemplateInterface;
 
 /**
- * Null Template.
+ * Raw Template.
+ * Print raw strings to output buffer.
  */
-class NullTemplate implements TemplateInterface
+class RawTemplate implements TemplateInterface
 {
     /**
-     * @var object Data for view
+     * @var array Data for view
      */
-    //public $data;
+    public $data = [];
 
     /**
      * Class Constructor.
@@ -38,8 +39,7 @@ class NullTemplate implements TemplateInterface
      */
     public function setData(array $data): void
     {
-        //$this->data = (object) $data;
-        unset($data);
+        $this->data = $data;
     }
 
     /**
@@ -47,6 +47,12 @@ class NullTemplate implements TemplateInterface
      */
     public function getOutput(): string
     {
-        return '';
+        \ob_start();
+
+        //require "{$this->templateDir}/{$this->template}.html";
+        echo \implode('', $this->data);
+
+        return \ob_get_clean();
+        //return implode('', $this->data);
     }
 }

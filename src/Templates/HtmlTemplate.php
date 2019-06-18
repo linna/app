@@ -55,13 +55,23 @@ class HtmlTemplate implements TemplateInterface
     protected $cssDir;
 
     /**
-     * Constructor.
+     * @var string Js directory
      */
-    public function __construct(string $templateDir, string $cssDir)
+    protected $jsDir;
+
+    /**
+     * Constructor.
+     *
+     * @param string $templateDir Direcotry for html templates.
+     * @param string $cssDir      Direcotry for css files.
+     * @param string $jsDir       Direcotry for javascript files.
+     */
+    public function __construct(string $templateDir, string $cssDir, string $jsDir)
     {
         $this->data = new stdClass();
         $this->templateDir = $templateDir;
         $this->cssDir = $cssDir;
+        $this->jsDir = $jsDir;
     }
 
     /**
@@ -69,7 +79,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param string $file Html file
      */
-    public function loadHtml(string $file)
+    public function loadHtml(string $file): void
     {
         $this->template = $file;
     }
@@ -79,7 +89,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param string $file Css file
      */
-    public function loadCss(string $file)
+    public function loadCss(string $file): void
     {
         $this->css[] = $this->cssDir.$file;
     }
@@ -89,9 +99,9 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param string $file Js file
      */
-    public function loadJs(string $file)
+    public function loadJs(string $file): void
     {
-        $this->javascript[] = $this->cssDir.$file;
+        $this->javascript[] = $this->jsDir.$file;
     }
 
     /**
@@ -99,7 +109,7 @@ class HtmlTemplate implements TemplateInterface
      *
      * @param array $data
      */
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         $this->data = (object) $data;
     }
@@ -118,7 +128,7 @@ class HtmlTemplate implements TemplateInterface
 
         \ob_start();
 
-        require "{$this->templateDir}/{$this->template}.html";
+        require "{$this->templateDir}{$this->template}.html";
 
         return \ob_get_clean();
     }

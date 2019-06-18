@@ -18,7 +18,8 @@ return [
         1 => $config['password_options']
     ],
     App\Templates\HtmlTemplate::class => [
-        0 => APP_DIR.'/src/Templates/_pages',
-        1 => URL_STYLE,
+        0 => APP_DIR.'/src/Templates/_pages/',
+        1 => URL_PUBLIC.'/css/',
+        2 => URL_PUBLIC.'/js/'
     ]
 ];
