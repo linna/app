@@ -8,14 +8,14 @@
         <?php require APP_DIR.'/src/Templates/_shared/header.html'; ?>
         
         <main>
-            <p class="logo"><img alt="linna logo" src="<?php echo URL_STYLE; ?>img/linna-logo-96.png" /><br />linna app</p>
+            <p class="logo"><img alt="linna logo" src="<?php echo URL_PUBLIC; ?>/img/linna-logo-96.png" /><br />linna app</p>
             <p>Hello Word<br/>In a real application this is the homepage</p>
         </main>
         
         <!-- page footer -->
         <?php require APP_DIR.'/src/Templates/_shared/footer.html'; ?>
         
-        <script src="<?php echo URL_STYLE; ?>js/app.js"></script>
+        <script src="<?php echo URL_PUBLIC; ?>/js/app.js"></script>
 
         <!-- app module specific js script -->
         <?php foreach ($javascript as $file) { ?>
