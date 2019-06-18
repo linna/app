@@ -19,26 +19,12 @@ use Linna\Mvc\TemplateInterface;
 class NullTemplate implements TemplateInterface
 {
     /**
-     * @var object Data for view
-     */
-    //public $data;
-
-    /**
-     * Class Constructor.
-     */
-    /*public function __construct()
-    {
-        $this->data = (object) null;
-    }*/
-
-    /**
      * Set the output data.
      *
      * @param array $data
      */
     public function setData(array $data): void
     {
-        //$this->data = (object) $data;
         unset($data);
     }
 

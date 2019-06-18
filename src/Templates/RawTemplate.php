@@ -25,14 +25,6 @@ class RawTemplate implements TemplateInterface
     public $data = [];
 
     /**
-     * Class Constructor.
-     */
-    /*public function __construct()
-    {
-        $this->data = (object) null;
-    }*/
-
-    /**
      * Set the output data.
      *
      * @param array $data
@@ -49,10 +41,8 @@ class RawTemplate implements TemplateInterface
     {
         \ob_start();
 
-        //require "{$this->templateDir}/{$this->template}.html";
         echo \implode('', $this->data);
 
         return \ob_get_clean();
-        //return implode('', $this->data);
     }
 }
