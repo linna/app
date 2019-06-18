@@ -6,11 +6,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
 ## [v0.15.0](https://github.com/linna/app/compare/v0.14.0...v0.15.0) - 2019-XX-XX
 
 ### Changed
 * require PHP 7.2
 * require [linna/framework v0.26.0](https://github.com/linna/framework/releases/tag/v0.26.0)
+* `URL_STYLE` constant defined in `/public/index.php` renamed to `URL_PUBLIC`
+
+### Added
+* `App\Templates\RawTemplate` class
+* `App\Templates\HtmlTemplate->construct()` 3rd argument as `string $jsDir`
+* `Linna\Tests\HtmlTemplateTest` class
+* `Linna\Tests\JsonTemplateTest` class
+* `Linna\Tests\NullTemplateTest` class
+* `Linna\Tests\RawTemplateTest` class
+
+### Fixed
+* `App\Templates\HtmlTemplate` load js files from css folder
 
 ## [v0.14.0](https://github.com/linna/app/compare/v0.13.0...v0.14.0) - 2019-01-13
 
