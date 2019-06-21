@@ -52,6 +52,28 @@ class AppDotEnv extends DotEnv
     }
 
     /**
+     * Register a new valid key for .env config file.
+     *
+     * @param string $key
+     */
+    public function registerKey(string $key)
+    {
+        \array_push(self::$envKeys, $key);
+    }
+
+    /**
+     * Register a new set of valid keys for .env config file.
+     *
+     * @param array $keys
+     */
+    public function registerKeys(array $keys)
+    {
+        foreach ($keys as $key) {
+            \array_push(self::$envKeys, $key);
+        }
+    }
+
+    /**
      * Merge .env values into $config variable.
      *
      * @param array $keys

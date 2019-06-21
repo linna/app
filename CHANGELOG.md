@@ -16,8 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * `URL_STYLE` constant defined in `/public/index.php` renamed to `URL_PUBLIC`
 
 ### Added
+* `App\Helper\AppDotEnv->registerKey()` method, add a new valid key for .env file
+* `App\Helper\AppDotEnv->registerKeys()` method, add a new set of valid keys for .env file
 * `App\Templates\RawTemplate` class
-* `App\Templates\HtmlTemplate->construct()` 3rd argument as `string $jsDir`
+* `App\Templates\HtmlTemplate->__construct()` 3rd argument as `string $jsDir`
 * `Linna\Tests\HtmlTemplateTest` class
 * `Linna\Tests\JsonTemplateTest` class
 * `Linna\Tests\NullTemplateTest` class
