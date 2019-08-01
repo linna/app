@@ -19,6 +19,7 @@ use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Container\Container;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
+use Linna\Router\Exception\RedirectException;
 use Linna\Router\NullRoute;
 use Linna\Router\Router;
 
@@ -109,9 +110,21 @@ try {
         $container->resolve($route->controller),
         $route
     );
+} catch (RedirectException $redirection) {
 
-    //run
-    $frontController->run();
+    //hope a valid route
+    $where = $redirection->getPath();
+    //validate
+    $router->validate($where, 'GET');
+    //and get
+    $route = $router->getRoute();
+    //start a new front controller
+    $frontController = new FrontController(
+        $container->resolve($route->model),
+        $container->resolve($route->view),
+        $container->resolve($route->controller),
+        $route
+    );
 } catch (AuthenticationException $e) {
 
     //create instances off null objects
@@ -123,9 +136,10 @@ try {
         new NullController($model),
         new NullRoute()
     );
+} finally {
 
     //run
     $frontController->run();
-} finally {
+    //output
     echo $frontController->response();
 }
