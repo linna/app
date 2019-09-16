@@ -22,6 +22,8 @@ use Linna\Session\Session;
 use Linna\Router\Exception\RedirectException;
 use Linna\Router\NullRoute;
 use Linna\Router\Router;
+//use Linna\Storage\StorageFactory;
+//use Linna\Storage\ExtendedPDO;
 
 /*
  * Bootstrap and config.
@@ -65,6 +67,20 @@ $injectionsRules = include APP_DIR.'/config/injections.php';
 
 //create dipendency injection container
 $container = new Container($injectionsRules);
+
+/**
+ * Persistent storage section.
+ */
+
+//pdo with PostgreSQL
+//$storage = (new StorageFactory('pdo', $config['pdo_pgsql']))->get();
+//store for dependency injection
+//$container->set(ExtendedPDO::class, $storage);
+
+//pdo with Mysql
+//$storage = (new StorageFactory('pdo', $config['pdo_mysql']))->get();
+//store for dependency injection
+//$container->set(ExtendedPDO::class, $storage);
 
 /**
  * Session section.

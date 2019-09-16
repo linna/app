@@ -63,6 +63,17 @@ return [
         'rewriteModeOffRouter' => '/index.php?',
     ],
 
+    'pdo_pgsql' => [
+        'dsn'      => 'pgsql:dbname=linna_db;host=localhost',
+        'user'     => 'postgres',
+        'password' => '',
+        'options'  => [
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
+            \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_PERSISTENT         => false,
+        ],
+    ],
+
     'pdo_mysql' => [
         'dsn'      => 'mysql:host=localhost;dbname=linna_db;charset=utf8mb4',
         'user'     => 'root',

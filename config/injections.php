@@ -10,9 +10,6 @@
 declare(strict_types=1);
 
 return [
-    Linna\Storage\PdoStorage::class => [
-        0 => $config['pdo_mysql'],
-    ],
     Linna\Authentication\Password::class => [
         0 => $config['password_algo'],
         1 => $config['password_options']

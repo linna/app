@@ -28,6 +28,8 @@ class AppDotEnv extends DotEnv
         'session.expire',
         'pdo_mysql.user',
         'pdo_mysql.password',
+        'pdo_pgsql.user',
+        'pdo_pgsql.password',
         'mysqli.host',
         'mysqli.user',
         'mysqli.password',
@@ -108,6 +110,6 @@ class AppDotEnv extends DotEnv
             }
         }
 
-        $config = \array_merge($array, $config);
+        $config = \array_replace_recursive($config, $array);
     }
 }
