@@ -65,6 +65,6 @@ class ErrorController extends Controller
 
         \http_response_code($statusCode);
 
-        $this->model->riseError($statusCode, $description);
+        $this->model->raiseError($statusCode, $description);
     }
 }
