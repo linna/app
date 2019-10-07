@@ -22,11 +22,11 @@ return (new RouteCollection([
         'controller' => App\Controllers\HomeController::class
     ]),
     new Route([
-        'name'       => 'E404',
+        'name'       => 'Error',
         'method'     => 'GET',
-        'url'        => '/error',
-        'model'      => App\Models\NullModel::class,
-        'view'       => App\Views\E404View::class,
-        'controller' => App\Controllers\E404Controller::class
+        'url'        => '/error/[code]',
+        'model'      => App\Models\ErrorModel::class,
+        'view'       => App\Views\ErrorView::class,
+        'controller' => App\Controllers\ErrorController::class
     ])
 ]));

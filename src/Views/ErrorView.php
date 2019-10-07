@@ -11,23 +11,22 @@ declare(strict_types=1);
 
 namespace App\Views;
 
-use App\Models\NullModel;
+use App\Models\ErrorModel;
 use App\Templates\HtmlTemplate;
-use Linna\Authentication\Authentication;
 use Linna\Mvc\View;
 
 /**
- * Error 404 View.
+ * Error View.
  */
-class E404View extends View
+class ErrorView extends View
 {
     /**
      * Constructor.
      *
-     * @param NullModel      $model
-     * @param HtmlTemplate   $htmlTemplate
+     * @param ErrorModel    $model
+     * @param HtmlTemplate  $htmlTemplate
      */
-    public function __construct(NullModel $model, HtmlTemplate $htmlTemplate)
+    public function __construct(ErrorModel $model, HtmlTemplate $htmlTemplate)
     {
         parent::__construct($model, $htmlTemplate);
     }
@@ -37,11 +36,8 @@ class E404View extends View
      */
     public function index(): void
     {
-        //set 404 error
-        \http_response_code(404);
-
         //load error 404 html
-        $this->template->loadHtml('Error404');
+        $this->template->loadHtml('Error');
 
         //set page title
         $this->template->title = 'App/Page not found';

@@ -14,16 +14,19 @@ return [
     'app' => [
         //protocol utilized [http://, https://]
         //default value [http://]
-        'protocol'       => 'http://',
+        'protocol'     => 'http://',
         //folder of the app, if app isn't in the web server root add a
         //directory (/app, /other/app) else insert a / (slash) as value
         //default value [/app]
-        'subFolder'      => '/app',
+        'subFolder'    => '/app',
         //public folder of the app, starting from web server root
         //default value [/app/public]
-        'publicFolder'   => '/app/public',
+        'publicFolder' => '/app/public',
         //.env file position, remember to add ../ if don't use an absolute path
-        'envFile'           => '../.env'
+        'envFile'      => '../.env',
+        //name of the fallback route, indicate the path when router return a NullRoute
+        //default /error/404
+        'onNullRoute'  => '/error/404'
     ],
 
     'session' => [
@@ -53,9 +56,6 @@ return [
         //become '/user/delete/5' where the router subtract the basePath
         //default [/app]
         'basePath'             => '/app',
-        //name of the fallback route
-        //default [E404]
-        'badRoute'             => 'E404',
         //url rewriting
         //default [true]
         'rewriteMode'          => true,

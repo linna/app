@@ -9,19 +9,17 @@
  */
 declare(strict_types=1);
 
-use App\Controllers\NullController;
 use App\Helper\AppDotEnv;
-use App\Models\NullModel;
-use App\Templates\NullTemplate;
-use App\Views\NullView;
 
 use Linna\Authentication\Exception\AuthenticationException;
+use Linna\Authorization\Exception\AuthorizationException;
 use Linna\Container\Container;
 use Linna\Mvc\FrontController;
 use Linna\Session\Session;
 use Linna\Router\Exception\RedirectException;
 use Linna\Router\NullRoute;
 use Linna\Router\Router;
+
 //use Linna\Storage\StorageFactory;
 //use Linna\Storage\ExtendedPDO;
 
@@ -111,6 +109,14 @@ $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 //get route
 $route = $router->getRoute();
 
+//on NullRoute take action from config
+if ($route instanceof NullRoute) {
+    $router->validate($config['app']['onNullRoute'], 'GET');
+    $route = $router->getRoute();
+}
+
+$container->set(Linna\Router\Route::class, $route);
+
 /**
  * Model View Controller Section.
  */
@@ -126,7 +132,7 @@ try {
         $container->resolve($route->controller),
         $route
     );
-} catch (RedirectException $redirection) {
+} catch (AuthorizationException | AuthenticationException | RedirectException $redirection) {
 
     //hope a valid route
     $where = $redirection->getPath();
@@ -134,23 +140,16 @@ try {
     $router->validate($where, 'GET');
     //and get
     $route = $router->getRoute();
+
+    //overwrite previous store route
+    $container->set(Linna\Router\Route::class, $route);
+
     //start a new front controller
     $frontController = new FrontController(
         $container->resolve($route->model),
         $container->resolve($route->view),
         $container->resolve($route->controller),
         $route
-    );
-} catch (AuthenticationException $e) {
-
-    //create instances off null objects
-    $model = new NullModel();
-
-    $frontController = new FrontController(
-        $model,
-        new NullView($model, new NullTemplate()),
-        new NullController($model),
-        new NullRoute()
     );
 } finally {
 

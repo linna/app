@@ -8,8 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2019-XX-XX
 
+### Added
+* `App\Models\ErrorModel`
+* option `onNullRoute` to `app` section with default value `/error/404` in `config/config.php`
+
 ### Fixed
 * `App\Helper\DotEnv` doesn't override configuration
+
+### Changed
+* Error page system.
+* `App\Controllers\E404Controller` renamed to `App\Controllers\ErrorController`
+* `App\Views\E404View` renamed to `App\Views\ErrorView`
 
 ## [v0.15.0](https://github.com/linna/app/compare/v0.14.0...v0.15.0) - 2019-08-18
 

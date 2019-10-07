@@ -9,8 +9,8 @@
         
         <main>
             <p class="logo"><img alt="linna logo" src="<?php echo URL_PUBLIC; ?>/img/linna-logo-96.png" /><br />linna app</p>
-            <p>This is the 404 error page</p>
-            <p>Will be shown when a page (controller or method) does not exist.</p>
+            <p><?php echo $data->code ?> <?php echo $data->description ?> error page</p>
+            <!-- <p>Will be shown when a page (controller or method) does not exist.</p>-->
             <p><a href="<?php echo URL ?>">Return to Home</a> please.</p>
         </main>
         

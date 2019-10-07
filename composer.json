@@ -8,16 +8,16 @@
     "authors": [
         {
             "name": "Sebastian Rapetti",
-            "email": "sebastian.rapetti@alice.it"
+            "email": "sebastian.rapetti@tim.it"
         }
     ],
     "support": {
         "issues": "https://github.com/linna/app/issues"
     },
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "linna/dotenv": "^1.0",
-        "linna/framework": "^0.26.0"
+        "linna/framework": "dev-b0.27.0"
     },
     "require-dev": {
         "infection/infection": "^0.12",
