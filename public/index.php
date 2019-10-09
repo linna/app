@@ -87,6 +87,12 @@ $container = new Container($injectionsRules);
 //create session object
 $session = new Session($config['session']);
 
+//switch to required session handler
+//remind to uncomment proper section in Persistent storage section
+//$handler = $container->resolve(Linna\Session\MysqlPdoSessionHandler::class);
+//$handler = $container->resolve(Linna\Session\PgsqlPdoSessionHandler::class);
+//$session->setSessionHandler($handler);
+
 //start session
 $session->start();
 
@@ -134,12 +140,19 @@ try {
     );
 } catch (AuthorizationException | AuthenticationException | RedirectException $redirection) {
 
-    //hope a valid route
+    //hope a valid route else go to unauthorized page
     $where = $redirection->getPath();
+    $where = ($where !== '' ? $where : '/error/401');
+
     //validate
     $router->validate($where, 'GET');
     //and get
     $route = $router->getRoute();
+
+    //something went very wrong beacause a unknown route passed on code to Authentication or Redirect exception
+    if ($route instanceof NullRoute) {
+        throw new \LogicException('Wrong route passed to AuthenticationException or RedirectException constructor.');
+    }
 
     //overwrite previous store route
     $container->set(Linna\Router\Route::class, $route);
