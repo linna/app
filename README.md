@@ -15,6 +15,8 @@
 [![Build Status](https://travis-ci.org/linna/app.svg?branch=master)](https://travis-ci.org/linna/app)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/linna/app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/linna/app/?branch=master)
 [![StyleCI](https://styleci.io/repos/41215510/shield?branch=master&style=flat)](https://styleci.io/repos/41215510)
+[![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat)](https://github.com/php-pds/skeleton)
+[![PHP 7.4](https://img.shields.io/badge/PHP-7.4-8892BF.svg)](http://php.net)
 
 </div>
 
@@ -35,9 +37,9 @@ Application Skeleton for Linna framework
 
 # Requirements
 * App need [linna/framework](https://github.com/linna/framework), please read the
-[changelog](https://github.com/linna/app/blob/b0.15.0/CHANGELOG.md) for know with 
+[changelog](https://github.com/linna/app/blob/b0.16.0/CHANGELOG.md) for know with 
 which version the app works.
-* PHP 7.2 or higher.
+* PHP 7.4 or higher.
 
 > **Note:** App was only tested under Linux with Apache web server with default php.ini
 

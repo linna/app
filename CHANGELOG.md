@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2019-XX-XX
+## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2020-XX-XX
 
 ### Added
 * `App\Models\ErrorModel`
@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * `App\Helper\DotEnv` doesn't override configuration
 
 ### Changed
+* require PHP 7.4
 * Error page system.
 * `App\Controllers\E404Controller` renamed to `App\Controllers\ErrorController`
 * `App\Views\E404View` renamed to `App\Views\ErrorView`

@@ -15,13 +15,13 @@
         "issues": "https://github.com/linna/app/issues"
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "linna/dotenv": "^1.0",
-        "linna/framework": "dev-b0.27.0"
+        "linna/framework": "dev-master"
     },
     "require-dev": {
-        "infection/infection": "^0.12",
-        "phpstan/phpstan": "^0.11",
+        "infection/infection": "^0.15",
+        "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^8.0"
     },
     "autoload": {
