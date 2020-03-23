@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 * `App\Models\ErrorModel`
-* option `onNullRoute` to `app` section with default value `/error/404` in `config/config.php`
+* option `onNullRoute` of `app` section with default value `/error/404` in `config/config.php`
+* option `protocol` of `app` section now is set automatically
 
 ### Fixed
 * `App\Helper\DotEnv` doesn't override configuration

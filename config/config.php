@@ -13,8 +13,8 @@ return [
 
     'app' => [
         //protocol utilized [http://, https://]
-        //default value [http://]
-        'protocol'     => 'http://',
+        //default value set automatically
+        'protocol'     => REQUEST_SCHEME.'://',
         //folder of the app, if app isn't in the web server root add a
         //directory (/app, /other/app) else insert a / (slash) as value
         //default value [/app]

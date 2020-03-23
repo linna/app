@@ -30,8 +30,11 @@ use Linna\Router\Router;
 //set a constant that hold the full path to app directory
 \define('APP_DIR', \dirname(__DIR__));
 
-//The domain, autodetected
+//the domain, autodetected
 \define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
+
+//the request scheme (http|https)
+\define('REQUEST_SCHEME', (isset($_SERVER['HTTPS']) ? 'https' : 'http'));
 
 //composer autoload
 require APP_DIR.'/vendor/autoload.php';
