@@ -3,8 +3,8 @@
 /**
  * Linna App.
  *
- * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
- * @copyright (c) 2018, Sebastian Rapetti
+ * @author Sebastian Rapetti <sebastian.rapetti@tim.it>
+ * @copyright (c) 2020, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  */
 declare(strict_types=1);
@@ -15,13 +15,8 @@ use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Authorization\Exception\AuthorizationException;
 use Linna\Container\Container;
 use Linna\Mvc\FrontController;
-use Linna\Session\Session;
 use Linna\Router\Exception\RedirectException;
 use Linna\Router\NullRoute;
-use Linna\Router\Router;
-
-//use Linna\Storage\StorageFactory;
-//use Linna\Storage\ExtendedPDO;
 
 /*
  * Bootstrap and config.
@@ -40,7 +35,7 @@ use Linna\Router\Router;
 require APP_DIR.'/vendor/autoload.php';
 
 //load configuration from config file
-$config = include APP_DIR.'/config/config.php';
+$config = include APP_DIR.'/config/config.local.php';
 
 //rewrite mode check for provide proper url.
 $rewriteRouterPoint = ($config['router']['rewriteMode']) ? '' : $config['router']['rewriteModeOffRouter'];
@@ -70,61 +65,19 @@ $injectionsRules = include APP_DIR.'/config/injections.php';
 $container = new Container($injectionsRules);
 
 /**
- * Persistent storage section.
+ * Load modules from config/mod.list.d
+ * 
+ * Default loads
+ * - session
+ * - router
+ * 
+ * Check config.php for other modules.
  */
+sort($config['modules']);
 
-//pdo with PostgreSQL
-//$storage = (new StorageFactory('pdo', $config['pdo_pgsql']))->get();
-//store for dependency injection
-//$container->set(ExtendedPDO::class, $storage);
-
-//pdo with Mysql
-//$storage = (new StorageFactory('pdo', $config['pdo_mysql']))->get();
-//store for dependency injection
-//$container->set(ExtendedPDO::class, $storage);
-
-/**
- * Session section.
- */
-
-//create session object
-$session = new Session($config['session']);
-
-//switch to required session handler
-//remind to uncomment proper section in Persistent storage section
-//$handler = $container->resolve(Linna\Session\MysqlPdoSessionHandler::class);
-//$handler = $container->resolve(Linna\Session\PgsqlPdoSessionHandler::class);
-//$session->setSessionHandler($handler);
-
-//start session
-$session->start();
-
-//store session instance
-$container->set(Session::class, $session);
-
-/**
- * Router Section.
- */
-
-//get routes from source
-$routes = include APP_DIR.'/config/routes.php';
-
-//start router
-$router = new Router($routes, $config['router']);
-
-//evaluate request uri and method
-$router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-
-//get route
-$route = $router->getRoute();
-
-//on NullRoute take action from config
-if ($route instanceof NullRoute) {
-    $router->validate($config['app']['onNullRoute'], 'GET');
-    $route = $router->getRoute();
+foreach ($config['modules'] as $module) {
+    include APP_DIR."/config/mod.list.d/{$module}.php";
 }
-
-$container->set(Linna\Router\Route::class, $route);
 
 /**
  * Model View Controller Section.

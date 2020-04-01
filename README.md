@@ -69,8 +69,8 @@ $options = [
 
     'app' => [
         //protocol utilized [http://, https://]
-        //default value [http://]
-        'protocol'     => 'http://',
+        //default value set automatically
+        'protocol'     => REQUEST_SCHEME.'://',
         //folder of the app, if app isn't in the web server root add a
         //directory (/app, /other/app) else insert a / (slash) as value
         //default value [/app]
@@ -255,6 +255,31 @@ pdo_mysql.password =
 ## Memcached
 #memcached.host = localhost
 #memcached.port = 11211
+```
+
+`.env` file valid keys:
+```
+session.name
+session.expire
+
+pdo_mysql.dsn
+pdo_mysql.user
+pdo_mysql.password
+
+pdo_pgsql.dsn
+pdo_pgsql.user
+pdo_pgsql.password
+
+mysqli.host
+mysqli.user
+mysqli.password
+mysqli.database
+mysqli.port
+
+mongo_db.uri
+
+memcached.host
+memcached.port
 ```
 
 Values declared in the file will overwrite `config.php` values.

@@ -3,8 +3,8 @@
 /**
  * Linna App.
  *
- * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
- * @copyright (c) 2018, Sebastian Rapetti
+ * @author Sebastian Rapetti <sebastian.rapetti@tim.it>
+ * @copyright (c) 2020, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  */
 declare(strict_types=1);
@@ -27,6 +27,15 @@ return [
         //name of the fallback route, indicate the path when router return a NullRoute
         //default /error/404
         'onNullRoute'  => '/error/404'
+    ],
+
+    'modules' => [
+        //'10-storage-mysql',
+        //'10-storage-pgsql',
+        //'20-session-mysql',
+        //'20-session-pgsql',
+        '20-session',
+        '30-router'
     ],
 
     'session' => [

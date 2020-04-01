@@ -1,7 +1,8 @@
 composer.phar
 composer.lock
+config/config.local.php
 clover.xml
-vendor/
 .env
-.phan/
 .phpunit.result.cache
+.phan/
+vendor/

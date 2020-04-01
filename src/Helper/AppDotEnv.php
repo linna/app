@@ -3,8 +3,8 @@
 /**
  * Linna Framework.
  *
- * @author Sebastian Rapetti <sebastian.rapetti@alice.it>
- * @copyright (c) 2018, Sebastian Rapetti
+ * @author Sebastian Rapetti <sebastian.rapetti@tim.it>
+ * @copyright (c) 2020, Sebastian Rapetti
  * @license http://opensource.org/licenses/MIT MIT License
  */
 declare(strict_types = 1);
@@ -26,8 +26,10 @@ class AppDotEnv extends DotEnv
     private static $envKeys = [
         'session.name',
         'session.expire',
+        'pdo_mysql.dsn',
         'pdo_mysql.user',
         'pdo_mysql.password',
+        'pdo_pgsql.dsn',
         'pdo_pgsql.user',
         'pdo_pgsql.password',
         'mysqli.host',

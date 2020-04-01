@@ -9,5 +9,13 @@
  */
 declare(strict_types=1);
 
-//if rewrite engine is not enabled, this line start the app
-include __DIR__.DIRECTORY_SEPARATOR.'public/index.php';
+use Linna\Session\Session;
+
+//create session object
+$session = new Session($config['session']);
+
+//start session
+$session->start();
+
+//store session instance
+$container->set(Session::class, $session);

@@ -16,13 +16,14 @@
     },
     "require": {
         "php": "^7.4",
-        "linna/dotenv": "^1.0",
+        "linna/dotenv": "^1.1",
+        "linna/auth-mapper-mysql": "dev-master",
         "linna/framework": "dev-master"
     },
     "require-dev": {
-        "infection/infection": "^0.15",
+        "infection/infection": "^0.16",
         "phpstan/phpstan": "^0.12",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
