@@ -66,14 +66,14 @@ $container = new Container($injectionsRules);
 
 /**
  * Load modules from config/mod.list.d
- * 
+ *
  * Default loads
  * - session
  * - router
- * 
+ *
  * Check config.php for other modules.
  */
-sort($config['modules']);
+\sort($config['modules']);
 
 foreach ($config['modules'] as $module) {
     include APP_DIR."/config/mod.list.d/{$module}.php";
