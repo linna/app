@@ -31,11 +31,18 @@ use Linna\Router\NullRoute;
 //the request scheme (http|https)
 \define('REQUEST_SCHEME', (isset($_SERVER['HTTPS']) ? 'https' : 'http'));
 
+//the configuration file
+\define('CONFIG', APP_DIR.'/config/config.php');
+
+//the local configuration file
+//use this for local development purpose
+\define('CONFIG_LOCAL', APP_DIR.'/config/config.local.php');
+
 //composer autoload
 require APP_DIR.'/vendor/autoload.php';
 
 //load configuration from config file
-$config = include APP_DIR.'/config/config.local.php';
+$config = (\file_exists(CONFIG_LOCAL)) ? include CONFIG_LOCAL : include CONFIG;
 
 //rewrite mode check for provide proper url.
 $rewriteRouterPoint = ($config['router']['rewriteMode']) ? '' : $config['router']['rewriteModeOffRouter'];
