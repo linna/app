@@ -32,9 +32,9 @@ class ErrorView extends View
     }
 
     /**
-     * Index.
+     * Entry Point for the error view.
      */
-    public function index(): void
+    public function entryPoint(): void
     {
         //load error 404 html
         $this->template->loadHtml('Error');

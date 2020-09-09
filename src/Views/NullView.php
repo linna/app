@@ -27,11 +27,4 @@ class NullView extends View
     {
         parent::__construct($model, $template);
     }
-
-    /**
-     * Index.
-     */
-    public function index(): void
-    {
-    }
 }

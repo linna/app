@@ -37,9 +37,9 @@ class HomeView extends View
     }
 
     /**
-     * Index.
+     * Entry Point for the home view.
      */
-    public function index(): void
+    public function entryPoint(): void
     {
         //load home html
         $this->template->loadHtml('Home');
