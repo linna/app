@@ -9,14 +9,18 @@
  */
 declare(strict_types=1);
 
+use Linna\Container\Container;
+
 return [
-    Linna\Authentication\Password::class => [
-        0 => $config['password_algo'],
-        1 => $config['password_options']
-    ],
-    App\Templates\HtmlTemplate::class => [
-        0 => APP_DIR.'/src/Templates/_pages/',
-        1 => URL_PUBLIC.'/css/',
-        2 => URL_PUBLIC.'/js/'
+    Container::RULE_ARGUMENT => [
+        Linna\Authentication\Password::class => [
+            0 => $config['password_algo'],
+            1 => $config['password_options']
+        ],
+        App\Templates\HtmlTemplate::class => [
+            0 => APP_DIR.'/src/Templates/_pages/',
+            1 => URL_PUBLIC.'/css/',
+            2 => URL_PUBLIC.'/js/'
+        ]
     ]
 ];
