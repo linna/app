@@ -14,7 +14,7 @@ use App\Helper\AppDotEnv;
 use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Authorization\Exception\AuthorizationException;
 use Linna\Container\Container;
-use Linna\Mvc\FrontController;
+use Linna\Mvc\ModelViewController;
 use Linna\Router\Exception\RedirectException;
 use Linna\Router\NullRoute;
 
@@ -95,7 +95,7 @@ foreach ($config['modules'] as $module) {
 try {
 
     //start front controller
-    $frontController = new FrontController(
+    $frontController = new ModelViewController(
         $container->resolve($route->model),
         $container->resolve($route->view),
         $container->resolve($route->controller),

@@ -13,20 +13,20 @@ use Linna\Router\Route;
 use Linna\Router\RouteCollection;
 
 return (new RouteCollection([
-    new Route([
-        'name'       => 'Home',
-        'method'     => 'GET',
-        'url'        => '/',
-        'model'      => App\Models\HomeModel::class,
-        'view'       => App\Views\HomeView::class,
-        'controller' => App\Controllers\HomeController::class
-    ]),
-    new Route([
-        'name'       => 'Error',
-        'method'     => 'GET',
-        'url'        => '/error/[code]',
-        'model'      => App\Models\ErrorModel::class,
-        'view'       => App\Views\ErrorView::class,
-        'controller' => App\Controllers\ErrorController::class
-    ])
+    new Route(
+        name:       'Home',
+        method:     'GET',
+        path:       '/',
+        model:      App\Models\HomeModel::class,
+        view:       App\Views\HomeView::class,
+        controller: App\Controllers\HomeController::class
+    ),
+    new Route(
+        name:       'Error',
+        method:     'GET',
+        path:       '/error/[code]',
+        model:      App\Models\ErrorModel::class,
+        view:       App\Views\ErrorView::class,
+        controller: App\Controllers\ErrorController::class
+    )
 ]));

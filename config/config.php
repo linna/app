@@ -69,7 +69,7 @@ return [
         //default [true]
         'rewriteMode'          => true,
         //part of the url that the router ignore when url rewriting is off
-        'rewriteModeOffRouter' => '/index.php?',
+        'rewriteModeFalseEntryPoint' => '/index.php?',
     ],
 
     'pdo_pgsql' => [

@@ -15,15 +15,15 @@
         "issues": "https://github.com/linna/app/issues"
     },
     "require": {
-        "php": "^7.4",
-        "linna/dotenv": "^1.1",
+        "php": ">=8.0",
+        "linna/dotenv": ">=1.1",
         "linna/auth-mapper-mysql": "dev-master",
         "linna/framework": "dev-master"
     },
     "require-dev": {
-        "infection/infection": "^0.16",
-        "phpstan/phpstan": "^0.12",
-        "phpunit/phpunit": "^9.0"
+        "infection/infection": ">=0.26",
+        "phpstan/phpstan": ">=1.4",
+        "phpunit/phpunit": ">=9.0"
     },
     "autoload": {
         "psr-4": {
@@ -39,5 +39,11 @@
         "post-create-project-cmd": [
             "@php -r \"copy('.env.example', '.env');\""
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true,
+            "ocramius/package-versions": true
+        }
     }
 }

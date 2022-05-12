@@ -6,3 +6,4 @@ clover.xml
 .phpunit.result.cache
 .phan/
 vendor/
+/nbproject/private/

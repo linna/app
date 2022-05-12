@@ -16,7 +16,12 @@ use Linna\Router\Router;
 $routes = include APP_DIR.'/config/routes.php';
 
 //start router
-$router = new Router($routes, $config['router']);
+$router = new Router(
+    $routes, 
+    basePath:                   $config['router']['basePath'],
+    rewriteMode:                $config['router']['rewriteMode'],
+    rewriteModeFalseEntryPoint: $config['router']['rewriteModeOffRouter']
+);
 
 //evaluate request uri and method
 $router->validate($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
