@@ -17,6 +17,15 @@ use Linna\Mvc\Controller;
 /**
  * Home Page Controller.
  */
+#[
+    Route(
+        name:       'Home',
+        method:     'GET',
+        path:       '/',
+        model:      Linna\App\Models\HomeModel::class,
+        view:       Linna\App\Views\HomeView::class
+    )
+]
 class HomeController extends Controller
 {
     /**

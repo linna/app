@@ -13,11 +13,19 @@ namespace Linna\App\Controllers;
 
 use Linna\App\Models\ErrorModel;
 use Linna\Mvc\Controller;
-use Linna\Router\Route;
 
 /**
  * Error Controller.
  */
+#[
+    Route(
+        name:       'Error',
+        method:     'GET',
+        path:       '/error/[code]',
+        model:      Linna\App\Models\ErrorModel::class,
+        view:       Linna\App\Views\ErrorView::class,
+    )
+]
 class ErrorController extends Controller
 {
     /**
@@ -34,27 +42,25 @@ class ErrorController extends Controller
      * Constructor.
      *
      * @param ErrorModel $model
-     * @param Route      $route
      */
-    public function __construct(ErrorModel $model, Route $route)
+    public function __construct(ErrorModel $model)
     {
         //call parent construct
         parent::__construct($model);
-
-        $this->errorEndpoint($route);
     }
 
     /**
-     * Error endpoint.
+     * Error entrypoint.
      *
-     * @param Route $route
-     *
+     * @param string $code
+     * 
      * @return void
      */
-    private function errorEndpoint(Route $route): void
+    public function entryPoint(string $code): void
     {
-        $code = (int) $route->param['code'];
+        $code = (int) $code;
 
+        //default
         $statusCode = 404;
         $description = $this->status[404];
 
