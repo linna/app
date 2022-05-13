@@ -3,6 +3,7 @@ composer.lock
 config/config.local.php
 clover.xml
 .env
+.php-cs-fixer.cache
 .phpunit.result.cache
 .phan/
 vendor/

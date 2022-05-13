@@ -12,7 +12,14 @@ declare(strict_types=1);
 use Linna\Session\Session;
 
 //create session object
-$session = new Session($config['session']);
+$session = new Session(
+    name:           $config['session']['name'],
+    expire:         $config['session']['expire'],
+    cookieDomain:   $config['session']['cookieDomain'],
+    cookiePath:     $config['session']['cookiePath'],
+    cookieSecure:   $config['session']['cookieSecure'],
+    cookieHttpOnly: $config['session']['cookieHttpOnly']
+);
 
 //start session
 $session->start();

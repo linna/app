@@ -17,10 +17,10 @@ $routes = include APP_DIR.'/config/routes.php';
 
 //start router
 $router = new Router(
-    $routes, 
+    $routes,
     basePath:                   $config['router']['basePath'],
     rewriteMode:                $config['router']['rewriteMode'],
-    rewriteModeFalseEntryPoint: $config['router']['rewriteModeOffRouter']
+    rewriteModeFalseEntryPoint: $config['router']['rewriteModeFalseEntryPoint']
 );
 
 //evaluate request uri and method

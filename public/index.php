@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-use App\Helper\AppDotEnv;
+use Linna\App\Helper\AppDotEnv;
 
 use Linna\Authentication\Exception\AuthenticationException;
 use Linna\Authorization\Exception\AuthorizationException;

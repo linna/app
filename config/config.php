@@ -18,10 +18,10 @@ return [
         //folder of the app, if app isn't in the web server root add a
         //directory (/app, /other/app) else insert a / (slash) as value
         //default value [/app]
-        'subFolder'    => '/app',
+        'subFolder'    => '/',
         //public folder of the app, starting from web server root
         //default value [/app/public]
-        'publicFolder' => '/app/public',
+        'publicFolder' => '/public',
         //.env file position, remember to add ../ if don't use an absolute path
         'envFile'      => '../.env',
         //name of the fallback route, indicate the path when router return a NullRoute
@@ -50,7 +50,7 @@ return [
         //from $_SERVER['HTTP_HOST'], for cookie path the value is equal to
         //app.subFolder value
         'cookieDomain'   => URL_DOMAIN, //do not change here
-        'cookiePath'     => '/app',
+        'cookiePath'     => '/',
         //cookie will sent only with https requests
         //default [false]
         'cookieSecure'   => false,
@@ -64,7 +64,7 @@ return [
         //that the router ignore when check a route. Example '/app/user/delete/5'
         //become '/user/delete/5' where the router subtract the basePath
         //default [/app]
-        'basePath'             => '/app',
+        'basePath'             => '/',
         //url rewriting
         //default [true]
         'rewriteMode'          => true,

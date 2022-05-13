@@ -17,16 +17,16 @@ return (new RouteCollection([
         name:       'Home',
         method:     'GET',
         path:       '/',
-        model:      App\Models\HomeModel::class,
-        view:       App\Views\HomeView::class,
-        controller: App\Controllers\HomeController::class
+        model:      Linna\App\Models\HomeModel::class,
+        view:       Linna\App\Views\HomeView::class,
+        controller: Linna\App\Controllers\HomeController::class
     ),
     new Route(
         name:       'Error',
         method:     'GET',
         path:       '/error/[code]',
-        model:      App\Models\ErrorModel::class,
-        view:       App\Views\ErrorView::class,
-        controller: App\Controllers\ErrorController::class
+        model:      Linna\App\Models\ErrorModel::class,
+        view:       Linna\App\Views\ErrorView::class,
+        controller: Linna\App\Controllers\ErrorController::class
     )
 ]));

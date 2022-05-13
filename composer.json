@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Linna\\": "src/Linna/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Linna\\Tests\\": "tests/"
+            "Linna\\":  "tests/Linna/"
         }
     },
     "scripts": {
