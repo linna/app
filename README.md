@@ -12,11 +12,9 @@
 
 <div align="center">
 
-[![Build Status](https://travis-ci.org/linna/app.svg?branch=master)](https://travis-ci.org/linna/app)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/linna/app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/linna/app/?branch=master)
-[![StyleCI](https://styleci.io/repos/41215510/shield?branch=master&style=flat)](https://styleci.io/repos/41215510)
+[![Tests](https://github.com/linna/app/actions/workflows/tests.yml/badge.svg)](https://github.com/linna/app/actions/workflows/tests.yml)
 [![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat)](https://github.com/php-pds/skeleton)
-[![PHP 8.1](https://img.shields.io/badge/PHP-7.4-8892BF.svg)](http://php.net)
+[![PHP 8.1](https://img.shields.io/badge/PHP-8.1-8892BF.svg)](http://php.net)
 
 </div>
 
