@@ -10,6 +10,7 @@
 declare(strict_types=1);
 
 use Linna\Session\Session;
+use Linna\Session\MysqlPdoSessionHandler;
 
 //create session object
 $session = new Session(
@@ -23,7 +24,7 @@ $session = new Session(
 
 //switch to required session handler
 //remind to uncomment proper section in Persistent storage section
-$handler = $container->resolve(Linna\Session\MysqlPdoSessionHandler::class);
+$handler = $container->resolve(MysqlPdoSessionHandler::class);
 $session->setSessionHandler($handler);
 
 //start session

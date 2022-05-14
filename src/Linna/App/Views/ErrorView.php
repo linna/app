@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Linna\App\Views;
 
-use Linna\App\Models\ErrorModel;
 use Linna\App\Templates\HtmlTemplate;
 use Linna\Mvc\View;
 
@@ -23,12 +22,11 @@ class ErrorView extends View
     /**
      * Constructor.
      *
-     * @param ErrorModel    $model
      * @param HtmlTemplate  $htmlTemplate
      */
-    public function __construct(ErrorModel $model, HtmlTemplate $htmlTemplate)
+    public function __construct(HtmlTemplate $htmlTemplate)
     {
-        parent::__construct($model, $htmlTemplate);
+        parent::__construct($htmlTemplate);
     }
 
     /**

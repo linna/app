@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 use Linna\Router\NullRoute;
 use Linna\Router\Router;
+use Linna\Router\Route;
 
 //get routes from source
 $routes = include APP_DIR.'/config/routes.php';
@@ -35,4 +36,4 @@ if ($route instanceof NullRoute) {
     $route = $router->getRoute();
 }
 
-$container->set(Linna\Router\Route::class, $route);
+$container->set(Route::class, $route);

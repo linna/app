@@ -10,14 +10,16 @@
 declare(strict_types=1);
 
 use Linna\Container\Container;
+use Linna\App\Templates\HtmlTemplate;
+use Linna\Authentication\Password;
 
 return [
     Container::RULE_ARGUMENT => [
-        Linna\Authentication\Password::class => [
+        Password::class => [
             0 => $config['password_algo'],
             1 => $config['password_options']
         ],
-        Linna\App\Templates\HtmlTemplate::class => [
+        HtmlTemplate::class => [
             0 => APP_DIR.'/src/Linna/App/Templates/_pages/',
             1 => URL_PUBLIC.'/css/',
             2 => URL_PUBLIC.'/js/'

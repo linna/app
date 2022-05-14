@@ -12,20 +12,20 @@ declare(strict_types=1);
 namespace Linna\App\Controllers;
 
 use Linna\App\Models\HomeModel;
+use Linna\App\Views\HomeView;
 use Linna\Mvc\Controller;
+use Linna\Router\Route;
 
 /**
  * Home Page Controller.
  */
-#[
-    Route(
-        name:       'Home',
-        method:     'GET',
-        path:       '/',
-        model:      Linna\App\Models\HomeModel::class,
-        view:       Linna\App\Views\HomeView::class
-    )
-]
+#[Route(
+    name:       'Home',
+    method:     'GET',
+    path:       '/',
+    model:      HomeModel::class,
+    view:       HomeView::class
+)]
 class HomeController extends Controller
 {
     /**

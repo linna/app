@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Linna\App\Views;
 
-use Linna\App\Models\NullModel;
 use Linna\App\Templates\NullTemplate;
 use Linna\Mvc\View;
 
@@ -23,8 +22,8 @@ class NullView extends View
     /**
      * Class Constructor.
      */
-    public function __construct(NullModel $model, NullTemplate $template)
+    public function __construct(NullTemplate $template)
     {
-        parent::__construct($model, $template);
+        parent::__construct($template);
     }
 }

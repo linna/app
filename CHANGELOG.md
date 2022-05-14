@@ -6,12 +6,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2020-XX-XX
+## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2022-XX-XX
 
 ### Added
-* `Linna\App\Models\ErrorModel`
+* `Linna\App\Models\ErrorModel` class
+* `Linna\App\Helper\RouteHelper` class, permit to declare routes directly in controller as annotation 
 * option `onNullRoute` of `app` section with default value `/error/404` in `config/config.php`
 * option `protocol` of `app` section now is set automatically
+* `config.local.php` file for develop pourposes, it has priority on `config.php`
 
 ### Fixed
 * namespace convention, all under `Linna\App` namespace

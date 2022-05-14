@@ -12,20 +12,20 @@ declare(strict_types=1);
 namespace Linna\App\Controllers;
 
 use Linna\App\Models\ErrorModel;
+use Linna\App\Views\ErrorView;
 use Linna\Mvc\Controller;
+use Linna\Router\Route;
 
 /**
  * Error Controller.
  */
-#[
-    Route(
-        name:       'Error',
-        method:     'GET',
-        path:       '/error/[code]',
-        model:      Linna\App\Models\ErrorModel::class,
-        view:       Linna\App\Views\ErrorView::class,
-    )
-]
+#[Route(
+    name:       'Error',
+    method:     'GET',
+    path:       '/error/[code]',
+    model:      ErrorModel::class,
+    view:       ErrorView::class,
+)]
 class ErrorController extends Controller
 {
     /**
@@ -53,12 +53,12 @@ class ErrorController extends Controller
      * Error entrypoint.
      *
      * @param string $code
-     * 
+     *
      * @return void
      */
     public function entryPoint(string $code): void
     {
-        $code = (int) $code;
+        \settype($code, 'int');
 
         //default
         $statusCode = 404;

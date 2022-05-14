@@ -10,6 +10,7 @@
 declare(strict_types=1);
 
 use Linna\Session\Session;
+use Linna\Session\PgsqlPdoSessionHandler;
 
 //create session object
 $session = new Session(
@@ -23,7 +24,7 @@ $session = new Session(
 
 //switch to required session handler
 //remind to uncomment proper section in Persistent storage section
-$handler = $container->resolve(Linna\Session\PgsqlPdoSessionHandler::class);
+$handler = $container->resolve(PgsqlPdoSessionHandler::class);
 $session->setSessionHandler($handler);
 
 //start session
