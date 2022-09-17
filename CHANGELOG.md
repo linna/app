@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2022-XX-XX
+## [Unreleased] [v0.16.0](https://github.com/linna/app/compare/v0.16.0...v0.17.0)
+
+## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2022-09-17
 
 ### Added
 * `Linna\App\Models\ErrorModel` class
@@ -21,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 * require PHP 8.1
+* require [linna/framework v0.27.0](https://github.com/linna/framework/releases/tag/v0.27.0)
 * Error page system.
 * `Linna\App\Controllers\E404Controller` renamed to `App\Controllers\ErrorController`
 * `Linna\App\Views\E404View` renamed to `App\Views\ErrorView`
