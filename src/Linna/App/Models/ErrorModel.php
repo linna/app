@@ -29,8 +29,8 @@ class ErrorModel extends Model
     /**
      * Raise error.
      *
-     * @param int       $statusCode
-     * @param string    $description
+     * @param int    $statusCode
+     * @param string $description
      *
      * @return void
      */

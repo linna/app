@@ -20,9 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 class NullTemplateTest extends TestCase
 {
-    /**
-     * @var TemplateInterface Template.
-     */
+    /** @var TemplateInterface Template. */
     protected static $template;
 
     /**

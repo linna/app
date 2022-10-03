@@ -17,12 +17,12 @@
     "require": {
         "php": ">=8.0",
         "linna/dotenv": ">=1.1",
-        "linna/auth-mapper-mysql": "dev-master",
+        "linna/auth-mapper-mysql": ">=0.2",
         "linna/framework": ">=0.27"
     },
     "require-dev": {
         "infection/infection": ">=0.26",
-        "phpstan/phpstan": ">=1.4",
+        "phpstan/phpstan": ">=1.8",
         "phpunit/phpunit": ">=9.0"
     },
     "autoload": {

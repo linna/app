@@ -20,9 +20,7 @@ use Linna\DotEnv\DotEnv;
  */
 class AppDotEnv extends DotEnv
 {
-    /**
-     * @var array Keys to look for into .en file
-     */
+    /** @var array Keys to look for into .en file */
     private static $envKeys = [
         'session.name',
         'session.expire',

@@ -18,9 +18,7 @@ use Linna\Mvc\TemplateInterface;
  */
 class JsonTemplate implements TemplateInterface
 {
-    /**
-     * @var object Data for view
-     */
+    /** @var object Data for view */
     public $data;
 
     /**

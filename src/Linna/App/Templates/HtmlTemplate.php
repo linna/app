@@ -19,44 +19,28 @@ use stdClass;
  */
 class HtmlTemplate implements TemplateInterface
 {
-    /**
-     * @var string Template to load
-     */
+    /** @var string Template to load */
     protected $template = null;
 
-    /**
-     * @var string Template Title
-     */
+    /** @var string Template Title */
     public $title = 'App';
 
-    /**
-     * @var object Data for template
-     */
+    /** @var object Data for template */
     public $data;
 
-    /**
-     * @var array Css file for template
-     */
+    /** @var array Css file for template */
     protected $css = [];
 
-    /**
-     * @var array Js file for template
-     */
+    /** @var array Js file for template */
     protected $javascript = [];
 
-    /**
-     * @var string Template directory
-     */
+    /** @var string Template directory */
     protected $templateDir;
 
-    /**
-     * @var string Css directory
-     */
+    /** @var string Css directory */
     protected $cssDir;
 
-    /**
-     * @var string Js directory
-     */
+    /** @var string Js directory */
     protected $jsDir;
 
     /**

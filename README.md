@@ -21,6 +21,11 @@
 # About
 Application Skeleton for Linna framework
 
+## Actual stable environment
+* app 0.16.0
+* framework 0.27.0
+* auth-mapper-* 0.2.0
+
 # Index
 1. [Requirements](#requirements)
 2. [Installation](#installation)

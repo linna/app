@@ -23,7 +23,7 @@ class RestViewAio extends View
     /**
      * Class Constructor.
      *
-     * @param RawTemplate   $rawTemplate
+     * @param RawTemplate $rawTemplate
      */
     public function __construct(RawTemplate $rawTemplate)
     {

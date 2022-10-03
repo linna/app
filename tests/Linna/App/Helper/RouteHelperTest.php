@@ -25,14 +25,10 @@ use PHPUnit\Framework\TestCase;
  */
 class RouteHelperTest extends TestCase
 {
-    /**
-     * @var RouteCollection Routes for test.
-     */
+    /** @var RouteCollection Routes for test. */
     protected static RouteCollection $routes;
 
-    /**
-     * @var Router The router object.
-     */
+    /** @var Router The router object. */
     protected static RouteHelper $helper;
 
     /**

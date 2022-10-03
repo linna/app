@@ -22,7 +22,7 @@ class ErrorView extends View
     /**
      * Constructor.
      *
-     * @param HtmlTemplate  $htmlTemplate
+     * @param HtmlTemplate $htmlTemplate
      */
     public function __construct(HtmlTemplate $htmlTemplate)
     {

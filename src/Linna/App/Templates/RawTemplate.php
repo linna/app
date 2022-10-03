@@ -19,9 +19,7 @@ use Linna\Mvc\TemplateInterface;
  */
 class RawTemplate implements TemplateInterface
 {
-    /**
-     * @var array Data for view
-     */
+    /** @var array Data for view */
     public $data = [];
 
     /**

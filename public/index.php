@@ -93,7 +93,6 @@ foreach ($config['modules'] as $module) {
 //try to resolve mvc components, if AuthenticationException is throwed
 //complete script with null objects
 try {
-
     //start front controller
     $frontController = new ModelViewController(
         $container->resolve($route->model),
@@ -102,7 +101,6 @@ try {
         $route
     );
 } catch (AuthorizationException | AuthenticationException | RedirectException $redirection) {
-
     //hope a valid route else go to unauthorized page
     $where = $redirection->getPath();
     $where = ($where !== '' ? $where : '/error/401');
@@ -128,7 +126,6 @@ try {
         $route
     );
 } finally {
-
     //run
     $frontController->run();
     //output

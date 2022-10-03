@@ -28,9 +28,7 @@ use Linna\Router\Route;
 )]
 class ErrorController extends Controller
 {
-    /**
-     * @var array Status codes
-     */
+    /** @var array Status codes */
     private $status = [
         401 => 'Unauthorized',
         403 => 'Forbidden',

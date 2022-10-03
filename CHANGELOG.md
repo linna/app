@@ -6,7 +6,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] [v0.16.0](https://github.com/linna/app/compare/v0.16.0...v0.17.0)
+## [Unreleased] [v0.17.0](https://github.com/linna/app/compare/v0.16.0...v0.17.0)
+
+
+## [v0.16.1](https://github.com/linna/app/compare/v0.16.0...v0.16.1) - 2022-10-03
+
+### Changed
+* dependencies updated
 
 ## [v0.16.0](https://github.com/linna/app/compare/v0.15.0...v0.16.0) - 2022-09-17
 
