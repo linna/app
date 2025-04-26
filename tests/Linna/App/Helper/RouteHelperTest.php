@@ -18,6 +18,7 @@ use Linna\Router\RouteCollection;
 use Linna\Mvc\ModelViewController;
 use Linna\Mvc\Model;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Route Helper Test
@@ -62,7 +63,7 @@ class RouteHelperTest extends TestCase
      *
      * @return array
      */
-    public function routesProvider(): array
+    public static function routesProvider(): array
     {
         return [
             ['/rest', 'GET', 'View getActionAll(): getActionAll()'],
@@ -78,14 +79,13 @@ class RouteHelperTest extends TestCase
     /**
      * Test generated routes.
      *
-     * @dataProvider routesProvider
-     *
      * @param string $route
      * @param string $method
      * @param string $result
      *
      * @return void
      */
+    #[DataProvider('routesProvider')]
     public function testGeneratedRoutes(string $route, string $method, string $result): void
     {
         $router = new Router(

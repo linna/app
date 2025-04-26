@@ -58,7 +58,7 @@ class RouteHelper
             // create reflection class and get attributes if attribute is istance of Route
             foreach ($reflectorClass->getAttributes(Route::class, ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
                 // create new route instance using as arguments the attribute arguments plus the controller class
-                $routes[] =(new ReflectionClass(Route::class)
+                $routes[] = (new ReflectionClass(Route::class)
                     )->newInstanceArgs($attribute->getArguments() +
                     ['controller' => $class]);
             }
@@ -77,7 +77,7 @@ class RouteHelper
             foreach ($method->getAttributes(Route::class, ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
                 // create new route instance using as arguments the attribute arguments plus the controller class
                 // and the action
-                $routes[] =(new ReflectionClass(Route::class))
+                $routes[] = (new ReflectionClass(Route::class))
                     ->newInstanceArgs($attribute->getArguments() +
                     ['action' => $method->getName(), 'controller' => $class]);
             }

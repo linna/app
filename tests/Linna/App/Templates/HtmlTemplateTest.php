@@ -56,7 +56,7 @@ class HtmlTemplateTest extends TestCase
     public function testOutput(): void
     {
         self::$template->loadHtml('testPage');
-        self::$template->setData(['test'=>'value']);
+        self::$template->setData(['test' => 'value']);
 
         $this->assertEquals('<b>value</b>', self::$template->getOutput());
     }

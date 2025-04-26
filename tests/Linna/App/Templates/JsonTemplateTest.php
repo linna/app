@@ -50,7 +50,7 @@ class JsonTemplateTest extends TestCase
      */
     public function testOutput(): void
     {
-        self::$template->setData(['test'=>'value']);
+        self::$template->setData(['test' => 'value']);
 
         $this->assertEquals('{"test":"value"}', self::$template->getOutput());
     }
